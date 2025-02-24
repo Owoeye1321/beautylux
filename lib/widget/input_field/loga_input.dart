@@ -14,22 +14,27 @@ class LogaInputField extends StatefulWidget {
   final bool setIconPadding;
   final double? iconPadding;
   final double buttonBorder;
-  const LogaInputField({
-    super.key,
-    required this.hintText,
-    required this.verticalPadding,
-    required this.horizontalPadding,
-    required this.alterVisibility,
-    required this.hideTextInput,
-    this.prefixIconData,
-    required this.setIconSize,
-    this.iconSize,
-    this.iconColor,
-    required this.setIconColor,
-    required this.setIconPadding,
-    this.iconPadding,
-    required this.buttonBorder,
-  });
+  final bool prefixIcon;
+  final bool prefixImage;
+  final Image? imageIcon;
+  const LogaInputField(
+      {super.key,
+      required this.hintText,
+      required this.verticalPadding,
+      required this.horizontalPadding,
+      required this.alterVisibility,
+      required this.hideTextInput,
+      this.prefixIconData,
+      required this.setIconSize,
+      this.iconSize,
+      this.iconColor,
+      required this.setIconColor,
+      required this.setIconPadding,
+      this.iconPadding,
+      required this.buttonBorder,
+      required this.prefixIcon,
+      required this.prefixImage,
+      this.imageIcon});
 
   @override
   State<LogaInputField> createState() => _LogaInputFieldState();
@@ -55,15 +60,14 @@ class _LogaInputFieldState extends State<LogaInputField> {
         filled: true,
         fillColor: Theme.of(context).colorScheme.onInverseSurface,
         prefixIcon: Padding(
-          padding: EdgeInsets.only(left: widget.horizontalPadding, right: 14),
-          child: Padding(
-            padding: EdgeInsets.only(left: widget.setIconPadding ? widget.iconPadding! : 0),
-            child: Icon(
-              widget.prefixIconData,
-              color: widget.setIconColor ? widget.iconColor : Theme.of(context).colorScheme.onSurface,
-              size: widget.setIconSize ? widget.iconSize : 20,
-            ),
-          ),
+          padding: EdgeInsets.only(left: widget.setIconPadding ? widget.iconPadding! : 0),
+          child: widget.prefixIcon == true
+              ? Icon(
+                  widget.prefixIconData,
+                  color: widget.setIconColor ? widget.iconColor : Theme.of(context).colorScheme.onSurface,
+                  size: widget.setIconSize ? widget.iconSize : 20,
+                )
+              : widget.imageIcon,
         ),
         contentPadding: EdgeInsets.symmetric(
           vertical: widget.verticalPadding,

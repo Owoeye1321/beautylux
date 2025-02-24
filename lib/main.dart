@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:logaluxe_users/screen/home.dart';
+import 'package:logaluxe_users/screen/splash.dart';
 
 final colorScheme = ColorScheme.fromSeed(
   brightness: Brightness.dark,
@@ -11,7 +12,7 @@ final colorScheme = ColorScheme.fromSeed(
   onSurface: const Color(0xFFFFFFFF),
   onSurfaceVariant: Color(0xff24262b),
   outline: Color.fromARGB(255, 89, 94, 107),
-  onInverseSurface: Color.fromARGB(255, 40, 40, 40),
+  onInverseSurface: Color(0xFF252525),
   onError: const Color(0xFFEB4F87),
   onTertiary: Color.fromARGB(255, 180, 178, 178),
   tertiaryContainer: Color(0xFF0F0704),

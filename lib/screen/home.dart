@@ -126,7 +126,10 @@ class _HomeState extends State<Home> {
               reverse: false,
               hideOnScroll: false, // ✅ Ensure bar stays visible
               scrollOpposite: false,
-              child: CustomBottomNavigationBar(),
+              child: CustomBottomNavigationBar(
+                activeIndex: 0,
+                currentIndex: 0,
+              ),
               body: (context, controller) => SingleChildScrollView(
                 controller: controller,
                 child: Padding(
@@ -152,6 +155,11 @@ class _HomeState extends State<Home> {
                           setIconPadding: true,
                           iconPadding: 10,
                           buttonBorder: 20,
+                          prefixIcon: false,
+                          prefixImage: true,
+                          imageIcon: Image(
+                            image: AssetImage('images/search.png'),
+                          ),
                         ),
                       ),
                       SizedBox(

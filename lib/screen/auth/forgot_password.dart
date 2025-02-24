@@ -58,6 +58,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 hideTextInput: false,
                 prefixIconData: Icons.email,
                 setIconSize: false,
+                prefixIcon: true,
+                prefixImage: false,
                 setIconColor: false,
                 setIconPadding: false),
             const SizedBox(

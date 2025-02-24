@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logaluxe_users/screen/home.dart';
 
 import '../provider/user.dart';
 
 class CustomBottomNavigationBar extends ConsumerStatefulWidget {
-  const CustomBottomNavigationBar({super.key});
+  int activeIndex;
+  final int currentIndex;
+  CustomBottomNavigationBar({super.key, required this.activeIndex, required this.currentIndex});
 
   @override
   ConsumerState<CustomBottomNavigationBar> createState() => _CustomBottomNavigationBarState();
@@ -12,13 +15,10 @@ class CustomBottomNavigationBar extends ConsumerStatefulWidget {
 
 class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigationBar>
     with SingleTickerProviderStateMixin {
-  late int activeIndex;
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    activeIndex = 0;
   }
 
   @override
@@ -27,7 +27,9 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
 
     _switchIndex(int active) {
       setState(() {
-        activeIndex = active;
+        widget.activeIndex = active;
+        if (active == widget.currentIndex) return;
+        if (active == 0) Navigator.of(context).push(MaterialPageRoute(builder: (context) => Home()));
       });
     }
 
@@ -36,10 +38,53 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          activeIndex == 0
-              ? GestureDetector(
-                  onTap: _switchIndex(0),
-                  child: Container(
+          GestureDetector(
+            onTap: () => _switchIndex(0),
+            child: widget.activeIndex == 0
+                ? Container(
+                    height: 50,
+                    width: 110,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Image(
+                              image: AssetImage('images/home_icon.png'),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5.0),
+                          child: Text(
+                            "Home",
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onSurface,
+                              fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
+                              fontWeight: Theme.of(context).textTheme.titleMedium?.fontWeight!,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                : Image(
+                    image: AssetImage('images/home_icon.png'),
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
+          ),
+          GestureDetector(
+            onTap: () => _switchIndex(1),
+            child: widget.activeIndex == 1
+                ? Container(
                     height: 50,
                     width: 120,
                     decoration: BoxDecoration(
@@ -49,37 +94,122 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
                     child: Row(
                       children: [
                         Container(
-                          color: Theme.of(context).colorScheme.onError,
-                          child: Icon(
-                            Icons.home,
-                            size: 35,
-                            color: Theme.of(context).colorScheme.onSurface,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Image(
+                              image: AssetImage('images/search.png'),
+                            ),
                           ),
                         ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5.0),
+                          child: Text(
+                            "Explore",
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onSurface,
+                              fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
+                              fontWeight: Theme.of(context).textTheme.titleMedium?.fontWeight!,
+                            ),
+                          ),
+                        )
                       ],
                     ),
+                  )
+                : Image(
+                    image: AssetImage('images/search.png'),
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
-                )
-              : Icon(
-                  Icons.home,
-                  size: 35,
-                  color: Theme.of(context).colorScheme.onSurface,
-                ),
-          Icon(
-            Icons.search,
-            size: 35,
-            color: Theme.of(context).colorScheme.onSurface,
           ),
-          Icon(
-            Icons.event_note,
-            size: 35,
-            color: Theme.of(context).colorScheme.onSurface,
+          GestureDetector(
+            onTap: () => _switchIndex(2),
+            child: widget.activeIndex == 2
+                ? Container(
+                    height: 50,
+                    width: 130,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Image(
+                              image: AssetImage('images/menu.png'),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5.0),
+                          child: Text(
+                            "Booking",
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onSurface,
+                              fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
+                              fontWeight: Theme.of(context).textTheme.titleMedium?.fontWeight!,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                : Image(
+                    image: AssetImage('images/menu.png'),
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
           ),
-          Icon(
-            Icons.more_horiz,
-            size: 35,
-            color: Theme.of(context).colorScheme.onSurface,
-          )
+          GestureDetector(
+            onTap: () => _switchIndex(3),
+            child: widget.activeIndex == 3
+                ? Container(
+                    height: 50,
+                    width: 130,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Image(
+                              image: AssetImage('images/more.png'),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5.0),
+                          child: Text(
+                            "Settings",
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onSurface,
+                              fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
+                              fontWeight: Theme.of(context).textTheme.titleMedium?.fontWeight!,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                : Image(
+                    image: AssetImage('images/more.png'),
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
+          ),
         ],
       ),
     );
