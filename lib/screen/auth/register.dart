@@ -173,7 +173,7 @@ class _RegisterState extends State<Register> {
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    Navigator.pop(context);
                   },
                   child: Text(
                     "Sign In",
