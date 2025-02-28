@@ -65,7 +65,7 @@ class _SplashScreenState extends State<SplashScreen> {
                             "Next",
                             style: Theme.of(context)
                                 .textTheme
-                                .titleMedium!
+                                .bodyMedium!
                                 .copyWith(color: Theme.of(context).colorScheme.onSurface),
                           ),
                         )
@@ -112,7 +112,7 @@ class _SplashScreenState extends State<SplashScreen> {
                           "Sign In",
                           style: TextStyle(
                               color: Theme.of(context).colorScheme.onError,
-                              fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!),
+                              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!),
                         ),
                       )
                     ],

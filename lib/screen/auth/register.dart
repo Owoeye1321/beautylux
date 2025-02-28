@@ -28,17 +28,17 @@ class _RegisterState extends State<Register> {
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onSurface,
                 fontSize: Theme.of(context).textTheme.titleLarge?.fontSize!,
-                fontWeight: Theme.of(context).textTheme.titleLarge?.fontWeight!,
+                fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight!,
               ),
             ),
             const SizedBox(
-              height: 40,
+              height: 30,
             ),
             SplashText(
               title: "Find and book Beauty, salon, Barber",
               color: Theme.of(context).colorScheme.onTertiary,
-              fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
-              fontWeight: Theme.of(context).textTheme.titleSmall?.fontWeight!,
+              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+              fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
             ),
             const SizedBox(
               height: 3,
@@ -46,8 +46,8 @@ class _RegisterState extends State<Register> {
             SplashText(
               title: "and Spa services anywhere, anytime.",
               color: Theme.of(context).colorScheme.onTertiary,
-              fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
-              fontWeight: Theme.of(context).textTheme.titleSmall?.fontWeight!,
+              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+              fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
             ),
             const SizedBox(
               height: 70,
@@ -118,7 +118,7 @@ class _RegisterState extends State<Register> {
               },
               child: Text(
                 "Signup",
-                style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       color: Theme.of(context).colorScheme.onSurface,
                     ),
               ),
@@ -140,7 +140,7 @@ class _RegisterState extends State<Register> {
                     "or",
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onSurface,
-                      fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
+                      fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
                     ),
                   ),
                 ),
@@ -179,7 +179,7 @@ class _RegisterState extends State<Register> {
                     "Sign In",
                     style: TextStyle(
                         color: Theme.of(context).colorScheme.onError,
-                        fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!),
+                        fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!),
                   ),
                 )
               ],

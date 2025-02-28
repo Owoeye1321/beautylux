@@ -30,17 +30,17 @@ class _LoginState extends State<Login> {
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onSurface,
                 fontSize: Theme.of(context).textTheme.titleLarge?.fontSize!,
-                fontWeight: Theme.of(context).textTheme.titleLarge?.fontWeight!,
+                fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight!,
               ),
             ),
             const SizedBox(
-              height: 40,
+              height: 30,
             ),
             SplashText(
               title: "Find and book Beauty, salon, Barber",
               color: Theme.of(context).colorScheme.onTertiary,
-              fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
-              fontWeight: Theme.of(context).textTheme.titleSmall?.fontWeight!,
+              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+              fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
             ),
             const SizedBox(
               height: 3,
@@ -48,8 +48,8 @@ class _LoginState extends State<Login> {
             SplashText(
               title: "and Spa services anywhere, anytime.",
               color: Theme.of(context).colorScheme.onTertiary,
-              fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
-              fontWeight: Theme.of(context).textTheme.titleSmall?.fontWeight!,
+              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+              fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
             ),
             const SizedBox(
               height: 100,
@@ -104,7 +104,7 @@ class _LoginState extends State<Login> {
                   child: Text(
                     "Forget password?",
                     style: TextStyle(
-                        fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
+                        fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
                         color: Theme.of(context).colorScheme.onError),
                   ),
                 )
@@ -125,7 +125,7 @@ class _LoginState extends State<Login> {
               },
               child: Text(
                 "Login",
-                style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       color: Theme.of(context).colorScheme.onSurface,
                     ),
               ),
@@ -147,7 +147,7 @@ class _LoginState extends State<Login> {
                     "or",
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.onSurface,
-                      fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
+                      fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
                     ),
                   ),
                 ),
@@ -192,7 +192,7 @@ class _LoginState extends State<Login> {
                     "Sign Up",
                     style: TextStyle(
                         color: Theme.of(context).colorScheme.onError,
-                        fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!),
+                        fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!),
                   ),
                 )
               ],

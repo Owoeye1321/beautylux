@@ -23,7 +23,7 @@ class _OTPState extends State<OTP> {
       borderWidth: 1,
       textStyle: TextStyle(
         color: Theme.of(context).colorScheme.onSurface,
-        fontSize: Theme.of(context).textTheme.titleLarge?.fontSize!,
+        fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize!,
       ),
       numberOfFields: 4,
       // borderColor: Theme.of(context).colorScheme.onSurfaceVariant,

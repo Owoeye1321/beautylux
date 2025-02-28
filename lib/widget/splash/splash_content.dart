@@ -19,14 +19,14 @@ class _SplashScreenState extends State<SplashContent> {
             title: "Best Stylist For You",
             color: Theme.of(context).colorScheme.onSurface,
             fontSize: Theme.of(context).textTheme.titleLarge?.fontSize!,
-            fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight!),
+            fontWeight: Theme.of(context).textTheme.titleLarge?.fontWeight!),
         const SizedBox(
           height: 20,
         ),
         SplashText(
             title: "Styling your appearance",
             color: Theme.of(context).colorScheme.onTertiary,
-            fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
+            fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
             fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight!),
         const SizedBox(
           height: 3,
@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashContent> {
         SplashText(
             title: "according to your lifestyle",
             color: Theme.of(context).colorScheme.onTertiary,
-            fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
+            fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
             fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight!),
         const SizedBox(height: 27),
         Row(
@@ -61,7 +61,7 @@ class _SplashScreenState extends State<SplashContent> {
               title: "Meet Our Specialist",
               color: Theme.of(context).colorScheme.onSurface,
               fontSize: Theme.of(context).textTheme.titleLarge?.fontSize!,
-              fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight!,
+              fontWeight: Theme.of(context).textTheme.titleLarge?.fontWeight!,
             ),
             const SizedBox(
               height: 20,
@@ -69,7 +69,7 @@ class _SplashScreenState extends State<SplashContent> {
             SplashText(
                 title: "There are many other stylist",
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
+                fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
                 fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight!),
             const SizedBox(
               height: 3,
@@ -77,7 +77,7 @@ class _SplashScreenState extends State<SplashContent> {
             SplashText(
                 title: "from all the best salons ever",
                 color: Theme.of(context).colorScheme.onTertiary,
-                fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
+                fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
                 fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight!),
             const SizedBox(height: 27),
             Row(
@@ -104,7 +104,7 @@ class _SplashScreenState extends State<SplashContent> {
             title: "Find The Best Service",
             color: Theme.of(context).colorScheme.onSurface,
             fontSize: Theme.of(context).textTheme.titleLarge?.fontSize!,
-            fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight!,
+            fontWeight: Theme.of(context).textTheme.titleLarge?.fontWeight!,
           ),
           const SizedBox(
             height: 20,
@@ -112,7 +112,7 @@ class _SplashScreenState extends State<SplashContent> {
           SplashText(
               title: "There are various services",
               color: Theme.of(context).colorScheme.onTertiary,
-              fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
+              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
               fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight!),
           const SizedBox(
             height: 3,
@@ -120,7 +120,7 @@ class _SplashScreenState extends State<SplashContent> {
           SplashText(
               title: "from the best salons",
               color: Theme.of(context).colorScheme.onTertiary,
-              fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
+              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
               fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight!),
           const SizedBox(height: 27),
           Row(
@@ -146,7 +146,7 @@ class _SplashScreenState extends State<SplashContent> {
             title: "Let's Join With Us",
             color: Theme.of(context).colorScheme.onSurface,
             fontSize: Theme.of(context).textTheme.titleLarge?.fontSize!,
-            fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight!,
+            fontWeight: Theme.of(context).textTheme.titleLarge?.fontWeight!,
           ),
           const SizedBox(
             height: 20,
@@ -154,15 +154,15 @@ class _SplashScreenState extends State<SplashContent> {
           SplashText(
               title: "Find and book Beauty, salon, Barber",
               color: Theme.of(context).colorScheme.onTertiary,
-              fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
-              fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight!),
+              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+              fontWeight: Theme.of(context).textTheme.displaySmall?.fontWeight!),
           const SizedBox(
             height: 3,
           ),
           SplashText(
               title: "and Spa services anywhere, anytime.",
               color: Theme.of(context).colorScheme.onTertiary,
-              fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
+              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
               fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight!),
         ],
       );

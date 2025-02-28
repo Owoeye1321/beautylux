@@ -1,7 +1,6 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:logaluxe_users/model/user.dart';
+import 'package:logaluxe_users/widget/provider_profile.dart';
 
 class ViewProvider extends StatelessWidget {
   final UserModel user;
@@ -9,6 +8,18 @@ class ViewProvider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void _showProviderProfile(UserModel user) {
+      showModalBottomSheet(
+        isScrollControlled: true,
+        constraints: BoxConstraints(maxHeight: 720, minWidth: double.infinity),
+        backgroundColor: Colors.transparent,
+        context: context,
+        builder: (ctx) => ProviderProfile(
+          user: user,
+        ),
+      );
+    }
+
     return Container(
       height: double.infinity,
       width: double.infinity,
@@ -42,7 +53,7 @@ class ViewProvider extends StatelessWidget {
             ),
           ),
           Positioned.fill(
-            top: 100,
+            top: 70,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
@@ -134,8 +145,8 @@ class ViewProvider extends StatelessWidget {
                             wordSpacing: 2,
                             decoration: TextDecoration.none,
                             color: Theme.of(context).colorScheme.onPrimary,
-                            fontSize: Theme.of(context).textTheme.titleSmall?.fontSize!,
-                            fontWeight: Theme.of(context).textTheme.titleSmall?.fontWeight!,
+                            fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
+                            fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
                           ),
                         ),
                         Container(
@@ -153,14 +164,14 @@ class ViewProvider extends StatelessWidget {
                               style: TextStyle(
                                   decoration: TextDecoration.none,
                                   color: Theme.of(context).colorScheme.onSurface,
-                                  fontSize: Theme.of(context).textTheme.titleSmall?.fontSize!,
-                                  fontWeight: Theme.of(context).textTheme.titleMedium?.fontWeight!),
+                                  fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+                                  fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!),
                             ),
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(height: 25),
+                    SizedBox(height: 10),
                     SizedBox(
                       height: 30,
                       child: Text(
@@ -170,8 +181,8 @@ class ViewProvider extends StatelessWidget {
                         style: TextStyle(
                           decoration: TextDecoration.none,
                           color: Theme.of(context).colorScheme.onSurface,
-                          fontSize: Theme.of(context).textTheme.titleLarge?.fontSize!,
-                          fontWeight: Theme.of(context).textTheme.titleLarge?.fontWeight,
+                          fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
+                          fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight,
                         ),
                       ),
                     ),
@@ -185,8 +196,8 @@ class ViewProvider extends StatelessWidget {
                       style: TextStyle(
                         decoration: TextDecoration.none,
                         color: Theme.of(context).colorScheme.outline,
-                        fontSize: Theme.of(context).textTheme.titleSmall?.fontSize!,
-                        fontWeight: Theme.of(context).textTheme.titleMedium?.fontWeight!,
+                        fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
+                        fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
                       ),
                     ),
                     SizedBox(
@@ -210,8 +221,8 @@ class ViewProvider extends StatelessWidget {
                             wordSpacing: 2,
                             decoration: TextDecoration.none,
                             color: Theme.of(context).colorScheme.onSurface,
-                            fontSize: Theme.of(context).textTheme.titleSmall?.fontSize!,
-                            fontWeight: Theme.of(context).textTheme.titleSmall?.fontWeight!,
+                            fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
+                            fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
                           ),
                         ),
                         SizedBox(
@@ -220,7 +231,7 @@ class ViewProvider extends StatelessWidget {
                         Icon(
                           Icons.local_offer,
                           color: Theme.of(context).colorScheme.onPrimary,
-                          size: 20,
+                          size: 15,
                         ),
                         SizedBox(
                           width: 5,
@@ -233,8 +244,8 @@ class ViewProvider extends StatelessWidget {
                             wordSpacing: 2,
                             decoration: TextDecoration.none,
                             color: Theme.of(context).colorScheme.onPrimary,
-                            fontSize: Theme.of(context).textTheme.titleSmall?.fontSize!,
-                            fontWeight: Theme.of(context).textTheme.titleSmall?.fontWeight!,
+                            fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
+                            fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
                           ),
                         ),
                         SizedBox(
@@ -249,7 +260,7 @@ class ViewProvider extends StatelessWidget {
                             decoration: TextDecoration.none,
                             color: Theme.of(context).colorScheme.onSurface,
                             fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
-                            fontWeight: Theme.of(context).textTheme.titleSmall?.fontWeight!,
+                            fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
                           ),
                         ),
                       ],
@@ -260,19 +271,50 @@ class ViewProvider extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(right: 20),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          _showProviderProfile(user);
+                        },
                         child: Text(
                           "Book Now",
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.onSurface,
-                            fontSize: Theme.of(context).textTheme.titleSmall?.fontSize!,
-                            fontWeight: Theme.of(context).textTheme.titleMedium?.fontWeight!,
+                            fontSize: Theme.of(context).textTheme.bodyText1?.fontSize!,
+                            fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
                           ),
                         ),
                       ),
                     )
                   ],
                 ),
+              ),
+            ),
+          ),
+          Positioned.fill(
+            top: 680,
+            child: GestureDetector(
+              onTap: () {
+                _showProviderProfile(user);
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "View More Details",
+                    maxLines: 2, // Limits text to 2 lines
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      decoration: TextDecoration.none,
+                      color: Theme.of(context).colorScheme.outline,
+                      fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
+                      fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
+                    ),
+                  ),
+                  Icon(
+                    Icons.keyboard_arrow_down,
+                    size: 25,
+                    color: Theme.of(context).colorScheme.outline,
+                  )
+                ],
               ),
             ),
           ),

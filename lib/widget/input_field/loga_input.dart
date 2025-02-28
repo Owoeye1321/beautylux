@@ -51,7 +51,7 @@ class _LogaInputFieldState extends State<LogaInputField> {
     return TextField(
       style: TextStyle(
         color: Theme.of(context).colorScheme.onSurface,
-        fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
+        fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
       ),
       cursorColor: Theme.of(context).colorScheme.onSurfaceVariant,
       obscureText: widget.hideTextInput ? disableState : false,
@@ -75,8 +75,8 @@ class _LogaInputFieldState extends State<LogaInputField> {
         ),
         hintText: widget.hintText,
         hintStyle: TextStyle(
-          color: Theme.of(context).colorScheme.onTertiary,
-          fontWeight: Theme.of(context).textTheme.titleSmall?.fontWeight!,
+          color: Theme.of(context).colorScheme.outline,
+          fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Theme.of(context).colorScheme.onError),

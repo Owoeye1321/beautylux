@@ -28,23 +28,23 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onSurface,
                 fontSize: Theme.of(context).textTheme.titleLarge?.fontSize!,
-                fontWeight: Theme.of(context).textTheme.titleLarge?.fontWeight!,
+                fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight!,
               ),
             ),
             const SizedBox(
-              height: 40,
+              height: 20,
             ),
             SplashText(
               title: "Please type in your email, we’ll send",
               color: Theme.of(context).colorScheme.onTertiary,
-              fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
-              fontWeight: Theme.of(context).textTheme.titleSmall?.fontWeight!,
+              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+              fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
             ),
             SplashText(
               title: "you a code to change your password.",
               color: Theme.of(context).colorScheme.onTertiary,
-              fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
-              fontWeight: Theme.of(context).textTheme.titleSmall?.fontWeight!,
+              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+              fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
             ),
             const SizedBox(
               height: 100,
@@ -81,7 +81,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   child: Text(
                     "Use phone number?",
                     style: TextStyle(
-                      fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
+                      fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
                       color: Theme.of(context).colorScheme.onTertiary,
                     ),
                   ),
@@ -103,7 +103,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               },
               child: Text(
                 "Send Code",
-                style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       color: Theme.of(context).colorScheme.onSurface,
                     ),
               ),

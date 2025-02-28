@@ -23,7 +23,7 @@ class LogaIconButton extends StatelessWidget {
           text,
           style: Theme.of(context)
               .textTheme
-              .titleMedium!
+              .bodyMedium!
               .copyWith(color: Theme.of(context).colorScheme.onSurface),
         ),
       );
@@ -50,7 +50,7 @@ class LogaIconButton extends StatelessWidget {
             text,
             style: Theme.of(context)
                 .textTheme
-                .titleMedium!
+                .bodyMedium!
                 .copyWith(color: Theme.of(context).colorScheme.background),
           ),
         ]),

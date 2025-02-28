@@ -32,23 +32,23 @@ class _VerifyEmailState extends State<VerifyEmail> {
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onSurface,
                 fontSize: Theme.of(context).textTheme.titleLarge?.fontSize!,
-                fontWeight: Theme.of(context).textTheme.titleLarge?.fontWeight!,
+                fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight!,
               ),
             ),
             const SizedBox(
-              height: 30,
+              height: 20,
             ),
             SplashText(
               title: "Please type OTP code that was sent to",
               color: Theme.of(context).colorScheme.onTertiary,
-              fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
-              fontWeight: Theme.of(context).textTheme.titleSmall?.fontWeight!,
+              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+              fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
             ),
             SplashText(
               title: " your mail.",
               color: Theme.of(context).colorScheme.onTertiary,
-              fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
-              fontWeight: Theme.of(context).textTheme.titleSmall?.fontWeight!,
+              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+              fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
             ),
             const SizedBox(
               height: 80,
@@ -63,7 +63,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
                 Text(
                   "Resend on",
                   style: TextStyle(
-                    fontSize: Theme.of(context).textTheme.titleSmall?.fontSize!,
+                    fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
                     color: Theme.of(context).colorScheme.onTertiary,
                   ),
                 ),
@@ -74,9 +74,9 @@ class _VerifyEmailState extends State<VerifyEmail> {
                     child: Text(
                       timer,
                       style: TextStyle(
-                        fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
+                        fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
                         color: Theme.of(context).colorScheme.onTertiary,
-                        fontWeight: Theme.of(context).textTheme.titleLarge?.fontWeight!,
+                        fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight!,
                       ),
                     ),
                   ),
@@ -98,7 +98,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
               },
               child: Text(
                 "Verify Email",
-                style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       color: Theme.of(context).colorScheme.onSurface,
                     ),
               ),

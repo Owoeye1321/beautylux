@@ -52,15 +52,15 @@ class ServiceListView extends ConsumerWidget {
                         image: allUsers[index].image_url != null
                             ? NetworkImage(allUsers[index].image_url!)
                             : AssetImage('images/home.png') as ImageProvider,
-                        fit: BoxFit.fill,
+                        fit: BoxFit.cover,
                       ),
                     ),
                     height: 180,
-                    width: 180,
+                    width: 177,
                     child: Stack(children: []),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(15),
+                    padding: const EdgeInsets.only(left: 15, right: 10, top: 15, bottom: 15),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -73,9 +73,12 @@ class ServiceListView extends ConsumerWidget {
                               style: TextStyle(
                                 wordSpacing: 2,
                                 color: Theme.of(context).colorScheme.onPrimary,
-                                fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
-                                fontWeight: Theme.of(context).textTheme.titleMedium?.fontWeight!,
+                                fontSize: Theme.of(context).textTheme.displaySmall?.fontSize!,
+                                fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
                               ),
+                            ),
+                            SizedBox(
+                              width: 20,
                             ),
                             Icon(
                               Icons.star,
@@ -83,7 +86,7 @@ class ServiceListView extends ConsumerWidget {
                               size: 20,
                             ),
                             SizedBox(
-                              width: 10,
+                              width: 5,
                             ),
                             Text(
                               "4.7(2.7)",
@@ -92,21 +95,24 @@ class ServiceListView extends ConsumerWidget {
                               style: TextStyle(
                                 wordSpacing: 2,
                                 color: Theme.of(context).colorScheme.onSurface,
-                                fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
-                                fontWeight: Theme.of(context).textTheme.titleMedium?.fontWeight!,
+                                fontSize: Theme.of(context).textTheme.displaySmall?.fontSize!,
+                                fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
                               ),
                             ),
                           ],
                         ),
                         SizedBox(height: 5),
-                        Text(
-                          allUsers[index].business_name,
-                          maxLines: 2, // Limits text to 2 lines
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
+                        SizedBox(
+                          width: 180,
+                          child: Text(
+                            allUsers[index].business_name,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
                               color: Theme.of(context).colorScheme.onSurface,
-                              fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
-                              fontWeight: Theme.of(context).textTheme.titleMedium?.fontWeight),
+                              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+                              fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight,
+                            ),
+                          ),
                         ),
                         SizedBox(height: 10),
                         Row(
@@ -126,7 +132,7 @@ class ServiceListView extends ConsumerWidget {
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 color: Theme.of(context).colorScheme.onSurface,
-                                fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
+                                fontSize: Theme.of(context).textTheme.displaySmall?.fontSize!,
                               ),
                             ),
                           ],
@@ -148,7 +154,7 @@ class ServiceListView extends ConsumerWidget {
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 color: Theme.of(context).colorScheme.onSurface,
-                                fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
+                                fontSize: Theme.of(context).textTheme.displaySmall?.fontSize!,
                               ),
                             ),
                           ],
@@ -172,13 +178,13 @@ class ServiceListView extends ConsumerWidget {
                                   style: TextStyle(
                                     color: Theme.of(context).colorScheme.onPrimary,
                                     fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
-                                    fontWeight: Theme.of(context).textTheme.titleMedium?.fontWeight!,
+                                    fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
                                   ),
                                 ),
                               ),
                             ),
                             SizedBox(
-                              width: 80,
+                              width: 75,
                             ),
                             Container(
                               decoration: BoxDecoration(

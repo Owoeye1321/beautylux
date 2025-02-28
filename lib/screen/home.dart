@@ -56,35 +56,27 @@ class _HomeState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text("Welcome"),
+              Text(
+                "Welcome",
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.outline,
+                  fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+                ),
+              ),
               const SizedBox(
-                height: 5,
+                height: 4,
               ),
               Text(
-                "Hey, Jack EI ",
-                style: TextStyle(fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!),
-              ),
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 20,
-              ),
-              Transform.rotate(
-                angle: 5,
-                child: Icon(
-                  Icons.waving_hand,
-                  size: 20,
-                  color: Colors.yellow,
+                "Hey, Jack EI 👋 ",
+                style: TextStyle(
+                  fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+                  fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
                 ),
-              )
+              ),
             ],
           ),
           const SizedBox(
-            width: 160,
+            width: 180,
           ),
           GestureDetector(
             onTap: () {},
@@ -138,7 +130,7 @@ class _HomeState extends State<Home> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
                       Container(
                         child: LogaInputField(
@@ -185,7 +177,7 @@ class _HomeState extends State<Home> {
                                       Theme.of(context).colorScheme.background,
                                       Colors.transparent,
                                     ],
-                                    begin: Alignment.topLeft,
+                                    begin: Alignment.centerLeft,
                                     end: Alignment.centerRight,
                                   ),
                                   borderRadius: BorderRadius.circular(25),
@@ -199,12 +191,12 @@ class _HomeState extends State<Home> {
                                 "Morning Special!",
                                 style: TextStyle(
                                   color: Theme.of(context).colorScheme.onSurface,
-                                  fontSize: Theme.of(context).textTheme.titleLarge?.fontSize!,
+                                  fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize!,
                                 ),
                               ),
                             ),
                             Positioned.fill(
-                                top: 50,
+                                top: 45,
                                 left: 20,
                                 child: Text(
                                   "Get 20% off",
@@ -220,7 +212,8 @@ class _HomeState extends State<Home> {
                                 "on All Haircuts Between 9-10 AM.",
                                 style: TextStyle(
                                   color: Theme.of(context).colorScheme.onSurface,
-                                  fontSize: Theme.of(context).textTheme.titleSmall?.fontSize!,
+                                  fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
+                                  // fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
                                 ),
                               ),
                             ),
@@ -243,8 +236,8 @@ class _HomeState extends State<Home> {
                                   "Book Now",
                                   style: TextStyle(
                                     color: Theme.of(context).colorScheme.background,
-                                    fontSize: Theme.of(context).textTheme.titleSmall?.fontSize!,
-                                    fontWeight: Theme.of(context).textTheme.titleMedium?.fontWeight!,
+                                    fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
+                                    fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
                                   ),
                                 ),
                               ),
@@ -263,7 +256,7 @@ class _HomeState extends State<Home> {
                         "Categories",
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.onSurface,
-                          fontSize: Theme.of(context).textTheme.titleLarge?.fontSize!,
+                          fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize!,
                         ),
                       ),
                       SizedBox(height: 5),
@@ -278,7 +271,7 @@ class _HomeState extends State<Home> {
                             "Featured Salon",
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.onSurface,
-                              fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
+                              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
                             ),
                           ),
                           TextButton(
@@ -287,7 +280,7 @@ class _HomeState extends State<Home> {
                               "View all",
                               style: TextStyle(
                                 color: Theme.of(context).colorScheme.onPrimary,
-                                fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
+                                fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
                               ),
                             ),
                           ),
@@ -302,7 +295,7 @@ class _HomeState extends State<Home> {
                               backgroundColor: Theme.of(context).colorScheme.onSurface,
                               padding: const EdgeInsets.only(left: 7),
                               minimumSize: const Size(0, 0),
-                              fixedSize: const Size(110, 33),
+                              fixedSize: const Size(130, 33),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
@@ -315,7 +308,7 @@ class _HomeState extends State<Home> {
                                   style: TextStyle(
                                     color: Theme.of(context).colorScheme.background,
                                     fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
-                                    fontWeight: Theme.of(context).textTheme.titleSmall?.fontWeight!,
+                                    fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
                                   ),
                                 ),
                                 Padding(
@@ -348,7 +341,7 @@ class _HomeState extends State<Home> {
                             ),
                           ),
                           SizedBox(
-                            width: 205,
+                            width: 190,
                           ),
                           GestureDetector(
                             onTap: _changeView,

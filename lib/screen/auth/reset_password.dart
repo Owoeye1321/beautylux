@@ -31,23 +31,23 @@ class _ResetPasswordState extends State<ResetPassword> {
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onSurface,
                 fontSize: Theme.of(context).textTheme.titleLarge?.fontSize!,
-                fontWeight: Theme.of(context).textTheme.titleLarge?.fontWeight!,
+                fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight!,
               ),
             ),
             const SizedBox(
-              height: 30,
+              height: 20,
             ),
             SplashText(
               title: "Now, you can create your password",
               color: Theme.of(context).colorScheme.onTertiary,
-              fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
-              fontWeight: Theme.of(context).textTheme.titleSmall?.fontWeight!,
+              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+              fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
             ),
             SplashText(
               title: "and confim it below.",
               color: Theme.of(context).colorScheme.onTertiary,
-              fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
-              fontWeight: Theme.of(context).textTheme.titleSmall?.fontWeight!,
+              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+              fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
             ),
             const SizedBox(
               height: 100,
@@ -98,7 +98,7 @@ class _ResetPasswordState extends State<ResetPassword> {
               },
               child: Text(
                 "Confirm New Password",
-                style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       color: Theme.of(context).colorScheme.onSurface,
                     ),
               ),

@@ -43,7 +43,7 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
             child: widget.activeIndex == 0
                 ? Container(
                     height: 50,
-                    width: 110,
+                    width: 114,
                     decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(10),
@@ -56,7 +56,7 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
                             color: Theme.of(context).colorScheme.onPrimary,
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(13),
                             child: Image(
                               image: AssetImage('images/home_icon.png'),
                             ),
@@ -68,8 +68,8 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
                             "Home",
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.onSurface,
-                              fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
-                              fontWeight: Theme.of(context).textTheme.titleMedium?.fontWeight!,
+                              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+                              fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
                             ),
                           ),
                         )
@@ -86,7 +86,7 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
             child: widget.activeIndex == 1
                 ? Container(
                     height: 50,
-                    width: 120,
+                    width: 123,
                     decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(10),
@@ -99,7 +99,7 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
                             color: Theme.of(context).colorScheme.onPrimary,
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(13),
                             child: Image(
                               image: AssetImage('images/search.png'),
                             ),
@@ -111,8 +111,8 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
                             "Explore",
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.onSurface,
-                              fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
-                              fontWeight: Theme.of(context).textTheme.titleMedium?.fontWeight!,
+                              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+                              fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
                             ),
                           ),
                         )
@@ -129,7 +129,7 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
             child: widget.activeIndex == 2
                 ? Container(
                     height: 50,
-                    width: 130,
+                    width: 133,
                     decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(10),
@@ -142,7 +142,7 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
                             color: Theme.of(context).colorScheme.onPrimary,
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(13),
                             child: Image(
                               image: AssetImage('images/menu.png'),
                             ),
@@ -154,8 +154,8 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
                             "Booking",
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.onSurface,
-                              fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
-                              fontWeight: Theme.of(context).textTheme.titleMedium?.fontWeight!,
+                              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+                              fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
                             ),
                           ),
                         )
@@ -172,7 +172,7 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
             child: widget.activeIndex == 3
                 ? Container(
                     height: 50,
-                    width: 130,
+                    width: 133,
                     decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(10),
@@ -185,7 +185,7 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
                             color: Theme.of(context).colorScheme.onPrimary,
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(13),
                             child: Image(
                               image: AssetImage('images/more.png'),
                             ),
@@ -197,8 +197,8 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
                             "Settings",
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.onSurface,
-                              fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
-                              fontWeight: Theme.of(context).textTheme.titleMedium?.fontWeight!,
+                              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+                              fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
                             ),
                           ),
                         )

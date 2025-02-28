@@ -11,7 +11,7 @@ final colorScheme = ColorScheme.fromSeed(
   onPrimary: Color.fromARGB(255, 235, 76, 134),
   onSurface: const Color(0xFFFFFFFF),
   onSurfaceVariant: Color(0xff24262b),
-  outline: Color.fromARGB(255, 89, 94, 107),
+  outline: Color(0xFF9CA3AF),
   onInverseSurface: Color(0xFF252525),
   onError: const Color(0xFFEB4F87),
   onTertiary: Color.fromARGB(255, 180, 178, 178),
@@ -24,14 +24,17 @@ final theme = ThemeData().copyWith(
   scaffoldBackgroundColor: colorScheme.background,
   colorScheme: colorScheme,
   textTheme: GoogleFonts.montserratTextTheme().copyWith(
-    titleSmall: GoogleFonts.montserrat(fontWeight: FontWeight.normal, fontSize: 14),
-    titleMedium: GoogleFonts.montserrat(fontWeight: FontWeight.bold, fontSize: 18),
-    titleLarge: GoogleFonts.montserrat(fontWeight: FontWeight.w700, fontSize: 24),
+    displaySmall: GoogleFonts.montserrat(fontWeight: FontWeight.normal, fontSize: 10),
+    bodySmall: GoogleFonts.montserrat(fontWeight: FontWeight.normal, fontSize: 12),
+    bodyMedium: GoogleFonts.montserrat(fontWeight: FontWeight.bold, fontSize: 15),
+    bodyLarge: GoogleFonts.montserrat(fontWeight: FontWeight.w700, fontSize: 20),
+    titleSmall: GoogleFonts.montserrat(fontWeight: FontWeight.normal, fontSize: 16),
+    titleMedium: GoogleFonts.montserrat(fontWeight: FontWeight.bold, fontSize: 24),
+    titleLarge: GoogleFonts.montserrat(fontWeight: FontWeight.w700, fontSize: 28),
     headlineLarge: GoogleFonts.montserrat(
       fontSize: 40,
       fontWeight: FontWeight.bold,
     ),
-    bodySmall: GoogleFonts.montserrat(fontWeight: FontWeight.normal, fontSize: 10),
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
@@ -59,9 +62,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'LogaLuxe',
-        theme: theme,
-        //home: SplashScreen(),
+        theme: theme, //home: SplashScreen()
         home: Home());
-    //home: CustomBottomNavigationBar());
+    //home: CustomBottomNavigationBar()
+    //);
   }
 }

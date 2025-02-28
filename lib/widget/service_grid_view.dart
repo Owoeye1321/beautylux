@@ -27,7 +27,7 @@ class ServiceGridView extends ConsumerWidget {
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 20,
-          mainAxisExtent: 347,
+          mainAxisExtent: 353,
           mainAxisSpacing: 20,
         ),
         itemCount: allUsers.length,
@@ -53,16 +53,16 @@ class ServiceGridView extends ConsumerWidget {
                         image: allUsers[index].image_url != null
                             ? NetworkImage(allUsers[index].image_url!)
                             : AssetImage('images/home.png') as ImageProvider,
-                        fit: BoxFit.fill,
+                        fit: BoxFit.cover,
                       ),
                     ),
                     child: Stack(
                       children: [
                         Positioned.fill(
                           top: 30,
-                          left: 135,
+                          left: 145,
                           bottom: 155,
-                          right: 15,
+                          right: 10,
                           child: Container(
                             decoration: BoxDecoration(
                               color: Theme.of(context).colorScheme.onSurface,
@@ -94,7 +94,7 @@ class ServiceGridView extends ConsumerWidget {
                                 style: TextStyle(
                                     color: Theme.of(context).colorScheme.onPrimary,
                                     fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
-                                    fontWeight: Theme.of(context).textTheme.titleMedium?.fontWeight!),
+                                    fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!),
                               ),
                             ),
                           ),
@@ -116,17 +116,17 @@ class ServiceGridView extends ConsumerWidget {
                           style: TextStyle(
                             wordSpacing: 2,
                             color: Theme.of(context).colorScheme.onPrimary,
-                            fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
-                            fontWeight: Theme.of(context).textTheme.titleMedium?.fontWeight!,
+                            fontSize: Theme.of(context).textTheme.displaySmall?.fontSize!,
+                            //fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
                           ),
                         ),
                         Icon(
                           Icons.star,
                           color: Colors.orange,
-                          size: 20,
+                          size: 15,
                         ),
                         SizedBox(
-                          width: 10,
+                          width: 8,
                         ),
                         Text(
                           "4.7(2.7)",
@@ -134,9 +134,9 @@ class ServiceGridView extends ConsumerWidget {
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             wordSpacing: 2,
-                            color: Theme.of(context).colorScheme.onSurface,
-                            fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
-                            fontWeight: Theme.of(context).textTheme.titleMedium?.fontWeight!,
+                            color: Theme.of(context).colorScheme.outline,
+                            fontSize: Theme.of(context).textTheme.displaySmall?.fontSize!,
+                            //fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
                           ),
                         ),
                       ],
@@ -146,12 +146,12 @@ class ServiceGridView extends ConsumerWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       allUsers[index].business_name,
-                      maxLines: 2, // Limits text to 2 lines
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                          color: Theme.of(context).colorScheme.onSurface,
-                          fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
-                          fontWeight: Theme.of(context).textTheme.titleMedium?.fontWeight),
+                        color: Theme.of(context).colorScheme.onSurface,
+                        fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+                        fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight,
+                      ),
                     ),
                   ),
                   Padding(
@@ -173,7 +173,7 @@ class ServiceGridView extends ConsumerWidget {
                             maxLines: 2, // Limits text to 2 lines
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.onSurface,
+                              color: Theme.of(context).colorScheme.outline,
                               fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
                             ),
                           ),
@@ -199,7 +199,7 @@ class ServiceGridView extends ConsumerWidget {
                             maxLines: 2, // Limits text to 2 lines
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.onSurface,
+                              color: Theme.of(context).colorScheme.outline,
                               fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
                             ),
                           ),
