@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:logaluxe_users/model/user.dart';
-import 'package:logaluxe_users/widget/provider_profile.dart';
+import 'package:logaluxe_users/widget/service-provider/provider_profile.dart';
 
 class ViewProvider extends StatelessWidget {
   final UserModel user;
@@ -11,7 +11,7 @@ class ViewProvider extends StatelessWidget {
     void _showProviderProfile(UserModel user) {
       showModalBottomSheet(
         isScrollControlled: true,
-        constraints: BoxConstraints(maxHeight: 720, minWidth: double.infinity),
+        constraints: BoxConstraints(maxHeight: 800, minWidth: double.infinity),
         backgroundColor: Colors.transparent,
         context: context,
         builder: (ctx) => ProviderProfile(

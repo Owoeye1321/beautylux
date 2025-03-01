@@ -3,7 +3,7 @@ import 'package:logaluxe_users/screen/auth/forgot_password.dart';
 import 'package:logaluxe_users/screen/auth/register.dart';
 import 'package:logaluxe_users/screen/home.dart';
 import 'package:logaluxe_users/widget/button/icon_button.dart';
-import 'package:logaluxe_users/widget/input_field/loga_input.dart';
+import 'package:logaluxe_users/widget/input-field/loga_input.dart';
 import 'package:logaluxe_users/widget/splash/text.dart';
 
 class Login extends StatefulWidget {

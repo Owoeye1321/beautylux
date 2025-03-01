@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:logaluxe_users/screen/home.dart';
-import 'package:logaluxe_users/widget/input_field/loga_input.dart';
+import 'package:logaluxe_users/widget/input-field/loga_input.dart';
 import 'package:logaluxe_users/widget/splash/text.dart';
 
 class ResetPassword extends StatefulWidget {

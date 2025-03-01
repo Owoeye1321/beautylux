@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:logaluxe_users/screen/auth/verify_email.dart';
 import 'package:logaluxe_users/widget/button/icon_button.dart';
-import 'package:logaluxe_users/widget/input_field/loga_input.dart';
+import 'package:logaluxe_users/widget/input-field/loga_input.dart';
 import 'package:logaluxe_users/widget/splash/text.dart';
 
 class Register extends StatefulWidget {

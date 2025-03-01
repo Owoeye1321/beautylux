@@ -10,7 +10,7 @@ class UserModel {
   final String? salt;
   final String? otp;
   final String? image_url;
-  final String? bio;
+  final String bio;
   final bool? availability;
   final String? subscription_plan;
   final String? opening_time;
@@ -51,7 +51,7 @@ class UserModel {
       this.salt,
       this.otp,
       this.image_url,
-      this.bio,
+      required this.bio,
       this.availability,
       this.subscription_plan,
       this.opening_time,

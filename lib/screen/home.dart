@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_floating_bottom_bar/flutter_floating_bottom_bar.dart';
 import 'package:logaluxe_users/widget/category.dart';
-import 'package:logaluxe_users/widget/input_field/loga_input.dart';
+import 'package:logaluxe_users/widget/input-field/loga_input.dart';
 import 'package:logaluxe_users/widget/nav_bar.dart';
-import 'package:logaluxe_users/widget/service_grid_view.dart';
-import 'package:logaluxe_users/widget/service_list_view.dart';
+import 'package:logaluxe_users/widget/service/service_grid_view.dart';
+import 'package:logaluxe_users/widget/service/service_list_view.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});

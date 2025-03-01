@@ -10,10 +10,13 @@ class ServiceModel {
   final String country;
   final String state;
   final bool active;
+  final String currency;
+  final String image_url;
   final String opening_time;
   final String closing_time;
   final String createdAt;
   final String updatedAt;
+  final String description;
   ServiceModel(
       {required this.id,
       required this.name,
@@ -29,5 +32,8 @@ class ServiceModel {
       required this.opening_time,
       required this.closing_time,
       required this.createdAt,
-      required this.updatedAt});
+      required this.currency,
+      required this.updatedAt,
+      required this.description,
+      required this.image_url});
 }
