@@ -23,8 +23,6 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
 
   @override
   Widget build(BuildContext context) {
-    var allUsers = ref.watch(userNotifier);
-
     _switchIndex(int active) {
       setState(() {
         widget.activeIndex = active;

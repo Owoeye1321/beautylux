@@ -19,7 +19,7 @@ class ServiceListView extends ConsumerWidget {
       );
     }
 
-    var allUsers = ref.watch(userNotifier);
+    var allUsers = ref.watch(userProvider);
     return Container(
       child: GridView.builder(
         shrinkWrap: true, // ✅ Prevents GridView from taking infinite height

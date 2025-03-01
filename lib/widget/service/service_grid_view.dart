@@ -9,7 +9,7 @@ class ServiceGridView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var allUsers = ref.watch(userNotifier);
+    var allUsers = ref.watch(userProvider);
     void _viewUser(UserModel user) {
       Navigator.of(context).push(
         MaterialPageRoute(
