@@ -11,7 +11,7 @@ class ViewProvider extends StatelessWidget {
     void _showProviderProfile(UserModel user) {
       showModalBottomSheet(
         isScrollControlled: true,
-        constraints: BoxConstraints(maxHeight: 800, minWidth: double.infinity),
+        constraints: BoxConstraints(maxHeight: 700, minWidth: double.infinity),
         backgroundColor: Colors.transparent,
         context: context,
         builder: (ctx) => ProviderProfile(
@@ -269,15 +269,12 @@ class ViewProvider extends StatelessWidget {
                       height: 30,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 20),
+                      padding: const EdgeInsets.only(right: 15),
                       child: ElevatedButton(
                         style: ButtonStyle(
                           minimumSize: MaterialStateProperty.all(Size(0, 0)),
                           maximumSize: MaterialStateProperty.all(
-                            Size(280, 40),
-                          ),
-                          padding: MaterialStateProperty.all(
-                            EdgeInsets.symmetric(vertical: 3),
+                            Size(300, 45),
                           ),
                         ),
                         onPressed: () {

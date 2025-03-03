@@ -274,8 +274,8 @@ class AboutProvider extends ConsumerWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Container(
-                                height: 90,
-                                width: 90,
+                                height: 70,
+                                width: 70,
                                 decoration: BoxDecoration(
                                   color: Theme.of(context).colorScheme.onSurface,
                                   borderRadius: BorderRadius.circular(50),
@@ -297,7 +297,7 @@ class AboutProvider extends ConsumerWidget {
                                 fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight! as FontWeight,
                               ),
                               SizedBox(
-                                height: 5,
+                                height: 10,
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,

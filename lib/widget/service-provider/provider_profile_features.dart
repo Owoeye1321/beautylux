@@ -16,8 +16,8 @@ class ProfileMenu extends StatelessWidget {
           Column(
             children: [
               Container(
-                height: 50,
-                width: 50,
+                height: 45,
+                width: 45,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
                   color: Theme.of(context).colorScheme.onInverseSurface.withOpacity(0.8),
@@ -42,8 +42,8 @@ class ProfileMenu extends StatelessWidget {
           Column(
             children: [
               Container(
-                height: 50,
-                width: 50,
+                height: 45,
+                width: 45,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
                   color: Theme.of(context).colorScheme.onInverseSurface.withOpacity(0.8),
@@ -67,8 +67,8 @@ class ProfileMenu extends StatelessWidget {
           Column(
             children: [
               Container(
-                height: 50,
-                width: 50,
+                height: 45,
+                width: 45,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
                   color: Theme.of(context).colorScheme.onInverseSurface.withOpacity(0.8),
@@ -92,8 +92,8 @@ class ProfileMenu extends StatelessWidget {
           Column(
             children: [
               Container(
-                height: 50,
-                width: 50,
+                height: 45,
+                width: 45,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
                   color: Theme.of(context).colorScheme.onInverseSurface.withOpacity(0.8),
@@ -118,8 +118,8 @@ class ProfileMenu extends StatelessWidget {
           Column(
             children: [
               Container(
-                height: 50,
-                width: 50,
+                height: 45,
+                width: 45,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
                   color: Theme.of(context).colorScheme.onInverseSurface.withOpacity(0.8),

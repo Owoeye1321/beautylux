@@ -56,7 +56,7 @@ class _ProviderProfileState extends ConsumerState<ProviderProfile> {
               ],
             ),
             SizedBox(
-              height: 30,
+              height: 10,
             ),
             Text(
               widget.user.business_name,
@@ -207,7 +207,7 @@ class _ProviderProfileState extends ConsumerState<ProviderProfile> {
               ],
             ),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             ProfileMenu(user: widget.user),
             SizedBox(
@@ -234,7 +234,7 @@ class _ProviderProfileState extends ConsumerState<ProviderProfile> {
                           height: 3,
                         ),
                         SizedBox(
-                          height: 395,
+                          height: 300,
                           child: SingleChildScrollView(
                             scrollDirection: Axis.vertical,
                             child: ServicePurchaseList(
@@ -246,7 +246,7 @@ class _ProviderProfileState extends ConsumerState<ProviderProfile> {
                     ),
                   )
                 : currentIndex == 1
-                    ? SizedBox(height: 400, child: AboutProvider(user: widget.user))
+                    ? SizedBox(height: 370, child: AboutProvider(user: widget.user))
                     : currentIndex == 2
                         ? Container()
                         : Container(),

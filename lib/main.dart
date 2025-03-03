@@ -61,9 +61,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'LogaLuxe',
-        theme: theme, //home: SplashScreen()
-        home: SplashScreen());
+      debugShowCheckedModeBanner: false,
+      title: 'LogaLuxe',
+      theme: theme, //home: SplashScreen()
+      home: Home(),
+    );
   }
 }

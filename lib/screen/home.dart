@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 90,
-        leadingWidth: 75,
+        leadingWidth: 70,
         backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
         automaticallyImplyLeading: false,
         leading: Padding(
@@ -35,7 +35,6 @@ class _HomeState extends State<Home> {
             onTap: () {},
             child: ClipOval(
               child: Container(
-                width: 100,
                 margin: EdgeInsets.only(
                   top: 10,
                   bottom: 10,
@@ -77,7 +76,7 @@ class _HomeState extends State<Home> {
             ],
           ),
           const SizedBox(
-            width: 120,
+            width: 130,
           ),
           GestureDetector(
             onTap: () {},
