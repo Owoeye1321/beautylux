@@ -20,9 +20,9 @@ class _ServicePurchaseListState extends State<ServicePurchaseList> {
           return GestureDetector(
             onTap: () {},
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
               child: Container(
-                height: 155,
+                height: 130,
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.onTertiaryContainer.withOpacity(0.2),
                   borderRadius: BorderRadius.circular(15),
@@ -53,7 +53,7 @@ class _ServicePurchaseListState extends State<ServicePurchaseList> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SizedBox(
-                                width: 85,
+                                width: 90,
                                 child: LogaText(
                                   content: eachService.name,
                                   color: Theme.of(context).colorScheme.onSurface,
@@ -63,31 +63,34 @@ class _ServicePurchaseListState extends State<ServicePurchaseList> {
                                 ),
                               ),
                               SizedBox(
-                                width: 20,
+                                width: 10,
                               ),
                               Container(
-                                width: 80,
-                                height: 30,
+                                width: 60,
+                                height: 24,
                                 decoration: BoxDecoration(
                                   color: Theme.of(context).colorScheme.onSurface,
                                   borderRadius: BorderRadius.circular(40),
                                 ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Icon(
-                                      Icons.local_offer,
-                                      color: Colors.orange,
-                                      size: 20,
-                                    ),
-                                    LogaText(
-                                      content: "-20%",
-                                      color: Colors.orange,
-                                      fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize! as double,
-                                      fontweight:
-                                          Theme.of(context).textTheme.bodySmall?.fontWeight! as FontWeight,
-                                    ),
-                                  ],
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Icon(
+                                        Icons.local_offer,
+                                        color: Colors.orange,
+                                        size: 13,
+                                      ),
+                                      LogaText(
+                                        content: "-20%",
+                                        color: Colors.orange,
+                                        fontSize: Theme.of(context).textTheme.bodySmall?.fontSize! as double,
+                                        fontweight:
+                                            Theme.of(context).textTheme.bodySmall?.fontWeight! as FontWeight,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],
@@ -139,24 +142,24 @@ class _ServicePurchaseListState extends State<ServicePurchaseList> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SizedBox(
-                                width: 130,
+                                width: 120,
                                 child: LogaText(
                                   content: eachService.description,
                                   setMaxLine: true,
                                   maxLines: 2,
                                   color: Theme.of(context).colorScheme.outline,
-                                  fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize! as double,
+                                  fontSize: Theme.of(context).textTheme.bodySmall?.fontSize! as double,
                                   fontweight:
                                       Theme.of(context).textTheme.bodySmall?.fontWeight! as FontWeight,
                                 ),
                               ),
                               SizedBox(
-                                width: 30,
+                                width: 10,
                               ),
                               Container(
-                                width: 40,
-                                height: 40,
-                                padding: EdgeInsets.symmetric(horizontal: 5),
+                                width: 30,
+                                height: 30,
+                                padding: EdgeInsets.symmetric(horizontal: 2),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(50),
                                   color: Theme.of(context).colorScheme.onPrimary,

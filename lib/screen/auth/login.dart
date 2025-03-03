@@ -123,6 +123,15 @@ class _LoginState extends State<Login> {
                   ),
                 );
               },
+              style: ButtonStyle(
+                minimumSize: MaterialStateProperty.all(Size(0, 0)),
+                maximumSize: MaterialStateProperty.all(
+                  Size(370, 50),
+                ),
+                padding: MaterialStateProperty.all(
+                  EdgeInsets.symmetric(vertical: 3),
+                ),
+              ),
               child: Text(
                 "Login",
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(

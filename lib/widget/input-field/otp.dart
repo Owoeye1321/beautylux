@@ -17,7 +17,7 @@ class _OTPState extends State<OTP> {
       fillColor: Theme.of(context).colorScheme.onInverseSurface,
       focusedBorderColor: Theme.of(context).colorScheme.onError,
       borderRadius: const BorderRadius.all(Radius.circular(10)),
-      margin: EdgeInsets.only(right: 23),
+      margin: EdgeInsets.only(right: 15),
       cursorColor: Theme.of(context).colorScheme.onSurface,
       enabledBorderColor: Theme.of(context).colorScheme.onInverseSurface,
       borderWidth: 1,

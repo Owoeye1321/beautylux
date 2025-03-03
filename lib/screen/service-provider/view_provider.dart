@@ -79,7 +79,7 @@ class ViewProvider extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    width: 190,
+                    width: 160,
                   ),
                   Container(
                     decoration: BoxDecoration(
@@ -96,7 +96,7 @@ class ViewProvider extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    width: 20,
+                    width: 10,
                   ),
                   Container(
                     decoration: BoxDecoration(
@@ -117,7 +117,7 @@ class ViewProvider extends StatelessWidget {
             ),
           ),
           Positioned.fill(
-            top: 450,
+            top: 400,
             bottom: 190,
             right: 20,
             left: 20,
@@ -271,6 +271,15 @@ class ViewProvider extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(right: 20),
                       child: ElevatedButton(
+                        style: ButtonStyle(
+                          minimumSize: MaterialStateProperty.all(Size(0, 0)),
+                          maximumSize: MaterialStateProperty.all(
+                            Size(280, 40),
+                          ),
+                          padding: MaterialStateProperty.all(
+                            EdgeInsets.symmetric(vertical: 3),
+                          ),
+                        ),
                         onPressed: () {
                           _showProviderProfile(user);
                         },
@@ -278,7 +287,7 @@ class ViewProvider extends StatelessWidget {
                           "Book Now",
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.onSurface,
-                            fontSize: Theme.of(context).textTheme.bodyText1?.fontSize!,
+                            fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
                             fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
                           ),
                         ),

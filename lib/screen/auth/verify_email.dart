@@ -84,7 +84,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
               ],
             ),
             const SizedBox(
-              height: 380,
+              height: 360,
             ),
             ElevatedButton(
               onPressed: () {
@@ -96,6 +96,15 @@ class _VerifyEmailState extends State<VerifyEmail> {
                   ),
                 );
               },
+              style: ButtonStyle(
+                minimumSize: MaterialStateProperty.all(Size(0, 0)),
+                maximumSize: MaterialStateProperty.all(
+                  Size(370, 50),
+                ),
+                padding: MaterialStateProperty.all(
+                  EdgeInsets.symmetric(vertical: 3),
+                ),
+              ),
               child: Text(
                 "Verify Email",
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(

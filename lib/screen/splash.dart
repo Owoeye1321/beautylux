@@ -52,7 +52,7 @@ class _SplashScreenState extends State<SplashScreen> {
             Positioned(
               child: Column(
                 children: [
-                  currentSplash <= 2 ? const SizedBox(height: 560) : const SizedBox(height: 500),
+                  currentSplash <= 2 ? const SizedBox(height: 490) : const SizedBox(height: 450),
                   Container(
                     height: currentSplash <= 2 ? 155 : 130,
                     child: SplashContent(currentSplash: currentSplash),
@@ -60,7 +60,15 @@ class _SplashScreenState extends State<SplashScreen> {
                   currentSplash <= 2
                       ? ElevatedButton(
                           onPressed: _updateContent,
-                          style: const ButtonStyle(),
+                          style: ButtonStyle(
+                            minimumSize: MaterialStateProperty.all(
+                              Size(0, 0),
+                            ),
+                            fixedSize: MaterialStateProperty.all((Size(350, 55))),
+                            padding: MaterialStateProperty.all(
+                              EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                            ),
+                          ),
                           child: Text(
                             "Next",
                             style: Theme.of(context)

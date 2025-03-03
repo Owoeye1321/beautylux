@@ -60,8 +60,8 @@ class ServiceGridView extends ConsumerWidget {
                       children: [
                         Positioned.fill(
                           top: 30,
-                          left: 145,
-                          bottom: 155,
+                          left: 130,
+                          bottom: 158,
                           right: 10,
                           child: Container(
                             decoration: BoxDecoration(
@@ -70,14 +70,14 @@ class ServiceGridView extends ConsumerWidget {
                             ),
                             child: Icon(
                               Icons.favorite_border,
-                              size: 30,
+                              size: 25,
                               color: Theme.of(context).colorScheme.onPrimary,
                             ),
                           ),
                         ),
                         Positioned.fill(
                           top: 30,
-                          bottom: 155,
+                          bottom: 158,
                           right: 110,
                           child: Container(
                             decoration: BoxDecoration(
@@ -109,15 +109,18 @@ class ServiceGridView extends ConsumerWidget {
                     padding: const EdgeInsets.only(left: 10),
                     child: Row(
                       children: [
-                        Text(
-                          "Hair . Facial . Nail 2+",
-                          maxLines: 1, // Limits text to 2 lines
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            wordSpacing: 2,
-                            color: Theme.of(context).colorScheme.onPrimary,
-                            fontSize: Theme.of(context).textTheme.displaySmall?.fontSize!,
-                            //fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
+                        SizedBox(
+                          width: 90,
+                          child: Text(
+                            "Hair . Facial . Nail 2+",
+                            maxLines: 1, // Limits text to 2 lines
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              wordSpacing: 2,
+                              color: Theme.of(context).colorScheme.onPrimary,
+                              fontSize: Theme.of(context).textTheme.displaySmall?.fontSize!,
+                              //fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
+                            ),
                           ),
                         ),
                         Icon(

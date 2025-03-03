@@ -32,7 +32,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             SplashText(
               title: "Please type in your email, we’ll send",
@@ -47,7 +47,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
             ),
             const SizedBox(
-              height: 100,
+              height: 70,
             ),
             const LogaInputField(
                 hintText: "Email",
@@ -101,6 +101,15 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   ),
                 );
               },
+              style: ButtonStyle(
+                minimumSize: MaterialStateProperty.all(Size(0, 0)),
+                maximumSize: MaterialStateProperty.all(
+                  Size(370, 50),
+                ),
+                padding: MaterialStateProperty.all(
+                  EdgeInsets.symmetric(vertical: 3),
+                ),
+              ),
               child: Text(
                 "Send Code",
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(

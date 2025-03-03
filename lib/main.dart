@@ -24,7 +24,7 @@ final theme = ThemeData().copyWith(
   scaffoldBackgroundColor: colorScheme.background,
   colorScheme: colorScheme,
   textTheme: GoogleFonts.montserratTextTheme().copyWith(
-    displaySmall: GoogleFonts.montserrat(fontWeight: FontWeight.normal, fontSize: 10),
+    displaySmall: GoogleFonts.montserrat(fontWeight: FontWeight.normal, fontSize: 8),
     bodySmall: GoogleFonts.montserrat(fontWeight: FontWeight.normal, fontSize: 12),
     bodyMedium: GoogleFonts.montserrat(fontWeight: FontWeight.bold, fontSize: 15),
     bodyLarge: GoogleFonts.montserrat(fontWeight: FontWeight.w700, fontSize: 20),
@@ -41,7 +41,8 @@ final theme = ThemeData().copyWith(
       foregroundColor: Colors.white,
       backgroundColor: colorScheme.onPrimary,
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      fixedSize: const Size(390, 60),
+      minimumSize: Size(0, 0),
+      fixedSize: const Size(380, 60),
     ),
   ),
 );
@@ -63,8 +64,6 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'LogaLuxe',
         theme: theme, //home: SplashScreen()
-        home: Home());
-    //home: CustomBottomNavigationBar()
-    //);
+        home: SplashScreen());
   }
 }

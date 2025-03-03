@@ -26,6 +26,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 90,
+        leadingWidth: 75,
         backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
         automaticallyImplyLeading: false,
         leading: Padding(
@@ -76,7 +77,7 @@ class _HomeState extends State<Home> {
             ],
           ),
           const SizedBox(
-            width: 180,
+            width: 120,
           ),
           GestureDetector(
             onTap: () {},
@@ -217,7 +218,7 @@ class _HomeState extends State<Home> {
                       Positioned.fill(
                         top: 125,
                         left: 20,
-                        right: 270,
+                        right: 255,
                         bottom: 20,
                         child: ElevatedButton(
                           style: ButtonStyle(
@@ -225,7 +226,7 @@ class _HomeState extends State<Home> {
                               Theme.of(context).colorScheme.onSurface,
                             ),
                             padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                              EdgeInsets.only(right: 2, bottom: 3),
+                              EdgeInsets.symmetric(vertical: 2, horizontal: 5),
                             ),
                           ),
                           onPressed: () {},
@@ -338,7 +339,7 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                     SizedBox(
-                      width: 190,
+                      width: 150,
                     ),
                     GestureDetector(
                       onTap: _changeView,

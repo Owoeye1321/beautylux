@@ -32,7 +32,7 @@ class _RegisterState extends State<Register> {
               ),
             ),
             const SizedBox(
-              height: 30,
+              height: 20,
             ),
             SplashText(
               title: "Find and book Beauty, salon, Barber",
@@ -116,6 +116,15 @@ class _RegisterState extends State<Register> {
                   ),
                 );
               },
+              style: ButtonStyle(
+                minimumSize: MaterialStateProperty.all(Size(0, 0)),
+                maximumSize: MaterialStateProperty.all(
+                  Size(370, 50),
+                ),
+                padding: MaterialStateProperty.all(
+                  EdgeInsets.symmetric(vertical: 3),
+                ),
+              ),
               child: Text(
                 "Signup",
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(

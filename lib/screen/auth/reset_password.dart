@@ -35,7 +35,7 @@ class _ResetPasswordState extends State<ResetPassword> {
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             SplashText(
               title: "Now, you can create your password",
@@ -50,7 +50,7 @@ class _ResetPasswordState extends State<ResetPassword> {
               fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
             ),
             const SizedBox(
-              height: 100,
+              height: 70,
             ),
             const LogaInputField(
               hintText: "Password",
@@ -96,6 +96,15 @@ class _ResetPasswordState extends State<ResetPassword> {
                   ),
                 );
               },
+              style: ButtonStyle(
+                minimumSize: MaterialStateProperty.all(Size(0, 0)),
+                maximumSize: MaterialStateProperty.all(
+                  Size(370, 50),
+                ),
+                padding: MaterialStateProperty.all(
+                  EdgeInsets.symmetric(vertical: 3),
+                ),
+              ),
               child: Text(
                 "Confirm New Password",
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
