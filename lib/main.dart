@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'LogaLuxe',
-      theme: theme, //home: SplashScreen()
+      theme: theme,
       home: Home(),
     );
   }

@@ -102,7 +102,7 @@ class _HomeState extends State<Home> {
       ),
       backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
       body: BottomBar(
-        width: 400,
+        width: 370,
         barColor: Theme.of(context).colorScheme.onSurfaceVariant.withOpacity(1),
         fit: StackFit.expand,
         borderRadius: BorderRadius.circular(15),

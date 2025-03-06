@@ -24,6 +24,7 @@ class LogaText extends StatelessWidget {
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
         wordSpacing: 2,
+        decoration: TextDecoration.none,
         color: color,
         fontSize: fontSize,
         fontWeight: fontweight,
