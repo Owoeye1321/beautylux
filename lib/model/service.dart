@@ -6,7 +6,7 @@ class ServiceModel {
   final String service_ref;
   final String company_id;
   final String category_id;
-  final String amount;
+  final int amount;
   final String country;
   final String state;
   final bool active;

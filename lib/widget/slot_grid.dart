@@ -12,7 +12,7 @@ class SlotGrid extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     var allSlot = ref.watch(slotProvider);
     return SizedBox(
-      height: 150,
+      height: 100,
       child: GridView.builder(
         padding: EdgeInsets.all(0),
         physics: ScrollPhysics(),

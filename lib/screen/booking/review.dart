@@ -6,6 +6,7 @@ import 'package:logaluxe_users/model/service.dart';
 import 'package:logaluxe_users/provider/booking.dart';
 import 'package:logaluxe_users/provider/user.dart';
 import 'package:logaluxe_users/widget/calender.dart';
+import 'package:logaluxe_users/widget/card/booking_summary.dart';
 import 'package:logaluxe_users/widget/card/service.dart';
 import 'package:logaluxe_users/widget/loga_text.dart';
 import 'package:logaluxe_users/widget/slot_grid.dart';
@@ -126,7 +127,86 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
               selectDate: _setDate,
             ),
             RowText(rightText: "", leftText: "Select Time Slot", action: () {}),
-            SlotGrid(slot_date: selectedDate!)
+            SlotGrid(slot_date: selectedDate!),
+            SizedBox(
+              height: 20,
+            ),
+            RowText(rightText: "", leftText: "Booking Summary", action: () {}),
+            BookingSummary(),
+            SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.task_alt,
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  LogaText(
+                    content: "Pay after service",
+                    color: Theme.of(context).colorScheme.outline,
+                    fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
+                    fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.onInverseSurface.withOpacity(0.6),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Row(children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      LogaText(
+                        content: "Total(3 service)",
+                        color: Theme.of(context).colorScheme.outline,
+                        fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
+                        fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      LogaText(
+                        content: "\$${bookingDetails.total}",
+                        color: Theme.of(context).colorScheme.onSurface,
+                        fontSize: Theme.of(context).textTheme.titleMedium?.fontSize as double,
+                        fontweight: Theme.of(context).textTheme.bodyLarge?.fontWeight as FontWeight,
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ButtonStyle(
+                      minimumSize: MaterialStateProperty.all(
+                        Size(0, 0),
+                      ),
+                      fixedSize: MaterialStateProperty.all((Size(180, 55))),
+                      padding: MaterialStateProperty.all(
+                        EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                      ),
+                    ),
+                    child: Text("Book Now"),
+                  )
+                ]),
+              ),
+            )
           ],
         ),
       ),
