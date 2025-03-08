@@ -3,7 +3,8 @@ import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
 
 class LogaLuxeCalender extends StatefulWidget {
-  const LogaLuxeCalender({super.key});
+  Function selectDate;
+  LogaLuxeCalender({super.key, required this.selectDate});
 
   @override
   State<LogaLuxeCalender> createState() => _LogaLuxeCalenderState();
@@ -12,10 +13,13 @@ class LogaLuxeCalender extends StatefulWidget {
 class _LogaLuxeCalenderState extends State<LogaLuxeCalender> {
   DateTime _currentDate = DateTime.now();
 
+  DateTime? _selectedDate;
+
   _setDate(DateTime date) {
     setState(() {
       _currentDate = date;
     });
+    widget.selectDate(date);
   }
 
   @override
@@ -36,6 +40,7 @@ class _LogaLuxeCalenderState extends State<LogaLuxeCalender> {
         weekFormat: false,
         markedDatesMap: null,
         height: double.infinity,
+        iconColor: Theme.of(context).colorScheme.outline,
         selectedDayButtonColor: Theme.of(context).colorScheme.outline.withOpacity(0.7),
         selectedDateTime: _currentDate,
         daysTextStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface),

@@ -8,6 +8,7 @@ import 'package:logaluxe_users/provider/user.dart';
 import 'package:logaluxe_users/widget/calender.dart';
 import 'package:logaluxe_users/widget/card/service.dart';
 import 'package:logaluxe_users/widget/loga_text.dart';
+import 'package:logaluxe_users/widget/slot_grid.dart';
 import 'package:logaluxe_users/widget/staff_container.dart';
 import 'package:logaluxe_users/widget/text_row.dart';
 
@@ -19,6 +20,8 @@ class ReviewBooking extends ConsumerStatefulWidget {
 }
 
 class _ReviewBookingState extends ConsumerState<ReviewBooking> {
+  DateTime? selectedDate = DateTime.now();
+
   _removeService(ServiceModel service) {
     ref.read(bookingProvider.notifier).removeService(service);
     Navigator.pop(context);
@@ -31,6 +34,12 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
     final currentDate = DateTime.now();
     final firstDate = DateTime(currentDate.year - 1, currentDate.month, currentDate.day);
     final lastDate = DateTime(currentDate.year + 4, currentDate.month, currentDate.day);
+
+    _setDate(DateTime date) {
+      setState(() {
+        selectedDate = date;
+      });
+    }
 
     return Container(
       padding: EdgeInsets.only(left: 20, right: 20, top: 70),
@@ -113,8 +122,11 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
               ),
             ),
             RowText(rightText: "", leftText: "Select Time & Date", action: () {}),
-            LogaLuxeCalender(),
+            LogaLuxeCalender(
+              selectDate: _setDate,
+            ),
             RowText(rightText: "", leftText: "Select Time Slot", action: () {}),
+            SlotGrid(slot_date: selectedDate!)
           ],
         ),
       ),
