@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:logaluxe_users/screen/home.dart';
-
-import '../provider/user.dart';
 
 class CustomBottomNavigationBar extends ConsumerStatefulWidget {
   int activeIndex;
   final int currentIndex;
-  CustomBottomNavigationBar({super.key, required this.activeIndex, required this.currentIndex});
+  Function getActiveIndex;
+  CustomBottomNavigationBar(
+      {super.key, required this.activeIndex, required this.currentIndex, required this.getActiveIndex});
 
   @override
   ConsumerState<CustomBottomNavigationBar> createState() => _CustomBottomNavigationBarState();
@@ -24,10 +23,10 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
   @override
   Widget build(BuildContext context) {
     _switchIndex(int active) {
+      int prevIndex = widget.activeIndex;
       setState(() {
         widget.activeIndex = active;
-        if (active == widget.currentIndex) return;
-        if (active == 0) Navigator.of(context).push(MaterialPageRoute(builder: (context) => Home()));
+        widget.getActiveIndex(active, prevIndex);
       });
     }
 
@@ -57,6 +56,7 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
                             padding: const EdgeInsets.all(13),
                             child: Image(
                               image: AssetImage('images/home_icon.png'),
+                              color: Theme.of(context).colorScheme.onSurface,
                             ),
                           ),
                         ),
@@ -100,6 +100,7 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
                             padding: const EdgeInsets.all(13),
                             child: Image(
                               image: AssetImage('images/search.png'),
+                              color: Theme.of(context).colorScheme.onSurface,
                             ),
                           ),
                         ),
@@ -143,13 +144,14 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
                             padding: const EdgeInsets.all(13),
                             child: Image(
                               image: AssetImage('images/menu.png'),
+                              color: Theme.of(context).colorScheme.onSurface,
                             ),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 5.0),
                           child: Text(
-                            "Booking",
+                            "History",
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.onSurface,
                               fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,

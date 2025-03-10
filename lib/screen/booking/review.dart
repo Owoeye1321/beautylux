@@ -28,6 +28,10 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
     Navigator.pop(context);
   }
 
+  _makeBooking() {
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     var bookingDetails = ref.watch(bookingProvider);
@@ -192,7 +196,9 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
                     width: 20,
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      _makeBooking();
+                    },
                     style: ButtonStyle(
                       minimumSize: MaterialStateProperty.all(
                         Size(0, 0),

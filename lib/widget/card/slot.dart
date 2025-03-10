@@ -10,10 +10,11 @@ class TimeSlot extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 27, vertical: 11),
+      padding: EdgeInsets.only(left: 25, top: 11),
       decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.onInverseSurface.withOpacity(0.6),
-          borderRadius: BorderRadius.circular(10)),
+        color: Theme.of(context).colorScheme.onInverseSurface.withOpacity(0.6),
+        borderRadius: BorderRadius.circular(10),
+      ),
       child: LogaText(
         content: content,
         color: Theme.of(context).colorScheme.onSurface,

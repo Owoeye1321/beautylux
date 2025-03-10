@@ -28,7 +28,7 @@ class ServiceListView extends ConsumerWidget {
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 1,
           crossAxisSpacing: 20,
-          mainAxisExtent: 180,
+          mainAxisExtent: 150,
           mainAxisSpacing: 30,
         ),
         itemCount: allUsers.length,
@@ -56,19 +56,19 @@ class ServiceListView extends ConsumerWidget {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    height: 180,
-                    width: 177,
+                    height: 150,
+                    width: 150,
                     child: Stack(children: []),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 15, right: 10, top: 15, bottom: 10),
+                    padding: const EdgeInsets.only(left: 15, top: 15, bottom: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
                           children: [
                             SizedBox(
-                              width: 90,
+                              width: 130,
                               child: Text(
                                 "Hair . Facial . 2+",
                                 maxLines: 1, // Limits text to 2 lines
@@ -102,13 +102,12 @@ class ServiceListView extends ConsumerWidget {
                             ),
                           ],
                         ),
-                        SizedBox(height: 5),
                         SizedBox(
-                          width: 160,
+                          width: 170,
                           child: LogaText(
                             content: allUsers[index].business_name,
                             setMaxLine: true,
-                            maxLines: 2,
+                            maxLines: 1,
                             color: Theme.of(context).colorScheme.onSurface,
                             fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize! as double,
                             fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
@@ -162,7 +161,7 @@ class ServiceListView extends ConsumerWidget {
                             ),
                           ],
                         ),
-                        SizedBox(height: 10),
+                        SizedBox(height: 5),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -189,7 +188,7 @@ class ServiceListView extends ConsumerWidget {
                               ),
                             ),
                             SizedBox(
-                              width: 55,
+                              width: 80,
                             ),
                             Container(
                               height: 30,

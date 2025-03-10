@@ -89,7 +89,7 @@ class ProfileMenu extends ConsumerWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: LogaText(
-                  content: "Website",
+                  content: "Call",
                   color: Theme.of(context).colorScheme.outline,
                   fontSize: Theme.of(context).textTheme.bodySmall?.fontSize! as double,
                   fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight! as FontWeight,
