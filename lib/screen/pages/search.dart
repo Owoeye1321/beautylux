@@ -15,6 +15,7 @@ class Search extends ConsumerStatefulWidget {
 }
 
 class _SearchState extends ConsumerState<Search> {
+  final searchTextController = TextEditingController();
   String activeView = 'grid';
   _changeView() {
     setState(() {
@@ -53,6 +54,7 @@ class _SearchState extends ConsumerState<Search> {
               buttonBorder: 20,
               prefixIcon: false,
               prefixImage: true,
+              controller: searchTextController,
               imageIcon: Image(
                 image: AssetImage('images/search.png'),
               ),

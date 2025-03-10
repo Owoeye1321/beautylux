@@ -12,6 +12,9 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  var emailTextController = TextEditingController();
+  var fistNameTextController = TextEditingController();
+  var passwordTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +55,7 @@ class _RegisterState extends State<Register> {
             const SizedBox(
               height: 70,
             ),
-            const LogaInputField(
+            LogaInputField(
               hintText: "First Name",
               verticalPadding: 20,
               horizontalPadding: 35,
@@ -65,11 +68,12 @@ class _RegisterState extends State<Register> {
               setIconPadding: false,
               prefixIcon: true,
               prefixImage: false,
+              controller: fistNameTextController,
             ),
             const SizedBox(
               height: 20,
             ),
-            const LogaInputField(
+            LogaInputField(
               hintText: "Email",
               verticalPadding: 20,
               setIconSize: false,
@@ -82,11 +86,12 @@ class _RegisterState extends State<Register> {
               setIconPadding: false,
               prefixIcon: true,
               prefixImage: false,
+              controller: emailTextController,
             ),
             const SizedBox(
               height: 20,
             ),
-            const LogaInputField(
+            LogaInputField(
               hintText: "********",
               setIconColor: false,
               verticalPadding: 20,
@@ -99,6 +104,7 @@ class _RegisterState extends State<Register> {
               setIconPadding: false,
               prefixIcon: true,
               prefixImage: false,
+              controller: passwordTextController,
             ),
             const SizedBox(
               height: 10,

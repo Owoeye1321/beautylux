@@ -181,10 +181,10 @@ class _HomeState extends State<Home> {
       backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
       body: BottomBar(
         width: 370,
-        barColor: Theme.of(context).colorScheme.onSurfaceVariant.withOpacity(1),
+        barColor: Theme.of(context).colorScheme.onSurfaceVariant.withOpacity(0.6),
         fit: StackFit.expand,
         borderRadius: BorderRadius.circular(15),
-        duration: Duration(seconds: 2),
+        duration: Duration(seconds: 1),
         curve: Curves.decelerate,
         offset: 0,
         barAlignment: Alignment.bottomCenter,
@@ -203,12 +203,20 @@ class _HomeState extends State<Home> {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 15),
             child: currentIndex == 0
-                ? MarketPlace()
+                ? MarketPlace(
+                    key: ValueKey(0),
+                  )
                 : currentIndex == 1
-                    ? Search()
+                    ? Search(
+                        key: ValueKey(1),
+                      )
                     : currentIndex == 2
-                        ? BookingHistory()
-                        : Settings(),
+                        ? BookingHistory(
+                            key: ValueKey(2),
+                          )
+                        : Settings(
+                            key: ValueKey(3),
+                          ),
           ),
         ),
       ),

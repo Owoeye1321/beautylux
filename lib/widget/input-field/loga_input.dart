@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class LogaInputField extends StatefulWidget {
+  final TextEditingController controller;
   final String hintText;
   final double verticalPadding;
   final double horizontalPadding;
@@ -17,7 +18,7 @@ class LogaInputField extends StatefulWidget {
   final bool prefixIcon;
   final bool prefixImage;
   final Image? imageIcon;
-  const LogaInputField(
+   LogaInputField(
       {super.key,
       required this.hintText,
       required this.verticalPadding,
@@ -34,6 +35,7 @@ class LogaInputField extends StatefulWidget {
       required this.buttonBorder,
       required this.prefixIcon,
       required this.prefixImage,
+      required this.controller,
       this.imageIcon});
 
   @override
@@ -49,11 +51,15 @@ class _LogaInputFieldState extends State<LogaInputField> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: widget.controller,
       style: TextStyle(
         color: Theme.of(context).colorScheme.onSurface,
         fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+        fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight,
       ),
-      cursorColor: Theme.of(context).colorScheme.onSurfaceVariant,
+      showCursor: true,
+      maxLines: 1,
+      cursorColor: Theme.of(context).colorScheme.onSurface,
       obscureText: widget.hideTextInput ? disableState : false,
       textAlign: TextAlign.left,
       decoration: InputDecoration(

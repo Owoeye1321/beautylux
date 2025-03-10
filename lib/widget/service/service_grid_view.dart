@@ -38,7 +38,7 @@ class ServiceGridView extends ConsumerWidget {
             },
             child: Container(
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.onTertiaryContainer.withOpacity(0.2),
+                color: Theme.of(context).colorScheme.onTertiaryContainer.withOpacity(0.4),
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Column(
@@ -119,7 +119,6 @@ class ServiceGridView extends ConsumerWidget {
                               wordSpacing: 2,
                               color: Theme.of(context).colorScheme.onPrimary,
                               fontSize: Theme.of(context).textTheme.displaySmall?.fontSize!,
-                              //fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
                             ),
                           ),
                         ),

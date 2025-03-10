@@ -12,6 +12,8 @@ class ResetPassword extends StatefulWidget {
 }
 
 class _ResetPasswordState extends State<ResetPassword> {
+  final passwordTextController = TextEditingController();
+  final confirmPasswordTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +54,7 @@ class _ResetPasswordState extends State<ResetPassword> {
             const SizedBox(
               height: 70,
             ),
-            const LogaInputField(
+            LogaInputField(
               hintText: "Password",
               verticalPadding: 20,
               horizontalPadding: 35,
@@ -65,11 +67,12 @@ class _ResetPasswordState extends State<ResetPassword> {
               setIconPadding: false,
               prefixIcon: true,
               prefixImage: false,
+              controller: passwordTextController,
             ),
             const SizedBox(
               height: 15,
             ),
-            const LogaInputField(
+            LogaInputField(
               hintText: "Confirm Password",
               verticalPadding: 20,
               horizontalPadding: 35,
@@ -82,6 +85,7 @@ class _ResetPasswordState extends State<ResetPassword> {
               setIconPadding: false,
               prefixIcon: true,
               prefixImage: false,
+              controller: confirmPasswordTextController,
             ),
             const SizedBox(
               height: 365,

@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:logaluxe_users/provider/display.dart';
-import 'package:logaluxe_users/screen/home.dart';
 import 'package:logaluxe_users/screen/splash.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // Ensure Flutter is initialized
+  try {
+    await dotenv.load(fileName: ".env"); // Load environment variables
+  } catch (e) {
+    print('Error loading .env file: $e'); // Print error if any
+  }
   runApp(
     const ProviderScope(
       child: MyApp(),
@@ -43,14 +49,14 @@ class MyApp extends ConsumerWidget {
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             foregroundColor: Colors.white,
-            backgroundColor: colorScheme.colorScheme.primary,
+            backgroundColor: colorScheme.colorScheme.onPrimary,
             padding: const EdgeInsets.symmetric(horizontal: 20),
             minimumSize: Size(0, 0),
             fixedSize: const Size(380, 60),
           ),
         ),
       ),
-      home: Home(),
+      home: SplashScreen(),
     );
   }
 }

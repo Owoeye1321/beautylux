@@ -14,6 +14,8 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  var emailTextController = TextEditingController();
+  var passwordTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +56,7 @@ class _LoginState extends State<Login> {
             const SizedBox(
               height: 100,
             ),
-            const LogaInputField(
+            LogaInputField(
               hintText: "Email",
               verticalPadding: 20,
               horizontalPadding: 35,
@@ -67,11 +69,12 @@ class _LoginState extends State<Login> {
               setIconPadding: false,
               prefixIcon: true,
               prefixImage: false,
+              controller: emailTextController,
             ),
             const SizedBox(
               height: 20,
             ),
-            const LogaInputField(
+            LogaInputField(
               hintText: "********",
               verticalPadding: 20,
               horizontalPadding: 35,
@@ -84,6 +87,7 @@ class _LoginState extends State<Login> {
               setIconPadding: false,
               prefixImage: false,
               prefixIcon: true,
+              controller: passwordTextController,
             ),
             const SizedBox(
               height: 10,

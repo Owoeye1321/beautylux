@@ -12,6 +12,7 @@ class MarketPlace extends StatefulWidget {
 }
 
 class _MarketPlaceState extends State<MarketPlace> {
+  final searchTextController = TextEditingController();
   int currentIndex = 0;
   String activeView = 'grid';
   _changeView() {
@@ -45,8 +46,10 @@ class _MarketPlaceState extends State<MarketPlace> {
             buttonBorder: 20,
             prefixIcon: false,
             prefixImage: true,
+            controller: searchTextController,
             imageIcon: Image(
               image: AssetImage('images/search.png'),
+              color: Theme.of(context).colorScheme.onSurface,
             ),
           ),
         ),

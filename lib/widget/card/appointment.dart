@@ -54,7 +54,7 @@ class AppointmentCard extends StatelessWidget {
                           ? Container(
                               padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                               decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.onInverseSurface,
+                                color: Theme.of(context).colorScheme.onInverseSurface.withOpacity(0.3),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: LogaText(

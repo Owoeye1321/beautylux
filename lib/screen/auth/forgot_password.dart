@@ -12,6 +12,7 @@ class ForgotPassword extends StatefulWidget {
 }
 
 class _ForgotPasswordState extends State<ForgotPassword> {
+  var emailTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,19 +50,21 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             const SizedBox(
               height: 70,
             ),
-            const LogaInputField(
-                hintText: "Email",
-                buttonBorder: 100,
-                verticalPadding: 20,
-                horizontalPadding: 35,
-                alterVisibility: false,
-                hideTextInput: false,
-                prefixIconData: Icons.email,
-                setIconSize: false,
-                prefixIcon: true,
-                prefixImage: false,
-                setIconColor: false,
-                setIconPadding: false),
+            LogaInputField(
+              hintText: "Email",
+              buttonBorder: 100,
+              verticalPadding: 20,
+              horizontalPadding: 35,
+              alterVisibility: false,
+              hideTextInput: false,
+              prefixIconData: Icons.email,
+              setIconSize: false,
+              prefixIcon: true,
+              prefixImage: false,
+              setIconColor: false,
+              setIconPadding: false,
+              controller: emailTextController,
+            ),
             const SizedBox(
               height: 10,
             ),

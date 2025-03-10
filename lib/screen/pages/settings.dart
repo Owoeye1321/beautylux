@@ -14,7 +14,9 @@ class Settings extends ConsumerStatefulWidget {
 class _SettingsState extends ConsumerState<Settings> {
   @override
   Widget build(BuildContext context) {
-    final _controller = ValueNotifier<bool>(ref.watch(displayProvider).isLightMode);
+    bool isLightMode = ref.watch(displayProvider).isLightMode;
+    final _controller = ValueNotifier<bool>(isLightMode);
+    print(isLightMode);
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20, horizontal: 5),
       child: Column(

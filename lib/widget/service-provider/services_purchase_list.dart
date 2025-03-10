@@ -67,10 +67,6 @@ class _ServicePurchaseListState extends ConsumerState<ServicePurchaseList> {
                   : false,
             );
           }).toList(),
-          FloatingActionButton(
-            onPressed: () {},
-            child: Icon(Icons.shopping_cart),
-          )
         ],
       ),
     );
