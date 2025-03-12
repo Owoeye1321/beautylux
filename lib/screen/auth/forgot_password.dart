@@ -64,6 +64,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               setIconColor: false,
               setIconPadding: false,
               controller: emailTextController,
+              errorText: '',
             ),
             const SizedBox(
               height: 10,

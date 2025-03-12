@@ -45,6 +45,8 @@ dependencies:
   intl: ^0.18.1
   flutter_advanced_switch: ^3.1.0
   flutter_dotenv: ^5.2.1
+  http: ^0.13.6
+  toastification: ^3.0.2
   
 
 dev_dependencies:

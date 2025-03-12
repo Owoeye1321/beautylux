@@ -1,22 +1,80 @@
 import 'package:flutter/material.dart';
-import 'package:logaluxe_users/screen/auth/verify_email.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logaluxe_users/model/api/auth.dart';
+import 'package:logaluxe_users/provider/auth.dart';
 import 'package:logaluxe_users/widget/button/icon_button.dart';
 import 'package:logaluxe_users/widget/input-field/loga_input.dart';
 import 'package:logaluxe_users/widget/splash/text.dart';
+import 'package:toastification/toastification.dart';
 
-class Register extends StatefulWidget {
+class Register extends ConsumerStatefulWidget {
   const Register({super.key});
 
   @override
-  State<Register> createState() => _RegisterState();
+  ConsumerState<Register> createState() => _RegisterState();
 }
 
-class _RegisterState extends State<Register> {
+class _RegisterState extends ConsumerState<Register> {
   var emailTextController = TextEditingController();
   var fistNameTextController = TextEditingController();
   var passwordTextController = TextEditingController();
+  String firstNameError = '';
+  String emailError = '';
+  String passwordError = '';
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    emailTextController.dispose();
+    fistNameTextController.dispose();
+    passwordTextController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    _register() async {
+      var register = ref.read(registerProvider.notifier);
+      register.enableLoading();
+      String email = emailTextController.text.trim();
+      String password = passwordTextController.text.trim();
+      String firstName = fistNameTextController.text.trim();
+      if (firstName.isEmpty)
+        setState(() {
+          firstNameError = "Invalid first name";
+        });
+      else if (email.isEmpty || !email.contains("@") || (!email.contains('.ng') && !email.contains('.com')))
+        setState(() {
+          emailError = "Invalid email";
+        });
+      else if (password.isEmpty || password.length < 6)
+        setState(() {
+          passwordError = "Invalid passsword";
+        });
+      else
+        try {
+          setState(() {
+            firstNameError = '';
+            emailError = '';
+            passwordError = '';
+          });
+          var register = await ref
+              .read(registerProvider.notifier)
+              .register(RegisterRequest(first_name: firstName, email: email, password: password));
+          print(register);
+        } catch (e) {
+          String errorMessage = e.toString().replaceAll('Exception: ', '');
+          toastification.show(
+            context: context, // optional if you use ToastificationWrapper
+            title: errorMessage,
+            // type: ToastificationType.success,
+            // style: ToastificationStyle.flat,
+            autoCloseDuration: const Duration(seconds: 2),
+          );
+        }
+      register.disableLoading();
+    }
+
     return Scaffold(
       body: Container(
         margin: const EdgeInsets.only(top: 80, left: 15, right: 15),
@@ -69,6 +127,7 @@ class _RegisterState extends State<Register> {
               prefixIcon: true,
               prefixImage: false,
               controller: fistNameTextController,
+              errorText: firstNameError,
             ),
             const SizedBox(
               height: 20,
@@ -87,6 +146,7 @@ class _RegisterState extends State<Register> {
               prefixIcon: true,
               prefixImage: false,
               controller: emailTextController,
+              errorText: emailError,
             ),
             const SizedBox(
               height: 20,
@@ -105,6 +165,7 @@ class _RegisterState extends State<Register> {
               prefixIcon: true,
               prefixImage: false,
               controller: passwordTextController,
+              errorText: passwordError,
             ),
             const SizedBox(
               height: 10,
@@ -114,13 +175,7 @@ class _RegisterState extends State<Register> {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return VerifyEmail();
-                    },
-                  ),
-                );
+                _register();
               },
               style: ButtonStyle(
                 minimumSize: MaterialStateProperty.all(Size(0, 0)),
@@ -131,12 +186,16 @@ class _RegisterState extends State<Register> {
                   EdgeInsets.symmetric(vertical: 3),
                 ),
               ),
-              child: Text(
-                "Signup",
-                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      color: Theme.of(context).colorScheme.onSurface,
+              child: ref.watch(registerProvider).loading == true
+                  ? CircularProgressIndicator.adaptive(
+                      backgroundColor: Theme.of(context).colorScheme.onSurface,
+                    )
+                  : Text(
+                      "Signup",
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Theme.of(context).colorScheme.onSurface,
+                          ),
                     ),
-              ),
             ),
             const SizedBox(
               height: 15,

@@ -70,6 +70,7 @@ class _LoginState extends State<Login> {
               prefixIcon: true,
               prefixImage: false,
               controller: emailTextController,
+              errorText: '',
             ),
             const SizedBox(
               height: 20,
@@ -88,6 +89,7 @@ class _LoginState extends State<Login> {
               prefixImage: false,
               prefixIcon: true,
               controller: passwordTextController,
+              errorText: '',
             ),
             const SizedBox(
               height: 10,

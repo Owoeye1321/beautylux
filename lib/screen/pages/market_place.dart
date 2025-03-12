@@ -47,6 +47,7 @@ class _MarketPlaceState extends State<MarketPlace> {
             prefixIcon: false,
             prefixImage: true,
             controller: searchTextController,
+            errorText: '',
             imageIcon: Image(
               image: AssetImage('images/search.png'),
               color: Theme.of(context).colorScheme.onSurface,

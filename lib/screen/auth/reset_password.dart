@@ -68,6 +68,7 @@ class _ResetPasswordState extends State<ResetPassword> {
               prefixIcon: true,
               prefixImage: false,
               controller: passwordTextController,
+              errorText: '',
             ),
             const SizedBox(
               height: 15,
@@ -86,6 +87,7 @@ class _ResetPasswordState extends State<ResetPassword> {
               prefixIcon: true,
               prefixImage: false,
               controller: confirmPasswordTextController,
+              errorText: '',
             ),
             const SizedBox(
               height: 365,

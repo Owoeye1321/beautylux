@@ -55,6 +55,7 @@ class _SearchState extends ConsumerState<Search> {
               prefixIcon: false,
               prefixImage: true,
               controller: searchTextController,
+              errorText: '',
               imageIcon: Image(
                 image: AssetImage('images/search.png'),
               ),

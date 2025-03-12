@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:logaluxe_users/model/user.dart';
 
 class LoginRequest {
@@ -16,7 +17,12 @@ class LoginResponse {
 class RegisterResponse {
   final int code;
   final String message;
-  RegisterResponse({required this.code, required this.message});
+  final bool loading;
+  RegisterResponse({required this.code, required this.message, required this.loading});
+
+  factory RegisterResponse.fromJson(Map<String, dynamic> data) {
+    return RegisterResponse(code: data['code'], message: data['message'], loading: false);
+  }
 }
 
 class TokenResponse {
@@ -35,4 +41,19 @@ class VerifyEmailResponse {
   final String message;
   final TokenResponse data;
   VerifyEmailResponse({required this.code, required this.message, required this.data});
+}
+
+class RegisterRequest {
+  final String first_name;
+  final String email;
+  final String password;
+  RegisterRequest({required this.first_name, required this.email, required this.password});
+
+  Map<String, dynamic> toJson() {
+    return {
+      'first_name': first_name,
+      'email': email,
+      'password': password,
+    };
+  }
 }
