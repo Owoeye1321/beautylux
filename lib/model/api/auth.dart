@@ -47,16 +47,19 @@ class VerifyEmailResponse {
   final int code;
   final String message;
   final bool loading;
-  final TokenResponse? data;
+  final UserModel? data;
   VerifyEmailResponse({required this.code, required this.message, this.data, required this.loading});
   factory VerifyEmailResponse.fromJson(Map<String, dynamic> object) {
     return VerifyEmailResponse(
       code: object['code'],
       message: object['message'],
       loading: false,
-      data: TokenResponse(
-        token: object['data']['token'],
-      ),
+      data: UserModel(
+          token: object['data']['token'],
+          first_name: object['data']['first_name'],
+          bio: '',
+          business_address: '',
+          business_name: ''),
     );
   }
 }

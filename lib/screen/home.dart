@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_floating_bottom_bar/flutter_floating_bottom_bar.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logaluxe_users/provider/auth/verify_email.dart';
 import 'package:logaluxe_users/screen/pages/history.dart';
 import 'package:logaluxe_users/screen/pages/market_place.dart';
 import 'package:logaluxe_users/screen/pages/search.dart';
 import 'package:logaluxe_users/screen/pages/settings.dart';
 import 'package:logaluxe_users/widget/nav_bar.dart';
 
-class Home extends StatefulWidget {
+class Home extends ConsumerStatefulWidget {
   const Home({
     super.key,
   });
 
   @override
-  State<Home> createState() => _HomeState();
+  ConsumerState<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends ConsumerState<Home> {
   int currentIndex = 0;
   int? prevIndex;
   String activeView = 'grid';
@@ -74,7 +76,7 @@ class _HomeState extends State<Home> {
                       height: 4,
                     ),
                     Text(
-                      "Hey, Jack EI 👋 ",
+                      "Hey, ${ref.watch(verifyEmailProvider).data?.first_name!} 👋 ",
                       style: TextStyle(
                         fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
                         fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,

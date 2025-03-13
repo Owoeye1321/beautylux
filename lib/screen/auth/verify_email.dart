@@ -69,11 +69,12 @@ class _VerifyEmailState extends ConsumerState<VerifyEmail> {
         VerifyEmailRequest(email: ref.watch(registerProvider).email!, otp: verificationCode),
       );
       verifyEmailRequest.disableLoading();
-      Navigator.push(
+      Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
           builder: (ctx) => Home(),
         ),
+        (Route<dynamic> route) => false, // Remove all previous routes
       );
     } catch (e) {
       verifyEmailRequest.disableLoading();
@@ -103,6 +104,7 @@ class _VerifyEmailState extends ConsumerState<VerifyEmail> {
   @override
   Widget build(BuildContext context) {
     var loadingState = ref.watch(verifyEmailProvider).loading;
+    print(loadingState);
     String timer = "00:00";
     return Scaffold(
       body: Container(
@@ -181,7 +183,7 @@ class _VerifyEmailState extends ConsumerState<VerifyEmail> {
               onPressed: loadingState == true
                   ? null
                   : () {
-                      _resubmit;
+                      _resubmit();
                     },
               style: ButtonStyle(
                 minimumSize: WidgetStateProperty.all(Size(0, 0)),

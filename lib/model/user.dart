@@ -13,6 +13,7 @@ class UserModel {
   final String bio;
   final bool? availability;
   final String? subscription_plan;
+  final String? token;
   final String? opening_time;
   final String? closing_time;
   final String business_name;
@@ -78,6 +79,7 @@ class UserModel {
       this.customer_ref,
       this.address_id,
       this.city,
+      this.token,
       this.postal_code,
       this.updatedAt});
 }
