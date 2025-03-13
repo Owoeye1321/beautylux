@@ -106,8 +106,8 @@ class _LogaInputFieldState extends State<LogaInputField> {
               borderSide: BorderSide(width: 2),
               borderRadius: BorderRadius.all(Radius.circular(widget.buttonBorder)),
             ),
-            errorText: hasError ? '' : null, // Show error message
-            errorStyle: const TextStyle(height: 0), // Prevents shifting the TextField
+            errorText: hasError ? widget.errorText : null, // Show error message
+            errorStyle: const TextStyle(height: 0, color: Colors.red), // Prevents shifting the TextField
             errorBorder: OutlineInputBorder(
               borderSide: BorderSide(width: 1, color: Colors.red), // Maintain same border style
               borderRadius: BorderRadius.all(Radius.circular(widget.buttonBorder)),
@@ -127,14 +127,6 @@ class _LogaInputFieldState extends State<LogaInputField> {
                 : null,
           ),
         ),
-        if (hasError)
-          Padding(
-            padding: const EdgeInsets.only(top: 4, left: 12),
-            child: Text(
-              widget.errorText!,
-              style: TextStyle(color: Colors.red, fontSize: 12),
-            ),
-          ),
       ],
     );
   }

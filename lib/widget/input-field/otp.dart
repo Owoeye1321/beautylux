@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
 class OTP extends StatefulWidget {
-  const OTP({super.key});
+  Function onsubmit;
+  OTP({
+    super.key,
+    required this.onsubmit,
+  });
 
   @override
   State<OTP> createState() => _OTPState();
@@ -35,14 +39,7 @@ class _OTPState extends State<OTP> {
       },
       //runs when every textfield is filledhhhhg4444444
       onSubmit: (String verificationCode) {
-        showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                title: Text("Verification Code"),
-                content: Text('Code entered is $verificationCode'),
-              );
-            });
+        widget.onsubmit(verificationCode);
       }, // end onSubmit
     );
   }

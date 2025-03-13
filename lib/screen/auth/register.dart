@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/model/api/auth.dart';
-import 'package:logaluxe_users/provider/auth.dart';
+import 'package:logaluxe_users/provider/auth/register.dart';
+import 'package:logaluxe_users/screen/auth/verify_email.dart';
 import 'package:logaluxe_users/widget/button/icon_button.dart';
 import 'package:logaluxe_users/widget/input-field/loga_input.dart';
 import 'package:logaluxe_users/widget/splash/text.dart';
@@ -45,10 +46,12 @@ class _RegisterState extends ConsumerState<Register> {
         });
       else if (email.isEmpty || !email.contains("@") || (!email.contains('.ng') && !email.contains('.com')))
         setState(() {
+          firstNameError = '';
           emailError = "Invalid email";
         });
       else if (password.isEmpty || password.length < 6)
         setState(() {
+          emailError = '';
           passwordError = "Invalid passsword";
         });
       else
@@ -58,28 +61,46 @@ class _RegisterState extends ConsumerState<Register> {
             emailError = '';
             passwordError = '';
           });
-          var register = await ref
+          var initiateRegisteration = await ref
               .read(registerProvider.notifier)
               .register(RegisterRequest(first_name: firstName, email: email, password: password));
-          print(register);
+          register.disableLoading();
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (ctx) => VerifyEmail(),
+            ),
+          );
         } catch (e) {
+          register.disableLoading();
           String errorMessage = e.toString().replaceAll('Exception: ', '');
           toastification.show(
             context: context, // optional if you use ToastificationWrapper
-            title: errorMessage,
-            // type: ToastificationType.success,
-            // style: ToastificationStyle.flat,
-            autoCloseDuration: const Duration(seconds: 2),
+            title: Text(errorMessage),
+            type: ToastificationType.error,
+            style: ToastificationStyle.flat,
+            autoCloseDuration: const Duration(seconds: 3),
+            animationDuration: const Duration(milliseconds: 100),
+            animationBuilder: (context, animation, alignment, child) {
+              return FadeTransition(
+                opacity: animation,
+                child: child,
+              );
+            },
+            primaryColor: Colors.red,
+            backgroundColor: Colors.white,
+            foregroundColor: Colors.black,
           );
         }
-      register.disableLoading();
     }
+
+    bool loadingState = ref.watch(registerProvider).loading;
 
     return Scaffold(
       body: Container(
         margin: const EdgeInsets.only(top: 80, left: 15, right: 15),
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.background,
+          color: Theme.of(context).colorScheme.surface,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -115,7 +136,7 @@ class _RegisterState extends ConsumerState<Register> {
             ),
             LogaInputField(
               hintText: "First Name",
-              verticalPadding: 20,
+              verticalPadding: 15,
               horizontalPadding: 35,
               alterVisibility: false,
               setIconColor: false,
@@ -130,11 +151,11 @@ class _RegisterState extends ConsumerState<Register> {
               errorText: firstNameError,
             ),
             const SizedBox(
-              height: 20,
+              height: 15,
             ),
             LogaInputField(
               hintText: "Email",
-              verticalPadding: 20,
+              verticalPadding: 15,
               setIconSize: false,
               horizontalPadding: 35,
               alterVisibility: false,
@@ -149,12 +170,12 @@ class _RegisterState extends ConsumerState<Register> {
               errorText: emailError,
             ),
             const SizedBox(
-              height: 20,
+              height: 15,
             ),
             LogaInputField(
               hintText: "********",
               setIconColor: false,
-              verticalPadding: 20,
+              verticalPadding: 15,
               horizontalPadding: 35,
               alterVisibility: true,
               hideTextInput: true,
@@ -168,25 +189,32 @@ class _RegisterState extends ConsumerState<Register> {
               errorText: passwordError,
             ),
             const SizedBox(
-              height: 10,
-            ),
-            const SizedBox(
               height: 60,
             ),
             ElevatedButton(
-              onPressed: () {
-                _register();
-              },
+              onPressed: loadingState == true
+                  ? null
+                  : () {
+                      _register();
+                    },
               style: ButtonStyle(
-                minimumSize: MaterialStateProperty.all(Size(0, 0)),
-                maximumSize: MaterialStateProperty.all(
+                minimumSize: WidgetStateProperty.all(Size(0, 0)),
+                maximumSize: WidgetStateProperty.all(
                   Size(370, 50),
                 ),
-                padding: MaterialStateProperty.all(
+                padding: WidgetStateProperty.all(
                   EdgeInsets.symmetric(vertical: 3),
                 ),
+                backgroundColor: WidgetStateProperty.resolveWith<Color>(
+                  (states) {
+                    if (states.contains(WidgetState.disabled)) {
+                      return Theme.of(context).colorScheme.onPrimary; // Custom disabled color
+                    }
+                    return Theme.of(context).colorScheme.onPrimary; // Custom disabled color
+                  },
+                ),
               ),
-              child: ref.watch(registerProvider).loading == true
+              child: loadingState == true
                   ? CircularProgressIndicator.adaptive(
                       backgroundColor: Theme.of(context).colorScheme.onSurface,
                     )

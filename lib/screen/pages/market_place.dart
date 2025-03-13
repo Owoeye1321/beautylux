@@ -74,7 +74,7 @@ class _MarketPlaceState extends State<MarketPlace> {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        Theme.of(context).colorScheme.background,
+                        Theme.of(context).colorScheme.surface,
                         Colors.transparent,
                       ],
                       begin: Alignment.centerLeft,
@@ -124,10 +124,10 @@ class _MarketPlaceState extends State<MarketPlace> {
                 bottom: 20,
                 child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
+                    backgroundColor: WidgetStateProperty.all<Color>(
                       Theme.of(context).colorScheme.onSurface,
                     ),
-                    padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                    padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
                       EdgeInsets.symmetric(vertical: 2, horizontal: 5),
                     ),
                   ),
@@ -135,7 +135,7 @@ class _MarketPlaceState extends State<MarketPlace> {
                   child: Text(
                     "Book Now",
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.background,
+                      color: Theme.of(context).colorScheme.surface,
                       fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
                       fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
                     ),
@@ -206,7 +206,7 @@ class _MarketPlaceState extends State<MarketPlace> {
                   Text(
                     "Recommended",
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.background,
+                      color: Theme.of(context).colorScheme.surface,
                       fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
                       fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
                     ),
@@ -215,7 +215,7 @@ class _MarketPlaceState extends State<MarketPlace> {
                     padding: const EdgeInsets.only(left: 5.0),
                     child: Icon(
                       Icons.keyboard_arrow_down_outlined,
-                      color: Theme.of(context).colorScheme.background,
+                      color: Theme.of(context).colorScheme.surface,
                       size: 15,
                     ),
                   ),
@@ -236,7 +236,7 @@ class _MarketPlaceState extends State<MarketPlace> {
               onPressed: () {},
               child: Icon(
                 Icons.filter_list,
-                color: Theme.of(context).colorScheme.background,
+                color: Theme.of(context).colorScheme.surface,
                 size: 15,
               ),
             ),

@@ -22,7 +22,7 @@ class _LoginState extends State<Login> {
       body: Container(
         margin: const EdgeInsets.only(top: 80, left: 15, right: 15),
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.background,
+          color: Theme.of(context).colorScheme.surface,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,7 +58,7 @@ class _LoginState extends State<Login> {
             ),
             LogaInputField(
               hintText: "Email",
-              verticalPadding: 20,
+              verticalPadding: 15,
               horizontalPadding: 35,
               setIconColor: false,
               alterVisibility: false,
@@ -77,7 +77,7 @@ class _LoginState extends State<Login> {
             ),
             LogaInputField(
               hintText: "********",
-              verticalPadding: 20,
+              verticalPadding: 15,
               horizontalPadding: 35,
               setIconColor: false,
               alterVisibility: true,
@@ -130,11 +130,11 @@ class _LoginState extends State<Login> {
                 );
               },
               style: ButtonStyle(
-                minimumSize: MaterialStateProperty.all(Size(0, 0)),
-                maximumSize: MaterialStateProperty.all(
+                minimumSize: WidgetStateProperty.all(Size(0, 0)),
+                maximumSize: WidgetStateProperty.all(
                   Size(370, 50),
                 ),
-                padding: MaterialStateProperty.all(
+                padding: WidgetStateProperty.all(
                   EdgeInsets.symmetric(vertical: 3),
                 ),
               ),

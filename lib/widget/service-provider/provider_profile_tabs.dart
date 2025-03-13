@@ -11,7 +11,7 @@ class ServiceProviderTabs extends StatefulWidget {
 
 class _ServiceProviderTabsState extends State<ServiceProviderTabs> {
   int activeIndex = 0;
-   _changeIndex(int newIndex) {
+  _changeIndex(int newIndex) {
     setState(() {
       activeIndex = newIndex;
       widget.getCurrentIndex(newIndex);
@@ -35,7 +35,7 @@ class _ServiceProviderTabsState extends State<ServiceProviderTabs> {
                 _changeIndex(0);
               },
               style: ButtonStyle(
-                padding: MaterialStateProperty.all(EdgeInsets.only(top: 20)),
+                padding: WidgetStateProperty.all(EdgeInsets.only(top: 20)),
               ),
               child: LogaText(
                 content: "Services",
@@ -61,7 +61,7 @@ class _ServiceProviderTabsState extends State<ServiceProviderTabs> {
                 _changeIndex(1);
               },
               style: ButtonStyle(
-                padding: MaterialStateProperty.all(EdgeInsets.only(top: 20)),
+                padding: WidgetStateProperty.all(EdgeInsets.only(top: 20)),
               ),
               child: LogaText(
                 content: "About",
@@ -87,7 +87,7 @@ class _ServiceProviderTabsState extends State<ServiceProviderTabs> {
                 _changeIndex(2);
               },
               style: ButtonStyle(
-                padding: MaterialStateProperty.all(EdgeInsets.only(top: 20)),
+                padding: WidgetStateProperty.all(EdgeInsets.only(top: 20)),
               ),
               child: LogaText(
                 content: "Product",
@@ -113,7 +113,7 @@ class _ServiceProviderTabsState extends State<ServiceProviderTabs> {
                 _changeIndex(3);
               },
               style: ButtonStyle(
-                padding: MaterialStateProperty.all(EdgeInsets.only(top: 20)),
+                padding: WidgetStateProperty.all(EdgeInsets.only(top: 20)),
               ),
               child: LogaText(
                 content: "Reviews",

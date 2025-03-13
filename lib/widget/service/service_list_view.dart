@@ -61,7 +61,7 @@ class ServiceListView extends ConsumerWidget {
                     child: Stack(children: []),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 15, top: 15, bottom: 10),
+                    padding: const EdgeInsets.only(left: 15, top: 10, bottom: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

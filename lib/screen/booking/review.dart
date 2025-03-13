@@ -48,7 +48,7 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
 
     return Container(
       padding: EdgeInsets.only(left: 20, right: 20, top: 70),
-      color: Theme.of(context).colorScheme.background,
+      color: Theme.of(context).colorScheme.surface,
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
@@ -200,11 +200,11 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
                       _makeBooking();
                     },
                     style: ButtonStyle(
-                      minimumSize: MaterialStateProperty.all(
+                      minimumSize: WidgetStateProperty.all(
                         Size(0, 0),
                       ),
-                      fixedSize: MaterialStateProperty.all((Size(180, 55))),
-                      padding: MaterialStateProperty.all(
+                      fixedSize: WidgetStateProperty.all((Size(180, 55))),
+                      padding: WidgetStateProperty.all(
                         EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                       ),
                     ),

@@ -41,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      Theme.of(context).colorScheme.background,
+                      Theme.of(context).colorScheme.surface,
                       Colors.transparent,
                     ],
                     begin: Alignment.bottomCenter,
@@ -62,11 +62,11 @@ class _SplashScreenState extends State<SplashScreen> {
                       ? ElevatedButton(
                           onPressed: _updateContent,
                           style: ButtonStyle(
-                            minimumSize: MaterialStateProperty.all(
+                            minimumSize: WidgetStateProperty.all(
                               Size(0, 0),
                             ),
-                            fixedSize: MaterialStateProperty.all((Size(350, 55))),
-                            padding: MaterialStateProperty.all(
+                            fixedSize: WidgetStateProperty.all((Size(350, 55))),
+                            padding: WidgetStateProperty.all(
                               EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                             ),
                           ),

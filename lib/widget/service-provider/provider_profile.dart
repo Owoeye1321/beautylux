@@ -31,7 +31,7 @@ class _ProviderProfileState extends ConsumerState<ProviderProfile> {
     return Container(
       height: double.infinity,
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.background,
+        color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(60),
           topRight: Radius.circular(60),

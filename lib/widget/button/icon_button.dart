@@ -17,7 +17,7 @@ class LogaIconButton extends StatelessWidget {
         style: Theme.of(context)
             .elevatedButtonTheme
             .style!
-            .copyWith(fixedSize: MaterialStateProperty.all<Size?>(const Size(360, 50))),
+            .copyWith(fixedSize: WidgetStateProperty.all<Size?>(const Size(360, 50))),
         onPressed: () {},
         icon: Icon(
           icon,
@@ -35,8 +35,8 @@ class LogaIconButton extends StatelessWidget {
       button = ElevatedButton(
         onPressed: () {},
         style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
-              fixedSize: MaterialStateProperty.all<Size?>(const Size(360, 50)),
-              backgroundColor: MaterialStateProperty.all<Color?>(Theme.of(context).colorScheme.onSurface),
+              fixedSize: WidgetStateProperty.all<Size?>(const Size(360, 50)),
+              backgroundColor: WidgetStateProperty.all<Color?>(Theme.of(context).colorScheme.onSurface),
             ),
         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Container(
@@ -55,7 +55,7 @@ class LogaIconButton extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .bodyMedium!
-                .copyWith(color: Theme.of(context).colorScheme.background),
+                .copyWith(color: Theme.of(context).colorScheme.surface),
           ),
         ]),
       );

@@ -43,7 +43,7 @@ class ViewProvider extends StatelessWidget {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Theme.of(context).colorScheme.background,
+                    Theme.of(context).colorScheme.surface,
                     Colors.transparent,
                   ],
                   begin: Alignment.bottomCenter,
@@ -65,7 +65,7 @@ class ViewProvider extends StatelessWidget {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.background.withOpacity(0.3),
+                        color: Theme.of(context).colorScheme.surface.withOpacity(0.3),
                         borderRadius: BorderRadius.circular(40),
                       ),
                       child: Padding(
@@ -83,7 +83,7 @@ class ViewProvider extends StatelessWidget {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.background.withOpacity(0.3),
+                      color: Theme.of(context).colorScheme.surface.withOpacity(0.3),
                       borderRadius: BorderRadius.circular(40),
                     ),
                     child: Padding(
@@ -100,7 +100,7 @@ class ViewProvider extends StatelessWidget {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.background.withOpacity(0.3),
+                      color: Theme.of(context).colorScheme.surface.withOpacity(0.3),
                       borderRadius: BorderRadius.circular(40),
                     ),
                     child: Padding(
@@ -123,7 +123,7 @@ class ViewProvider extends StatelessWidget {
             left: 20,
             child: Container(
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.background.withOpacity(0.7),
+                color: Theme.of(context).colorScheme.surface.withOpacity(0.7),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Padding(
@@ -272,8 +272,8 @@ class ViewProvider extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 15),
                       child: ElevatedButton(
                         style: ButtonStyle(
-                          minimumSize: MaterialStateProperty.all(Size(0, 0)),
-                          maximumSize: MaterialStateProperty.all(
+                          minimumSize: WidgetStateProperty.all(Size(0, 0)),
+                          maximumSize: WidgetStateProperty.all(
                             Size(300, 45),
                           ),
                         ),

@@ -18,10 +18,11 @@ class RegisterResponse {
   final int code;
   final String message;
   final bool loading;
-  RegisterResponse({required this.code, required this.message, required this.loading});
+  final String? email;
+  RegisterResponse({required this.code, required this.message, required this.loading, this.email});
 
-  factory RegisterResponse.fromJson(Map<String, dynamic> data) {
-    return RegisterResponse(code: data['code'], message: data['message'], loading: false);
+  factory RegisterResponse.fromJson(Map<String, dynamic> data, String email) {
+    return RegisterResponse(code: data['code'], message: data['message'], loading: false, email: email);
   }
 }
 
@@ -34,13 +35,30 @@ class VerifyEmailRequest {
   final String otp;
   final String email;
   VerifyEmailRequest({required this.email, required this.otp});
+  Map<String, dynamic> toJson() {
+    return {
+      'otp': otp,
+      'email': email,
+    };
+  }
 }
 
 class VerifyEmailResponse {
   final int code;
   final String message;
-  final TokenResponse data;
-  VerifyEmailResponse({required this.code, required this.message, required this.data});
+  final bool loading;
+  final TokenResponse? data;
+  VerifyEmailResponse({required this.code, required this.message, this.data, required this.loading});
+  factory VerifyEmailResponse.fromJson(Map<String, dynamic> object) {
+    return VerifyEmailResponse(
+      code: object['code'],
+      message: object['message'],
+      loading: false,
+      data: TokenResponse(
+        token: object['data']['token'],
+      ),
+    );
+  }
 }
 
 class RegisterRequest {

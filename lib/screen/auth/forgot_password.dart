@@ -19,7 +19,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       body: Container(
         margin: const EdgeInsets.only(top: 80, left: 15, right: 15),
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.background,
+          color: Theme.of(context).colorScheme.surface,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,11 +106,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 );
               },
               style: ButtonStyle(
-                minimumSize: MaterialStateProperty.all(Size(0, 0)),
-                maximumSize: MaterialStateProperty.all(
+                minimumSize: WidgetStateProperty.all(Size(0, 0)),
+                maximumSize: WidgetStateProperty.all(
                   Size(370, 50),
                 ),
-                padding: MaterialStateProperty.all(
+                padding: WidgetStateProperty.all(
                   EdgeInsets.symmetric(vertical: 3),
                 ),
               ),

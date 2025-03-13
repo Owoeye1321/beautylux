@@ -164,7 +164,7 @@ class ServiceCard extends StatelessWidget {
                                     removeService(service);
                                   },
                                   style: ButtonStyle(
-                                    padding: MaterialStateProperty.all(
+                                    padding: WidgetStateProperty.all(
                                       EdgeInsets.only(right: 0),
                                     ),
                                   ),
@@ -187,7 +187,7 @@ class ServiceCard extends StatelessWidget {
                                     addService(service);
                                   },
                                   style: ButtonStyle(
-                                    padding: MaterialStateProperty.all(
+                                    padding: WidgetStateProperty.all(
                                       EdgeInsets.only(right: 0),
                                     ),
                                   ),

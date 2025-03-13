@@ -23,7 +23,7 @@ class _ResetPasswordState extends State<ResetPassword> {
           left: 15,
         ),
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.background,
+          color: Theme.of(context).colorScheme.surface,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,11 +103,11 @@ class _ResetPasswordState extends State<ResetPassword> {
                 );
               },
               style: ButtonStyle(
-                minimumSize: MaterialStateProperty.all(Size(0, 0)),
-                maximumSize: MaterialStateProperty.all(
+                minimumSize: WidgetStateProperty.all(Size(0, 0)),
+                maximumSize: WidgetStateProperty.all(
                   Size(370, 50),
                 ),
-                padding: MaterialStateProperty.all(
+                padding: WidgetStateProperty.all(
                   EdgeInsets.symmetric(vertical: 3),
                 ),
               ),

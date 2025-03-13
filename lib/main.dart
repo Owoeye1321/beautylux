@@ -3,6 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:logaluxe_users/provider/display.dart';
+import 'package:logaluxe_users/screen/auth/verify_email.dart';
 import 'package:logaluxe_users/screen/splash.dart';
 
 void main() async {
@@ -31,7 +32,7 @@ class MyApp extends ConsumerWidget {
       title: 'LogaLuxe',
       theme: ThemeData().copyWith(
         useMaterial3: true,
-        scaffoldBackgroundColor: colorScheme.colorScheme.background,
+        scaffoldBackgroundColor: colorScheme.colorScheme.surface,
         colorScheme: colorScheme.colorScheme,
         textTheme: GoogleFonts.montserratTextTheme().copyWith(
           displaySmall: GoogleFonts.montserrat(fontWeight: FontWeight.normal, fontSize: 8),

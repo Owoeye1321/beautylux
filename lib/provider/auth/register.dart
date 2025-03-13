@@ -18,8 +18,8 @@ class RegistierNotifier extends StateNotifier<RegisterResponse> {
         body: jsonEncode(data.toJson()),
       );
       if (response.statusCode == 200) {
-        print(response);
-        return RegisterResponse.fromJson(jsonDecode(response.body));
+        state = RegisterResponse.fromJson(jsonDecode(response.body), data.email);
+        return state;
       } else {
         Map<String, dynamic> errorResponse = jsonDecode(response.body);
         String errorMessage = errorResponse['message'] ?? errorResponse['message'];
@@ -35,7 +35,7 @@ class RegistierNotifier extends StateNotifier<RegisterResponse> {
   }
 
   disableLoading() {
-    state = RegisterResponse(code: state.code, message: state.message, loading: false);
+    state = RegisterResponse(code: state.code, message: state.message, loading: false, email: state.email);
   }
 }
 
