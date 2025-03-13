@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,11 +14,17 @@ void main() async {
   } catch (e) {
     print('Error loading .env file: $e'); // Print error if any
   }
-  runApp(
-    const ProviderScope(
-      child: MyApp(),
-    ),
-  );
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]).then((_) {
+    runApp(
+      const ProviderScope(
+        child: MyApp()
+      ),
+    );
+  });
 }
 
 class MyApp extends ConsumerWidget {

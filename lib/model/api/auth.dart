@@ -5,13 +5,33 @@ class LoginRequest {
   final String email;
   final String password;
   LoginRequest({required this.email, required this.password});
+  Map<String, dynamic> toJson() {
+    return {
+      'email': email,
+      'password': password,
+    };
+  }
 }
 
 class LoginResponse {
   final int code;
   final String message;
   final UserModel data;
-  LoginResponse({required this.code, required this.message, required this.data});
+  final bool loading;
+  LoginResponse({required this.code, required this.message, required this.data, required this.loading});
+  factory LoginResponse.fromJson(Map<String, dynamic> object) {
+    return LoginResponse(
+      code: object['code'],
+      message: object['message'],
+      loading: false,
+      data: UserModel(
+          token: object['data']['token'],
+          first_name: object['data']['first_name'],
+          bio: '',
+          business_address: '',
+          business_name: ''),
+    );
+  }
 }
 
 class RegisterResponse {

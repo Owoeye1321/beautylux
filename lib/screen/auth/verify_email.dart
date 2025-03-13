@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/model/api/auth.dart';
+import 'package:logaluxe_users/provider/auth/profile.dart';
 import 'package:logaluxe_users/provider/auth/register.dart';
 import 'package:logaluxe_users/provider/auth/verify_email.dart';
 import 'package:logaluxe_users/screen/home.dart';
@@ -54,7 +55,6 @@ class _VerifyEmailState extends ConsumerState<VerifyEmail> {
   }
 
   _resubmit() async {
-    print(enteredOtp);
     await _submitOtp(enteredOtp);
   }
 
@@ -65,8 +65,26 @@ class _VerifyEmailState extends ConsumerState<VerifyEmail> {
     });
     verifyEmailRequest.enableLoading();
     try {
-      await verifyEmailRequest.verifyOtp(
+      var response = await verifyEmailRequest.verifyOtp(
         VerifyEmailRequest(email: ref.watch(registerProvider).email!, otp: verificationCode),
+      );
+      ref.read(profileProvider.notifier).authenticate(response.data!);
+      toastification.show(
+        context: context, // optional if you use ToastificationWrapper
+        title: Text(response.message),
+        type: ToastificationType.success,
+        style: ToastificationStyle.flat,
+        autoCloseDuration: const Duration(seconds: 2),
+        animationDuration: const Duration(milliseconds: 100),
+        animationBuilder: (context, animation, alignment, child) {
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+        },
+        primaryColor: Colors.green,
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
       );
       verifyEmailRequest.disableLoading();
       Navigator.pushAndRemoveUntil(
@@ -104,7 +122,6 @@ class _VerifyEmailState extends ConsumerState<VerifyEmail> {
   @override
   Widget build(BuildContext context) {
     var loadingState = ref.watch(verifyEmailProvider).loading;
-    print(loadingState);
     String timer = "00:00";
     return Scaffold(
       body: Container(
@@ -180,7 +197,7 @@ class _VerifyEmailState extends ConsumerState<VerifyEmail> {
               height: 360,
             ),
             ElevatedButton(
-              onPressed: loadingState == true
+              onPressed: loadingState == true || enteredOtp == ''
                   ? null
                   : () {
                       _resubmit();

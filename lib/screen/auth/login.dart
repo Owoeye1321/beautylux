@@ -1,21 +1,98 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logaluxe_users/model/api/auth.dart';
+import 'package:logaluxe_users/provider/auth/login.dart';
+import 'package:logaluxe_users/provider/auth/profile.dart';
 import 'package:logaluxe_users/screen/auth/forgot_password.dart';
 import 'package:logaluxe_users/screen/auth/register.dart';
 import 'package:logaluxe_users/screen/home.dart';
 import 'package:logaluxe_users/widget/button/icon_button.dart';
 import 'package:logaluxe_users/widget/input-field/loga_input.dart';
 import 'package:logaluxe_users/widget/splash/text.dart';
+import 'package:toastification/toastification.dart';
 
-class Login extends StatefulWidget {
+class Login extends ConsumerStatefulWidget {
   const Login({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  ConsumerState<Login> createState() => _LoginState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginState extends ConsumerState<Login> {
   var emailTextController = TextEditingController();
   var passwordTextController = TextEditingController();
+  String passwordError = '';
+  String emailError = '';
+  String errorMessage = '';
+  _login() async {
+    try {
+      var loginState = ref.read(loginProvider.notifier);
+      loginState.enableLoading();
+      String email = emailTextController.text.trim();
+      String password = passwordTextController.text.trim();
+      if (email.isEmpty || !email.contains("@") || (!email.contains('.ng') && !email.contains('.com')))
+        setState(() {
+          emailError = "Invalid email";
+        });
+      else if (password.isEmpty || password.length < 6)
+        setState(() {
+          emailError = "";
+          passwordError = "Invalid password";
+        });
+      else
+        setState(() {
+          emailError = "";
+          passwordError = "";
+        });
+      var loginRequest = await loginState.login(LoginRequest(email: email, password: password));
+      ref.read(profileProvider.notifier).authenticate(loginRequest.data);
+      toastification.show(
+        context: context, // optional if you use ToastificationWrapper
+        title: Text(loginRequest.message),
+        type: ToastificationType.success,
+        style: ToastificationStyle.flat,
+        autoCloseDuration: const Duration(seconds: 2),
+        animationDuration: const Duration(milliseconds: 100),
+        animationBuilder: (context, animation, alignment, child) {
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+        },
+        primaryColor: Colors.green,
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+      );
+      loginState.disableLoading();
+      Navigator.pushAndRemoveUntil(
+          context, MaterialPageRoute(builder: (ctx) => Home()), (Route<dynamic> route) => false);
+    } catch (e) {
+      ref.read(loginProvider.notifier).disableLoading();
+      setState(() {
+        errorMessage = e.toString().replaceAll('Exception: ', '');
+      });
+      toastification.show(
+        context: context, // optional if you use ToastificationWrapper
+        title: Text(errorMessage),
+        type: ToastificationType.error,
+        style: ToastificationStyle.flat,
+        autoCloseDuration: const Duration(seconds: 2),
+        animationDuration: const Duration(milliseconds: 100),
+        animationBuilder: (context, animation, alignment, child) {
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+        },
+        primaryColor: Colors.red,
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,7 +147,7 @@ class _LoginState extends State<Login> {
               prefixIcon: true,
               prefixImage: false,
               controller: emailTextController,
-              errorText: '',
+              errorText: emailError,
             ),
             const SizedBox(
               height: 20,
@@ -89,7 +166,7 @@ class _LoginState extends State<Login> {
               prefixImage: false,
               prefixIcon: true,
               controller: passwordTextController,
-              errorText: '',
+              errorText: passwordError,
             ),
             const SizedBox(
               height: 10,
@@ -120,15 +197,11 @@ class _LoginState extends State<Login> {
               height: 60,
             ),
             ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return Home();
+              onPressed: ref.watch(loginProvider).loading == true
+                  ? null
+                  : () {
+                      _login();
                     },
-                  ),
-                );
-              },
               style: ButtonStyle(
                 minimumSize: WidgetStateProperty.all(Size(0, 0)),
                 maximumSize: WidgetStateProperty.all(
@@ -137,13 +210,25 @@ class _LoginState extends State<Login> {
                 padding: WidgetStateProperty.all(
                   EdgeInsets.symmetric(vertical: 3),
                 ),
+                backgroundColor: WidgetStateProperty.resolveWith<Color>(
+                  (states) {
+                    if (states.contains(WidgetState.disabled)) {
+                      return Theme.of(context).colorScheme.onPrimary; // Custom disabled color
+                    }
+                    return Theme.of(context).colorScheme.onPrimary; // Custom disabled color
+                  },
+                ),
               ),
-              child: Text(
-                "Login",
-                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      color: Theme.of(context).colorScheme.onSurface,
+              child: ref.watch(loginProvider).loading == true
+                  ? CircularProgressIndicator.adaptive(
+                      backgroundColor: Theme.of(context).colorScheme.onSurface,
+                    )
+                  : Text(
+                      "Login",
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Theme.of(context).colorScheme.onSurface,
+                          ),
                     ),
-              ),
             ),
             const SizedBox(
               height: 15,

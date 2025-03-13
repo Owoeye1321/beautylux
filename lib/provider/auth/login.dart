@@ -4,22 +4,30 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/model/api/auth.dart';
 import 'package:http/http.dart' as http;
+import 'package:logaluxe_users/model/user.dart';
 import 'package:logaluxe_users/provider/auth/profile.dart';
 
-class VerifyEmailNotifier extends StateNotifier<VerifyEmailResponse> {
-  VerifyEmailNotifier() : super(VerifyEmailResponse(code: 404, message: '', data: null, loading: false));
+class LoginInNotifier extends StateNotifier<LoginResponse> {
+  LoginInNotifier()
+      : super(
+          LoginResponse(
+              code: 404,
+              message: '',
+              data: UserModel(first_name: "", bio: '', business_name: '', business_address: ''),
+              loading: false),
+        );
 
-  Future<VerifyEmailResponse> verifyOtp(VerifyEmailRequest data) async {
+  Future<LoginResponse> login(LoginRequest data) async {
     try {
       final response = await http.post(
-        Uri.parse("${dotenv.env['API_URL']!}/auth/verify-otp"),
+        Uri.parse("${dotenv.env['API_URL']!}/auth/login"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode(data.toJson()),
       );
       if (response.statusCode == 200) {
-        state = VerifyEmailResponse.fromJson(jsonDecode(response.body));
+        state = LoginResponse.fromJson(jsonDecode(response.body));
         return state;
       } else {
         Map<String, dynamic> errorResponse = jsonDecode(response.body);
@@ -27,17 +35,16 @@ class VerifyEmailNotifier extends StateNotifier<VerifyEmailResponse> {
         throw new Exception(errorMessage);
       }
     } catch (e) {
-      print(e);
       throw Exception(e.toString());
     }
   }
 
   enableLoading() {
-    state = VerifyEmailResponse(code: state.code, message: state.message, loading: true);
+    state = LoginResponse(code: state.code, message: state.message, loading: true, data: state.data);
   }
 
   disableLoading() {
-    state = VerifyEmailResponse(
+    state = LoginResponse(
       code: state.code,
       message: state.message,
       loading: false,
@@ -46,6 +53,6 @@ class VerifyEmailNotifier extends StateNotifier<VerifyEmailResponse> {
   }
 }
 
-var verifyEmailProvider = StateNotifierProvider<VerifyEmailNotifier, VerifyEmailResponse>((ref) {
-  return VerifyEmailNotifier();
+var loginProvider = StateNotifierProvider<LoginInNotifier, LoginResponse>((ref) {
+  return LoginInNotifier();
 });
