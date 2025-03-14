@@ -1,67 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/provider/auth/reset_password.dart';
-import 'package:logaluxe_users/screen/auth/password_otp.dart';
 import 'package:logaluxe_users/screen/auth/reset_password.dart';
-import 'package:logaluxe_users/widget/input-field/loga_input.dart';
+import 'package:logaluxe_users/widget/input-field/otp.dart';
 import 'package:logaluxe_users/widget/splash/text.dart';
-import 'package:toastification/toastification.dart';
+import 'package:toastification/toastification.dart'
+    show ToastificationStyle, ToastificationType, toastification;
 
-class ForgotPassword extends ConsumerStatefulWidget {
-  const ForgotPassword({super.key});
+class PasswordOTP extends ConsumerStatefulWidget {
+  const PasswordOTP({super.key});
 
   @override
-  ConsumerState<ForgotPassword> createState() => _ForgotPasswordState();
+  ConsumerState<PasswordOTP> createState() => _PasswordOTPState();
 }
 
-class _ForgotPasswordState extends ConsumerState<ForgotPassword> {
-  var emailTextController = TextEditingController();
-  String emailError = '';
+class _PasswordOTPState extends ConsumerState<PasswordOTP> {
   String errorMessage = '';
-  _forgetPassword() async {
-    try {
-      var forgetPassword = ref.read(passwordResetProvider.notifier);
-      var email = emailTextController.text.trim();
-      if (email.isEmpty || !email.contains("@") || (!email.contains('.ng') && !email.contains('.com'))) {
-        setState(() {
-          emailError = "Invalid email";
-        });
-      } else {
-        forgetPassword.enableLoading();
-        var response = await forgetPassword.resetPassword(email);
-        toastification.show(
-          context: context, // optional if you use ToastificationWrapper
-          title: Text(response.message),
-          type: ToastificationType.success,
-          style: ToastificationStyle.flat,
-          autoCloseDuration: const Duration(seconds: 2),
-          animationDuration: const Duration(milliseconds: 100),
-          animationBuilder: (context, animation, alignment, child) {
-            return FadeTransition(
-              opacity: animation,
-              child: child,
-            );
-          },
-          primaryColor: Colors.green,
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.black,
-        );
-        forgetPassword.disableLoading();
-        Navigator.pushAndRemoveUntil(
-            context, MaterialPageRoute(builder: (ctx) => PasswordOTP()), (Route<dynamic> route) => false);
-      }
-    } catch (e) {
-      ref.read(passwordResetProvider.notifier).disableLoading();
-      setState(() {
-        errorMessage = e.toString().replaceAll('Exception: ', '');
-      });
+  String enteredOtp = '';
+  @override
+  void initState() {
+    super.initState();
+
+    // Delay the dialog to ensure the screen is fully loaded
+  }
+
+  _resubmit() async {
+    await _submitOtp(enteredOtp);
+  }
+
+  _submitOtp(String verificationCode) async {
+    setState(() {
+      enteredOtp = verificationCode;
+    });
+    if (enteredOtp.length < 4) {
+      errorMessage = "Invalid OTP";
       toastification.show(
         context: context, // optional if you use ToastificationWrapper
         title: Text(errorMessage),
         type: ToastificationType.error,
         style: ToastificationStyle.flat,
-        autoCloseDuration: const Duration(seconds: 2),
+        autoCloseDuration: const Duration(seconds: 3),
         animationDuration: const Duration(milliseconds: 100),
         animationBuilder: (context, animation, alignment, child) {
           return FadeTransition(
@@ -73,15 +51,22 @@ class _ForgotPasswordState extends ConsumerState<ForgotPassword> {
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
       );
+    } else {
+      var response = await ref.read(passwordResetProvider.notifier).setToken(verificationCode);
+      Navigator.push(context, MaterialPageRoute(builder: (ctx) => ResetPassword()));
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    bool loadingState = ref.watch(passwordResetProvider).loading;
+    var loadingState = ref.watch(passwordResetProvider).loading;
+    String timer = "00:00";
     return Scaffold(
       body: Container(
-        margin: const EdgeInsets.only(top: 80, left: 15, right: 15),
+        margin: const EdgeInsets.only(
+          top: 80,
+          left: 15,
+        ),
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surface,
         ),
@@ -89,7 +74,7 @@ class _ForgotPasswordState extends ConsumerState<ForgotPassword> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Forget Password,",
+              "Email Verification,",
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onSurface,
                 fontSize: Theme.of(context).textTheme.titleLarge?.fontSize!,
@@ -97,38 +82,25 @@ class _ForgotPasswordState extends ConsumerState<ForgotPassword> {
               ),
             ),
             const SizedBox(
-              height: 10,
+              height: 20,
             ),
             SplashText(
-              title: "Please type in your email, we’ll send",
+              title: "Please type OTP code that was sent to",
               color: Theme.of(context).colorScheme.onTertiary,
               fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
               fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
             ),
             SplashText(
-              title: "you a code to change your password.",
+              title: " your mail.",
               color: Theme.of(context).colorScheme.onTertiary,
               fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
               fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
             ),
             const SizedBox(
-              height: 70,
+              height: 80,
             ),
-            LogaInputField(
-              hintText: "Email",
-              buttonBorder: 100,
-              verticalPadding: 15,
-              horizontalPadding: 35,
-              alterVisibility: false,
-              hideTextInput: false,
-              prefixIconData: Icons.email,
-              setIconSize: false,
-              prefixIcon: true,
-              prefixImage: false,
-              setIconColor: false,
-              setIconPadding: false,
-              controller: emailTextController,
-              errorText: emailError,
+            OTP(
+              onsubmit: _submitOtp,
             ),
             const SizedBox(
               height: 10,
@@ -136,34 +108,37 @@ class _ForgotPasswordState extends ConsumerState<ForgotPassword> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return ForgotPassword();
-                        },
+                Text(
+                  "Resend on",
+                  style: TextStyle(
+                    fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
+                    color: Theme.of(context).colorScheme.onTertiary,
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(right: 25),
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      timer,
+                      style: TextStyle(
+                        fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
+                        color: Theme.of(context).colorScheme.onTertiary,
+                        fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight!,
                       ),
-                    );
-                  },
-                  child: Text(
-                    "Use phone number?",
-                    style: TextStyle(
-                      fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
-                      color: Theme.of(context).colorScheme.onTertiary,
                     ),
                   ),
-                )
+                ),
               ],
             ),
             const SizedBox(
-              height: 365,
+              height: 360,
             ),
             ElevatedButton(
-              onPressed: loadingState == true
+              onPressed: loadingState == true || enteredOtp == ''
                   ? null
                   : () {
-                      _forgetPassword();
+                      _resubmit();
                     },
               style: ButtonStyle(
                 minimumSize: WidgetStateProperty.all(Size(0, 0)),
@@ -190,7 +165,7 @@ class _ForgotPasswordState extends ConsumerState<ForgotPassword> {
                       backgroundColor: Theme.of(context).colorScheme.onSurface,
                     )
                   : Text(
-                      "Send Code",
+                      "Proceed",
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             color: Theme.of(context).colorScheme.onSurface,
                           ),

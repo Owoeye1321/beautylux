@@ -4,7 +4,6 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:logaluxe_users/provider/display.dart';
-import 'package:logaluxe_users/screen/auth/verify_email.dart';
 import 'package:logaluxe_users/screen/splash.dart';
 
 void main() async {

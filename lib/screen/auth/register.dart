@@ -65,6 +65,23 @@ class _RegisterState extends ConsumerState<Register> {
               .read(registerProvider.notifier)
               .register(RegisterRequest(first_name: firstName, email: email, password: password));
           register.disableLoading();
+          toastification.show(
+            context: context, // optional if you use ToastificationWrapper
+            title: Text(initiateRegisteration.message),
+            type: ToastificationType.success,
+            style: ToastificationStyle.flat,
+            autoCloseDuration: const Duration(seconds: 6),
+            animationDuration: const Duration(milliseconds: 100),
+            animationBuilder: (context, animation, alignment, child) {
+              return FadeTransition(
+                opacity: animation,
+                child: child,
+              );
+            },
+            primaryColor: Colors.green,
+            backgroundColor: Colors.white,
+            foregroundColor: Colors.black,
+          );
           Navigator.push(
             context,
             MaterialPageRoute(

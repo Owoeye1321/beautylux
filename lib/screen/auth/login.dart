@@ -28,8 +28,6 @@ class _LoginState extends ConsumerState<Login> {
   String errorMessage = '';
   _login() async {
     try {
-      var loginState = ref.read(loginProvider.notifier);
-      loginState.enableLoading();
       String email = emailTextController.text.trim();
       String password = passwordTextController.text.trim();
       if (email.isEmpty || !email.contains("@") || (!email.contains('.ng') && !email.contains('.com')))
@@ -41,33 +39,36 @@ class _LoginState extends ConsumerState<Login> {
           emailError = "";
           passwordError = "Invalid password";
         });
-      else
+      else {
         setState(() {
           emailError = "";
           passwordError = "";
         });
-      var loginRequest = await loginState.login(LoginRequest(email: email, password: password));
-      ref.read(profileProvider.notifier).authenticate(loginRequest.data);
-      toastification.show(
-        context: context, // optional if you use ToastificationWrapper
-        title: Text(loginRequest.message),
-        type: ToastificationType.success,
-        style: ToastificationStyle.flat,
-        autoCloseDuration: const Duration(seconds: 2),
-        animationDuration: const Duration(milliseconds: 100),
-        animationBuilder: (context, animation, alignment, child) {
-          return FadeTransition(
-            opacity: animation,
-            child: child,
-          );
-        },
-        primaryColor: Colors.green,
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-      );
-      loginState.disableLoading();
-      Navigator.pushAndRemoveUntil(
-          context, MaterialPageRoute(builder: (ctx) => Home()), (Route<dynamic> route) => false);
+        var loginState = ref.read(loginProvider.notifier);
+        loginState.enableLoading();
+        var loginRequest = await loginState.login(LoginRequest(email: email, password: password));
+        ref.read(profileProvider.notifier).authenticate(loginRequest.data);
+        toastification.show(
+          context: context, // optional if you use ToastificationWrapper
+          title: Text(loginRequest.message),
+          type: ToastificationType.success,
+          style: ToastificationStyle.flat,
+          autoCloseDuration: const Duration(seconds: 2),
+          animationDuration: const Duration(milliseconds: 100),
+          animationBuilder: (context, animation, alignment, child) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
+          primaryColor: Colors.green,
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black,
+        );
+        loginState.disableLoading();
+        Navigator.pushAndRemoveUntil(
+            context, MaterialPageRoute(builder: (ctx) => Home()), (Route<dynamic> route) => false);
+      }
     } catch (e) {
       ref.read(loginProvider.notifier).disableLoading();
       setState(() {

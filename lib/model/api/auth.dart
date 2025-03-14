@@ -98,3 +98,30 @@ class RegisterRequest {
     };
   }
 }
+
+class ResetPasswordRequest {
+  final String email;
+  final String? newPassword;
+  final String? token;
+  final String platform;
+  final bool loading;
+  ResetPasswordRequest(
+      {required this.email, this.newPassword, this.token, required this.platform, required this.loading});
+  Map<String, dynamic> toRequestResetJson() {
+    return {"email": email, "platform": platform};
+  }
+
+  Map<String, dynamic> toChangePasswordJson() {
+    return {"email": email, "token": token, "newPassword": newPassword};
+  }
+}
+
+class ResetPasswordResponse {
+  final int code;
+  final String message;
+  ResetPasswordResponse({required this.code, required this.message});
+
+  factory ResetPasswordResponse.fromJson(Map<String, dynamic> response) {
+    return ResetPasswordResponse(code: response['code'], message: response['message']);
+  }
+}

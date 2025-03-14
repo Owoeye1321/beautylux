@@ -1,21 +1,96 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logaluxe_users/provider/auth/reset_password.dart';
+import 'package:logaluxe_users/screen/auth/login.dart';
+import 'package:logaluxe_users/screen/auth/password_otp.dart';
 import 'package:logaluxe_users/screen/home.dart';
 import 'package:logaluxe_users/widget/input-field/loga_input.dart';
 import 'package:logaluxe_users/widget/splash/text.dart';
+import 'package:toastification/toastification.dart';
 
-class ResetPassword extends StatefulWidget {
+class ResetPassword extends ConsumerStatefulWidget {
   const ResetPassword({super.key});
 
   @override
-  State<ResetPassword> createState() => _ResetPasswordState();
+  ConsumerState<ResetPassword> createState() => _ResetPasswordState();
 }
 
-class _ResetPasswordState extends State<ResetPassword> {
+class _ResetPasswordState extends ConsumerState<ResetPassword> {
   final passwordTextController = TextEditingController();
   final confirmPasswordTextController = TextEditingController();
+  String passwordError = '';
+  String confirmPasswordError = '';
+  String errorMessage = '';
+
+  _resetPaassword() async {
+    try {
+      var forgetPassword = ref.read(passwordResetProvider.notifier);
+      var password = passwordTextController.text;
+      var confirmPassword = confirmPasswordTextController.text;
+      if (password.isEmpty || password.length < 7) {
+        setState(() {
+          passwordError = "Invalid password";
+        });
+      } else if (confirmPassword.isEmpty || confirmPassword != password) {
+        setState(() {
+          passwordError = '';
+          confirmPasswordError = "Password do not match";
+        });
+      } else {
+        forgetPassword.enableLoading();
+        var response = await forgetPassword.changePassword(password);
+        toastification.show(
+          context: context, // optional if you use ToastificationWrapper
+          title: Text(response.message),
+          type: ToastificationType.success,
+          style: ToastificationStyle.flat,
+          autoCloseDuration: const Duration(seconds: 2),
+          animationDuration: const Duration(milliseconds: 100),
+          animationBuilder: (context, animation, alignment, child) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
+          primaryColor: Colors.green,
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black,
+        );
+        forgetPassword.disableLoading();
+        Navigator.pushAndRemoveUntil(
+            context, MaterialPageRoute(builder: (ctx) => Login()), (Route<dynamic> route) => false);
+      }
+    } catch (e) {
+      ref.read(passwordResetProvider.notifier).disableLoading();
+      setState(() {
+        errorMessage = e.toString().replaceAll('Exception: ', '');
+      });
+      toastification.show(
+        context: context, // optional if you use ToastificationWrapper
+        title: Text(errorMessage),
+        type: ToastificationType.error,
+        style: ToastificationStyle.flat,
+        autoCloseDuration: const Duration(seconds: 2),
+        animationDuration: const Duration(milliseconds: 100),
+        animationBuilder: (context, animation, alignment, child) {
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+        },
+        primaryColor: Colors.red,
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+      );
+      Navigator.pushAndRemoveUntil(
+          context, MaterialPageRoute(builder: (ctx) => PasswordOTP()), (Route<dynamic> route) => false);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    bool loadingState = ref.read(passwordResetProvider).loading;
     return Scaffold(
       body: Container(
         margin: const EdgeInsets.only(
@@ -56,7 +131,7 @@ class _ResetPasswordState extends State<ResetPassword> {
             ),
             LogaInputField(
               hintText: "Password",
-              verticalPadding: 20,
+              verticalPadding: 15,
               horizontalPadding: 35,
               setIconSize: false,
               alterVisibility: true,
@@ -68,14 +143,14 @@ class _ResetPasswordState extends State<ResetPassword> {
               prefixIcon: true,
               prefixImage: false,
               controller: passwordTextController,
-              errorText: '',
+              errorText: passwordError,
             ),
             const SizedBox(
               height: 15,
             ),
             LogaInputField(
               hintText: "Confirm Password",
-              verticalPadding: 20,
+              verticalPadding: 15,
               horizontalPadding: 35,
               alterVisibility: true,
               setIconColor: false,
@@ -87,21 +162,17 @@ class _ResetPasswordState extends State<ResetPassword> {
               prefixIcon: true,
               prefixImage: false,
               controller: confirmPasswordTextController,
-              errorText: '',
+              errorText: confirmPasswordError,
             ),
             const SizedBox(
               height: 365,
             ),
             ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return Home();
+              onPressed: loadingState == true
+                  ? null
+                  : () {
+                      _resetPaassword();
                     },
-                  ),
-                );
-              },
               style: ButtonStyle(
                 minimumSize: WidgetStateProperty.all(Size(0, 0)),
                 maximumSize: WidgetStateProperty.all(
@@ -111,12 +182,16 @@ class _ResetPasswordState extends State<ResetPassword> {
                   EdgeInsets.symmetric(vertical: 3),
                 ),
               ),
-              child: Text(
-                "Confirm New Password",
-                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      color: Theme.of(context).colorScheme.onSurface,
+              child: loadingState == true
+                  ? CircularProgressIndicator.adaptive(
+                      backgroundColor: Theme.of(context).colorScheme.onSurface,
+                    )
+                  : Text(
+                      "Confirm New Password",
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Theme.of(context).colorScheme.onSurface,
+                          ),
                     ),
-              ),
             ),
           ],
         ),
