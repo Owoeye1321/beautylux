@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_floating_bottom_bar/flutter_floating_bottom_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logaluxe_users/provider/auth/profile.dart';
 import 'package:logaluxe_users/provider/auth/verify_email.dart';
 import 'package:logaluxe_users/screen/pages/history.dart';
 import 'package:logaluxe_users/screen/pages/market_place.dart';
@@ -76,7 +77,7 @@ class _HomeState extends ConsumerState<Home> {
                       height: 4,
                     ),
                     Text(
-                      "Hey, ${ref.watch(verifyEmailProvider).data?.first_name!} 👋 ",
+                      "Hey, ${ref.watch(profileProvider)?.first_name!} 👋 ",
                       style: TextStyle(
                         fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
                         fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
@@ -85,7 +86,7 @@ class _HomeState extends ConsumerState<Home> {
                   ],
                 ),
                 const SizedBox(
-                  width: 130,
+                  width: 140,
                 ),
                 GestureDetector(
                   onTap: () {},
