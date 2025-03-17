@@ -1,17 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logaluxe_users/model/user.dart';
+import 'package:logaluxe_users/provider/user.dart';
+import 'package:logaluxe_users/screen/pages/search.dart';
 import 'package:logaluxe_users/widget/category.dart';
 import 'package:logaluxe_users/widget/input-field/loga_input.dart';
 import 'package:logaluxe_users/widget/service/service_grid_view.dart';
 import 'package:logaluxe_users/widget/service/service_list_view.dart';
 
-class MarketPlace extends StatefulWidget {
-  const MarketPlace({super.key});
+class MarketPlace extends ConsumerStatefulWidget {
+  void Function() bookNow;
+  MarketPlace({super.key, required this.bookNow});
 
   @override
-  State<MarketPlace> createState() => _MarketPlaceState();
+  ConsumerState<MarketPlace> createState() => _MarketPlaceState();
 }
 
-class _MarketPlaceState extends State<MarketPlace> {
+class _MarketPlaceState extends ConsumerState<MarketPlace> {
+  List<UserModel> allUsers = [];
+  bool loadingState = true;
+  @override
+  void initState() {
+    super.initState();
+    fetchUsers();
+  }
+
   final searchTextController = TextEditingController();
   int currentIndex = 0;
   String activeView = 'grid';
@@ -21,8 +34,21 @@ class _MarketPlaceState extends State<MarketPlace> {
     });
   }
 
+  fetchUsers() async {
+    var users = await ref.read(userProvider.notifier).getServiceProviders();
+    setState(() {
+      allUsers = users;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    allUsers = ref.watch(userProvider);
+    if (!allUsers.isEmpty) {
+      setState(() {
+        loadingState = false;
+      });
+    }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -122,22 +148,23 @@ class _MarketPlaceState extends State<MarketPlace> {
                 left: 20,
                 right: 255,
                 bottom: 20,
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all<Color>(
-                      Theme.of(context).colorScheme.onSurface,
+                child: GestureDetector(
+                  onTap: () {
+                    widget.bookNow;
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.onSurface,
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                    padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
-                      EdgeInsets.symmetric(vertical: 2, horizontal: 5),
-                    ),
-                  ),
-                  onPressed: () {},
-                  child: Text(
-                    "Book Now",
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.surface,
-                      fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
-                      fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
+                    child: Text(
+                      "Book Now",
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.surface,
+                        fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
+                        fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
+                      ),
                     ),
                   ),
                 ),
@@ -254,7 +281,22 @@ class _MarketPlaceState extends State<MarketPlace> {
           ],
         ),
         SizedBox(height: 10),
-        activeView == "grid" ? ServiceGridView() : ServiceListView(),
+        loadingState == true
+            ? Container(
+                padding: EdgeInsets.only(top: 30),
+                child: Center(
+                  child: CircularProgressIndicator.adaptive(
+                    backgroundColor: Theme.of(context).colorScheme.onSurface,
+                  ),
+                ),
+              )
+            : activeView == "grid"
+                ? ServiceGridView(
+                    allUsers: allUsers,
+                  )
+                : ServiceListView(
+                    allUsers: allUsers,
+                  ),
       ],
     );
   }

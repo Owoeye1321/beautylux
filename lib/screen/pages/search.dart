@@ -135,7 +135,9 @@ class _SearchState extends ConsumerState<Search> {
           SizedBox(
             height: 15,
           ),
-          ServiceListView()
+          ServiceListView(
+            allUsers: [],
+          )
         ],
       ),
     );

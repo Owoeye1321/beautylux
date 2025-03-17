@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:logaluxe_users/screen/home.dart';
 import 'package:logaluxe_users/widget/button/icon_button.dart';
 import 'package:logaluxe_users/widget/splash/splash_content.dart';
 
@@ -14,13 +15,17 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   int currentSplash = 0;
-  void _updateContent() => {
-        setState(
-          () {
-            currentSplash += 1;
-          },
-        )
-      };
+  void _updateContent() {
+    if (currentSplash == 2) {
+      Navigator.pushAndRemoveUntil(
+          context, MaterialPageRoute(builder: (ctx) => Home()), (Route<dynamic> route) => false);
+    }
+    setState(
+      () {
+        currentSplash += 1;
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

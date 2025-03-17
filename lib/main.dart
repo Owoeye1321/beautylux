@@ -4,6 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:logaluxe_users/provider/display.dart';
+import 'package:logaluxe_users/screen/home.dart';
 import 'package:logaluxe_users/screen/splash.dart';
 
 void main() async {
@@ -19,9 +20,7 @@ void main() async {
     DeviceOrientation.portraitDown,
   ]).then((_) {
     runApp(
-      const ProviderScope(
-        child: MyApp()
-      ),
+      const ProviderScope(child: MyApp()),
     );
   });
 }
@@ -63,7 +62,7 @@ class MyApp extends ConsumerWidget {
           ),
         ),
       ),
-      home: SplashScreen(),
+      home: Home(),
     );
   }
 }

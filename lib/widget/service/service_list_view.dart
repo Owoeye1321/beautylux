@@ -6,7 +6,8 @@ import 'package:logaluxe_users/screen/service-provider/view_provider.dart';
 import 'package:logaluxe_users/widget/loga_text.dart';
 
 class ServiceListView extends ConsumerWidget {
-  const ServiceListView({super.key});
+  List<UserModel> allUsers;
+  ServiceListView({super.key, required this.allUsers});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -20,7 +21,6 @@ class ServiceListView extends ConsumerWidget {
       );
     }
 
-    var allUsers = ref.watch(userProvider);
     return Container(
       child: GridView.builder(
         shrinkWrap: true, // ✅ Prevents GridView from taking infinite height
@@ -39,7 +39,7 @@ class ServiceListView extends ConsumerWidget {
             },
             child: Container(
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.onTertiaryContainer.withOpacity(0.2),
+                color: Theme.of(context).colorScheme.onTertiaryContainer.withAlpha((0.2 * 255).toInt()),
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Row(

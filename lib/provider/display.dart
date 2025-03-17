@@ -17,7 +17,7 @@ class DisplayNotifier extends StateNotifier<DisplayState> {
               onError: const Color(0xFFEB4F87),
               onTertiary: Color.fromARGB(255, 180, 178, 178),
               tertiaryContainer: Color(0xFF0F0704),
-              onTertiaryContainer: Color.fromARGB(255, 106, 88, 83),
+              onTertiaryContainer: Color.fromARGB(255, 85, 68, 63),
             ),
             isLightMode: false));
   changeDisplayState(bool isLightMode) {
@@ -53,7 +53,7 @@ class DisplayNotifier extends StateNotifier<DisplayState> {
             onError: const Color(0xFFEB4F87),
             onTertiary: Color.fromARGB(255, 180, 178, 178),
             tertiaryContainer: Color(0xFF0F0704),
-            onTertiaryContainer: Color.fromARGB(255, 106, 88, 83),
+            onTertiaryContainer: Color.fromARGB(255, 85, 68, 63),
           ),
           isLightMode: false);
     }

@@ -131,7 +131,7 @@ class _RegisterState extends ConsumerState<Register> {
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 15,
             ),
             SplashText(
               title: "Find and book Beauty, salon, Barber",

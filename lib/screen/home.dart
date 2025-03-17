@@ -7,6 +7,7 @@ import 'package:logaluxe_users/screen/pages/history.dart';
 import 'package:logaluxe_users/screen/pages/market_place.dart';
 import 'package:logaluxe_users/screen/pages/search.dart';
 import 'package:logaluxe_users/screen/pages/settings.dart';
+import 'package:logaluxe_users/widget/loga_text.dart';
 import 'package:logaluxe_users/widget/nav_bar.dart';
 
 class Home extends ConsumerStatefulWidget {
@@ -22,14 +23,27 @@ class _HomeState extends ConsumerState<Home> {
   int currentIndex = 0;
   int? prevIndex;
   String activeView = 'grid';
+  bookNow() {
+    print('hello');
+    setState(() {
+      currentIndex = 1;
+    });
+  }
+
+  _switchContent(int activeIndex, previousIndex) {
+    setState(() {
+      currentIndex = activeIndex;
+      prevIndex = previousIndex;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    _switchContent(int activeIndex, previousIndex) {
-      setState(() {
-        currentIndex = activeIndex;
-        prevIndex = previousIndex;
-      });
+    String username = ref.watch(profileProvider).first_name;
+    if (username == '') {
+      username = 'Jack EL';
+    } else {
+      username = username.substring(0, 7);
     }
 
     return Scaffold(
@@ -76,17 +90,18 @@ class _HomeState extends ConsumerState<Home> {
                     const SizedBox(
                       height: 4,
                     ),
-                    Text(
-                      "Hey, ${ref.watch(profileProvider)?.first_name!} 👋 ",
-                      style: TextStyle(
-                        fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
-                        fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
-                      ),
-                    ),
+                    SizedBox(
+                      width: 150,
+                      child: LogaText(
+                          content: "Hey, ${username} 👋 ",
+                          color: Theme.of(context).colorScheme.onSurface,
+                          fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize! as double,
+                          fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight! as FontWeight),
+                    )
                   ],
                 ),
                 const SizedBox(
-                  width: 140,
+                  width: 100,
                 ),
                 GestureDetector(
                   onTap: () {},
@@ -208,6 +223,9 @@ class _HomeState extends ConsumerState<Home> {
             child: currentIndex == 0
                 ? MarketPlace(
                     key: ValueKey(0),
+                    bookNow: () {
+                      bookNow();
+                    },
                   )
                 : currentIndex == 1
                     ? Search(

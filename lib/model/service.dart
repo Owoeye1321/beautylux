@@ -36,4 +36,32 @@ class ServiceModel {
       required this.updatedAt,
       required this.description,
       required this.image_url});
+
+  static List<ServiceModel> fromResponse(Map<String, dynamic> data) {
+    List<ServiceModel> allServices = [];
+    for (Map<String, dynamic> eachService in data['data']) {
+      ServiceModel service = ServiceModel(
+        id: eachService['id'],
+        name: eachService['name'],
+        service_duration: eachService['service_duration'],
+        location: eachService['location'],
+        service_ref: eachService['service_ref'],
+        company_id: eachService['company_id'],
+        category_id: eachService['category_id'],
+        amount: eachService['amount'],
+        country: eachService['country'],
+        state: eachService['state'],
+        active: eachService['active'],
+        opening_time: eachService['opening_time'],
+        closing_time: eachService['closing_time'],
+        createdAt: eachService['createdAt'],
+        currency: eachService['currency'],
+        updatedAt: eachService['updatedAt'],
+        description: eachService['description'],
+        image_url: eachService['image_url'],
+      );
+      allServices.add(service);
+    }
+    return allServices;
+  }
 }

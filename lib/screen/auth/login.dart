@@ -114,7 +114,7 @@ class _LoginState extends ConsumerState<Login> {
               ),
             ),
             const SizedBox(
-              height: 30,
+              height: 20,
             ),
             SplashText(
               title: "Find and book Beauty, salon, Barber",

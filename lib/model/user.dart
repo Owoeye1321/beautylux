@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class UserModel {
   final String first_name;
   final String? last_name;
@@ -39,6 +41,7 @@ class UserModel {
   final String? address_id;
   final String? city;
   final String? postal_code;
+  final String? createdAt;
   final String? updatedAt;
   UserModel(
       {required this.first_name,
@@ -81,5 +84,31 @@ class UserModel {
       this.city,
       this.token,
       this.postal_code,
+      this.createdAt,
       this.updatedAt});
+
+  static List<UserModel> fromJsonList(Map<String, dynamic> data) {
+    List<UserModel> allUsers = [];
+    for (Map<String, dynamic> eachUser in data['data']) {
+      var first_name =
+          eachUser['first_name'].toString() == "null" ? "user" : eachUser['first_name'].toString();
+      var bio = eachUser['bio'].toString() == "null" ? "Providing services" : eachUser['bio'].toString();
+      var business_name = eachUser['business_name'].toString() == "service"
+          ? "Providing services"
+          : eachUser['business_name'].toString();
+      var business_address = eachUser['business_address'].toString() == "service"
+          ? "Lagos, nigeria"
+          : eachUser['business_address'].toString();
+      DateTime date = DateTime.parse(eachUser['createdAt']);
+      UserModel user = UserModel(
+          first_name: first_name,
+          bio: bio,
+          business_name: business_name,
+          business_address: business_address,
+          createdAt: DateFormat.jm().format(date));
+
+      allUsers.add(user);
+    }
+    return allUsers;
+  }
 }

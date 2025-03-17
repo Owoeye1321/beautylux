@@ -5,11 +5,11 @@ import 'package:logaluxe_users/provider/user.dart';
 import 'package:logaluxe_users/screen/service-provider/view_provider.dart';
 
 class ServiceGridView extends ConsumerWidget {
-  const ServiceGridView({super.key});
+  final List<UserModel> allUsers;
+  const ServiceGridView({super.key, required this.allUsers});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var allUsers = ref.watch(userProvider);
     void _viewUser(UserModel user) {
       Navigator.of(context).push(
         MaterialPageRoute(
@@ -38,7 +38,7 @@ class ServiceGridView extends ConsumerWidget {
             },
             child: Container(
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.onTertiaryContainer.withOpacity(0.4),
+                color: Theme.of(context).colorScheme.onTertiaryContainer.withAlpha((0.2 * 255).toInt()),
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Column(

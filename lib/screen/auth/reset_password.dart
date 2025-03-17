@@ -90,7 +90,7 @@ class _ResetPasswordState extends ConsumerState<ResetPassword> {
 
   @override
   Widget build(BuildContext context) {
-    bool loadingState = ref.read(passwordResetProvider).loading;
+    bool loadingState = ref.watch(passwordResetProvider).loading;
     return Scaffold(
       body: Container(
         margin: const EdgeInsets.only(
