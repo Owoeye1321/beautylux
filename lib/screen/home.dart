@@ -43,7 +43,7 @@ class _HomeState extends ConsumerState<Home> {
     if (username == '') {
       username = 'Jack EL';
     } else {
-      username = username.substring(0, 7);
+      username = username;
     }
 
     return Scaffold(

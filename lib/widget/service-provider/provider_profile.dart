@@ -96,7 +96,7 @@ class _ProviderProfileState extends ConsumerState<ProviderProfile> {
                         ),
                         SizedBox(width: 5),
                         Text(
-                          "${widget.user.opening_time} - ${widget.user.closing_time}",
+                          "${widget.user.opening_time}am - ${widget.user.closing_time}pm",
                           maxLines: 2, // Limits text to 2 lines
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
@@ -246,7 +246,7 @@ class _ProviderProfileState extends ConsumerState<ProviderProfile> {
                     ),
                   )
                 : currentIndex == 1
-                    ? SizedBox(height: 370, child: AboutProvider(user: widget.user))
+                    ? SizedBox(height: 320, child: AboutProvider(user: widget.user))
                     : currentIndex == 2
                         ? Container()
                         : Container(),

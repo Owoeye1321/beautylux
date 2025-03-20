@@ -11,7 +11,6 @@ class CategoryRowScroll extends ConsumerStatefulWidget {
 }
 
 class _CategoryRowScroll extends ConsumerState<CategoryRowScroll> {
-  List<CategoryModel> allCategories = [];
   bool loadingState = true;
 
   @override
@@ -22,25 +21,22 @@ class _CategoryRowScroll extends ConsumerState<CategoryRowScroll> {
   }
 
   fetchCategories() async {
-    var categoryProvider = await ref.read(categoryNotifier.notifier);
-    var fetchCategories = await categoryProvider.fetchCategory();
+    var categoryNotier = await ref.read(categoryProvider.notifier);
+    var fetchCategories = await categoryNotier.fetchCategory();
     if (!fetchCategories.data.isEmpty) {
-      categoryProvider.setActiveCategory(fetchCategories.data[0]);
-      setState(() {
-        allCategories = fetchCategories.data;
-      });
+      categoryNotier.setActiveCategory(fetchCategories.data[0]);
     }
   }
 
   _setActiveCategory(CategoryModel category) {
-    setState(() {
-      ref.read(categoryNotifier.notifier).setActiveCategory(category);
-    });
+    ref.read(categoryProvider.notifier).setActiveCategory(category);
   }
 
   @override
   Widget build(BuildContext context) {
-    var activeCategory = ref.watch(categoryNotifier).activeCategory;
+    var categoryNotier = ref.watch(categoryProvider);
+    var activeCategory = categoryNotier.activeCategory;
+    var allCategories = categoryNotier.data;
     if (!allCategories.isEmpty) {
       setState(() {
         loadingState = false;

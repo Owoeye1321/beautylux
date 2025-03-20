@@ -42,10 +42,12 @@ class _SettingsState extends ConsumerState<Settings> {
   @override
   Widget build(BuildContext context) {
     bool isLightMode = ref.watch(displayProvider).isLightMode;
+
     final _controller = ValueNotifier<bool>(isLightMode);
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20, horizontal: 5),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -61,8 +63,8 @@ class _SettingsState extends ConsumerState<Settings> {
                 activeColor: Theme.of(context).colorScheme.onSurface,
                 inactiveColor: Theme.of(context).colorScheme.onSurface,
                 borderRadius: BorderRadius.all(const Radius.circular(15)),
-                width: 80,
-                height: 40.0,
+                width: 60,
+                height: 30,
                 enabled: true,
                 disabledOpacity: 0.5,
                 onChanged: (value) {
@@ -72,30 +74,42 @@ class _SettingsState extends ConsumerState<Settings> {
             ],
           ),
           SizedBox(
-            height: 40,
+            height: 20,
           ),
-          GestureDetector(
-            onTap: () {
-              logOut();
-            },
-            child: Row(
-              children: [
-                LogaText(
-                  content: "Log out",
-                  color: Theme.of(context).colorScheme.onSurface,
-                  fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
-                  fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                Icon(
-                  Icons.logout,
-                  color: Theme.of(context).colorScheme.onSurface,
+          ref.watch(profileProvider).token == ''
+              ? GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => Login()));
+                  },
+                  child: LogaText(
+                    content: "Log in",
+                    color: Theme.of(context).colorScheme.onSurface,
+                    fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
+                    fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
+                  ),
                 )
-              ],
-            ),
-          )
+              : GestureDetector(
+                  onTap: () {
+                    logOut();
+                  },
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.logout,
+                        color: Theme.of(context).colorScheme.onSurface,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      LogaText(
+                        content: "Log out",
+                        color: Theme.of(context).colorScheme.onSurface,
+                        fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
+                        fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
+                      ),
+                    ],
+                  ),
+                )
         ],
       ),
     );

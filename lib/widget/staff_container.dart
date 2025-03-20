@@ -10,7 +10,7 @@ class StaffContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: double.infinity,
+      height: 200,
       width: 140,
       margin: EdgeInsets.only(right: 15),
       decoration: BoxDecoration(

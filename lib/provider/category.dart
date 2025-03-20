@@ -39,7 +39,7 @@ class CategoryNotifier extends StateNotifier<CategoryProviderModel> {
   }
 }
 
-var categoryNotifier = StateNotifierProvider<CategoryNotifier, CategoryProviderModel>(
+var categoryProvider = StateNotifierProvider<CategoryNotifier, CategoryProviderModel>(
   (ref) {
     return CategoryNotifier();
   },

@@ -15,7 +15,7 @@ class UserModel {
   final String bio;
   final bool? availability;
   final String? subscription_plan;
-  final String? token;
+  final String token;
   final String? opening_time;
   final String? closing_time;
   final String business_name;
@@ -82,7 +82,7 @@ class UserModel {
       this.customer_ref,
       this.address_id,
       this.city,
-      this.token,
+      required this.token,
       this.postal_code,
       this.createdAt,
       this.updatedAt});
@@ -99,13 +99,21 @@ class UserModel {
       var business_address = eachUser['business_address'].toString() == "service"
           ? "Lagos, nigeria"
           : eachUser['business_address'].toString();
+      var opening_time =
+          eachUser['opening_time'].toString() == "null" ? "00" : eachUser['opening_time'].toString();
+      var closing_time =
+          eachUser['closing_time'].toString() == "null" ? "00" : eachUser['closing_time'].toString();
+
       DateTime date = DateTime.parse(eachUser['createdAt']);
       UserModel user = UserModel(
           first_name: first_name,
           bio: bio,
+          token: '',
           business_name: business_name,
           business_address: business_address,
-          createdAt: DateFormat.jm().format(date));
+          createdAt: DateFormat.jm().format(date),
+          opening_time: opening_time,
+          closing_time: closing_time);
 
       allUsers.add(user);
     }

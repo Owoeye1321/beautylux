@@ -28,8 +28,8 @@ class ServiceListView extends ConsumerWidget {
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 1,
           crossAxisSpacing: 20,
-          mainAxisExtent: 150,
-          mainAxisSpacing: 30,
+          mainAxisExtent: 155,
+          mainAxisSpacing: 15,
         ),
         itemCount: allUsers.length,
         itemBuilder: (context, index) {
@@ -56,12 +56,12 @@ class ServiceListView extends ConsumerWidget {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    height: 150,
+                    height: double.infinity,
                     width: 150,
                     child: Stack(children: []),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 15, top: 10, bottom: 10),
+                    padding: const EdgeInsets.only(left: 15, top: 10, bottom: 5),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -113,19 +113,23 @@ class ServiceListView extends ConsumerWidget {
                             fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
                           ),
                         ),
-                        SizedBox(height: 5),
                         Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Icon(
-                              Icons.location_on_outlined,
-                              color: Theme.of(context).colorScheme.onSurfaceVariant,
-                              //color: Colors.white,
-                              size: 20,
+                            Container(
+                              padding: EdgeInsets.only(top: 6),
+                              child: Icon(
+                                Icons.location_on_outlined,
+                                color: Theme.of(context).colorScheme.onSurfaceVariant,
+                                //color: Colors.white,
+                                size: 20,
+                              ),
                             ),
                             SizedBox(
                               width: 5,
                             ),
-                            SizedBox(
+                            Container(
+                              padding: EdgeInsets.only(top: 4),
                               width: 120,
                               child: Text(
                                 allUsers[index].business_address,
@@ -133,25 +137,24 @@ class ServiceListView extends ConsumerWidget {
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   color: Theme.of(context).colorScheme.onSurface,
-                                  fontSize: Theme.of(context).textTheme.displaySmall?.fontSize!,
+                                  fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
                                 ),
                               ),
                             ),
                           ],
                         ),
-                        SizedBox(height: 5),
                         Row(
                           children: [
                             Icon(
                               Icons.schedule,
                               color: Theme.of(context).colorScheme.onSurfaceVariant,
-                              size: 20,
+                              size: 18,
                             ),
                             SizedBox(
                               width: 5,
                             ),
                             Text(
-                              "${allUsers[index].opening_time} - ${allUsers[index].closing_time}",
+                              "open ${allUsers[index].opening_time}am - close ${allUsers[index].closing_time}pm",
                               maxLines: 2, // Limits text to 2 lines
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
@@ -168,6 +171,7 @@ class ServiceListView extends ConsumerWidget {
                             Container(
                               height: 30,
                               width: 70,
+                              alignment: Alignment.center,
                               decoration: BoxDecoration(
                                 color: Theme.of(context).colorScheme.onSurface,
                                 borderRadius: BorderRadius.only(
@@ -176,7 +180,7 @@ class ServiceListView extends ConsumerWidget {
                                 ),
                               ),
                               child: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 7),
+                                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
                                 child: Text(
                                   "1.1km",
                                   style: TextStyle(

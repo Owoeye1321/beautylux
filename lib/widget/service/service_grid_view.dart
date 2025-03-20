@@ -145,7 +145,7 @@ class ServiceGridView extends ConsumerWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                     child: Text(
                       allUsers[index].business_name,
                       overflow: TextOverflow.ellipsis,
@@ -159,12 +159,16 @@ class ServiceGridView extends ConsumerWidget {
                   Padding(
                     padding: const EdgeInsets.all(2.0),
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Icon(
-                          Icons.location_on_outlined,
-                          color: Theme.of(context).colorScheme.onSurfaceVariant,
-                          //color: Colors.white,
-                          size: 20,
+                        Container(
+                          padding: EdgeInsets.only(top: 3),
+                          child: Icon(
+                            Icons.location_on_outlined,
+                            color: Theme.of(context).colorScheme.onSurfaceVariant,
+                            //color: Colors.white,
+                            size: 20,
+                          ),
                         ),
                         SizedBox(
                           width: 5,
@@ -197,7 +201,7 @@ class ServiceGridView extends ConsumerWidget {
                         ),
                         Expanded(
                           child: Text(
-                            "${allUsers[index].opening_time} - ${allUsers[index].closing_time}",
+                            "open ${allUsers[index].opening_time}am - close ${allUsers[index].closing_time}pm",
                             maxLines: 2, // Limits text to 2 lines
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(

@@ -105,7 +105,7 @@ class AboutProvider extends ConsumerWidget {
                               height: 10,
                             ),
                             LogaText(
-                              content: "${user.opening_time} - ${user.closing_time}",
+                              content: "open ${user.opening_time}am - close ${user.closing_time}pm",
                               color: Theme.of(context).colorScheme.onSurface,
                               fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize! as double,
                               fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
@@ -153,7 +153,7 @@ class AboutProvider extends ConsumerWidget {
                               height: 10,
                             ),
                             LogaText(
-                              content: "${user.opening_time} - ${user.closing_time}",
+                              content: "open ${user.opening_time}am - close${user.closing_time}pm",
                               color: Theme.of(context).colorScheme.onSurface,
                               fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize! as double,
                               fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
@@ -253,7 +253,7 @@ class AboutProvider extends ConsumerWidget {
             height: 20,
           ),
           SizedBox(
-            height: 250,
+            height: 270,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: SingleChildScrollView(

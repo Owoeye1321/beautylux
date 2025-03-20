@@ -13,7 +13,7 @@ class LoginInNotifier extends StateNotifier<LoginResponse> {
           LoginResponse(
               code: 404,
               message: '',
-              data: UserModel(first_name: "", bio: '', business_name: '', business_address: ''),
+              data: UserModel(first_name: "", bio: '', business_name: '', business_address: '', token: ''),
               loading: false),
         );
 
