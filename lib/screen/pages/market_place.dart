@@ -9,7 +9,7 @@ import 'package:logaluxe_users/widget/service/service_grid_view.dart';
 import 'package:logaluxe_users/widget/service/service_list_view.dart';
 
 class MarketPlace extends ConsumerStatefulWidget {
-  void Function() bookNow;
+  Function() bookNow;
   MarketPlace({super.key, required this.bookNow});
 
   @override
@@ -153,6 +153,8 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
                     widget.bookNow;
                   },
                   child: Container(
+                    width: double.infinity,
+                    height: double.infinity,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.onSurface,

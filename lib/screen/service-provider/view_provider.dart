@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/model/user.dart';
+import 'package:logaluxe_users/provider/auth/profile.dart';
+import 'package:logaluxe_users/screen/auth/login.dart';
 import 'package:logaluxe_users/widget/service-provider/provider_profile.dart';
 
-class ViewProvider extends StatelessWidget {
+class ViewProvider extends ConsumerWidget {
   final UserModel user;
   const ViewProvider({super.key, required this.user});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     void _showProviderProfile(UserModel user) {
+      // if (ref.watch(profileProvider).token == '') {
+      //   Navigator.push(context, MaterialPageRoute(builder: (ctx) => Login()));
+      // } else {
       showModalBottomSheet(
         isScrollControlled: true,
         constraints: BoxConstraints(maxHeight: 700, minWidth: double.infinity),
@@ -18,6 +24,7 @@ class ViewProvider extends StatelessWidget {
           user: user,
         ),
       );
+      // }
     }
 
     return Container(

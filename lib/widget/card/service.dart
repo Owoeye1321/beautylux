@@ -35,7 +35,7 @@ class ServiceCard extends StatelessWidget {
                   color: Theme.of(context).colorScheme.onSurface,
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
-                    image: service.image_url != null
+                    image: service.image_url != null && service.image_url != ''
                         ? NetworkImage(service.image_url!)
                         : AssetImage('images/home.png') as ImageProvider,
                     fit: BoxFit.cover,

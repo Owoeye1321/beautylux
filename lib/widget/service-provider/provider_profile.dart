@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/model/service.dart';
 import 'package:logaluxe_users/model/user.dart';
+import 'package:logaluxe_users/provider/category.dart';
 import 'package:logaluxe_users/provider/service.dart';
 import 'package:logaluxe_users/widget/category.dart';
 import 'package:logaluxe_users/widget/service-provider/about_content.dart';
@@ -18,6 +19,13 @@ class ProviderProfile extends ConsumerStatefulWidget {
 }
 
 class _ProviderProfileState extends ConsumerState<ProviderProfile> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  List<ServiceModel> allServices = [];
   int currentIndex = 0;
   void _getCurrentIndex(int activeIndex) {
     setState(() {
@@ -27,7 +35,6 @@ class _ProviderProfileState extends ConsumerState<ProviderProfile> {
 
   @override
   Widget build(BuildContext context) {
-    var allServices = ref.watch(serviceNotifier);
     return Container(
       height: double.infinity,
       decoration: BoxDecoration(
@@ -228,7 +235,9 @@ class _ProviderProfileState extends ConsumerState<ProviderProfile> {
                       children: [
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
-                          child: CategoryRowScroll(),
+                          child: CategoryRowScroll(
+                            user: widget.user,
+                          ),
                         ),
                         SizedBox(
                           height: 3,
@@ -237,9 +246,7 @@ class _ProviderProfileState extends ConsumerState<ProviderProfile> {
                           height: 300,
                           child: SingleChildScrollView(
                             scrollDirection: Axis.vertical,
-                            child: ServicePurchaseList(
-                              services: allServices,
-                            ),
+                            child: ServicePurchaseList(),
                           ),
                         )
                       ],

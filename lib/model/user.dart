@@ -20,7 +20,7 @@ class UserModel {
   final String? closing_time;
   final String business_name;
   final String business_address;
-  final String? company_id;
+  final String company_id;
   final bool? is_email_verified;
   final bool? is_phone_verified;
   final String? otp_expiry;
@@ -62,7 +62,7 @@ class UserModel {
       this.closing_time,
       required this.business_name,
       required this.business_address,
-      this.company_id,
+      required this.company_id,
       this.is_email_verified,
       this.is_phone_verified,
       this.otp_expiry,
@@ -104,6 +104,8 @@ class UserModel {
       var closing_time =
           eachUser['closing_time'].toString() == "null" ? "00" : eachUser['closing_time'].toString();
 
+      var company_id = eachUser['company_id'].toString() == "null" ? "00" : eachUser['company_id'].toString();
+
       DateTime date = DateTime.parse(eachUser['createdAt']);
       UserModel user = UserModel(
           first_name: first_name,
@@ -112,6 +114,7 @@ class UserModel {
           business_name: business_name,
           business_address: business_address,
           createdAt: DateFormat.jm().format(date),
+          company_id: company_id,
           opening_time: opening_time,
           closing_time: closing_time);
 

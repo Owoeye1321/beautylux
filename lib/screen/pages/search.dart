@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/provider/recent.dart';
+import 'package:logaluxe_users/provider/user.dart';
 import 'package:logaluxe_users/widget/card/slot.dart';
 import 'package:logaluxe_users/widget/input-field/loga_input.dart';
 import 'package:logaluxe_users/widget/loga_text.dart';
@@ -28,6 +29,7 @@ class _SearchState extends ConsumerState<Search> {
     BuildContext context,
   ) {
     var allSearches = ref.watch(recentSearchProvider);
+    var allUsers = ref.watch(userProvider);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
       child: Column(
@@ -136,7 +138,7 @@ class _SearchState extends ConsumerState<Search> {
             height: 15,
           ),
           ServiceListView(
-            allUsers: [],
+            allUsers: allUsers,
           )
         ],
       ),

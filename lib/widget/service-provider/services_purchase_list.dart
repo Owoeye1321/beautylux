@@ -6,13 +6,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/model/response.dart';
 import 'package:logaluxe_users/model/service.dart';
 import 'package:logaluxe_users/provider/booking.dart';
+import 'package:logaluxe_users/provider/service.dart';
 import 'package:logaluxe_users/screen/booking/review.dart';
 import 'package:logaluxe_users/widget/card/service.dart';
 import 'package:logaluxe_users/widget/loga_text.dart';
 
 class ServicePurchaseList extends ConsumerStatefulWidget {
-  final List<ServiceModel> services;
-  const ServicePurchaseList({super.key, required this.services});
+  const ServicePurchaseList({
+    super.key,
+  });
 
   @override
   ConsumerState<ServicePurchaseList> createState() => _ServicePurchaseListState();
@@ -51,25 +53,56 @@ class _ServicePurchaseListState extends ConsumerState<ServicePurchaseList> {
 
   @override
   Widget build(BuildContext context) {
+    List<ServiceModel> services = ref.watch(serviceProvider).data;
     var selectedService = ref.watch(bookingProvider);
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
+    Widget body = Container(
+      padding: EdgeInsets.symmetric(vertical: 50),
       child: Column(
         children: [
-          ...widget.services.map((eachService) {
-            return ServiceCard(
-              service: eachService,
-              removeService: _removeService,
-              addService: _addService,
-              bookedService: selectedService.service != null &&
-                      selectedService.service?.service_ref == eachService.service_ref
-                  ? true
-                  : false,
-            );
-          }).toList(),
+          Image.asset(
+            'images/empty.png',
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          LogaText(
+              content: "Empty",
+              color: Theme.of(context).colorScheme.onSurface,
+              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
+              fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight),
         ],
       ),
     );
+    if (services.isNotEmpty)
+      body = SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          children: [
+            ...services.map((eachService) {
+              return ServiceCard(
+                service: eachService,
+                removeService: _removeService,
+                addService: _addService,
+                bookedService: selectedService.service != null &&
+                        selectedService.service?.service_ref == eachService.service_ref
+                    ? true
+                    : false,
+              );
+            }).toList(),
+          ],
+        ),
+      );
+    return ref.watch(serviceProvider).loadingState == true
+        ? Container(
+            padding: EdgeInsets.only(top: 60),
+            child: Center(
+              child: CircularProgressIndicator.adaptive(
+                backgroundColor: Theme.of(context).colorScheme.onSurface,
+              ),
+            ),
+          )
+        : body;
     ;
   }
 }

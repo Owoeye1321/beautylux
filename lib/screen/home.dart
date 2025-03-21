@@ -23,12 +23,6 @@ class _HomeState extends ConsumerState<Home> {
   int currentIndex = 0;
   int? prevIndex;
   String activeView = 'grid';
-  bookNow() {
-    print('hello');
-    setState(() {
-      currentIndex = 1;
-    });
-  }
 
   _switchContent(int activeIndex, previousIndex) {
     setState(() {
@@ -39,6 +33,12 @@ class _HomeState extends ConsumerState<Home> {
 
   @override
   Widget build(BuildContext context) {
+    _bookNow() {
+      print('hwllo');
+      _switchContent(0, 1);
+      print(currentIndex);
+    }
+
     String username = ref.watch(profileProvider).first_name;
     if (username == '') {
       username = 'Jack EL';
@@ -224,9 +224,8 @@ class _HomeState extends ConsumerState<Home> {
                 ? MarketPlace(
                     key: ValueKey(0),
                     bookNow: () {
-                      bookNow();
-                    },
-                  )
+                      _bookNow();
+                    })
                 : currentIndex == 1
                     ? Search(
                         key: ValueKey(1),

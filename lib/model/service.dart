@@ -1,11 +1,17 @@
+import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
+import 'package:logaluxe_users/model/category.dart';
+import 'package:logaluxe_users/model/user.dart';
+
 class ServiceModel {
   final String id;
   final String name;
   final String service_duration;
   final String location;
   final String service_ref;
-  final String company_id;
-  final String category_id;
+  final UserModel company_id;
+  final CategoryModel category_id;
   final int amount;
   final String country;
   final String state;
@@ -41,24 +47,31 @@ class ServiceModel {
     List<ServiceModel> allServices = [];
     for (Map<String, dynamic> eachService in data['data']) {
       ServiceModel service = ServiceModel(
-        id: eachService['id'],
+        id: eachService['_id'],
         name: eachService['name'],
         service_duration: eachService['service_duration'],
-        location: eachService['location'],
+        location: '',
         service_ref: eachService['service_ref'],
-        company_id: eachService['company_id'],
-        category_id: eachService['category_id'],
-        amount: eachService['amount'],
-        country: eachService['country'],
-        state: eachService['state'],
-        active: eachService['active'],
-        opening_time: eachService['opening_time'],
-        closing_time: eachService['closing_time'],
-        createdAt: eachService['createdAt'],
-        currency: eachService['currency'],
-        updatedAt: eachService['updatedAt'],
+        company_id: UserModel(
+          token: '',
+          first_name: eachService['company_id']['first_name'],
+          bio: '',
+          business_address: '',
+          business_name: '',
+          company_id: '',
+        ),
+        category_id: CategoryModel(id: '', category_name: '', category_ref: ''),
+        amount: int.parse(eachService['amount']),
+        country: '',
+        state: '',
+        active: false,
+        opening_time: '',
+        closing_time: '',
+        createdAt: '',
+        currency: eachService['currency'].toString(),
+        updatedAt: '',
         description: eachService['description'],
-        image_url: eachService['image_url'],
+        image_url: '',
       );
       allServices.add(service);
     }

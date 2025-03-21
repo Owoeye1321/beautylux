@@ -62,7 +62,7 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
                   },
                   child: Icon(
                     Icons.chevron_left,
-                    color: Theme.of(context).colorScheme.outline.withOpacity(0.5),
+                    color: Theme.of(context).colorScheme.outline.withAlpha((0.5 * 255).toInt()),
                     size: 35,
                   ),
                 ),

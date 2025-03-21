@@ -33,9 +33,11 @@ class _BookingSummaryState extends ConsumerState<BookingSummary> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         image: DecorationImage(
-                            image: NetworkImage(
-                              booking.service?.image_url! as String,
-                            ),
+                            image: booking.service?.image_url != ''
+                                ? NetworkImage(
+                                    booking.service?.image_url! as String,
+                                  )
+                                : AssetImage('images/home.png') as ImageProvider,
                             fit: BoxFit.cover
                             // height: double.infinity,
                             ),

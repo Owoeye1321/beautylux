@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/model/category.dart';
+import 'package:logaluxe_users/model/user.dart';
 import 'package:logaluxe_users/provider/category.dart';
+import 'package:logaluxe_users/provider/service.dart';
 import 'package:logaluxe_users/widget/loga_text.dart';
 
 class CategoryRowScroll extends ConsumerStatefulWidget {
-  const CategoryRowScroll({super.key});
+  UserModel? user;
+  CategoryRowScroll({super.key, this.user});
   @override
   ConsumerState<CategoryRowScroll> createState() => _CategoryRowScroll();
 }
@@ -25,11 +28,23 @@ class _CategoryRowScroll extends ConsumerState<CategoryRowScroll> {
     var fetchCategories = await categoryNotier.fetchCategory();
     if (!fetchCategories.data.isEmpty) {
       categoryNotier.setActiveCategory(fetchCategories.data[0]);
+      fetchProviderCategoryService();
     }
   }
 
   _setActiveCategory(CategoryModel category) {
     ref.read(categoryProvider.notifier).setActiveCategory(category);
+    fetchProviderCategoryService();
+  }
+
+  fetchProviderCategoryService() async {
+    if (widget.user != null) {
+      ref.read(serviceProvider.notifier).resetServices();
+      String companyId = widget.user!.company_id as String;
+      String category_id = ref.read(categoryProvider).activeCategory!.id!;
+      ServiceProviderModel response =
+          await ref.read(serviceProvider.notifier).fetchServices(category_id, companyId);
+    }
   }
 
   @override
