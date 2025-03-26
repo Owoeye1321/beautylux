@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 class ProductModel {
+  final String id;
   final String? iamge_url_1;
   final String? iamge_url_2;
   final String? iamge_url_3;
@@ -11,13 +12,14 @@ class ProductModel {
   final String? currency;
   final String? service_id;
   final String? name;
-  final Int amount;
+  final int amount;
   final String? location;
   final String? description;
   final String? status;
   final String? product_ref;
   final String? company_id;
   const ProductModel({
+    required this.id,
     this.iamge_url_1,
     this.iamge_url_2,
     this.iamge_url_3,

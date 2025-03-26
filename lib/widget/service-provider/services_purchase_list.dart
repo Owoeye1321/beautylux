@@ -42,7 +42,10 @@ class _ServicePurchaseListState extends ConsumerState<ServicePurchaseList> {
     Widget action = TextButton(
       onPressed: () {
         if (response.status == "success") {
-          Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => ReviewBooking()));
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (ctx) => ReviewBooking(
+                    company_id: service.company_id.id,
+                  )));
         } else {
           Navigator.pop(context);
         }

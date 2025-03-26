@@ -28,6 +28,7 @@ class LoginResponse {
         token: object['data']['token'],
         first_name: object['data']['first_name'],
         bio: '',
+        id: '',
         business_address: '',
         business_name: '',
         company_id: '',
@@ -79,9 +80,10 @@ class VerifyEmailResponse {
       data: UserModel(
           token: object['data']['token'],
           first_name: object['data']['first_name'],
+          id: object['data']['_id'],
           bio: '',
           business_address: '',
-          company_id:'',
+          company_id: '',
           business_name: ''),
     );
   }

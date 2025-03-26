@@ -41,7 +41,7 @@ class ViewProvider extends ConsumerWidget {
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 157, 59, 74).withOpacity(0.3),
+                color: Color.fromARGB(255, 157, 59, 74).withAlpha((0.3 * 255).toInt()),
               ),
             ),
           ),
@@ -72,7 +72,7 @@ class ViewProvider extends ConsumerWidget {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.surface.withOpacity(0.3),
+                        color: Theme.of(context).colorScheme.surface.withAlpha((0.3 * 255).toInt()),
                         borderRadius: BorderRadius.circular(40),
                       ),
                       child: Padding(
@@ -90,7 +90,7 @@ class ViewProvider extends ConsumerWidget {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.surface.withOpacity(0.3),
+                      color: Theme.of(context).colorScheme.surface.withAlpha((0.3 * 255).toInt()),
                       borderRadius: BorderRadius.circular(40),
                     ),
                     child: Padding(
@@ -107,7 +107,7 @@ class ViewProvider extends ConsumerWidget {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.surface.withOpacity(0.3),
+                      color: Theme.of(context).colorScheme.surface.withAlpha((0.3 * 255).toInt()),
                       borderRadius: BorderRadius.circular(40),
                     ),
                     child: Padding(

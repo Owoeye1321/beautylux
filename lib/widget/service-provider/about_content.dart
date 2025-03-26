@@ -13,7 +13,7 @@ class AboutProvider extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var allGalary = ref.watch(galleryProvider);
-    var allStaffs = ref.watch(userProvider);
+    var allStaffs = ref.watch(userProvider).staffs;
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Column(
@@ -21,7 +21,7 @@ class AboutProvider extends ConsumerWidget {
           Container(
             width: double.infinity,
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.onInverseSurface.withOpacity(0.5),
+              color: Theme.of(context).colorScheme.onInverseSurface.withAlpha((0.5 * 255).toInt()),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Padding(

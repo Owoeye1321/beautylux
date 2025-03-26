@@ -27,6 +27,7 @@ List<Appointment> allAppointment = [
       location: "Downtown Salon",
       service_ref: "HC123",
       company_id: UserModel(
+          id: '',
           first_name: 'first_name',
           bio: 'bio',
           business_name: 'business_name',
@@ -48,6 +49,7 @@ List<Appointment> allAppointment = [
     ),
     note: "Please be on time",
     customer_id: UserModel(
+      id: '',
       first_name: "John",
       last_name: "Doe",
       email: "john.doe@example.com",
@@ -60,6 +62,7 @@ List<Appointment> allAppointment = [
       business_address: "123 Main St",
     ),
     company_id: UserModel(
+      id: '',
       first_name: "Jane",
       last_name: "Smith",
       email: "jane.smith@salon.com",
@@ -98,6 +101,7 @@ List<Appointment> allAppointment = [
       location: "Beauty Spa",
       service_ref: "FACIAL123",
       company_id: UserModel(
+          id: '',
           first_name: 'first_name',
           bio: 'bio',
           business_name: 'business_name',
@@ -119,6 +123,7 @@ List<Appointment> allAppointment = [
     ),
     note: "Sensitive skin, please use mild products",
     customer_id: UserModel(
+      id: '',
       first_name: "Alice",
       last_name: "Williams",
       email: "alice.williams@example.com",
@@ -131,6 +136,7 @@ List<Appointment> allAppointment = [
       business_address: "789 Beauty St",
     ),
     company_id: UserModel(
+      id: '',
       first_name: "Marie",
       last_name: "Curie",
       email: "marie.curie@spa.com",
@@ -167,6 +173,7 @@ List<Appointment> allAppointment = [
       location: "Wellness Center",
       service_ref: "MASSAGE001",
       company_id: UserModel(
+          id: '',
           first_name: 'first_name',
           bio: 'bio',
           business_name: 'business_name',
@@ -188,6 +195,7 @@ List<Appointment> allAppointment = [
     ),
     note: "Lower back pain, focus on that area",
     customer_id: UserModel(
+      id: '',
       first_name: "Michael",
       last_name: "Brown",
       email: "michael.brown@example.com",
@@ -199,6 +207,7 @@ List<Appointment> allAppointment = [
       business_address: "321 Relax St",
     ),
     company_id: UserModel(
+      id: '',
       first_name: "Emma",
       last_name: "Watson",
       email: "emma.watson@wellness.com",
@@ -238,6 +247,7 @@ List<Appointment> allAppointment = [
       location: "Downtown Salon",
       service_ref: "HC123",
       company_id: UserModel(
+          id: '',
           first_name: 'first_name',
           bio: 'bio',
           business_name: 'business_name',
@@ -259,6 +269,7 @@ List<Appointment> allAppointment = [
     ),
     note: "Please be on time",
     customer_id: UserModel(
+      id: '',
       first_name: "John",
       last_name: "Doe",
       email: "john.doe@example.com",
@@ -271,6 +282,7 @@ List<Appointment> allAppointment = [
       business_address: "123 Main St",
     ),
     company_id: UserModel(
+      id: '',
       first_name: "Jane",
       last_name: "Smith",
       email: "jane.smith@salon.com",
@@ -309,6 +321,7 @@ List<Appointment> allAppointment = [
       location: "Beauty Spa",
       service_ref: "FACIAL123",
       company_id: UserModel(
+          id: '',
           first_name: 'first_name',
           bio: 'bio',
           business_name: 'business_name',
@@ -330,6 +343,7 @@ List<Appointment> allAppointment = [
     ),
     note: "Sensitive skin, please use mild products",
     customer_id: UserModel(
+      id: '',
       first_name: "Alice",
       last_name: "Williams",
       email: "alice.williams@example.com",
@@ -342,6 +356,7 @@ List<Appointment> allAppointment = [
       business_address: "789 Beauty St",
     ),
     company_id: UserModel(
+      id: '',
       first_name: "Marie",
       last_name: "Curie",
       email: "marie.curie@spa.com",
@@ -378,6 +393,7 @@ List<Appointment> allAppointment = [
       location: "Wellness Center",
       service_ref: "MASSAGE001",
       company_id: UserModel(
+          id: '',
           first_name: 'first_name',
           bio: 'bio',
           business_name: 'business_name',
@@ -399,6 +415,7 @@ List<Appointment> allAppointment = [
     ),
     note: "Lower back pain, focus on that area",
     customer_id: UserModel(
+      id: '',
       first_name: "Michael",
       last_name: "Brown",
       email: "michael.brown@example.com",
@@ -411,6 +428,7 @@ List<Appointment> allAppointment = [
       business_address: "321 Relax St",
     ),
     company_id: UserModel(
+      id: '',
       first_name: "Emma",
       last_name: "Watson",
       email: "emma.watson@wellness.com",
@@ -450,6 +468,7 @@ List<Appointment> allAppointment = [
       location: "Downtown Salon",
       service_ref: "HC123",
       company_id: UserModel(
+          id: '',
           first_name: 'first_name',
           bio: 'bio',
           business_name: 'business_name',
@@ -471,6 +490,7 @@ List<Appointment> allAppointment = [
     ),
     note: "Please be on time",
     customer_id: UserModel(
+      id: '',
       first_name: "John",
       last_name: "Doe",
       email: "john.doe@example.com",
@@ -483,6 +503,7 @@ List<Appointment> allAppointment = [
       business_address: "123 Main St",
     ),
     company_id: UserModel(
+      id: '',
       first_name: "Jane",
       last_name: "Smith",
       email: "jane.smith@salon.com",
@@ -521,6 +542,7 @@ List<Appointment> allAppointment = [
       location: "Beauty Spa",
       service_ref: "FACIAL123",
       company_id: UserModel(
+          id: '',
           first_name: 'first_name',
           bio: 'bio',
           business_name: 'business_name',
@@ -542,6 +564,7 @@ List<Appointment> allAppointment = [
     ),
     note: "Sensitive skin, please use mild products",
     customer_id: UserModel(
+      id: '',
       first_name: "Alice",
       last_name: "Williams",
       email: "alice.williams@example.com",
@@ -554,6 +577,7 @@ List<Appointment> allAppointment = [
       business_address: "789 Beauty St",
     ),
     company_id: UserModel(
+      id: '',
       first_name: "Marie",
       last_name: "Curie",
       email: "marie.curie@spa.com",
@@ -590,6 +614,7 @@ List<Appointment> allAppointment = [
       location: "Wellness Center",
       service_ref: "MASSAGE001",
       company_id: UserModel(
+          id: '',
           first_name: 'first_name',
           bio: 'bio',
           business_name: 'business_name',
@@ -611,6 +636,7 @@ List<Appointment> allAppointment = [
     ),
     note: "Lower back pain, focus on that area",
     customer_id: UserModel(
+      id: '',
       first_name: "Michael",
       last_name: "Brown",
       email: "michael.brown@example.com",
@@ -623,6 +649,7 @@ List<Appointment> allAppointment = [
       business_address: "321 Relax St",
     ),
     company_id: UserModel(
+      id: '',
       first_name: "Emma",
       last_name: "Watson",
       email: "emma.watson@wellness.com",
@@ -662,6 +689,7 @@ List<Appointment> allAppointment = [
       location: "Downtown Salon",
       service_ref: "HC123",
       company_id: UserModel(
+          id: '',
           first_name: 'first_name',
           bio: 'bio',
           business_name: 'business_name',
@@ -683,6 +711,7 @@ List<Appointment> allAppointment = [
     ),
     note: "Please be on time",
     customer_id: UserModel(
+      id: '',
       first_name: "John",
       last_name: "Doe",
       email: "john.doe@example.com",
@@ -695,6 +724,7 @@ List<Appointment> allAppointment = [
       business_address: "123 Main St",
     ),
     company_id: UserModel(
+      id: '',
       first_name: "Jane",
       last_name: "Smith",
       email: "jane.smith@salon.com",
@@ -733,6 +763,7 @@ List<Appointment> allAppointment = [
       location: "Beauty Spa",
       service_ref: "FACIAL123",
       company_id: UserModel(
+          id: '',
           first_name: 'first_name',
           bio: 'bio',
           business_name: 'business_name',
@@ -754,6 +785,7 @@ List<Appointment> allAppointment = [
     ),
     note: "Sensitive skin, please use mild products",
     customer_id: UserModel(
+      id: '',
       first_name: "Alice",
       last_name: "Williams",
       email: "alice.williams@example.com",
@@ -766,6 +798,7 @@ List<Appointment> allAppointment = [
       business_address: "789 Beauty St",
     ),
     company_id: UserModel(
+      id: '',
       first_name: "Marie",
       last_name: "Curie",
       email: "marie.curie@spa.com",
@@ -802,6 +835,7 @@ List<Appointment> allAppointment = [
       location: "Wellness Center",
       service_ref: "MASSAGE001",
       company_id: UserModel(
+          id: '',
           first_name: 'first_name',
           bio: 'bio',
           business_name: 'business_name',
@@ -823,6 +857,7 @@ List<Appointment> allAppointment = [
     ),
     note: "Lower back pain, focus on that area",
     customer_id: UserModel(
+      id: '',
       first_name: "Michael",
       last_name: "Brown",
       email: "michael.brown@example.com",
@@ -835,6 +870,7 @@ List<Appointment> allAppointment = [
       business_address: "321 Relax St",
     ),
     company_id: UserModel(
+      id: '',
       first_name: "Emma",
       last_name: "Watson",
       email: "emma.watson@wellness.com",
@@ -874,6 +910,7 @@ List<Appointment> allAppointment = [
       location: "Downtown Salon",
       service_ref: "HC123",
       company_id: UserModel(
+          id: '',
           first_name: 'first_name',
           bio: 'bio',
           business_name: 'business_name',
@@ -895,6 +932,7 @@ List<Appointment> allAppointment = [
     ),
     note: "Please be on time",
     customer_id: UserModel(
+      id: '',
       first_name: "John",
       last_name: "Doe",
       email: "john.doe@example.com",
@@ -907,6 +945,7 @@ List<Appointment> allAppointment = [
       business_address: "123 Main St",
     ),
     company_id: UserModel(
+      id: '',
       first_name: "Jane",
       last_name: "Smith",
       email: "jane.smith@salon.com",
@@ -945,6 +984,7 @@ List<Appointment> allAppointment = [
       location: "Beauty Spa",
       service_ref: "FACIAL123",
       company_id: UserModel(
+          id: '',
           first_name: 'first_name',
           bio: 'bio',
           business_name: 'business_name',
@@ -966,6 +1006,7 @@ List<Appointment> allAppointment = [
     ),
     note: "Sensitive skin, please use mild products",
     customer_id: UserModel(
+      id: '',
       first_name: "Alice",
       last_name: "Williams",
       email: "alice.williams@example.com",
@@ -978,6 +1019,7 @@ List<Appointment> allAppointment = [
       business_address: "789 Beauty St",
     ),
     company_id: UserModel(
+      id: '',
       first_name: "Marie",
       last_name: "Curie",
       email: "marie.curie@spa.com",
@@ -1014,6 +1056,7 @@ List<Appointment> allAppointment = [
       location: "Wellness Center",
       service_ref: "MASSAGE001",
       company_id: UserModel(
+          id: '',
           first_name: 'first_name',
           bio: 'bio',
           business_name: 'business_name',
@@ -1035,6 +1078,7 @@ List<Appointment> allAppointment = [
     ),
     note: "Lower back pain, focus on that area",
     customer_id: UserModel(
+      id: '',
       first_name: "Michael",
       last_name: "Brown",
       email: "michael.brown@example.com",
@@ -1047,6 +1091,7 @@ List<Appointment> allAppointment = [
       business_address: "321 Relax St",
     ),
     company_id: UserModel(
+      id: '',
       first_name: "Emma",
       last_name: "Watson",
       email: "emma.watson@wellness.com",

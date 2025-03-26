@@ -18,7 +18,7 @@ class _BookingSummaryState extends ConsumerState<BookingSummary> {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.onInverseSurface.withOpacity(0.6),
+        color: Theme.of(context).colorScheme.onInverseSurface.withAlpha((0.6 * 255).toInt()),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
@@ -50,13 +50,13 @@ class _BookingSummaryState extends ConsumerState<BookingSummary> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           LogaText(
-                            content: booking.service?.name! as String,
+                            content: booking.service?.name as String,
                             color: Theme.of(context).colorScheme.onSurface,
                             fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
                             fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
                           ),
                           LogaText(
-                            content: "with Serah Johnson",
+                            content: booking.service?.description as String,
                             color: Theme.of(context).colorScheme.outline,
                             fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
                             fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,

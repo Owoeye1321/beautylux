@@ -18,6 +18,7 @@ List<ServiceModel> allServices = [
       category_id: CategoryModel(id: "id", category_name: "category_name", category_ref: "category_ref"),
       currency: "\$",
       company_id: UserModel(
+          id: '',
           first_name: 'first_name',
           bio: 'bio',
           business_name: 'business_name',
@@ -43,6 +44,7 @@ List<ServiceModel> allServices = [
       category_id: CategoryModel(id: "id", category_name: "category_name", category_ref: "category_ref"),
       currency: "\$",
       company_id: UserModel(
+          id: '',
           first_name: 'first_name',
           bio: 'bio',
           business_name: 'business_name',
@@ -68,6 +70,7 @@ List<ServiceModel> allServices = [
       category_id: CategoryModel(id: "id", category_name: "category_name", category_ref: "category_ref"),
       currency: "\$",
       company_id: UserModel(
+          id: '',
           first_name: 'first_name',
           bio: 'bio',
           business_name: 'business_name',
@@ -93,6 +96,7 @@ List<ServiceModel> allServices = [
       category_id: CategoryModel(id: "id", category_name: "category_name", category_ref: "category_ref"),
       currency: "\$",
       company_id: UserModel(
+          id: '',
           first_name: 'first_name',
           bio: 'bio',
           business_name: 'business_name',
@@ -118,6 +122,7 @@ List<ServiceModel> allServices = [
       category_id: CategoryModel(id: "id", category_name: "category_name", category_ref: "category_ref"),
       currency: "\$",
       company_id: UserModel(
+          id: '',
           first_name: 'first_name',
           bio: 'bio',
           business_name: 'business_name',
@@ -143,6 +148,7 @@ List<ServiceModel> allServices = [
       category_id: CategoryModel(id: "id", category_name: "category_name", category_ref: "category_ref"),
       currency: "\$",
       company_id: UserModel(
+          id: '',
           first_name: 'first_name',
           bio: 'bio',
           business_name: 'business_name',

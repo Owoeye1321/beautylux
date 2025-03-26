@@ -199,7 +199,7 @@ class _HomeState extends ConsumerState<Home> {
       backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
       body: BottomBar(
         width: 370,
-        barColor: Theme.of(context).colorScheme.onSurfaceVariant.withOpacity(0.6),
+        barColor: Theme.of(context).colorScheme.onSurfaceVariant.withAlpha((0.6 * 255).toInt()),
         fit: StackFit.expand,
         borderRadius: BorderRadius.circular(15),
         duration: Duration(seconds: 1),

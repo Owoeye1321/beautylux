@@ -43,6 +43,7 @@ class UserModel {
   final String? postal_code;
   final String? createdAt;
   final String? updatedAt;
+  final String id;
   UserModel(
       {required this.first_name,
       this.last_name,
@@ -84,30 +85,33 @@ class UserModel {
       this.city,
       required this.token,
       this.postal_code,
+      required this.id,
       this.createdAt,
       this.updatedAt});
 
   static List<UserModel> fromJsonList(Map<String, dynamic> data) {
     List<UserModel> allUsers = [];
-    for (Map<String, dynamic> eachUser in data['data']) {
+    for (Map<String, dynamic> eachStaff in data['data']) {
       var first_name =
-          eachUser['first_name'].toString() == "null" ? "user" : eachUser['first_name'].toString();
-      var bio = eachUser['bio'].toString() == "null" ? "Providing services" : eachUser['bio'].toString();
-      var business_name = eachUser['business_name'].toString() == "service"
+          eachStaff['first_name'].toString() == "null" ? "user" : eachStaff['first_name'].toString();
+      var bio = eachStaff['bio'].toString() == "null" ? "Providing services" : eachStaff['bio'].toString();
+      var business_name = eachStaff['business_name'].toString() == "null"
           ? "Providing services"
-          : eachUser['business_name'].toString();
-      var business_address = eachUser['business_address'].toString() == "service"
+          : eachStaff['business_name'].toString();
+      var business_address = eachStaff['business_address'].toString() == "null"
           ? "Lagos, nigeria"
-          : eachUser['business_address'].toString();
+          : eachStaff['business_address'].toString();
       var opening_time =
-          eachUser['opening_time'].toString() == "null" ? "00" : eachUser['opening_time'].toString();
+          eachStaff['opening_time'].toString() == "null" ? "00" : eachStaff['opening_time'].toString();
       var closing_time =
-          eachUser['closing_time'].toString() == "null" ? "00" : eachUser['closing_time'].toString();
+          eachStaff['closing_time'].toString() == "null" ? "00" : eachStaff['closing_time'].toString();
 
-      var company_id = eachUser['company_id'].toString() == "null" ? "00" : eachUser['company_id'].toString();
+      var company_id =
+          eachStaff['company_id'].toString() == "null" ? "00" : eachStaff['company_id'].toString();
+      DateTime date = DateTime.parse(eachStaff['createdAt']);
 
-      DateTime date = DateTime.parse(eachUser['createdAt']);
       UserModel user = UserModel(
+          id: eachStaff['_id'],
           first_name: first_name,
           bio: bio,
           token: '',

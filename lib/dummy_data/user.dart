@@ -2,6 +2,7 @@ import 'package:logaluxe_users/model/user.dart';
 
 List<UserModel> allUsers = [
   UserModel(
+    id: '',
     first_name: "joshn",
     last_name: "john",
     email: "owoeye1321@gmail.com",
@@ -36,6 +37,7 @@ List<UserModel> allUsers = [
     postal_code: "string",
   ),
   UserModel(
+    id: '',
     first_name: "joshn",
     last_name: "john",
     email: "owoeye1321@gmail.com",
@@ -70,6 +72,7 @@ List<UserModel> allUsers = [
     postal_code: "string",
   ),
   UserModel(
+    id: '',
     first_name: "joshn",
     last_name: "john",
     email: "owoeye1321@gmail.com",
@@ -104,6 +107,7 @@ List<UserModel> allUsers = [
     postal_code: "string",
   ),
   UserModel(
+    id: '',
     first_name: "joshn",
     last_name: "john",
     email: "owoeye1321@gmail.com",
@@ -138,6 +142,7 @@ List<UserModel> allUsers = [
     postal_code: "string",
   ),
   UserModel(
+    id: '',
     first_name: "joshn",
     last_name: "john",
     email: "owoeye1321@gmail.com",
@@ -172,6 +177,7 @@ List<UserModel> allUsers = [
     postal_code: "string",
   ),
   UserModel(
+    id: '',
     first_name: "joshn",
     last_name: "john",
     email: "owoeye1321@gmail.com",
@@ -206,6 +212,7 @@ List<UserModel> allUsers = [
     postal_code: "string",
   ),
   UserModel(
+    id: '',
     first_name: "joshn",
     last_name: "john",
     email: "owoeye1321@gmail.com",
@@ -240,6 +247,7 @@ List<UserModel> allUsers = [
     postal_code: "string",
   ),
   UserModel(
+    id: '',
     first_name: "joshn",
     last_name: "john",
     email: "owoeye1321@gmail.com",
@@ -274,6 +282,7 @@ List<UserModel> allUsers = [
     postal_code: "string",
   ),
   UserModel(
+    id: '',
     first_name: "joshn",
     last_name: "john",
     email: "owoeye1321@gmail.com",

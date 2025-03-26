@@ -29,7 +29,7 @@ class _SearchState extends ConsumerState<Search> {
     BuildContext context,
   ) {
     var allSearches = ref.watch(recentSearchProvider);
-    var allUsers = ref.watch(userProvider);
+    var allUsers = ref.watch(userProvider).serviceProviders;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
       child: Column(
@@ -108,23 +108,23 @@ class _SearchState extends ConsumerState<Search> {
           SizedBox(
             height: 10,
           ),
-          SizedBox(
-            height: 140,
-            child: GridView.builder(
-              padding: EdgeInsets.all(0),
-              physics: ScrollPhysics(),
-              // physics: NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                mainAxisExtent: 40,
-                mainAxisSpacing: 20,
-                crossAxisSpacing: 10,
-              ),
-              itemCount: allSearches.length,
-              itemBuilder: (context, index) =>
-                  TimeSlot(content: allSearches[index].content, slot_ref: allSearches[index].content),
-            ),
-          ),
+          // SizedBox(
+          //   height: 140,
+          //   child: GridView.builder(
+          //     padding: EdgeInsets.all(0),
+          //     physics: ScrollPhysics(),
+          //     // physics: NeverScrollableScrollPhysics(),
+          //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          //       crossAxisCount: 3,
+          //       mainAxisExtent: 40,
+          //       mainAxisSpacing: 20,
+          //       crossAxisSpacing: 10,
+          //     ),
+          //     itemCount: allSearches.length,
+          //     itemBuilder: (context, index) =>
+          //        // TimeSlot(content: allSearches[index].content, slot_ref: allSearches[index].content),
+          //   ),
+          // ),
           SizedBox(
             height: 30,
           ),

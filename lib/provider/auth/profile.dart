@@ -6,14 +6,20 @@ import 'package:logaluxe_users/provider/auth/verify_email.dart';
 class ProfileNotifier extends StateNotifier<UserModel> {
   ProfileNotifier()
       : super(UserModel(
-            first_name: '', bio: '', business_name: '', business_address: '', token: '', company_id: ''));
+            first_name: '',
+            bio: '',
+            business_name: '',
+            business_address: '',
+            token: '',
+            company_id: '',
+            id: ''));
   authenticate(UserModel user) {
     state = user;
   }
 
   logOut() {
     state = UserModel(
-        first_name: '', bio: '', business_name: '', business_address: '', token: '', company_id: '');
+        first_name: '', bio: '', business_name: '', business_address: '', token: '', company_id: '', id: '');
   }
 }
 

@@ -37,13 +37,13 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
   fetchUsers() async {
     var users = await ref.read(userProvider.notifier).getServiceProviders();
     setState(() {
-      allUsers = users;
+      allUsers = users.serviceProviders;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    allUsers = ref.watch(userProvider);
+    allUsers = ref.watch(userProvider).serviceProviders;
     if (!allUsers.isEmpty) {
       setState(() {
         loadingState = false;

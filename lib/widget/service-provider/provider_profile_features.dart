@@ -2,16 +2,61 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/model/user.dart';
 import 'package:logaluxe_users/provider/booking.dart';
+import 'package:logaluxe_users/provider/slot.dart';
+import 'package:logaluxe_users/provider/user.dart';
 import 'package:logaluxe_users/screen/booking/review.dart';
 import 'package:logaluxe_users/widget/loga_text.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:toastification/toastification.dart';
 
-class ProfileMenu extends ConsumerWidget {
+class ProfileMenu extends ConsumerStatefulWidget {
   final UserModel user;
   const ProfileMenu({super.key, required this.user});
+  ConsumerState<ProfileMenu> createState() => _ProfileMenu();
+}
+
+class _ProfileMenu extends ConsumerState<ProfileMenu> {
+  DateTime selectedDate = DateTime.now();
+  String errorMessage = '';
+  fetchBoookingData(String company_id) async {
+    try {
+      String token =
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2ExZTI2M2NlZWRlYWRkMWJhMjYyZTQiLCJuYW1lIjoiam9zaG5qb2huIiwicm9sZSI6InByb2Zlc3Npb25hbCIsImlhdCI6MTc0MjkzODc2NiwiZXhwIjoxNzQzMDI1MTY2fQ.nwlIYCGRNdrONLhtRiSYpIp-2_7JiJ-xiNpYGNA7QBU';
+      await ref.read(slotProvider.notifier).getBookingTimeSlot(selectedDate, company_id, token);
+      ref.read(userProvider.notifier).getServiceProviderStaffs(company_id, token);
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (ctx) => ReviewBooking(
+            company_id: company_id,
+          ),
+        ),
+      );
+    } catch (e) {
+      setState(() {
+        errorMessage = e.toString().replaceAll('Exception: ', '');
+      });
+      toastification.show(
+        context: context, // optional if you use ToastificationWrapper
+        title: Text(errorMessage),
+        type: ToastificationType.error,
+        style: ToastificationStyle.flat,
+        autoCloseDuration: const Duration(seconds: 2),
+        animationDuration: const Duration(milliseconds: 100),
+        animationBuilder: (context, animation, alignment, child) {
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+        },
+        primaryColor: Colors.red,
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+      );
+    }
+  }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     var selectedService = ref.watch(bookingProvider);
     int serviceLength = selectedService.service != null ? 1 : 0;
     int productLength = selectedService.products.length as int;
@@ -28,7 +73,7 @@ class ProfileMenu extends ConsumerWidget {
                 width: 45,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
-                  color: Theme.of(context).colorScheme.onInverseSurface.withOpacity(0.8),
+                  color: Theme.of(context).colorScheme.onInverseSurface.withAlpha((0.8 * 255).toInt()),
                 ),
                 child: Icon(
                   Icons.language_outlined,
@@ -54,7 +99,7 @@ class ProfileMenu extends ConsumerWidget {
                 width: 45,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
-                  color: Theme.of(context).colorScheme.onInverseSurface.withOpacity(0.8),
+                  color: Theme.of(context).colorScheme.onInverseSurface.withAlpha((0.8 * 255).toInt()),
                 ),
                 child: Image(
                   image: AssetImage('images/messages.png'),
@@ -79,7 +124,7 @@ class ProfileMenu extends ConsumerWidget {
                 width: 45,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
-                  color: Theme.of(context).colorScheme.onInverseSurface.withOpacity(0.8),
+                  color: Theme.of(context).colorScheme.onInverseSurface.withAlpha((0.8 * 255).toInt()),
                 ),
                 child: Image(
                   image: AssetImage('images/call.png'),
@@ -104,7 +149,7 @@ class ProfileMenu extends ConsumerWidget {
                 width: 45,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
-                  color: Theme.of(context).colorScheme.onInverseSurface.withOpacity(0.8),
+                  color: Theme.of(context).colorScheme.onInverseSurface.withAlpha((0.8 * 255).toInt()),
                 ),
                 child: Icon(
                   Icons.map_outlined,
@@ -127,14 +172,14 @@ class ProfileMenu extends ConsumerWidget {
             children: [
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => ReviewBooking()));
+                  fetchBoookingData(widget.user.company_id);
                 },
                 child: Container(
                     height: 45,
                     width: 45,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
-                      color: Theme.of(context).colorScheme.onInverseSurface.withOpacity(0.8),
+                      color: Theme.of(context).colorScheme.onInverseSurface.withAlpha((0.8 * 255).toInt()),
                     ),
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),

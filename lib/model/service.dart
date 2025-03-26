@@ -54,6 +54,7 @@ class ServiceModel {
         service_ref: eachService['service_ref'],
         company_id: UserModel(
           token: '',
+          id: eachService['company_id']['_id'],
           first_name: eachService['company_id']['first_name'],
           bio: '',
           business_address: '',
@@ -61,7 +62,7 @@ class ServiceModel {
           company_id: '',
         ),
         category_id: CategoryModel(id: '', category_name: '', category_ref: ''),
-        amount: int.parse(eachService['amount']),
+        amount: int.parse(eachService['amount'].toString()),
         country: '',
         state: '',
         active: false,

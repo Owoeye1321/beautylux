@@ -10,15 +10,15 @@ class StaffContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
+      height: 160,
       width: 140,
       margin: EdgeInsets.only(right: 15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: Theme.of(context).colorScheme.onInverseSurface.withOpacity(0.4),
+        color: Theme.of(context).colorScheme.outline.withAlpha((0.2 * 255).toInt()),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 30),
+        padding: const EdgeInsets.symmetric(vertical: 15),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -37,7 +37,7 @@ class StaffContainer extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 15,
+              height: 10,
             ),
             LogaText(
               content: "${staff.first_name} ${staff.last_name}",
@@ -46,7 +46,7 @@ class StaffContainer extends StatelessWidget {
               fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight! as FontWeight,
             ),
             SizedBox(
-              height: 10,
+              height: 5,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -56,7 +56,7 @@ class StaffContainer extends StatelessWidget {
                   color: Theme.of(context).colorScheme.outline,
                 ),
                 SizedBox(
-                  width: 10,
+                  width: 5,
                 ),
                 LogaText(
                   content: "4.7",
