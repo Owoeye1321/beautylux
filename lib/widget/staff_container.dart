@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/model/user.dart';
+import 'package:logaluxe_users/provider/display.dart';
 import 'package:logaluxe_users/widget/loga_text.dart';
 
-class StaffContainer extends StatelessWidget {
+class StaffContainer extends ConsumerWidget {
   final UserModel staff;
   const StaffContainer({super.key, required this.staff});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       height: 160,
       width: 140,
       margin: EdgeInsets.only(right: 15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: Theme.of(context).colorScheme.outline.withAlpha((0.2 * 255).toInt()),
+        color: ref.watch(displayProvider).colorScheme.outline.withAlpha((0.2 * 255).toInt()),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 15),
@@ -26,7 +28,7 @@ class StaffContainer extends StatelessWidget {
               height: 70,
               width: 70,
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.onSurface,
+                color: ref.watch(displayProvider).colorScheme.onSurface,
                 borderRadius: BorderRadius.circular(50),
                 image: DecorationImage(
                   image: staff.image_url != null
@@ -41,7 +43,7 @@ class StaffContainer extends StatelessWidget {
             ),
             LogaText(
               content: "${staff.first_name} ${staff.last_name}",
-              color: Theme.of(context).colorScheme.onSurface,
+              color: ref.watch(displayProvider).colorScheme.onSurface,
               fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize! as double,
               fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight! as FontWeight,
             ),
@@ -53,14 +55,14 @@ class StaffContainer extends StatelessWidget {
               children: [
                 Icon(
                   Icons.schedule,
-                  color: Theme.of(context).colorScheme.outline,
+                  color: ref.watch(displayProvider).colorScheme.outline,
                 ),
                 SizedBox(
                   width: 5,
                 ),
                 LogaText(
                   content: "4.7",
-                  color: Theme.of(context).colorScheme.outline,
+                  color: ref.watch(displayProvider).colorScheme.outline,
                   fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize! as double,
                   fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight! as FontWeight,
                 )

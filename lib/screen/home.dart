@@ -6,6 +6,7 @@ import 'package:logaluxe_users/provider/auth/profile.dart';
 import 'package:logaluxe_users/provider/auth/verify_email.dart';
 import 'package:logaluxe_users/screen/auth/login.dart';
 import 'package:logaluxe_users/screen/pages/history.dart';
+import 'package:logaluxe_users/provider/display.dart';
 import 'package:logaluxe_users/screen/pages/market_place.dart';
 import 'package:logaluxe_users/screen/pages/search.dart';
 import 'package:logaluxe_users/screen/pages/settings.dart';
@@ -86,7 +87,7 @@ class _HomeState extends ConsumerState<Home> {
           ? AppBar(
               toolbarHeight: 90,
               leadingWidth: 70,
-              backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
+              backgroundColor: ref.watch(displayProvider).colorScheme.tertiaryContainer,
               automaticallyImplyLeading: false,
               leading: Padding(
                 padding: const EdgeInsets.only(left: 15, top: 10),
@@ -118,7 +119,7 @@ class _HomeState extends ConsumerState<Home> {
                     Text(
                       "Welcome",
                       style: TextStyle(
-                        color: Theme.of(context).colorScheme.outline,
+                        color: ref.watch(displayProvider).colorScheme.outline,
                         fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
                       ),
                     ),
@@ -129,7 +130,7 @@ class _HomeState extends ConsumerState<Home> {
                       width: 150,
                       child: LogaText(
                           content: "Hey, ${username} 👋 ",
-                          color: Theme.of(context).colorScheme.onSurface,
+                          color: ref.watch(displayProvider).colorScheme.onSurface,
                           fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize! as double,
                           fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight! as FontWeight),
                     )
@@ -143,14 +144,14 @@ class _HomeState extends ConsumerState<Home> {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Theme.of(context).colorScheme.onInverseSurface,
+                      color: ref.watch(displayProvider).colorScheme.onInverseSurface,
                     ),
                     child: Padding(
                       padding: EdgeInsets.all(10),
                       child: Icon(
                         Icons.notifications_none_sharp,
                         size: 30,
-                        color: Theme.of(context).colorScheme.onSurface,
+                        color: ref.watch(displayProvider).colorScheme.onSurface,
                       ),
                     ),
                   ),
@@ -162,7 +163,7 @@ class _HomeState extends ConsumerState<Home> {
             )
           : currentIndex == 1
               ? AppBar(
-                  backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
+                  backgroundColor: ref.watch(displayProvider).colorScheme.tertiaryContainer,
                   actions: [
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
@@ -187,7 +188,7 @@ class _HomeState extends ConsumerState<Home> {
                 )
               : currentIndex == 2
                   ? AppBar(
-                      backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
+                      backgroundColor: ref.watch(displayProvider).colorScheme.tertiaryContainer,
                       actions: [
                         Padding(
                           padding: const EdgeInsets.only(top: 10, right: 160),
@@ -208,7 +209,7 @@ class _HomeState extends ConsumerState<Home> {
                       ],
                     )
                   : AppBar(
-                      backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
+                      backgroundColor: ref.watch(displayProvider).colorScheme.tertiaryContainer,
                       actions: [
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
@@ -231,10 +232,10 @@ class _HomeState extends ConsumerState<Home> {
                         ),
                       ],
                     ),
-      backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
+      backgroundColor: ref.watch(displayProvider).colorScheme.tertiaryContainer,
       body: BottomBar(
         width: 370,
-        barColor: Theme.of(context).colorScheme.onSurfaceVariant.withAlpha((0.6 * 255).toInt()),
+        barColor: ref.watch(displayProvider).colorScheme.onSurfaceVariant.withAlpha((0.6 * 255).toInt()),
         fit: StackFit.expand,
         borderRadius: BorderRadius.circular(15),
         duration: Duration(seconds: 1),

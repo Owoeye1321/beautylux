@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/model/user.dart';
+import 'package:logaluxe_users/provider/display.dart';
 import 'package:logaluxe_users/provider/user.dart';
 import 'package:logaluxe_users/screen/service-provider/view_provider.dart';
 
@@ -38,7 +39,8 @@ class ServiceGridView extends ConsumerWidget {
             },
             child: Container(
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.onTertiaryContainer.withAlpha((0.2 * 255).toInt()),
+                color:
+                    ref.watch(displayProvider).colorScheme.onTertiaryContainer.withAlpha((0.2 * 255).toInt()),
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Column(
@@ -47,7 +49,7 @@ class ServiceGridView extends ConsumerWidget {
                   Container(
                     height: 220,
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.onSurface,
+                      color: ref.watch(displayProvider).colorScheme.onSurface,
                       borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
                         image: allUsers[index].image_url != null
@@ -65,13 +67,13 @@ class ServiceGridView extends ConsumerWidget {
                           right: 10,
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.onSurface,
+                              color: ref.watch(displayProvider).colorScheme.onSurface,
                               borderRadius: BorderRadius.circular(30),
                             ),
                             child: Icon(
                               Icons.favorite_border,
                               size: 25,
-                              color: Theme.of(context).colorScheme.onPrimary,
+                              color: ref.watch(displayProvider).colorScheme.onPrimary,
                             ),
                           ),
                         ),
@@ -81,7 +83,7 @@ class ServiceGridView extends ConsumerWidget {
                           right: 110,
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.onSurface,
+                              color: ref.watch(displayProvider).colorScheme.onSurface,
                               borderRadius: BorderRadius.only(
                                 bottomRight: Radius.circular(30),
                                 topRight: Radius.circular(30),
@@ -92,7 +94,7 @@ class ServiceGridView extends ConsumerWidget {
                               child: Text(
                                 "1.1km",
                                 style: TextStyle(
-                                    color: Theme.of(context).colorScheme.onPrimary,
+                                    color: ref.watch(displayProvider).colorScheme.onPrimary,
                                     fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
                                     fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!),
                               ),
@@ -117,7 +119,7 @@ class ServiceGridView extends ConsumerWidget {
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               wordSpacing: 2,
-                              color: Theme.of(context).colorScheme.onPrimary,
+                              color: ref.watch(displayProvider).colorScheme.onPrimary,
                               fontSize: Theme.of(context).textTheme.displaySmall?.fontSize!,
                             ),
                           ),
@@ -136,7 +138,7 @@ class ServiceGridView extends ConsumerWidget {
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             wordSpacing: 2,
-                            color: Theme.of(context).colorScheme.outline,
+                            color: ref.watch(displayProvider).colorScheme.outline,
                             fontSize: Theme.of(context).textTheme.displaySmall?.fontSize!,
                             //fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
                           ),
@@ -150,7 +152,7 @@ class ServiceGridView extends ConsumerWidget {
                       allUsers[index].business_name,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        color: Theme.of(context).colorScheme.onSurface,
+                        color: ref.watch(displayProvider).colorScheme.onSurface,
                         fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
                         fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight,
                       ),
@@ -165,7 +167,7 @@ class ServiceGridView extends ConsumerWidget {
                           padding: EdgeInsets.only(top: 3),
                           child: Icon(
                             Icons.location_on_outlined,
-                            color: Theme.of(context).colorScheme.onSurfaceVariant,
+                            color: ref.watch(displayProvider).colorScheme.onSurfaceVariant,
                             //color: Colors.white,
                             size: 20,
                           ),
@@ -179,7 +181,7 @@ class ServiceGridView extends ConsumerWidget {
                             maxLines: 2, // Limits text to 2 lines
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.outline,
+                              color: ref.watch(displayProvider).colorScheme.outline,
                               fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
                             ),
                           ),
@@ -193,7 +195,7 @@ class ServiceGridView extends ConsumerWidget {
                       children: [
                         Icon(
                           Icons.schedule,
-                          color: Theme.of(context).colorScheme.onSurfaceVariant,
+                          color: ref.watch(displayProvider).colorScheme.onSurfaceVariant,
                           size: 20,
                         ),
                         SizedBox(
@@ -205,7 +207,7 @@ class ServiceGridView extends ConsumerWidget {
                             maxLines: 2, // Limits text to 2 lines
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.outline,
+                              color: ref.watch(displayProvider).colorScheme.outline,
                               fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
                             ),
                           ),

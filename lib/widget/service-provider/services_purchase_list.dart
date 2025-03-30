@@ -8,6 +8,7 @@ import 'package:logaluxe_users/model/service.dart';
 import 'package:logaluxe_users/provider/booking.dart';
 import 'package:logaluxe_users/provider/service.dart';
 import 'package:logaluxe_users/screen/booking/review.dart';
+import 'package:logaluxe_users/provider/display.dart';
 import 'package:logaluxe_users/widget/card/service.dart';
 import 'package:logaluxe_users/widget/loga_text.dart';
 
@@ -29,13 +30,13 @@ class _ServicePurchaseListState extends ConsumerState<ServicePurchaseList> {
     ResponseModel response = ref.read(bookingProvider.notifier).addService(service);
     Widget title = LogaText(
       content: response.status,
-      color: Theme.of(context).colorScheme.onSurface,
+      color: ref.watch(displayProvider).colorScheme.onSurface,
       fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
       fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
     );
     Widget content = LogaText(
       content: response.message,
-      color: Theme.of(context).colorScheme.onSurface,
+      color: ref.watch(displayProvider).colorScheme.onSurface,
       fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
       fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
     );
@@ -64,14 +65,14 @@ class _ServicePurchaseListState extends ConsumerState<ServicePurchaseList> {
         children: [
           Image.asset(
             'images/empty.png',
-            color: Theme.of(context).colorScheme.onPrimary,
+            color: ref.watch(displayProvider).colorScheme.onPrimary,
           ),
           SizedBox(
             height: 10,
           ),
           LogaText(
               content: "Empty",
-              color: Theme.of(context).colorScheme.onSurface,
+              color: ref.watch(displayProvider).colorScheme.onSurface,
               fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
               fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight),
         ],
@@ -101,7 +102,7 @@ class _ServicePurchaseListState extends ConsumerState<ServicePurchaseList> {
             padding: EdgeInsets.only(top: 60),
             child: Center(
               child: CircularProgressIndicator.adaptive(
-                backgroundColor: Theme.of(context).colorScheme.onSurface,
+                backgroundColor: ref.watch(displayProvider).colorScheme.onSurface,
               ),
             ),
           )

@@ -9,6 +9,7 @@ import 'package:logaluxe_users/provider/auth/profile.dart';
 import 'package:logaluxe_users/provider/booking.dart';
 import 'package:logaluxe_users/provider/slot.dart';
 import 'package:logaluxe_users/provider/user.dart';
+import 'package:logaluxe_users/provider/display.dart';
 import 'package:logaluxe_users/screen/home.dart';
 import 'package:logaluxe_users/widget/calender.dart';
 import 'package:logaluxe_users/widget/card/booking_summary.dart';
@@ -117,15 +118,15 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
           child: Center(
             child: LogaText(
               content: "Proceed with bookings ?",
-              color: Theme.of(context).colorScheme.onSurface,
+              color: ref.watch(displayProvider).colorScheme.onSurface,
               fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
               fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
             ),
           ),
         ),
-        backgroundColor: Theme.of(context).colorScheme.onInverseSurface,
+        backgroundColor: ref.watch(displayProvider).colorScheme.onInverseSurface,
         shape: RoundedRectangleBorder(
-          side: BorderSide(color: Theme.of(context).colorScheme.onPrimary, width: 2),
+          side: BorderSide(color: ref.watch(displayProvider).colorScheme.onPrimary, width: 2),
           borderRadius: BorderRadius.circular(10),
         ),
         actions: <Widget>[
@@ -135,7 +136,7 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
             },
             child: LogaText(
               content: "No",
-              color: Theme.of(context).colorScheme.onError,
+              color: ref.watch(displayProvider).colorScheme.onError,
               fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
               fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
             ),
@@ -146,7 +147,7 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
           TextButton(
             child: LogaText(
               content: "Yes",
-              color: Theme.of(context).colorScheme.onSurface,
+              color: ref.watch(displayProvider).colorScheme.onSurface,
               fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
               fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
             ),
@@ -200,7 +201,7 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
 
     return Container(
       padding: EdgeInsets.only(left: 10, right: 10, top: 70),
-      color: Theme.of(context).colorScheme.surface,
+      color: ref.watch(displayProvider).colorScheme.surface,
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
@@ -214,7 +215,7 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
                   },
                   child: Icon(
                     Icons.chevron_left,
-                    color: Theme.of(context).colorScheme.outline.withAlpha((0.5 * 255).toInt()),
+                    color: ref.watch(displayProvider).colorScheme.outline.withAlpha((0.5 * 255).toInt()),
                     size: 35,
                   ),
                 ),
@@ -223,7 +224,7 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
                 ),
                 LogaText(
                   content: "Bookings Review",
-                  color: Theme.of(context).colorScheme.onSurface,
+                  color: ref.watch(displayProvider).colorScheme.onSurface,
                   fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize! as double,
                   fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
                 )
@@ -253,7 +254,7 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
             ),
             LogaText(
               content: "Pick a stylist",
-              color: Theme.of(context).colorScheme.onSurface,
+              color: ref.watch(displayProvider).colorScheme.onSurface,
               fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
               fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
             ),
@@ -265,7 +266,7 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
                     padding: EdgeInsets.only(top: 60),
                     child: Center(
                       child: CircularProgressIndicator.adaptive(
-                        backgroundColor: Theme.of(context).colorScheme.onSurface,
+                        backgroundColor: ref.watch(displayProvider).colorScheme.onSurface,
                       ),
                     ),
                   )
@@ -289,7 +290,7 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
                         child: Center(
                           child: LogaText(
                               content: "Empty Staffs",
-                              color: Theme.of(context).colorScheme.onInverseSurface,
+                              color: ref.watch(displayProvider).colorScheme.onInverseSurface,
                               fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
                               fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight),
                         ),
@@ -314,14 +315,14 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
                 children: [
                   Icon(
                     Icons.task_alt,
-                    color: Theme.of(context).colorScheme.onPrimary,
+                    color: ref.watch(displayProvider).colorScheme.onPrimary,
                   ),
                   SizedBox(
                     width: 5,
                   ),
                   LogaText(
                     content: "Pay after service",
-                    color: Theme.of(context).colorScheme.outline,
+                    color: ref.watch(displayProvider).colorScheme.outline,
                     fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
                     fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
                   )
@@ -336,7 +337,8 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.onInverseSurface.withAlpha((0.6 * 255).toInt()),
+                  color:
+                      ref.watch(displayProvider).colorScheme.onInverseSurface.withAlpha((0.6 * 255).toInt()),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(children: [
@@ -345,7 +347,7 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
                     children: [
                       LogaText(
                         content: "Total(1 service)",
-                        color: Theme.of(context).colorScheme.outline,
+                        color: ref.watch(displayProvider).colorScheme.outline,
                         fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
                         fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
                       ),
@@ -354,7 +356,7 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
                       ),
                       LogaText(
                         content: "\$${bookingDetails.total}",
-                        color: Theme.of(context).colorScheme.onSurface,
+                        color: ref.watch(displayProvider).colorScheme.onSurface,
                         fontSize: Theme.of(context).textTheme.titleMedium?.fontSize as double,
                         fontweight: Theme.of(context).textTheme.bodyLarge?.fontWeight as FontWeight,
                       )
@@ -377,9 +379,9 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
                       backgroundColor: WidgetStateProperty.resolveWith<Color>(
                         (states) {
                           if (states.contains(WidgetState.disabled)) {
-                            return Theme.of(context).colorScheme.onPrimary; // Custom disabled color
+                            return ref.watch(displayProvider).colorScheme.onPrimary; // Custom disabled color
                           }
-                          return Theme.of(context).colorScheme.onPrimary; // Custom disabled color
+                          return ref.watch(displayProvider).colorScheme.onPrimary; // Custom disabled color
                         },
                       ),
                       fixedSize: WidgetStateProperty.all((Size(150, 55))),
@@ -389,7 +391,7 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
                     ),
                     child: ref.watch(bookingProvider).loadingState == true
                         ? CircularProgressIndicator.adaptive(
-                            backgroundColor: Theme.of(context).colorScheme.onSurface,
+                            backgroundColor: ref.watch(displayProvider).colorScheme.onSurface,
                           )
                         : Text("Book Now"),
                   )

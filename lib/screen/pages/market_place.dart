@@ -4,6 +4,7 @@ import 'package:logaluxe_users/model/user.dart';
 import 'package:logaluxe_users/provider/user.dart';
 import 'package:logaluxe_users/screen/pages/search.dart';
 import 'package:logaluxe_users/widget/category.dart';
+import 'package:logaluxe_users/provider/display.dart';
 import 'package:logaluxe_users/widget/input-field/loga_input.dart';
 import 'package:logaluxe_users/widget/service/service_grid_view.dart';
 import 'package:logaluxe_users/widget/service/service_list_view.dart';
@@ -72,7 +73,7 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
             setIconSize: true,
             iconSize: 40,
             setIconColor: true,
-            iconColor: Theme.of(context).colorScheme.onTertiary,
+            iconColor: ref.watch(displayProvider).colorScheme.onTertiary,
             setIconPadding: true,
             iconPadding: 10,
             buttonBorder: 20,
@@ -82,7 +83,7 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
             errorText: '',
             imageIcon: Image(
               image: AssetImage('images/search.png'),
-              color: Theme.of(context).colorScheme.onSurface,
+              color: ref.watch(displayProvider).colorScheme.onSurface,
             ),
           ),
         ),
@@ -106,7 +107,7 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        Theme.of(context).colorScheme.surface,
+                        ref.watch(displayProvider).colorScheme.surface,
                         Colors.transparent,
                       ],
                       begin: Alignment.centerLeft,
@@ -122,7 +123,7 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
                 child: Text(
                   "Morning Special!",
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.onSurface,
+                    color: ref.watch(displayProvider).colorScheme.onSurface,
                     fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize!,
                   ),
                 ),
@@ -133,7 +134,7 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
                   child: Text(
                     "Get 20% off",
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.onSurface,
+                      color: ref.watch(displayProvider).colorScheme.onSurface,
                       fontSize: Theme.of(context).textTheme.headlineLarge?.fontSize!,
                     ),
                   )),
@@ -143,7 +144,7 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
                 child: Text(
                   "on All Haircuts Between 9-10 AM.",
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.onSurface,
+                    color: ref.watch(displayProvider).colorScheme.onSurface,
                     fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
                     // fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
                   ),
@@ -163,13 +164,13 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
                     height: double.infinity,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.onSurface,
+                      color: ref.watch(displayProvider).colorScheme.onSurface,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
                       "Book Now",
                       style: TextStyle(
-                        color: Theme.of(context).colorScheme.surface,
+                        color: ref.watch(displayProvider).colorScheme.surface,
                         fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
                         fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
                       ),
@@ -184,13 +185,13 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
           height: 10,
         ),
         Divider(
-          color: Theme.of(context).colorScheme.onInverseSurface,
+          color: ref.watch(displayProvider).colorScheme.onInverseSurface,
           thickness: 1,
         ),
         Text(
           "Categories",
           style: TextStyle(
-            color: Theme.of(context).colorScheme.onSurface,
+            color: ref.watch(displayProvider).colorScheme.onSurface,
             fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize!,
           ),
         ),
@@ -205,7 +206,7 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
             Text(
               "Featured Salon",
               style: TextStyle(
-                color: Theme.of(context).colorScheme.onSurface,
+                color: ref.watch(displayProvider).colorScheme.onSurface,
                 fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
               ),
             ),
@@ -214,7 +215,7 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
               child: Text(
                 "View all",
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.onPrimary,
+                  color: ref.watch(displayProvider).colorScheme.onPrimary,
                   fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
                 ),
               ),
@@ -227,7 +228,7 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
-                backgroundColor: Theme.of(context).colorScheme.onSurface,
+                backgroundColor: ref.watch(displayProvider).colorScheme.onSurface,
                 padding: const EdgeInsets.only(left: 7),
                 minimumSize: const Size(0, 0),
                 fixedSize: const Size(130, 33),
@@ -241,7 +242,7 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
                   Text(
                     "Recommended",
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.surface,
+                      color: ref.watch(displayProvider).colorScheme.surface,
                       fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
                       fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
                     ),
@@ -250,7 +251,7 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
                     padding: const EdgeInsets.only(left: 5.0),
                     child: Icon(
                       Icons.keyboard_arrow_down_outlined,
-                      color: Theme.of(context).colorScheme.surface,
+                      color: ref.watch(displayProvider).colorScheme.surface,
                       size: 15,
                     ),
                   ),
@@ -260,7 +261,7 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
-                backgroundColor: Theme.of(context).colorScheme.onSurface,
+                backgroundColor: ref.watch(displayProvider).colorScheme.onSurface,
                 padding: const EdgeInsets.all(0),
                 minimumSize: const Size(0, 0),
                 fixedSize: const Size(30, 33),
@@ -271,7 +272,7 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
               onPressed: () {},
               child: Icon(
                 Icons.filter_list,
-                color: Theme.of(context).colorScheme.surface,
+                color: ref.watch(displayProvider).colorScheme.surface,
                 size: 15,
               ),
             ),
@@ -282,7 +283,7 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
               onTap: _changeView,
               child: Icon(
                 activeView == "grid" ? Icons.view_agenda_outlined : Icons.grid_view,
-                color: Theme.of(context).colorScheme.onTertiary,
+                color: ref.watch(displayProvider).colorScheme.onTertiary,
                 size: 30,
               ),
             )
@@ -294,7 +295,7 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
                 padding: EdgeInsets.only(top: 30),
                 child: Center(
                   child: CircularProgressIndicator.adaptive(
-                    backgroundColor: Theme.of(context).colorScheme.onSurface,
+                    backgroundColor: ref.watch(displayProvider).colorScheme.onSurface,
                   ),
                 ),
               )

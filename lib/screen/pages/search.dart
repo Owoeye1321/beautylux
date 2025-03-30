@@ -5,6 +5,7 @@ import 'package:logaluxe_users/provider/user.dart';
 import 'package:logaluxe_users/widget/card/slot.dart';
 import 'package:logaluxe_users/widget/input-field/loga_input.dart';
 import 'package:logaluxe_users/widget/loga_text.dart';
+import 'package:logaluxe_users/provider/display.dart';
 import 'package:logaluxe_users/widget/service/service_list_view.dart';
 import 'package:logaluxe_users/widget/text_row.dart';
 
@@ -50,7 +51,7 @@ class _SearchState extends ConsumerState<Search> {
               setIconSize: true,
               iconSize: 40,
               setIconColor: true,
-              iconColor: Theme.of(context).colorScheme.onTertiary,
+              iconColor: ref.watch(displayProvider).colorScheme.onTertiary,
               setIconPadding: true,
               iconPadding: 10,
               buttonBorder: 20,
@@ -81,13 +82,14 @@ class _SearchState extends ConsumerState<Search> {
                             children: [
                               LogaText(
                                 content: search.content,
-                                color: Theme.of(context).colorScheme.outline,
+                                color: ref.watch(displayProvider).colorScheme.outline,
                                 fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize! as double,
                                 fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
                               ),
                               GestureDetector(
                                 onTap: () {},
-                                child: Icon(Icons.close, color: Theme.of(context).colorScheme.outline),
+                                child:
+                                    Icon(Icons.close, color: ref.watch(displayProvider).colorScheme.outline),
                               )
                             ],
                           ),
@@ -122,7 +124,7 @@ class _SearchState extends ConsumerState<Search> {
           ),
           LogaText(
             content: "Suggestions for you",
-            color: Theme.of(context).colorScheme.onSurface,
+            color: ref.watch(displayProvider).colorScheme.onSurface,
             fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize! as double,
             fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
           ),

@@ -53,7 +53,7 @@ class _SettingsState extends ConsumerState<Settings> {
     setState(() {
       isLightMode = display.isLightMode;
     });
-    //if (isLightMode == false) Phoenix.rebirth(context); //Re-start the application
+    if (isLightMode == false) Phoenix.rebirth(context); //Re-start the application
   }
 
   @override
@@ -69,14 +69,14 @@ class _SettingsState extends ConsumerState<Settings> {
             children: [
               LogaText(
                 content: "Display Mode",
-                color: Theme.of(context).colorScheme.onSurface,
+                color: ref.watch(displayProvider).colorScheme.onSurface,
                 fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
                 fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
               ),
               AdvancedSwitch(
                 controller: _controller,
-                activeColor: Theme.of(context).colorScheme.onSurface,
-                inactiveColor: Theme.of(context).colorScheme.onSurface,
+                activeColor: ref.watch(displayProvider).colorScheme.onSurface,
+                inactiveColor: ref.watch(displayProvider).colorScheme.onSurface,
                 borderRadius: BorderRadius.all(const Radius.circular(15)),
                 width: 60,
                 height: 30,
@@ -99,7 +99,7 @@ class _SettingsState extends ConsumerState<Settings> {
                   },
                   child: LogaText(
                     content: "Log in",
-                    color: Theme.of(context).colorScheme.onSurface,
+                    color: ref.watch(displayProvider).colorScheme.onSurface,
                     fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
                     fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
                   ),
@@ -112,14 +112,14 @@ class _SettingsState extends ConsumerState<Settings> {
                     children: [
                       Icon(
                         Icons.logout,
-                        color: Theme.of(context).colorScheme.onSurface,
+                        color: ref.watch(displayProvider).colorScheme.onSurface,
                       ),
                       SizedBox(
                         width: 10,
                       ),
                       LogaText(
                         content: "Log out",
-                        color: Theme.of(context).colorScheme.onSurface,
+                        color: ref.watch(displayProvider).colorScheme.onSurface,
                         fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
                         fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
                       ),

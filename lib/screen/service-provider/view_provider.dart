@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logaluxe_users/provider/display.dart';
 import 'package:logaluxe_users/model/user.dart';
 import 'package:logaluxe_users/provider/auth/profile.dart';
 import 'package:logaluxe_users/screen/auth/login.dart';
@@ -50,7 +51,7 @@ class ViewProvider extends ConsumerWidget {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Theme.of(context).colorScheme.surface,
+                    ref.watch(displayProvider).colorScheme.surface,
                     Colors.transparent,
                   ],
                   begin: Alignment.bottomCenter,
@@ -72,14 +73,14 @@ class ViewProvider extends ConsumerWidget {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.surface.withAlpha((0.3 * 255).toInt()),
+                        color: ref.watch(displayProvider).colorScheme.surface.withAlpha((0.3 * 255).toInt()),
                         borderRadius: BorderRadius.circular(40),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(13),
                         child: Icon(
                           Icons.chevron_left,
-                          color: Theme.of(context).colorScheme.onSurface,
+                          color: ref.watch(displayProvider).colorScheme.onSurface,
                           size: 30,
                         ),
                       ),
@@ -90,14 +91,14 @@ class ViewProvider extends ConsumerWidget {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.surface.withAlpha((0.3 * 255).toInt()),
+                      color: ref.watch(displayProvider).colorScheme.surface.withAlpha((0.3 * 255).toInt()),
                       borderRadius: BorderRadius.circular(40),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(13),
                       child: Icon(
                         Icons.favorite_border,
-                        color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.9),
+                        color: ref.watch(displayProvider).colorScheme.onPrimary.withOpacity(0.9),
                         size: 30,
                       ),
                     ),
@@ -107,14 +108,14 @@ class ViewProvider extends ConsumerWidget {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.surface.withAlpha((0.3 * 255).toInt()),
+                      color: ref.watch(displayProvider).colorScheme.surface.withAlpha((0.3 * 255).toInt()),
                       borderRadius: BorderRadius.circular(40),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(13),
                       child: Icon(
                         Icons.map,
-                        color: Theme.of(context).colorScheme.onSurface,
+                        color: ref.watch(displayProvider).colorScheme.onSurface,
                         size: 30,
                       ),
                     ),
@@ -130,7 +131,7 @@ class ViewProvider extends ConsumerWidget {
             left: 20,
             child: Container(
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.surface.withOpacity(0.7),
+                color: ref.watch(displayProvider).colorScheme.surface.withOpacity(0.7),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Padding(
@@ -151,14 +152,14 @@ class ViewProvider extends ConsumerWidget {
                           style: TextStyle(
                             wordSpacing: 2,
                             decoration: TextDecoration.none,
-                            color: Theme.of(context).colorScheme.onPrimary,
+                            color: ref.watch(displayProvider).colorScheme.onPrimary,
                             fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
                             fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
                           ),
                         ),
                         Container(
                           decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.onInverseSurface,
+                            color: ref.watch(displayProvider).colorScheme.onInverseSurface,
                             borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(30),
                               topLeft: Radius.circular(30),
@@ -170,7 +171,7 @@ class ViewProvider extends ConsumerWidget {
                               "OPEN",
                               style: TextStyle(
                                   decoration: TextDecoration.none,
-                                  color: Theme.of(context).colorScheme.onSurface,
+                                  color: ref.watch(displayProvider).colorScheme.onSurface,
                                   fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
                                   fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!),
                             ),
@@ -187,7 +188,7 @@ class ViewProvider extends ConsumerWidget {
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           decoration: TextDecoration.none,
-                          color: Theme.of(context).colorScheme.onSurface,
+                          color: ref.watch(displayProvider).colorScheme.onSurface,
                           fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
                           fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight,
                         ),
@@ -202,7 +203,7 @@ class ViewProvider extends ConsumerWidget {
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         decoration: TextDecoration.none,
-                        color: Theme.of(context).colorScheme.outline,
+                        color: ref.watch(displayProvider).colorScheme.outline,
                         fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
                         fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
                       ),
@@ -227,7 +228,7 @@ class ViewProvider extends ConsumerWidget {
                           style: TextStyle(
                             wordSpacing: 2,
                             decoration: TextDecoration.none,
-                            color: Theme.of(context).colorScheme.onSurface,
+                            color: ref.watch(displayProvider).colorScheme.onSurface,
                             fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
                             fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
                           ),
@@ -237,7 +238,7 @@ class ViewProvider extends ConsumerWidget {
                         ),
                         Icon(
                           Icons.local_offer,
-                          color: Theme.of(context).colorScheme.onPrimary,
+                          color: ref.watch(displayProvider).colorScheme.onPrimary,
                           size: 15,
                         ),
                         SizedBox(
@@ -250,7 +251,7 @@ class ViewProvider extends ConsumerWidget {
                           style: TextStyle(
                             wordSpacing: 2,
                             decoration: TextDecoration.none,
-                            color: Theme.of(context).colorScheme.onPrimary,
+                            color: ref.watch(displayProvider).colorScheme.onPrimary,
                             fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
                             fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
                           ),
@@ -265,7 +266,7 @@ class ViewProvider extends ConsumerWidget {
                           style: TextStyle(
                             wordSpacing: 2,
                             decoration: TextDecoration.none,
-                            color: Theme.of(context).colorScheme.onSurface,
+                            color: ref.watch(displayProvider).colorScheme.onSurface,
                             fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
                             fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
                           ),
@@ -290,7 +291,7 @@ class ViewProvider extends ConsumerWidget {
                         child: Text(
                           "Book Now",
                           style: TextStyle(
-                            color: Theme.of(context).colorScheme.onSurface,
+                            color: ref.watch(displayProvider).colorScheme.onSurface,
                             fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
                             fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
                           ),
@@ -317,7 +318,7 @@ class ViewProvider extends ConsumerWidget {
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       decoration: TextDecoration.none,
-                      color: Theme.of(context).colorScheme.outline,
+                      color: ref.watch(displayProvider).colorScheme.outline,
                       fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
                       fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
                     ),
@@ -325,7 +326,7 @@ class ViewProvider extends ConsumerWidget {
                   Icon(
                     Icons.keyboard_arrow_down,
                     size: 25,
-                    color: Theme.of(context).colorScheme.outline,
+                    color: ref.watch(displayProvider).colorScheme.outline,
                   )
                 ],
               ),

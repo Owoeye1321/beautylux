@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/provider/appointment.dart';
 import 'package:logaluxe_users/widget/card/appointment.dart';
+import 'package:logaluxe_users/provider/display.dart';
 import 'package:logaluxe_users/widget/loga_text.dart';
 
 class BookingHistory extends ConsumerWidget {
@@ -21,7 +22,7 @@ class BookingHistory extends ConsumerWidget {
               height: 50,
               child: Image.asset(
                 'images/empty.png',
-                color: Theme.of(context).colorScheme.onPrimary,
+                color: ref.watch(displayProvider).colorScheme.onPrimary,
               ),
             ),
             SizedBox(
@@ -29,7 +30,7 @@ class BookingHistory extends ConsumerWidget {
             ),
             LogaText(
                 content: "No Appointment History",
-                color: Theme.of(context).colorScheme.onSurface,
+                color: ref.watch(displayProvider).colorScheme.onSurface,
                 fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
                 fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight),
           ],
@@ -50,7 +51,7 @@ class BookingHistory extends ConsumerWidget {
             padding: EdgeInsets.only(top: 10),
             child: Center(
               child: CircularProgressIndicator.adaptive(
-                backgroundColor: Theme.of(context).colorScheme.onSurface,
+                backgroundColor: ref.watch(displayProvider).colorScheme.onSurface,
               ),
             ),
           )

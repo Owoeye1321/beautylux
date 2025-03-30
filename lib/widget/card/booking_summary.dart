@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/provider/booking.dart';
+import 'package:logaluxe_users/provider/display.dart';
 import 'package:logaluxe_users/widget/loga_text.dart';
 import 'package:logaluxe_users/widget/text_row.dart';
 
@@ -18,7 +19,7 @@ class _BookingSummaryState extends ConsumerState<BookingSummary> {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.onInverseSurface.withAlpha((0.6 * 255).toInt()),
+        color: ref.watch(displayProvider).colorScheme.onInverseSurface.withAlpha((0.6 * 255).toInt()),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
@@ -51,13 +52,13 @@ class _BookingSummaryState extends ConsumerState<BookingSummary> {
                         children: [
                           LogaText(
                             content: booking.service?.name as String,
-                            color: Theme.of(context).colorScheme.onSurface,
+                            color: ref.watch(displayProvider).colorScheme.onSurface,
                             fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
                             fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
                           ),
                           LogaText(
                             content: booking.service?.description as String,
-                            color: Theme.of(context).colorScheme.outline,
+                            color: ref.watch(displayProvider).colorScheme.outline,
                             fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
                             fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
                           ),
@@ -68,12 +69,12 @@ class _BookingSummaryState extends ConsumerState<BookingSummary> {
                             children: [
                               Icon(
                                 Icons.schedule,
-                                color: Theme.of(context).colorScheme.outline,
+                                color: ref.watch(displayProvider).colorScheme.outline,
                                 size: 20,
                               ),
                               LogaText(
                                 content: "Today,11:00 AM",
-                                color: Theme.of(context).colorScheme.outline,
+                                color: ref.watch(displayProvider).colorScheme.outline,
                                 fontSize: Theme.of(context).textTheme.bodySmall?.fontSize as double,
                                 fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
                               )
@@ -87,14 +88,14 @@ class _BookingSummaryState extends ConsumerState<BookingSummary> {
               : Divider(),
           Divider(
             thickness: 1,
-            color: Theme.of(context).colorScheme.onInverseSurface,
+            color: ref.watch(displayProvider).colorScheme.onInverseSurface,
           ),
           RowText(
             rightText: "\$${booking.total}",
             leftText: "Total cost",
             action: () {},
             setRightTextColor: true,
-            rightTextColor: Theme.of(context).colorScheme.onSurface,
+            rightTextColor: ref.watch(displayProvider).colorScheme.onSurface,
             setRightFontWeight: true,
             rightFontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
           )

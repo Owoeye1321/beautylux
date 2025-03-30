@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/model/appointment.dart';
 import 'package:logaluxe_users/widget/loga_text.dart';
 import 'package:logaluxe_users/widget/text_row.dart';
+import 'package:logaluxe_users/provider/display.dart';
 
-class AppointmentCard extends StatelessWidget {
+class AppointmentCard extends ConsumerWidget {
   final Appointment appointment;
   const AppointmentCard({super.key, required this.appointment});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       margin: EdgeInsets.only(bottom: 10),
       width: double.infinity,
@@ -41,7 +43,7 @@ class AppointmentCard extends StatelessWidget {
                       width: 140,
                       child: LogaText(
                         content: appointment.service_id?.name! as String,
-                        color: Theme.of(context).colorScheme.onSurface,
+                        color: ref.watch(displayProvider).colorScheme.onSurface,
                         fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
                         fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
                       ),
@@ -53,12 +55,13 @@ class AppointmentCard extends StatelessWidget {
                           ? Container(
                               padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                               decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.onInverseSurface.withOpacity(0.3),
+                                color:
+                                    ref.watch(displayProvider).colorScheme.onInverseSurface.withOpacity(0.3),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: LogaText(
                                 content: appointment.status,
-                                color: Theme.of(context).colorScheme.onSurface,
+                                color: ref.watch(displayProvider).colorScheme.onSurface,
                                 fontSize: Theme.of(context).textTheme.bodySmall?.fontSize as double,
                                 fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
                               ),
@@ -70,7 +73,7 @@ class AppointmentCard extends StatelessWidget {
                                       color: Colors.green, borderRadius: BorderRadius.circular(10)),
                                   child: LogaText(
                                     content: appointment.status,
-                                    color: Theme.of(context).colorScheme.onSurface,
+                                    color: ref.watch(displayProvider).colorScheme.onSurface,
                                     fontSize: Theme.of(context).textTheme.bodySmall?.fontSize as double,
                                     fontweight:
                                         Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
@@ -79,11 +82,11 @@ class AppointmentCard extends StatelessWidget {
                               : Container(
                                   padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                                   decoration: BoxDecoration(
-                                      color: Theme.of(context).colorScheme.onError,
+                                      color: ref.watch(displayProvider).colorScheme.onError,
                                       borderRadius: BorderRadius.circular(10)),
                                   child: LogaText(
                                     content: appointment.status,
-                                    color: Theme.of(context).colorScheme.onSurface,
+                                    color: ref.watch(displayProvider).colorScheme.onSurface,
                                     fontSize: Theme.of(context).textTheme.bodySmall?.fontSize as double,
                                     fontweight:
                                         Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
@@ -94,7 +97,7 @@ class AppointmentCard extends StatelessWidget {
                 ),
                 LogaText(
                   content: appointment.service_id.description,
-                  color: Theme.of(context).colorScheme.outline,
+                  color: ref.watch(displayProvider).colorScheme.outline,
                   fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
                   fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
                 ),
@@ -105,7 +108,7 @@ class AppointmentCard extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.schedule,
-                      color: Theme.of(context).colorScheme.outline,
+                      color: ref.watch(displayProvider).colorScheme.outline,
                       size: 13,
                     ),
                     SizedBox(
@@ -113,7 +116,7 @@ class AppointmentCard extends StatelessWidget {
                     ),
                     LogaText(
                       content: appointment.formatStartTime,
-                      color: Theme.of(context).colorScheme.outline,
+                      color: ref.watch(displayProvider).colorScheme.outline,
                       fontSize: Theme.of(context).textTheme.bodySmall?.fontSize as double,
                       fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
                     )
@@ -124,7 +127,7 @@ class AppointmentCard extends StatelessWidget {
                     Container(
                       child: LogaText(
                         content: "Total cost",
-                        color: Theme.of(context).colorScheme.onSurface,
+                        color: ref.watch(displayProvider).colorScheme.onSurface,
                         fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
                         fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
                       ),
@@ -137,7 +140,7 @@ class AppointmentCard extends StatelessWidget {
                       alignment: Alignment.bottomRight,
                       child: LogaText(
                         content: "\$${appointment.total_amount}",
-                        color: Theme.of(context).colorScheme.onSurface,
+                        color: ref.watch(displayProvider).colorScheme.onSurface,
                         fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
                         fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
                       ),

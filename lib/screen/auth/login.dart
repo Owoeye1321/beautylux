@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/model/api/auth.dart';
 import 'package:logaluxe_users/provider/auth/login.dart';
 import 'package:logaluxe_users/provider/auth/profile.dart';
+import 'package:logaluxe_users/provider/display.dart';
 import 'package:logaluxe_users/screen/auth/forgot_password.dart';
 import 'package:logaluxe_users/screen/auth/register.dart';
 import 'package:logaluxe_users/screen/home.dart';
@@ -100,7 +101,7 @@ class _LoginState extends ConsumerState<Login> {
       body: Container(
         margin: const EdgeInsets.only(top: 80, left: 15, right: 15),
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surface,
+          color: ref.watch(displayProvider).colorScheme.surface,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,7 +109,7 @@ class _LoginState extends ConsumerState<Login> {
             Text(
               "Welcome Back!",
               style: TextStyle(
-                color: Theme.of(context).colorScheme.onSurface,
+                color: ref.watch(displayProvider).colorScheme.onSurface,
                 fontSize: Theme.of(context).textTheme.titleLarge?.fontSize!,
                 fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight!,
               ),
@@ -118,7 +119,7 @@ class _LoginState extends ConsumerState<Login> {
             ),
             SplashText(
               title: "Find and book Beauty, salon, Barber",
-              color: Theme.of(context).colorScheme.onTertiary,
+              color: ref.watch(displayProvider).colorScheme.onTertiary,
               fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
               fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
             ),
@@ -127,7 +128,7 @@ class _LoginState extends ConsumerState<Login> {
             ),
             SplashText(
               title: "and Spa services anywhere, anytime.",
-              color: Theme.of(context).colorScheme.onTertiary,
+              color: ref.watch(displayProvider).colorScheme.onTertiary,
               fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
               fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
             ),
@@ -189,7 +190,7 @@ class _LoginState extends ConsumerState<Login> {
                     "Forget password?",
                     style: TextStyle(
                         fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
-                        color: Theme.of(context).colorScheme.onError),
+                        color: ref.watch(displayProvider).colorScheme.onError),
                   ),
                 )
               ],
@@ -214,20 +215,20 @@ class _LoginState extends ConsumerState<Login> {
                 backgroundColor: WidgetStateProperty.resolveWith<Color>(
                   (states) {
                     if (states.contains(WidgetState.disabled)) {
-                      return Theme.of(context).colorScheme.onPrimary; // Custom disabled color
+                      return ref.watch(displayProvider).colorScheme.onPrimary; // Custom disabled color
                     }
-                    return Theme.of(context).colorScheme.onPrimary; // Custom disabled color
+                    return ref.watch(displayProvider).colorScheme.onPrimary; // Custom disabled color
                   },
                 ),
               ),
               child: ref.watch(loginProvider).loading == true
                   ? CircularProgressIndicator.adaptive(
-                      backgroundColor: Theme.of(context).colorScheme.onSurface,
+                      backgroundColor: ref.watch(displayProvider).colorScheme.onSurface,
                     )
                   : Text(
                       "Login",
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: Theme.of(context).colorScheme.onSurface,
+                            color: ref.watch(displayProvider).colorScheme.onSurface,
                           ),
                     ),
             ),
@@ -238,7 +239,7 @@ class _LoginState extends ConsumerState<Login> {
               children: [
                 Expanded(
                   child: Divider(
-                    color: Theme.of(context).colorScheme.onInverseSurface, // Line color
+                    color: ref.watch(displayProvider).colorScheme.onInverseSurface, // Line color
                     thickness: 1, // Line thickness
                   ),
                 ),
@@ -247,14 +248,14 @@ class _LoginState extends ConsumerState<Login> {
                   child: Text(
                     "or",
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.onSurface,
+                      color: ref.watch(displayProvider).colorScheme.onSurface,
                       fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
                     ),
                   ),
                 ),
                 Expanded(
                   child: Divider(
-                    color: Theme.of(context).colorScheme.onInverseSurface,
+                    color: ref.watch(displayProvider).colorScheme.onInverseSurface,
                     thickness: 1,
                   ),
                 ),
@@ -277,7 +278,7 @@ class _LoginState extends ConsumerState<Login> {
               children: [
                 Text(
                   "Already have an account?",
-                  style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
+                  style: TextStyle(color: ref.watch(displayProvider).colorScheme.onSurface),
                 ),
                 TextButton(
                   onPressed: () {
@@ -292,7 +293,7 @@ class _LoginState extends ConsumerState<Login> {
                   child: Text(
                     "Sign Up",
                     style: TextStyle(
-                        color: Theme.of(context).colorScheme.onError,
+                        color: ref.watch(displayProvider).colorScheme.onError,
                         fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!),
                   ),
                 )

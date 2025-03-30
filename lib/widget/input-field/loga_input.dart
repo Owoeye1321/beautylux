@@ -1,6 +1,9 @@
+
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logaluxe_users/provider/display.dart';
 import 'package:flutter/material.dart';
 
-class LogaInputField extends StatefulWidget {
+class LogaInputField extends ConsumerStatefulWidget {
   final TextEditingController controller;
   final String hintText;
   final double verticalPadding;
@@ -43,10 +46,10 @@ class LogaInputField extends StatefulWidget {
   });
 
   @override
-  State<LogaInputField> createState() => _LogaInputFieldState();
+  ConsumerState<LogaInputField> createState() => _LogaInputFieldState();
 }
 
-class _LogaInputFieldState extends State<LogaInputField> {
+class _LogaInputFieldState extends ConsumerState<LogaInputField> {
   bool disableState = true;
 
   void toggleVisibility() {
@@ -67,24 +70,26 @@ class _LogaInputFieldState extends State<LogaInputField> {
           //   FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]')) // Only letters and spaces
           // ],
           style: TextStyle(
-            color: Theme.of(context).colorScheme.onSurface,
+            color: ref.watch(displayProvider).colorScheme.onSurface,
             fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
             fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight,
           ),
           showCursor: true,
           maxLines: 1,
-          cursorColor: Theme.of(context).colorScheme.onSurface,
+          cursorColor: ref.watch(displayProvider).colorScheme.onSurface,
           obscureText: widget.hideTextInput ? disableState : false,
           textAlign: TextAlign.left,
           decoration: InputDecoration(
             filled: true,
-            fillColor: Theme.of(context).colorScheme.onInverseSurface,
+            fillColor: ref.watch(displayProvider).colorScheme.onInverseSurface,
             prefixIcon: Padding(
               padding: EdgeInsets.only(left: widget.setIconPadding ? widget.iconPadding! : 0),
               child: widget.prefixIcon
                   ? Icon(
                       widget.prefixIconData,
-                      color: widget.setIconColor ? widget.iconColor : Theme.of(context).colorScheme.onSurface,
+                      color: widget.setIconColor
+                          ? widget.iconColor
+                          : ref.watch(displayProvider).colorScheme.onSurface,
                       size: widget.setIconSize ? widget.iconSize : 20,
                     )
                   : widget.imageIcon,
@@ -95,11 +100,11 @@ class _LogaInputFieldState extends State<LogaInputField> {
             ),
             hintText: widget.hintText,
             hintStyle: TextStyle(
-              color: Theme.of(context).colorScheme.onSurface,
+              color: ref.watch(displayProvider).colorScheme.onSurface,
               fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
             ),
             focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Theme.of(context).colorScheme.onError),
+              borderSide: BorderSide(color: ref.watch(displayProvider).colorScheme.onError),
               borderRadius: BorderRadius.all(Radius.circular(widget.buttonBorder)),
             ),
             enabledBorder: OutlineInputBorder(
@@ -121,7 +126,7 @@ class _LogaInputFieldState extends State<LogaInputField> {
                     onPressed: toggleVisibility,
                     icon: Icon(
                       disableState ? Icons.visibility : Icons.visibility_off,
-                      color: Theme.of(context).colorScheme.onSurface,
+                      color: ref.watch(displayProvider).colorScheme.onSurface,
                     ),
                   )
                 : null,

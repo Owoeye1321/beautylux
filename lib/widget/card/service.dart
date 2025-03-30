@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/model/service.dart';
 import 'package:logaluxe_users/widget/loga_text.dart';
+import 'package:logaluxe_users/provider/display.dart';
 
-class ServiceCard extends StatelessWidget {
+class ServiceCard extends ConsumerWidget {
   final ServiceModel service;
   Function removeService;
   Function addService;
@@ -16,7 +18,7 @@ class ServiceCard extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       onTap: () {},
       child: Padding(
@@ -24,7 +26,7 @@ class ServiceCard extends StatelessWidget {
         child: Container(
           height: 130,
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.onTertiaryContainer.withOpacity(0.2),
+            color: ref.watch(displayProvider).colorScheme.onTertiaryContainer.withOpacity(0.2),
             borderRadius: BorderRadius.circular(15),
           ),
           child: Row(
@@ -32,7 +34,7 @@ class ServiceCard extends StatelessWidget {
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.onSurface,
+                  color: ref.watch(displayProvider).colorScheme.onSurface,
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
                     image: service.image_url != null && service.image_url != ''
@@ -56,7 +58,7 @@ class ServiceCard extends StatelessWidget {
                           width: 90,
                           child: LogaText(
                             content: service.name,
-                            color: Theme.of(context).colorScheme.onSurface,
+                            color: ref.watch(displayProvider).colorScheme.onSurface,
                             fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize! as double,
                             fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight! as FontWeight,
                           ),
@@ -68,7 +70,7 @@ class ServiceCard extends StatelessWidget {
                           width: 60,
                           height: 24,
                           decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.onSurface,
+                            color: ref.watch(displayProvider).colorScheme.onSurface,
                             borderRadius: BorderRadius.circular(40),
                           ),
                           child: Padding(
@@ -99,7 +101,7 @@ class ServiceCard extends StatelessWidget {
                       children: [
                         LogaText(
                           content: "${service.currency}${service.amount}",
-                          color: Theme.of(context).colorScheme.onSurface,
+                          color: ref.watch(displayProvider).colorScheme.onSurface,
                           fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize! as double,
                           fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
                         ),
@@ -111,14 +113,14 @@ class ServiceCard extends StatelessWidget {
                           height: 5,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(3),
-                              color: Theme.of(context).colorScheme.onSurfaceVariant),
+                              color: ref.watch(displayProvider).colorScheme.onSurfaceVariant),
                         ),
                         SizedBox(
                           width: 5,
                         ),
                         Icon(
                           Icons.schedule,
-                          color: Theme.of(context).colorScheme.onSurfaceVariant,
+                          color: ref.watch(displayProvider).colorScheme.onSurfaceVariant,
                           size: 20,
                         ),
                         SizedBox(
@@ -126,7 +128,7 @@ class ServiceCard extends StatelessWidget {
                         ),
                         LogaText(
                           content: "${service.service_duration} Min",
-                          color: Theme.of(context).colorScheme.outline,
+                          color: ref.watch(displayProvider).colorScheme.outline,
                           fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize! as double,
                           fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
                         ),
@@ -142,7 +144,7 @@ class ServiceCard extends StatelessWidget {
                             content: service.description,
                             setMaxLine: true,
                             maxLines: 2,
-                            color: Theme.of(context).colorScheme.outline,
+                            color: ref.watch(displayProvider).colorScheme.outline,
                             fontSize: Theme.of(context).textTheme.bodySmall?.fontSize! as double,
                             fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight! as FontWeight,
                           ),
@@ -170,7 +172,7 @@ class ServiceCard extends StatelessWidget {
                                   ),
                                   child: Icon(
                                     Icons.check,
-                                    color: Theme.of(context).colorScheme.onSurface,
+                                    color: ref.watch(displayProvider).colorScheme.onSurface,
                                   ),
                                 ),
                               )
@@ -180,7 +182,7 @@ class ServiceCard extends StatelessWidget {
                                 padding: EdgeInsets.symmetric(horizontal: 2),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(50),
-                                  color: Theme.of(context).colorScheme.onPrimary,
+                                  color: ref.watch(displayProvider).colorScheme.onPrimary,
                                 ),
                                 child: TextButton(
                                   onPressed: () {
@@ -193,7 +195,7 @@ class ServiceCard extends StatelessWidget {
                                   ),
                                   child: Icon(
                                     Icons.add,
-                                    color: Theme.of(context).colorScheme.onSurface,
+                                    color: ref.watch(displayProvider).colorScheme.onSurface,
                                   ),
                                 ),
                               )

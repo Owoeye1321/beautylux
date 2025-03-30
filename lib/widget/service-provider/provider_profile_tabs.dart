@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/widget/loga_text.dart';
+import 'package:logaluxe_users/provider/display.dart';
 
-class ServiceProviderTabs extends StatefulWidget {
+class ServiceProviderTabs extends ConsumerStatefulWidget {
   Function getCurrentIndex;
   ServiceProviderTabs({super.key, required this.getCurrentIndex});
 
   @override
-  State<ServiceProviderTabs> createState() => _ServiceProviderTabsState();
+  ConsumerState<ServiceProviderTabs> createState() => _ServiceProviderTabsState();
 }
 
-class _ServiceProviderTabsState extends State<ServiceProviderTabs> {
+class _ServiceProviderTabsState extends ConsumerState<ServiceProviderTabs> {
   int activeIndex = 0;
   _changeIndex(int newIndex) {
     setState(() {
@@ -20,8 +22,8 @@ class _ServiceProviderTabsState extends State<ServiceProviderTabs> {
 
   @override
   Widget build(BuildContext context) {
-    Color activeColor = Theme.of(context).colorScheme.onPrimary;
-    Color inactiveColor = Theme.of(context).colorScheme.outline;
+    Color activeColor = ref.watch(displayProvider).colorScheme.onPrimary;
+    Color inactiveColor = ref.watch(displayProvider).colorScheme.outline;
     double fontSize = Theme.of(context).textTheme.bodyMedium?.fontSize! as double;
     FontWeight fontWeight = Theme.of(context).textTheme.bodySmall?.fontWeight! as FontWeight;
     return Row(

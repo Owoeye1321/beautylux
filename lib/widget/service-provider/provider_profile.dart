@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/model/service.dart';
 import 'package:logaluxe_users/model/user.dart';
+import 'package:logaluxe_users/provider/display.dart';
 import 'package:logaluxe_users/provider/category.dart';
 import 'package:logaluxe_users/provider/service.dart';
 import 'package:logaluxe_users/widget/category.dart';
@@ -38,7 +39,7 @@ class _ProviderProfileState extends ConsumerState<ProviderProfile> {
     return Container(
       height: double.infinity,
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface,
+        color: ref.watch(displayProvider).colorScheme.surface,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(60),
           topRight: Radius.circular(60),
@@ -56,7 +57,7 @@ class _ProviderProfileState extends ConsumerState<ProviderProfile> {
                   width: 70,
                   height: 8,
                   decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.onInverseSurface,
+                    color: ref.watch(displayProvider).colorScheme.onInverseSurface,
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
@@ -71,7 +72,7 @@ class _ProviderProfileState extends ConsumerState<ProviderProfile> {
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 decoration: TextDecoration.none,
-                color: Theme.of(context).colorScheme.onSurface,
+                color: ref.watch(displayProvider).colorScheme.onSurface,
                 fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
                 fontWeight: Theme.of(context).textTheme.titleMedium?.fontWeight!,
               ),
@@ -83,7 +84,7 @@ class _ProviderProfileState extends ConsumerState<ProviderProfile> {
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 decoration: TextDecoration.none,
-                color: Theme.of(context).colorScheme.outline,
+                color: ref.watch(displayProvider).colorScheme.outline,
                 fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
                 fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
               ),
@@ -98,7 +99,7 @@ class _ProviderProfileState extends ConsumerState<ProviderProfile> {
                       children: [
                         Icon(
                           Icons.schedule,
-                          color: Theme.of(context).colorScheme.onPrimary,
+                          color: ref.watch(displayProvider).colorScheme.onPrimary,
                           size: 20,
                         ),
                         SizedBox(width: 5),
@@ -107,7 +108,7 @@ class _ProviderProfileState extends ConsumerState<ProviderProfile> {
                           maxLines: 2, // Limits text to 2 lines
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                            color: Theme.of(context).colorScheme.outline,
+                            color: ref.watch(displayProvider).colorScheme.outline,
                             fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
                           ),
                         ),
@@ -120,7 +121,7 @@ class _ProviderProfileState extends ConsumerState<ProviderProfile> {
                       children: [
                         Icon(
                           Icons.local_offer,
-                          color: Theme.of(context).colorScheme.onPrimary,
+                          color: ref.watch(displayProvider).colorScheme.onPrimary,
                           size: 15,
                         ),
                         SizedBox(width: 5),
@@ -131,7 +132,7 @@ class _ProviderProfileState extends ConsumerState<ProviderProfile> {
                           style: TextStyle(
                             wordSpacing: 2,
                             decoration: TextDecoration.none,
-                            color: Theme.of(context).colorScheme.onPrimary,
+                            color: ref.watch(displayProvider).colorScheme.onPrimary,
                             fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
                             fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
                           ),
@@ -146,7 +147,7 @@ class _ProviderProfileState extends ConsumerState<ProviderProfile> {
                           style: TextStyle(
                             wordSpacing: 2,
                             decoration: TextDecoration.none,
-                            color: Theme.of(context).colorScheme.onSurface,
+                            color: ref.watch(displayProvider).colorScheme.onSurface,
                             fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
                             fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
                           ),
@@ -177,7 +178,7 @@ class _ProviderProfileState extends ConsumerState<ProviderProfile> {
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             wordSpacing: 2,
-                            color: Theme.of(context).colorScheme.outline,
+                            color: ref.watch(displayProvider).colorScheme.outline,
                             fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
                           ),
                         ),
@@ -190,7 +191,7 @@ class _ProviderProfileState extends ConsumerState<ProviderProfile> {
                         children: [
                           Icon(
                             Icons.remove_red_eye,
-                            color: Theme.of(context).colorScheme.outline,
+                            color: ref.watch(displayProvider).colorScheme.outline,
                             size: 25,
                           ),
                           SizedBox(
@@ -202,7 +203,7 @@ class _ProviderProfileState extends ConsumerState<ProviderProfile> {
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               wordSpacing: 2,
-                              color: Theme.of(context).colorScheme.outline,
+                              color: ref.watch(displayProvider).colorScheme.outline,
                               fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
                             ),
                           ),
@@ -221,7 +222,7 @@ class _ProviderProfileState extends ConsumerState<ProviderProfile> {
               height: 10,
             ),
             Divider(
-              color: Theme.of(context).colorScheme.outline.withOpacity(0.5),
+              color: ref.watch(displayProvider).colorScheme.outline.withOpacity(0.5),
             ),
             ServiceProviderTabs(
               getCurrentIndex: _getCurrentIndex,

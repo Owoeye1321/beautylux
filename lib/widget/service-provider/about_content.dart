@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/model/user.dart';
 import 'package:logaluxe_users/provider/gallery.dart';
+import 'package:logaluxe_users/provider/display.dart';
 import 'package:logaluxe_users/provider/user.dart';
 import 'package:logaluxe_users/widget/loga_text.dart';
 import 'package:logaluxe_users/widget/staff_container.dart';
@@ -21,7 +22,7 @@ class AboutProvider extends ConsumerWidget {
           Container(
             width: double.infinity,
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.onInverseSurface.withAlpha((0.5 * 255).toInt()),
+              color: ref.watch(displayProvider).colorScheme.onInverseSurface.withAlpha((0.5 * 255).toInt()),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Padding(
@@ -31,7 +32,7 @@ class AboutProvider extends ConsumerWidget {
                 children: [
                   LogaText(
                     content: "About",
-                    color: Theme.of(context).colorScheme.onSurface,
+                    color: ref.watch(displayProvider).colorScheme.onSurface,
                     fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize! as double,
                     fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
                   ),
@@ -40,7 +41,7 @@ class AboutProvider extends ConsumerWidget {
                     content: user.bio,
                     setMaxLine: true,
                     maxLines: 10,
-                    color: Theme.of(context).colorScheme.outline,
+                    color: ref.watch(displayProvider).colorScheme.outline,
                     fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize! as double,
                     fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
                   )
@@ -52,7 +53,7 @@ class AboutProvider extends ConsumerWidget {
           Container(
             width: double.infinity,
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.onInverseSurface.withOpacity(0.5),
+              color: ref.watch(displayProvider).colorScheme.onInverseSurface.withOpacity(0.5),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Padding(
@@ -62,7 +63,7 @@ class AboutProvider extends ConsumerWidget {
                 children: [
                   LogaText(
                     content: "Opening Hours",
-                    color: Theme.of(context).colorScheme.onSurface,
+                    color: ref.watch(displayProvider).colorScheme.onSurface,
                     fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize! as double,
                     fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
                   ),
@@ -75,14 +76,14 @@ class AboutProvider extends ConsumerWidget {
                           height: 15,
                           width: 15,
                           decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.onSurface,
+                            color: ref.watch(displayProvider).colorScheme.onSurface,
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(3),
                             child: Container(
                               decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.onPrimary,
+                                color: ref.watch(displayProvider).colorScheme.onPrimary,
                                 borderRadius: BorderRadius.circular(20),
                               ),
                             ),
@@ -97,7 +98,7 @@ class AboutProvider extends ConsumerWidget {
                           children: [
                             LogaText(
                               content: "Monday - Friday",
-                              color: Theme.of(context).colorScheme.outline,
+                              color: ref.watch(displayProvider).colorScheme.outline,
                               fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
                               fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
                             ),
@@ -106,7 +107,7 @@ class AboutProvider extends ConsumerWidget {
                             ),
                             LogaText(
                               content: "open ${user.opening_time}am - close ${user.closing_time}pm",
-                              color: Theme.of(context).colorScheme.onSurface,
+                              color: ref.watch(displayProvider).colorScheme.onSurface,
                               fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize! as double,
                               fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
                             ),
@@ -123,14 +124,14 @@ class AboutProvider extends ConsumerWidget {
                           height: 15,
                           width: 15,
                           decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.onSurface,
+                            color: ref.watch(displayProvider).colorScheme.onSurface,
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(3),
                             child: Container(
                               decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.onPrimary,
+                                color: ref.watch(displayProvider).colorScheme.onPrimary,
                                 borderRadius: BorderRadius.circular(20),
                               ),
                             ),
@@ -145,7 +146,7 @@ class AboutProvider extends ConsumerWidget {
                           children: [
                             LogaText(
                               content: "Saturday - Sunday",
-                              color: Theme.of(context).colorScheme.outline,
+                              color: ref.watch(displayProvider).colorScheme.outline,
                               fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
                               fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
                             ),
@@ -154,7 +155,7 @@ class AboutProvider extends ConsumerWidget {
                             ),
                             LogaText(
                               content: "open ${user.opening_time}am - close${user.closing_time}pm",
-                              color: Theme.of(context).colorScheme.onSurface,
+                              color: ref.watch(displayProvider).colorScheme.onSurface,
                               fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize! as double,
                               fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
                             ),
@@ -177,7 +178,7 @@ class AboutProvider extends ConsumerWidget {
               children: [
                 LogaText(
                   content: "Gallery",
-                  color: Theme.of(context).colorScheme.onSurface,
+                  color: ref.watch(displayProvider).colorScheme.onSurface,
                   fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize as double,
                   fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
                 ),
@@ -185,7 +186,7 @@ class AboutProvider extends ConsumerWidget {
                   onTap: () {},
                   child: LogaText(
                     content: "View All",
-                    color: Theme.of(context).colorScheme.onPrimary,
+                    color: ref.watch(displayProvider).colorScheme.onPrimary,
                     fontSize: Theme.of(context).textTheme.bodySmall?.fontSize as double,
                     fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
                   ),
@@ -233,7 +234,7 @@ class AboutProvider extends ConsumerWidget {
               children: [
                 LogaText(
                   content: "Our Specialists",
-                  color: Theme.of(context).colorScheme.onSurface,
+                  color: ref.watch(displayProvider).colorScheme.onSurface,
                   fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize as double,
                   fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
                 ),
@@ -241,7 +242,7 @@ class AboutProvider extends ConsumerWidget {
                   onTap: () {},
                   child: LogaText(
                     content: "View All",
-                    color: Theme.of(context).colorScheme.onPrimary,
+                    color: ref.watch(displayProvider).colorScheme.onPrimary,
                     fontSize: Theme.of(context).textTheme.bodySmall?.fontSize as double,
                     fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
                   ),

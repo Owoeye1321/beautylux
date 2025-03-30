@@ -5,6 +5,7 @@ import 'package:logaluxe_users/model/slot.dart';
 import 'package:logaluxe_users/provider/booking.dart';
 import 'package:logaluxe_users/provider/slot.dart';
 import 'package:logaluxe_users/widget/card/slot.dart';
+import 'package:logaluxe_users/provider/display.dart';
 import 'package:logaluxe_users/widget/loga_text.dart';
 import 'package:toastification/toastification.dart';
 
@@ -35,7 +36,7 @@ class _SlotGrid extends ConsumerState<SlotGrid> {
               height: 50,
               child: Image.asset(
                 'images/empty.png',
-                color: Theme.of(context).colorScheme.onPrimary,
+                color: ref.watch(displayProvider).colorScheme.onPrimary,
               ),
             ),
             SizedBox(
@@ -43,7 +44,7 @@ class _SlotGrid extends ConsumerState<SlotGrid> {
             ),
             LogaText(
                 content: "No Slots for the selected date",
-                color: Theme.of(context).colorScheme.onSurface,
+                color: ref.watch(displayProvider).colorScheme.onSurface,
                 fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
                 fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight),
           ],
@@ -72,7 +73,7 @@ class _SlotGrid extends ConsumerState<SlotGrid> {
             padding: EdgeInsets.only(top: 10),
             child: Center(
               child: CircularProgressIndicator.adaptive(
-                backgroundColor: Theme.of(context).colorScheme.onSurface,
+                backgroundColor: ref.watch(displayProvider).colorScheme.onSurface,
               ),
             ),
           )

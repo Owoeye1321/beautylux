@@ -4,6 +4,7 @@ import 'package:logaluxe_users/model/category.dart';
 import 'package:logaluxe_users/model/user.dart';
 import 'package:logaluxe_users/provider/category.dart';
 import 'package:logaluxe_users/provider/service.dart';
+import 'package:logaluxe_users/provider/display.dart';
 import 'package:logaluxe_users/widget/loga_text.dart';
 
 class CategoryRowScroll extends ConsumerStatefulWidget {
@@ -59,7 +60,7 @@ class _CategoryRowScroll extends ConsumerState<CategoryRowScroll> {
     }
     return loadingState == true
         ? CircularProgressIndicator.adaptive(
-            backgroundColor: Theme.of(context).colorScheme.onSurface,
+            backgroundColor: ref.watch(displayProvider).colorScheme.onSurface,
           )
         : Row(
             children: allCategories.map(
@@ -76,13 +77,13 @@ class _CategoryRowScroll extends ConsumerState<CategoryRowScroll> {
                       width: 150,
                       child: LogaText(
                           content: category.category_name,
-                          color: Theme.of(context).colorScheme.onSurface,
+                          color: ref.watch(displayProvider).colorScheme.onSurface,
                           fontSize: Theme.of(context).textTheme.bodySmall?.fontSize as double,
                           fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight! as FontWeight),
                     ),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: activeCategory?.id! == category.id
-                          ? Theme.of(context).colorScheme.onPrimary
+                          ? ref.watch(displayProvider).colorScheme.onPrimary
                           : Colors.transparent,
                       minimumSize: const Size(0, 0),
                       fixedSize: Size(117, 40),
