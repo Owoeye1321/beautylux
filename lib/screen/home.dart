@@ -39,8 +39,6 @@ class _HomeState extends ConsumerState<Home> {
         Navigator.push(context, MaterialPageRoute(builder: (ctx) => Login()));
       else
         try {
-          String token =
-              'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2ExZTI2M2NlZWRlYWRkMWJhMjYyZTQiLCJuYW1lIjoiam9zaG5qb2huIiwicm9sZSI6InByb2Zlc3Npb25hbCIsImlhdCI6MTc0MzI4MDAyNCwiZXhwIjoxNzQzMzY2NDI0fQ.2ms8GCm7mq1QUoYi7Ef8uL7Ckax9pUY1zMelkkP_irQ';
           ref.read(appointmentProvider.notifier).fetchAppointment(loggedInUser.token, loggedInUser.id);
         } catch (e) {
           setState(() {
