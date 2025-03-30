@@ -97,17 +97,9 @@ class _SearchState extends ConsumerState<Search> {
             ),
           ),
           SizedBox(
-            height: 30,
-          ),
-          LogaText(
-            content: "Popular Search",
-            color: Theme.of(context).colorScheme.onSurface,
-            fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize! as double,
-            fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
-          ),
-          SizedBox(
             height: 10,
           ),
+
           // SizedBox(
           //   height: 140,
           //   child: GridView.builder(

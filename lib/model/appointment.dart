@@ -46,7 +46,7 @@ class Appointment {
       required this.createdAt,
       required this.updatedAt});
 
-  get formatDate {
+  get formatStartTime {
     final now = DateTime.now();
     final today = DateFormat('EEEE, h:mm a').format(start_date); // Today, 11:00 AM
     final thisWeek = DateFormat('EEEE, h:mm a').format(start_date); // Monday, 11:00 AM
@@ -67,7 +67,6 @@ class Appointment {
     //print(data['data'][0]);
     List<Appointment> allAppointments = [];
     for (Map<String, dynamic> eachAppointment in data['data']) {
-      print(int.parse(eachAppointment['service_amount'].toString()));
       Appointment appointment = Appointment(
         payment_status: eachAppointment['payment_status'].toString(),
         status: eachAppointment['status'].toString(),

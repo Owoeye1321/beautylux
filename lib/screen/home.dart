@@ -36,7 +36,8 @@ class _HomeState extends ConsumerState<Home> {
     if (currentIndex == 2) {
       var loggedInUser = ref.read(profileProvider);
       if (loggedInUser.token == '')
-        Navigator.push(context, MaterialPageRoute(builder: (ctx) => Login()));
+        Navigator.pushAndRemoveUntil(
+            context, MaterialPageRoute(builder: (ctx) => Login()), (Route<dynamic> route) => false);
       else
         try {
           ref.read(appointmentProvider.notifier).fetchAppointment(loggedInUser.token, loggedInUser.id);

@@ -95,7 +95,7 @@ class _LogaInputFieldState extends State<LogaInputField> {
             ),
             hintText: widget.hintText,
             hintStyle: TextStyle(
-              color: Theme.of(context).colorScheme.outline,
+              color: Theme.of(context).colorScheme.onSurface,
               fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
             ),
             focusedBorder: OutlineInputBorder(

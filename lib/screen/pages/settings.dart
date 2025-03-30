@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/provider/auth/login.dart';
 import 'package:logaluxe_users/provider/auth/profile.dart';
@@ -16,6 +17,14 @@ class Settings extends ConsumerStatefulWidget {
 }
 
 class _SettingsState extends ConsumerState<Settings> {
+  bool? isLightMode;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    isLightMode = ref.read(displayProvider).isLightMode;
+  }
+
   logOut() async {
     ref.read(profileProvider.notifier).logOut();
     await toastification.show(
@@ -39,11 +48,17 @@ class _SettingsState extends ConsumerState<Settings> {
         context, MaterialPageRoute(builder: (ctx) => Login()), (Route<dynamic> route) => false);
   }
 
+  void _changeDisplay(bool value) {
+    var display = ref.read(displayProvider.notifier).changeDisplayState(value);
+    setState(() {
+      isLightMode = display.isLightMode;
+    });
+    //if (isLightMode == false) Phoenix.rebirth(context); //Re-start the application
+  }
+
   @override
   Widget build(BuildContext context) {
-    bool isLightMode = ref.watch(displayProvider).isLightMode;
-
-    final _controller = ValueNotifier<bool>(isLightMode);
+    final _controller = ValueNotifier<bool>(isLightMode!);
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20, horizontal: 5),
       child: Column(
@@ -67,8 +82,9 @@ class _SettingsState extends ConsumerState<Settings> {
                 height: 30,
                 enabled: true,
                 disabledOpacity: 0.5,
+                initialValue: isLightMode!,
                 onChanged: (value) {
-                  ref.read(displayProvider.notifier).changeDisplayState(value);
+                  _changeDisplay(value);
                 },
               ),
             ],

@@ -112,7 +112,7 @@ class AppointmentCard extends StatelessWidget {
                       width: 5,
                     ),
                     LogaText(
-                      content: "Today, 11:00 AM",
+                      content: appointment.formatStartTime,
                       color: Theme.of(context).colorScheme.outline,
                       fontSize: Theme.of(context).textTheme.bodySmall?.fontSize as double,
                       fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,

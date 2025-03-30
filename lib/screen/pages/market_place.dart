@@ -42,6 +42,12 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     allUsers = ref.watch(userProvider).serviceProviders;
     if (!allUsers.isEmpty) {

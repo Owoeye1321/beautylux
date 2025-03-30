@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:logaluxe_users/provider/display.dart';
@@ -19,9 +20,11 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]).then((_) {
-    runApp(
-      const ProviderScope(child: MyApp()),
-    );
+    runApp(Phoenix(
+      child: const ProviderScope(
+        child: MyApp(),
+      ),
+    ));
   });
 }
 

@@ -20,7 +20,7 @@ class DisplayNotifier extends StateNotifier<DisplayState> {
               onTertiaryContainer: Color.fromARGB(255, 85, 68, 63),
             ),
             isLightMode: false));
-  changeDisplayState(bool isLightMode) {
+  DisplayState changeDisplayState(bool isLightMode) {
     if (isLightMode == true) {
       state = DisplayState(
           colorScheme: ColorScheme.fromSeed(
@@ -31,7 +31,7 @@ class DisplayNotifier extends StateNotifier<DisplayState> {
             onSurface: const Color(0xFF000000), // Black text/icons on light surfaces
             onSurfaceVariant: Color(0xff24262b),
             primary: Color.fromARGB(255, 235, 76, 134),
-            outline: Color(0xFF6B7280), // Slightly darker outline for visibility
+            outline: Color.fromARGB(255, 33, 34, 36), // Slightly darker outline for visibility
             onInverseSurface: Color(0xFF252525),
             onError: const Color(0xFFD32F2F), // Standard error color (red)
             onTertiary: Color.fromARGB(255, 180, 178, 178),
@@ -46,7 +46,7 @@ class DisplayNotifier extends StateNotifier<DisplayState> {
             seedColor: const Color(0xFFEB4F87),
             surface: const Color(0xFF000000),
             onPrimary: Color.fromARGB(255, 235, 76, 134),
-            onSurface: const Color(0xFFFFFFFF),
+            onSurface: const Color.fromARGB(255, 35, 27, 27),
             onSurfaceVariant: Color(0xff24262b),
             outline: Color(0xFF9CA3AF),
             onInverseSurface: Color(0xFF252525),
@@ -57,6 +57,7 @@ class DisplayNotifier extends StateNotifier<DisplayState> {
           ),
           isLightMode: false);
     }
+    return state;
   }
 }
 

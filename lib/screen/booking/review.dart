@@ -152,6 +152,7 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
             ),
             onPressed: () {
               bookAppointment();
+              Navigator.pop(context);
             },
           ),
         ],
