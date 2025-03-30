@@ -35,35 +35,35 @@ class _HomeState extends ConsumerState<Home> {
     });
     if (currentIndex == 2) {
       var loggedInUser = ref.read(profileProvider);
-      // if (loggedInUser.token == '')
-      //  // Navigator.push(context, MaterialPageRoute(builder: (ctx) => Login()));
-      // else
-      try {
-        String token =
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2ExZTI2M2NlZWRlYWRkMWJhMjYyZTQiLCJuYW1lIjoiam9zaG5qb2huIiwicm9sZSI6InByb2Zlc3Npb25hbCIsImlhdCI6MTc0MzI4MDQ0OCwiZXhwIjoxNzQzMzY2ODQ4fQ.RHvAXtZ5EZQmVcTw6acOkqcocRLTK4QzJQ0XnE_PT8k';
-        ref.read(appointmentProvider.notifier).fetchAppointment(token, '67a1e263ceedeadd1ba262e4');
-      } catch (e) {
-        setState(() {
-          errorMessage = e.toString().replaceAll('Exception: ', '');
-        });
-        toastification.show(
-          context: context, // optional if you use ToastificationWrapper
-          title: Text(errorMessage),
-          type: ToastificationType.error,
-          style: ToastificationStyle.flat,
-          autoCloseDuration: const Duration(seconds: 2),
-          animationDuration: const Duration(milliseconds: 100),
-          animationBuilder: (context, animation, alignment, child) {
-            return FadeTransition(
-              opacity: animation,
-              child: child,
-            );
-          },
-          primaryColor: Colors.red,
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.black,
-        );
-      }
+      if (loggedInUser.token == '')
+        Navigator.push(context, MaterialPageRoute(builder: (ctx) => Login()));
+      else
+        try {
+          String token =
+              'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2ExZTI2M2NlZWRlYWRkMWJhMjYyZTQiLCJuYW1lIjoiam9zaG5qb2huIiwicm9sZSI6InByb2Zlc3Npb25hbCIsImlhdCI6MTc0MzI4MDAyNCwiZXhwIjoxNzQzMzY2NDI0fQ.2ms8GCm7mq1QUoYi7Ef8uL7Ckax9pUY1zMelkkP_irQ';
+          ref.read(appointmentProvider.notifier).fetchAppointment(loggedInUser.token, loggedInUser.id);
+        } catch (e) {
+          setState(() {
+            errorMessage = e.toString().replaceAll('Exception: ', '');
+          });
+          toastification.show(
+            context: context, // optional if you use ToastificationWrapper
+            title: Text(errorMessage),
+            type: ToastificationType.error,
+            style: ToastificationStyle.flat,
+            autoCloseDuration: const Duration(seconds: 2),
+            animationDuration: const Duration(milliseconds: 100),
+            animationBuilder: (context, animation, alignment, child) {
+              return FadeTransition(
+                opacity: animation,
+                child: child,
+              );
+            },
+            primaryColor: Colors.red,
+            backgroundColor: Colors.white,
+            foregroundColor: Colors.black,
+          );
+        }
     }
   }
 
