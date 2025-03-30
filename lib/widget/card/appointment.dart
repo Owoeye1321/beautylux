@@ -20,12 +20,11 @@ class AppointmentCard extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               image: DecorationImage(
-                  image: NetworkImage(
-                    appointment.service_id?.image_url! as String,
-                  ),
-                  fit: BoxFit.cover
-                  // height: double.infinity,
-                  ),
+                image: appointment.service_id.image_url != null && appointment.service_id.image_url != ''
+                    ? NetworkImage(appointment.service_id.image_url!)
+                    : AssetImage('images/home.png') as ImageProvider,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           Padding(
@@ -94,7 +93,7 @@ class AppointmentCard extends StatelessWidget {
                   ],
                 ),
                 LogaText(
-                  content: "with Serah Johnson",
+                  content: appointment.service_id.description,
                   color: Theme.of(context).colorScheme.outline,
                   fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
                   fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,

@@ -52,25 +52,31 @@ class BookingNotifier extends StateNotifier<BookingModel> {
   }
 
   Future<Map<String, dynamic>> bookAppointment(
-      BookingModel bookingModel, String token, String firstName, String? lastName) async {
+      BookingModel bookingModel, String token, String? firstName, String? lastName) async {
     if (state.slot == null) {
       throw Exception("Kindly select available slot");
     }
+
     state =
         BookingModel(products: state.products, service: state.service, slot: state.slot, loadingState: true);
     try {
       var response = await http.post(
         Uri.parse('${dotenv.env['API_URL']}/customer/initiate-appointment'),
-        body: bookingModel.bookAppointment(
-          firstName,
-          lastName,
+        body: jsonEncode(
+          bookingModel.bookAppointment(
+            firstName,
+            lastName,
+          ),
         ),
-        headers: {HttpHeaders.authorizationHeader: "Bearer $token"},
+        headers: {
+          HttpHeaders.authorizationHeader: "Bearer $token",
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
       );
       state = BookingModel(
           products: state.products, service: state.service, slot: state.slot, loadingState: false);
       if (response.statusCode == 200) {
-        var data = jsonDecode(response.body);
+        Map<String, dynamic> data = jsonDecode(response.body);
         return {"message": data['message']};
       } else {
         Map<String, dynamic> errorResponse = jsonDecode(response.body);
@@ -78,6 +84,8 @@ class BookingNotifier extends StateNotifier<BookingModel> {
         throw new Exception(errorMessage);
       }
     } catch (e) {
+      state = BookingModel(
+          products: state.products, service: state.service, slot: state.slot, loadingState: false);
       throw Exception(e.toString());
     }
   }

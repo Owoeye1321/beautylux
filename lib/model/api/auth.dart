@@ -28,7 +28,7 @@ class LoginResponse {
         token: object['data']['token'],
         first_name: object['data']['first_name'],
         bio: '',
-        id: '',
+        id: object['data']['id'],
         business_address: '',
         business_name: '',
         company_id: '',

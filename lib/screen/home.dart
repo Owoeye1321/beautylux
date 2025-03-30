@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_floating_bottom_bar/flutter_floating_bottom_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logaluxe_users/provider/appointment.dart';
 import 'package:logaluxe_users/provider/auth/profile.dart';
 import 'package:logaluxe_users/provider/auth/verify_email.dart';
+import 'package:logaluxe_users/screen/auth/login.dart';
 import 'package:logaluxe_users/screen/pages/history.dart';
 import 'package:logaluxe_users/screen/pages/market_place.dart';
 import 'package:logaluxe_users/screen/pages/search.dart';
 import 'package:logaluxe_users/screen/pages/settings.dart';
 import 'package:logaluxe_users/widget/loga_text.dart';
 import 'package:logaluxe_users/widget/nav_bar.dart';
+import 'package:toastification/toastification.dart';
 
 class Home extends ConsumerStatefulWidget {
   const Home({
@@ -23,12 +26,45 @@ class _HomeState extends ConsumerState<Home> {
   int currentIndex = 0;
   int? prevIndex;
   String activeView = 'grid';
+  String errorMessage = '';
 
   _switchContent(int activeIndex, previousIndex) {
     setState(() {
       currentIndex = activeIndex;
       prevIndex = previousIndex;
     });
+    if (currentIndex == 2) {
+      var loggedInUser = ref.read(profileProvider);
+      // if (loggedInUser.token == '')
+      //  // Navigator.push(context, MaterialPageRoute(builder: (ctx) => Login()));
+      // else
+      try {
+        String token =
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2ExZTI2M2NlZWRlYWRkMWJhMjYyZTQiLCJuYW1lIjoiam9zaG5qb2huIiwicm9sZSI6InByb2Zlc3Npb25hbCIsImlhdCI6MTc0MzI4MDQ0OCwiZXhwIjoxNzQzMzY2ODQ4fQ.RHvAXtZ5EZQmVcTw6acOkqcocRLTK4QzJQ0XnE_PT8k';
+        ref.read(appointmentProvider.notifier).fetchAppointment(token, '67a1e263ceedeadd1ba262e4');
+      } catch (e) {
+        setState(() {
+          errorMessage = e.toString().replaceAll('Exception: ', '');
+        });
+        toastification.show(
+          context: context, // optional if you use ToastificationWrapper
+          title: Text(errorMessage),
+          type: ToastificationType.error,
+          style: ToastificationStyle.flat,
+          autoCloseDuration: const Duration(seconds: 2),
+          animationDuration: const Duration(milliseconds: 100),
+          animationBuilder: (context, animation, alignment, child) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
+          primaryColor: Colors.red,
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black,
+        );
+      }
+    }
   }
 
   @override

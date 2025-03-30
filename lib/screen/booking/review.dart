@@ -9,7 +9,7 @@ import 'package:logaluxe_users/provider/auth/profile.dart';
 import 'package:logaluxe_users/provider/booking.dart';
 import 'package:logaluxe_users/provider/slot.dart';
 import 'package:logaluxe_users/provider/user.dart';
-import 'package:logaluxe_users/screen/auth/login.dart';
+import 'package:logaluxe_users/screen/home.dart';
 import 'package:logaluxe_users/widget/calender.dart';
 import 'package:logaluxe_users/widget/card/booking_summary.dart';
 import 'package:logaluxe_users/widget/card/service.dart';
@@ -34,6 +34,12 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
   DateTime selectedDate = DateTime.now();
   String errorMessage = '';
 
@@ -55,7 +61,7 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
       UserModel profile = ref.read(profileProvider);
       var response = await ref
           .read(bookingProvider.notifier)
-          .bookAppointment(bookings, profile.token, profile.first_name, profile.last_name);
+          .bookAppointment(bookings, ref.read(profileProvider).token, profile.first_name, profile.last_name);
       toastification.show(
         context: context, // optional if you use ToastificationWrapper
         title: Text(response['message']),
@@ -73,6 +79,8 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
       );
+      Navigator.push(context, MaterialPageRoute(builder: (ctx) => Home()));
+      ref.invalidate(bookingProvider);
     } catch (e) {
       setState(() {
         errorMessage = e.toString().replaceAll('Exception: ', '');
@@ -94,6 +102,8 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
       );
+
+      Navigator.of(context).pop();
     }
   }
 
@@ -141,7 +151,7 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
               fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
             ),
             onPressed: () {
-              Navigator.of(context).pop();
+              bookAppointment();
             },
           ),
         ],
@@ -153,9 +163,9 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
 
   fetchTimeSlot() async {
     try {
-      String token =
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2ExZTI2M2NlZWRlYWRkMWJhMjYyZTQiLCJuYW1lIjoiam9zaG5qb2huIiwicm9sZSI6InByb2Zlc3Npb25hbCIsImlhdCI6MTc0MjkzODc2NiwiZXhwIjoxNzQzMDI1MTY2fQ.nwlIYCGRNdrONLhtRiSYpIp-2_7JiJ-xiNpYGNA7QBU';
-      ref.read(slotProvider.notifier).getBookingTimeSlot(selectedDate, widget.company_id, token);
+      ref
+          .read(slotProvider.notifier)
+          .getBookingTimeSlot(selectedDate, widget.company_id, ref.read(profileProvider).token);
     } catch (e) {
       setState(() {
         errorMessage = e.toString().replaceAll('Exception: ', '');
@@ -353,19 +363,34 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
                     width: 70,
                   ),
                   ElevatedButton(
-                    onPressed: () {
-                      _confirmBooking();
-                    },
+                    onPressed: ref.watch(bookingProvider).loadingState == true ||
+                            ref.watch(bookingProvider).service == null
+                        ? null
+                        : () {
+                            _confirmBooking();
+                          },
                     style: ButtonStyle(
                       minimumSize: WidgetStateProperty.all(
                         Size(0, 0),
+                      ),
+                      backgroundColor: WidgetStateProperty.resolveWith<Color>(
+                        (states) {
+                          if (states.contains(WidgetState.disabled)) {
+                            return Theme.of(context).colorScheme.onPrimary; // Custom disabled color
+                          }
+                          return Theme.of(context).colorScheme.onPrimary; // Custom disabled color
+                        },
                       ),
                       fixedSize: WidgetStateProperty.all((Size(150, 55))),
                       padding: WidgetStateProperty.all(
                         EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                       ),
                     ),
-                    child: Text("Book Now"),
+                    child: ref.watch(bookingProvider).loadingState == true
+                        ? CircularProgressIndicator.adaptive(
+                            backgroundColor: Theme.of(context).colorScheme.onSurface,
+                          )
+                        : Text("Book Now"),
                   )
                 ]),
               ),

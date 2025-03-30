@@ -35,6 +35,8 @@ class LoginInNotifier extends StateNotifier<LoginResponse> {
       );
       if (response.statusCode == 200) {
         state = LoginResponse.fromJson(jsonDecode(response.body));
+        print(state.data.token);
+        print(state.data.id);
         return state;
       } else {
         Map<String, dynamic> errorResponse = jsonDecode(response.body);

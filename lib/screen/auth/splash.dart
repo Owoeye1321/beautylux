@@ -4,7 +4,7 @@ import 'package:logaluxe_users/screen/home.dart';
 import 'package:logaluxe_users/widget/button/icon_button.dart';
 import 'package:logaluxe_users/widget/splash/splash_content.dart';
 
-import 'auth/login.dart';
+import 'login.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

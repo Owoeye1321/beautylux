@@ -21,22 +21,28 @@ class BookingModel {
     return totalCost;
   }
 
-  Map<String, dynamic> bookAppointment(String firstName, String? lastName) {
+  Map<String, dynamic> bookAppointment(String? firstName, String? lastName) {
     return {
-      "total_amount": total,
-      "slot_ref": slot?.slot_ref,
-      "service_amount": service?.amount,
-      "first_name": firstName,
-      "last_name": lastName,
-      "amount": 9000,
-      "currency": service?.currency,
-      "start_date": slot?.start_time,
-      "end_date": slot?.end_time,
-      "service_id": service?.id,
-      "products": products.length > 0
-          ? products?.map((product) => {"id": product.id, "count": 1, "amount": product.amount}).toList()
+      "total_amount": total?.toString() ?? "0",
+      "slot_ref": slot?.slot_ref ?? "",
+      "service_amount": service?.amount?.toString() ?? "0",
+      "first_name": firstName ?? "",
+      "last_name": lastName ?? "",
+      "amount": total?.toString() ?? "0",
+      "currency": service?.currency ?? "USD",
+      "start_date": slot?.start_time?.toIso8601String() ?? "",
+      "end_date": slot?.end_time?.toIso8601String() ?? "",
+      "service_id": service?.id ?? "",
+      "products": products.isNotEmpty
+          ? products
+              .map((product) => {
+                    "id": product.id,
+                    "count": 1,
+                    "amount": product.amount.toString(),
+                  })
+              .toList()
           : [],
-      "company_id": service?.company_id,
+      "company_id": service?.company_id?.id ?? "",
     };
   }
 }

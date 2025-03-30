@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/model/user.dart';
+import 'package:logaluxe_users/provider/auth/profile.dart';
 import 'package:logaluxe_users/provider/booking.dart';
 import 'package:logaluxe_users/provider/slot.dart';
 import 'package:logaluxe_users/provider/user.dart';
+import 'package:logaluxe_users/screen/auth/login.dart';
 import 'package:logaluxe_users/screen/booking/review.dart';
 import 'package:logaluxe_users/widget/loga_text.dart';
 import 'package:badges/badges.dart' as badges;
@@ -20,17 +22,21 @@ class _ProfileMenu extends ConsumerState<ProfileMenu> {
   String errorMessage = '';
   fetchBoookingData(String company_id) async {
     try {
-      String token =
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2ExZTI2M2NlZWRlYWRkMWJhMjYyZTQiLCJuYW1lIjoiam9zaG5qb2huIiwicm9sZSI6InByb2Zlc3Npb25hbCIsImlhdCI6MTc0MjkzODc2NiwiZXhwIjoxNzQzMDI1MTY2fQ.nwlIYCGRNdrONLhtRiSYpIp-2_7JiJ-xiNpYGNA7QBU';
-      await ref.read(slotProvider.notifier).getBookingTimeSlot(selectedDate, company_id, token);
-      ref.read(userProvider.notifier).getServiceProviderStaffs(company_id, token);
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (ctx) => ReviewBooking(
-            company_id: company_id,
+      if (ref.read(profileProvider).token == '') {
+        Navigator.push(context, MaterialPageRoute(builder: (ctx) => Login()));
+      } else {
+        await ref
+            .read(slotProvider.notifier)
+            .getBookingTimeSlot(selectedDate, company_id, ref.read(profileProvider).token);
+        ref.read(userProvider.notifier).getServiceProviderStaffs(company_id, ref.read(profileProvider).token);
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (ctx) => ReviewBooking(
+              company_id: company_id,
+            ),
           ),
-        ),
-      );
+        );
+      }
     } catch (e) {
       setState(() {
         errorMessage = e.toString().replaceAll('Exception: ', '');
