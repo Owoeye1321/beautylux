@@ -1,4 +1,3 @@
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/provider/display.dart';
 import 'package:flutter/material.dart';
@@ -22,28 +21,29 @@ class LogaInputField extends ConsumerStatefulWidget {
   final bool prefixImage;
   final Image? imageIcon;
   final String? errorText;
+  Function onChange;
 
-  const LogaInputField({
-    super.key,
-    required this.hintText,
-    required this.verticalPadding,
-    required this.horizontalPadding,
-    required this.alterVisibility,
-    required this.hideTextInput,
-    this.prefixIconData,
-    required this.setIconSize,
-    this.iconSize,
-    this.iconColor,
-    required this.setIconColor,
-    required this.setIconPadding,
-    this.iconPadding,
-    required this.buttonBorder,
-    required this.prefixIcon,
-    required this.prefixImage,
-    required this.controller,
-    this.errorText,
-    this.imageIcon,
-  });
+  LogaInputField(
+      {super.key,
+      required this.hintText,
+      required this.verticalPadding,
+      required this.horizontalPadding,
+      required this.alterVisibility,
+      required this.hideTextInput,
+      this.prefixIconData,
+      required this.setIconSize,
+      this.iconSize,
+      this.iconColor,
+      required this.setIconColor,
+      required this.setIconPadding,
+      this.iconPadding,
+      required this.buttonBorder,
+      required this.prefixIcon,
+      required this.prefixImage,
+      required this.controller,
+      this.errorText,
+      this.imageIcon,
+      required this.onChange});
 
   @override
   ConsumerState<LogaInputField> createState() => _LogaInputFieldState();
@@ -66,9 +66,9 @@ class _LogaInputFieldState extends ConsumerState<LogaInputField> {
         TextField(
           controller: widget.controller,
           keyboardType: TextInputType.text,
-          // inputFormatters: [
-          //   FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]')) // Only letters and spaces
-          // ],
+          onChanged: (value) {
+            widget.onChange(value);
+          },
           style: TextStyle(
             color: ref.watch(displayProvider).colorScheme.onSurface,
             fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,

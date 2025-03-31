@@ -152,6 +152,7 @@ class _RegisterState extends ConsumerState<Register> {
               height: 70,
             ),
             LogaInputField(
+              onChange: (value){},
               hintText: "First Name",
               verticalPadding: 15,
               horizontalPadding: 35,
@@ -171,6 +172,7 @@ class _RegisterState extends ConsumerState<Register> {
               height: 15,
             ),
             LogaInputField(
+              onChange: (value){},
               hintText: "Email",
               verticalPadding: 15,
               setIconSize: false,
@@ -190,6 +192,7 @@ class _RegisterState extends ConsumerState<Register> {
               height: 15,
             ),
             LogaInputField(
+              onChange: (value){},
               hintText: "********",
               setIconColor: false,
               verticalPadding: 15,

@@ -7,6 +7,7 @@ import 'package:logaluxe_users/provider/category.dart';
 import 'package:logaluxe_users/provider/service.dart';
 import 'package:logaluxe_users/widget/category.dart';
 import 'package:logaluxe_users/widget/service-provider/about_content.dart';
+import 'package:logaluxe_users/widget/service-provider/product_purchase_list.dart';
 import 'package:logaluxe_users/widget/service-provider/provider_profile_features.dart';
 import 'package:logaluxe_users/widget/service-provider/provider_profile_tabs.dart';
 import 'package:logaluxe_users/widget/service-provider/services_purchase_list.dart';
@@ -256,7 +257,7 @@ class _ProviderProfileState extends ConsumerState<ProviderProfile> {
                 : currentIndex == 1
                     ? SizedBox(height: 320, child: AboutProvider(user: widget.user))
                     : currentIndex == 2
-                        ? Container()
+                        ? Container(height: 300, child: ProductPurchaseList())
                         : Container(),
           ],
         ),

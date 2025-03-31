@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logaluxe_users/model/recent.dart';
+import 'package:logaluxe_users/model/user.dart';
 import 'package:logaluxe_users/provider/recent.dart';
 import 'package:logaluxe_users/provider/user.dart';
 import 'package:logaluxe_users/widget/card/slot.dart';
@@ -26,11 +28,40 @@ class _SearchState extends ConsumerState<Search> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    searchTextController.dispose();
+  }
+
+  _fetchSearchDetails(String searchQuery) async {
+    try {
+      var providerNotifier = ref.read(recentSearchProvider.notifier);
+      List<UserModel> providerSearchResults = await providerNotifier.searchProvider(searchQuery);
+      if (providerSearchResults.isNotEmpty && searchQuery != '' && searchQuery.length > 3)
+        providerNotifier.addRecentSearches(RecentSearch(content: searchQuery, key: ObjectKey(searchQuery)));
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  _removeSearch(RecentSearch search) async {
+    try {
+      ref.read(recentSearchProvider.notifier).removeSearch(search);
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  _clearSearchHistory() {
+    ref.read(recentSearchProvider.notifier).clearSearchHistory();
+  }
+
+  @override
   Widget build(
     BuildContext context,
   ) {
-    var allSearches = ref.watch(recentSearchProvider);
-    var allUsers = ref.watch(userProvider).serviceProviders;
+    var searchHistory = ref.watch(recentSearchProvider);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
       child: Column(
@@ -42,6 +73,9 @@ class _SearchState extends ConsumerState<Search> {
           ),
           Container(
             child: LogaInputField(
+              onChange: (value) {
+                _fetchSearchDetails(value);
+              },
               hintText: "Enter address or city name",
               verticalPadding: 15,
               horizontalPadding: 10,
@@ -67,63 +101,87 @@ class _SearchState extends ConsumerState<Search> {
           SizedBox(
             height: 10,
           ),
-          RowText(rightText: "Clear all", leftText: "Recents", action: () {}),
+          RowText(
+            rightText: "Clear all",
+            leftText: "Recents",
+            action: () {
+              _clearSearchHistory();
+            },
+          ),
           SizedBox(
             height: 150,
-            child: SingleChildScrollView(
-              child: Column(
-                children: allSearches
-                    .map((search) => Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 10,
+            child: searchHistory.search.isEmpty
+                ? Container(
+                    height: 250,
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            height: 50,
+                            child: Image.asset(
+                              'images/empty.png',
+                              color: ref.watch(displayProvider).colorScheme.onPrimary,
+                            ),
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              LogaText(
-                                content: search.content,
-                                color: ref.watch(displayProvider).colorScheme.outline,
-                                fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize! as double,
-                                fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
+                          SizedBox(
+                            height: 10,
+                          ),
+                          LogaText(
+                              content: "No Recent Search",
+                              color: ref.watch(displayProvider).colorScheme.onSurface,
+                              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
+                              fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight),
+                        ],
+                      ),
+                    ),
+                  )
+                : SingleChildScrollView(
+                    child: Column(
+                      children: searchHistory.search
+                          .map(
+                            (search) => Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 10,
                               ),
-                              GestureDetector(
-                                onTap: () {},
-                                child:
-                                    Icon(Icons.close, color: ref.watch(displayProvider).colorScheme.outline),
-                              )
-                            ],
-                          ),
-                        ))
-                    .toList(),
-              ),
-            ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      _fetchSearchDetails(search.content);
+                                    },
+                                    child: LogaText(
+                                      content: search.content,
+                                      color: ref.watch(displayProvider).colorScheme.outline,
+                                      fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize! as double,
+                                      fontweight:
+                                          Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      _removeSearch(search);
+                                    },
+                                    child: Icon(Icons.close,
+                                        color: ref.watch(displayProvider).colorScheme.outline),
+                                  )
+                                ],
+                              ),
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  ),
           ),
           SizedBox(
             height: 10,
           ),
-
-          // SizedBox(
-          //   height: 140,
-          //   child: GridView.builder(
-          //     padding: EdgeInsets.all(0),
-          //     physics: ScrollPhysics(),
-          //     // physics: NeverScrollableScrollPhysics(),
-          //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          //       crossAxisCount: 3,
-          //       mainAxisExtent: 40,
-          //       mainAxisSpacing: 20,
-          //       crossAxisSpacing: 10,
-          //     ),
-          //     itemCount: allSearches.length,
-          //     itemBuilder: (context, index) =>
-          //        // TimeSlot(content: allSearches[index].content, slot_ref: allSearches[index].content),
-          //   ),
-          // ),
           SizedBox(
             height: 30,
           ),
           LogaText(
-            content: "Suggestions for you",
+            content: "Service Providers",
             color: ref.watch(displayProvider).colorScheme.onSurface,
             fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize! as double,
             fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
@@ -131,9 +189,44 @@ class _SearchState extends ConsumerState<Search> {
           SizedBox(
             height: 15,
           ),
-          ServiceListView(
-            allUsers: allUsers,
-          )
+          searchHistory.loadingState == true
+              ? Container(
+                  padding: EdgeInsets.only(top: 30),
+                  child: Center(
+                    child: CircularProgressIndicator.adaptive(
+                      backgroundColor: ref.watch(displayProvider).colorScheme.onSurface,
+                    ),
+                  ),
+                )
+              : searchHistory.providers.isEmpty
+                  ? Container(
+                      height: 250,
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              height: 50,
+                              child: Image.asset(
+                                'images/empty.png',
+                                color: ref.watch(displayProvider).colorScheme.onPrimary,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            LogaText(
+                                content: "No Search History",
+                                color: ref.watch(displayProvider).colorScheme.onSurface,
+                                fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
+                                fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight),
+                          ],
+                        ),
+                      ),
+                    )
+                  : ServiceListView(
+                      allUsers: ref.watch(recentSearchProvider).providers,
+                    )
         ],
       ),
     );

@@ -15,9 +15,8 @@ import 'package:logaluxe_users/widget/nav_bar.dart';
 import 'package:toastification/toastification.dart';
 
 class Home extends ConsumerStatefulWidget {
-  const Home({
-    super.key,
-  });
+  final int? initPage;
+  const Home({super.key, this.initPage});
 
   @override
   ConsumerState<Home> createState() => _HomeState();
@@ -261,7 +260,11 @@ class _HomeState extends ConsumerState<Home> {
                     key: ValueKey(0),
                     bookNow: () {
                       _bookNow();
-                    })
+                    },
+                    viewHistory: (int current, int next) {
+                      _switchContent(next, current);
+                    },
+                  )
                 : currentIndex == 1
                     ? Search(
                         key: ValueKey(1),

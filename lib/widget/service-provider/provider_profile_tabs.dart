@@ -108,32 +108,32 @@ class _ServiceProviderTabsState extends ConsumerState<ServiceProviderTabs> {
             ),
           ],
         ),
-        Column(
-          children: [
-            TextButton(
-              onPressed: () {
-                _changeIndex(3);
-              },
-              style: ButtonStyle(
-                padding: WidgetStateProperty.all(EdgeInsets.only(top: 20)),
-              ),
-              child: LogaText(
-                content: "Reviews",
-                color: activeIndex == 3 ? activeColor : inactiveColor,
-                fontSize: fontSize,
-                fontweight: fontWeight,
-              ),
-            ),
-            Container(
-              width: 63,
-              height: 3,
-              decoration: BoxDecoration(
-                color: activeIndex == 3 ? activeColor : Colors.transparent,
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-          ],
-        ),
+        // Column(
+        //   children: [
+        //     TextButton(
+        //       onPressed: () {
+        //         _changeIndex(3);
+        //       },
+        //       style: ButtonStyle(
+        //         padding: WidgetStateProperty.all(EdgeInsets.only(top: 20)),
+        //       ),
+        //       child: LogaText(
+        //         content: "Reviews",
+        //         color: activeIndex == 3 ? activeColor : inactiveColor,
+        //         fontSize: fontSize,
+        //         fontweight: fontWeight,
+        //       ),
+        //     ),
+        //     Container(
+        //       width: 63,
+        //       height: 3,
+        //       decoration: BoxDecoration(
+        //         color: activeIndex == 3 ? activeColor : Colors.transparent,
+        //         borderRadius: BorderRadius.circular(10),
+        //       ),
+        //     ),
+        //   ],
+        // ),
       ],
     );
   }

@@ -109,18 +109,18 @@ class UserModel {
       var company_id =
           eachStaff['company_id'].toString() == "null" ? "00" : eachStaff['company_id'].toString();
       DateTime date = DateTime.parse(eachStaff['createdAt']);
-
       UserModel user = UserModel(
-          id: eachStaff['_id'],
-          first_name: first_name,
-          bio: bio,
-          token: '',
-          business_name: business_name,
-          business_address: business_address,
-          createdAt: DateFormat.jm().format(date),
-          company_id: company_id,
-          opening_time: opening_time,
-          closing_time: closing_time);
+        id: eachStaff['_id'],
+        first_name: first_name,
+        bio: bio,
+        token: '',
+        business_name: business_name,
+        business_address: business_address,
+        createdAt: DateFormat.jm().format(date),
+        company_id: company_id,
+        opening_time: opening_time,
+        closing_time: closing_time,
+      );
 
       allUsers.add(user);
     }

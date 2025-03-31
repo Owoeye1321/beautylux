@@ -1,4 +1,7 @@
+import 'package:flutter/widgets.dart';
+
 class RecentSearch {
   final String content;
-  RecentSearch({required this.content});
+  final ObjectKey key;
+  RecentSearch({required this.content, required this.key});
 }

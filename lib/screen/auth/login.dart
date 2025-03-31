@@ -136,6 +136,7 @@ class _LoginState extends ConsumerState<Login> {
               height: 100,
             ),
             LogaInputField(
+              onChange: (value) {},
               hintText: "Email",
               verticalPadding: 15,
               horizontalPadding: 35,
@@ -155,6 +156,7 @@ class _LoginState extends ConsumerState<Login> {
               height: 20,
             ),
             LogaInputField(
+              onChange: (value) {},
               hintText: "********",
               verticalPadding: 15,
               horizontalPadding: 35,

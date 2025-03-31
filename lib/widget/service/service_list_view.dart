@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/model/user.dart';
+import 'package:logaluxe_users/provider/display.dart';
 import 'package:logaluxe_users/provider/user.dart';
 import 'package:logaluxe_users/screen/service-provider/view_provider.dart';
 import 'package:logaluxe_users/widget/loga_text.dart';

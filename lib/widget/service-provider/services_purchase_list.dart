@@ -107,6 +107,5 @@ class _ServicePurchaseListState extends ConsumerState<ServicePurchaseList> {
             ),
           )
         : body;
-    ;
   }
 }

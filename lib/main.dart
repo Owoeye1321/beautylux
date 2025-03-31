@@ -19,13 +19,17 @@ void main() async {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
-  ]).then((_) {
-    runApp(Phoenix(
-      child: const ProviderScope(
-        child: MyApp(),
-      ),
-    ));
-  });
+  ]).then(
+    (_) {
+      runApp(
+        Phoenix(
+          child: const ProviderScope(
+            child: MyApp(),
+          ),
+        ),
+      );
+    },
+  );
 }
 
 class MyApp extends ConsumerWidget {

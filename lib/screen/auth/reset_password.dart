@@ -130,6 +130,7 @@ class _ResetPasswordState extends ConsumerState<ResetPassword> {
               height: 70,
             ),
             LogaInputField(
+              onChange: (value){},
               hintText: "Password",
               verticalPadding: 15,
               horizontalPadding: 35,
@@ -149,6 +150,7 @@ class _ResetPasswordState extends ConsumerState<ResetPassword> {
               height: 15,
             ),
             LogaInputField(
+              onChange: (value){},
               hintText: "Confirm Password",
               verticalPadding: 15,
               horizontalPadding: 35,

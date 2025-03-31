@@ -115,6 +115,7 @@ class _ForgotPasswordState extends ConsumerState<ForgotPassword> {
               height: 70,
             ),
             LogaInputField(
+              onChange: (value) {},
               hintText: "Email",
               buttonBorder: 100,
               verticalPadding: 15,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logaluxe_users/model/recent.dart';
 import 'package:logaluxe_users/model/user.dart';
+import 'package:logaluxe_users/provider/recent.dart';
 import 'package:logaluxe_users/provider/user.dart';
 import 'package:logaluxe_users/screen/pages/search.dart';
 import 'package:logaluxe_users/widget/category.dart';
@@ -11,7 +13,8 @@ import 'package:logaluxe_users/widget/service/service_list_view.dart';
 
 class MarketPlace extends ConsumerStatefulWidget {
   Function() bookNow;
-  MarketPlace({super.key, required this.bookNow});
+  Function viewHistory;
+  MarketPlace({super.key, required this.bookNow, required this.viewHistory});
 
   @override
   ConsumerState<MarketPlace> createState() => _MarketPlaceState();
@@ -42,6 +45,18 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
     });
   }
 
+  _fetchSearchDetails(String searchQuery) async {
+    try {
+      var providerNotifier = ref.read(recentSearchProvider.notifier);
+      List<UserModel> providerSearchResults = await providerNotifier.searchProvider(searchQuery);
+      if (providerSearchResults.isNotEmpty && searchQuery != '' && searchQuery.length > 3)
+        providerNotifier.addRecentSearches(RecentSearch(content: searchQuery, key: ObjectKey(searchQuery)));
+      widget.viewHistory(0, 1);
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -64,6 +79,9 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
         ),
         Container(
           child: LogaInputField(
+            onChange: (value) {
+              _fetchSearchDetails(value);
+            },
             hintText: "Enter address or city name",
             verticalPadding: 15,
             horizontalPadding: 10,
