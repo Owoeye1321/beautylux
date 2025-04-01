@@ -38,8 +38,8 @@ class _SearchState extends ConsumerState<Search> {
     try {
       var providerNotifier = ref.read(recentSearchProvider.notifier);
       List<UserModel> providerSearchResults = await providerNotifier.searchProvider(searchQuery);
-      if (providerSearchResults.isNotEmpty && searchQuery != '' && searchQuery.length > 3)
-        providerNotifier.addRecentSearches(RecentSearch(content: searchQuery, key: ObjectKey(searchQuery)));
+      // if (providerSearchResults.isNotEmpty && searchQuery != '' && searchQuery.length > 3)
+      //   providerNotifier.addRecentSearches(RecentSearch(content: searchQuery, key: ObjectKey(searchQuery)));
     } catch (e) {
       print(e.toString());
     }

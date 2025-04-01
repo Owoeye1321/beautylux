@@ -51,7 +51,6 @@ class UserNotifier extends StateNotifier<UserProviderModel> {
         throw new Exception(errorMessage);
       }
     } catch (e) {
-      print(e.toString());
       throw Exception(e.toString());
     }
   }

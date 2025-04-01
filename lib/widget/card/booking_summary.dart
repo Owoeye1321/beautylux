@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:logaluxe_users/provider/booking.dart';
 import 'package:logaluxe_users/provider/display.dart';
 import 'package:logaluxe_users/widget/loga_text.dart';
@@ -34,14 +35,13 @@ class _BookingSummaryState extends ConsumerState<BookingSummary> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         image: DecorationImage(
-                            image: booking.service?.image_url != ''
-                                ? NetworkImage(
-                                    booking.service?.image_url! as String,
-                                  )
-                                : AssetImage('images/home.png') as ImageProvider,
-                            fit: BoxFit.cover
-                            // height: double.infinity,
-                            ),
+                          image: booking.service?.image_url != ''
+                              ? NetworkImage(
+                                  booking.service?.image_url! as String,
+                                )
+                              : AssetImage('images/home.png') as ImageProvider,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                     Padding(
@@ -72,8 +72,11 @@ class _BookingSummaryState extends ConsumerState<BookingSummary> {
                                 color: ref.watch(displayProvider).colorScheme.outline,
                                 size: 20,
                               ),
+                              SizedBox(
+                                width: 5,
+                              ),
                               LogaText(
-                                content: "Today,11:00 AM",
+                                content: DateFormat('EEEE, h:mm a').format(DateTime.now()),
                                 color: ref.watch(displayProvider).colorScheme.outline,
                                 fontSize: Theme.of(context).textTheme.bodySmall?.fontSize as double,
                                 fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
@@ -84,6 +87,32 @@ class _BookingSummaryState extends ConsumerState<BookingSummary> {
                       ),
                     )
                   ],
+                )
+              : Divider(),
+          SizedBox(
+            height: 20,
+          ),
+          booking.products.isNotEmpty
+              ? Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      LogaText(
+                        content: "Products",
+                        color: ref.watch(displayProvider).colorScheme.onSurface,
+                        fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize as double,
+                        fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
+                      ),
+                      ...booking.products.map(
+                        (product) => RowText(
+                            rightText: 'Remove',
+                            leftText: product.name,
+                            action: () {
+                              ref.read(bookingProvider.notifier).removeProduct(product);
+                            }),
+                      )
+                    ],
+                  ),
                 )
               : Divider(),
           Divider(

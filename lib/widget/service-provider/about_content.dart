@@ -53,7 +53,7 @@ class AboutProvider extends ConsumerWidget {
           Container(
             width: double.infinity,
             decoration: BoxDecoration(
-              color: ref.watch(displayProvider).colorScheme.onInverseSurface.withOpacity(0.5),
+              color: ref.watch(displayProvider).colorScheme.onInverseSurface.withAlpha((0.5 * 225).toInt()),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Padding(
@@ -168,64 +168,64 @@ class AboutProvider extends ConsumerWidget {
               ),
             ),
           ),
+          // SizedBox(
+          //   height: 25,
+          // ),
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: 10),
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: [
+          //       LogaText(
+          //         content: "Gallery",
+          //         color: ref.watch(displayProvider).colorScheme.onSurface,
+          //         fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize as double,
+          //         fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
+          //       ),
+          //       GestureDetector(
+          //         onTap: () {},
+          //         child: LogaText(
+          //           content: "View All",
+          //           color: ref.watch(displayProvider).colorScheme.onPrimary,
+          //           fontSize: Theme.of(context).textTheme.bodySmall?.fontSize as double,
+          //           fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
+          // SizedBox(
+          //   height: 20,
+          // ),
+          // SizedBox(
+          //   height: 150,
+          //   child: Padding(
+          //     padding: EdgeInsets.symmetric(horizontal: 10),
+          //     child: SingleChildScrollView(
+          //       scrollDirection: Axis.horizontal,
+          //       child: Row(
+          //         children: allGalary.map(
+          //           (eachImage) {
+          //             return Container(
+          //               height: 150,
+          //               width: 150,
+          //               margin: EdgeInsets.only(right: 15),
+          //               decoration: BoxDecoration(
+          //                 borderRadius: BorderRadius.circular(20),
+          //                 image: DecorationImage(
+          //                   image: NetworkImage(eachImage.image_url),
+          //                   fit: BoxFit.cover,
+          //                 ),
+          //               ),
+          //             );
+          //           },
+          //         ).toList(),
+          //       ),
+          //     ),
+          //   ),
+          // ),
           SizedBox(
-            height: 25,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                LogaText(
-                  content: "Gallery",
-                  color: ref.watch(displayProvider).colorScheme.onSurface,
-                  fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize as double,
-                  fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
-                ),
-                GestureDetector(
-                  onTap: () {},
-                  child: LogaText(
-                    content: "View All",
-                    color: ref.watch(displayProvider).colorScheme.onPrimary,
-                    fontSize: Theme.of(context).textTheme.bodySmall?.fontSize as double,
-                    fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          SizedBox(
-            height: 150,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: allGalary.map(
-                    (eachImage) {
-                      return Container(
-                        height: 150,
-                        width: 150,
-                        margin: EdgeInsets.only(right: 15),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          image: DecorationImage(
-                            image: NetworkImage(eachImage.image_url),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      );
-                    },
-                  ).toList(),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 55,
+            height: 15,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -253,22 +253,47 @@ class AboutProvider extends ConsumerWidget {
           SizedBox(
             height: 20,
           ),
-          SizedBox(
-            height: 270,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: allStaffs.map(
-                    (eachStaff) {
-                      return StaffContainer(staff: eachStaff);
-                    },
-                  ).toList(),
+          allStaffs.isNotEmpty
+              ? SizedBox(
+                  height: 270,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: allStaffs.map(
+                          (eachStaff) {
+                            return StaffContainer(staff: eachStaff);
+                          },
+                        ).toList(),
+                      ),
+                    ),
+                  ),
+                )
+              : Container(
+                  height: 200,
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'images/empty.png',
+                          color: ref.watch(displayProvider).colorScheme.onPrimary,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        LogaText(
+                          content: "Empty Products",
+                          color: ref.watch(displayProvider).colorScheme.onSurface,
+                          fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
+                          fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ),
         ],
       ),
     );

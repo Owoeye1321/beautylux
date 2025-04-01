@@ -92,7 +92,7 @@ class _ServiceProviderTabsState extends ConsumerState<ServiceProviderTabs> {
                 padding: WidgetStateProperty.all(EdgeInsets.only(top: 20)),
               ),
               child: LogaText(
-                content: "Product",
+                content: "Products",
                 color: activeIndex == 2 ? activeColor : inactiveColor,
                 fontSize: fontSize,
                 fontweight: fontWeight,

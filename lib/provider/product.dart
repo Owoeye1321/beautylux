@@ -17,7 +17,8 @@ class ProductNotifier extends StateNotifier<ProductProviderModel> {
   Future<List<ProductModel>> fetchProduct(String company_id) async {
     state = ProductProviderModel(products: state.products, loadingState: true);
     try {
-      var response = await http.get(Uri.parse('${dotenv.env['API_URL']}/company?ocmpany_id=${company_id}'));
+      var response =
+          await http.get(Uri.parse('${dotenv.env['API_URL']}/product/company?company_id=${company_id}'));
       if (response.statusCode == 200) {
         state = ProductProviderModel(
             products: ProductModel.fromJsonList(jsonDecode(response.body)), loadingState: false);

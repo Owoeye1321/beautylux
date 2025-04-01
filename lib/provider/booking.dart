@@ -26,24 +26,23 @@ class BookingNotifier extends StateNotifier<BookingModel> {
   }
 
   addProduct(ProductModel product) {
-    if (state.products!.contains(product)) {
+    var existingProduct = state.products.where((each) => each.id == product.id).toList();
+    if (existingProduct.isNotEmpty) {
       return ResponseModel(message: "Product already exist", status: "Failed");
     }
     state = BookingModel(
-        service: state.service, products: [...state.products!, product], loadingState: state.loadingState);
+        service: state.service, products: [...state.products, product], loadingState: state.loadingState);
     return ResponseModel(message: "Product added", status: "Success");
   }
 
   removeProduct(ProductModel product) {
-    if (state.products!.contains(product)) {
-      state = BookingModel(
-        service: state.service,
-        loadingState: state.loadingState,
-        products:
-            state.products!.where((eachProduct) => eachProduct.product_ref != product.product_ref).toList(),
-      );
-      return ResponseModel(message: "Product removed successfully", status: "Success");
-    }
+    state = BookingModel(
+      service: state.service,
+      loadingState: state.loadingState,
+      products:
+          state.products.where((eachProduct) => eachProduct.product_ref != product.product_ref).toList(),
+    );
+    return ResponseModel(message: "Product removed successfully", status: "Success");
   }
 
   addBookingSlot(SlotModel slot) {

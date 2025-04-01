@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
@@ -52,6 +53,8 @@ class RecentSearchNotifier extends StateNotifier<RecentSearchModel> {
               jsonDecode(response.body),
             ),
             loadingState: false);
+        if (state.providers.isNotEmpty && searchQuery.length > 2)
+          this.addRecentSearches(RecentSearch(content: searchQuery, key: ObjectKey(searchQuery)));
         return state.providers;
       } else {
         Map<String, dynamic> errorResponse = jsonDecode(response.body);

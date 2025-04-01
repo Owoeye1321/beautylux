@@ -12,15 +12,20 @@ class AppointmentCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
+      height: 108,
+      decoration: BoxDecoration(
+        color: ref.watch(displayProvider).colorScheme.onTertiaryContainer.withAlpha((0.2 * 255).toInt()),
+        borderRadius: BorderRadius.circular(15),
+      ),
       margin: EdgeInsets.only(bottom: 10),
       width: double.infinity,
       child: Row(
         children: [
           Container(
-            height: 100,
+            height: 108,
             width: 110,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(15),
               image: DecorationImage(
                 image: appointment.service_id.image_url != null && appointment.service_id.image_url != ''
                     ? NetworkImage(appointment.service_id.image_url!)
@@ -30,7 +35,7 @@ class AppointmentCard extends ConsumerWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 5, left: 10, right: 0),
+            padding: const EdgeInsets.only(top: 5, left: 10, right: 5, bottom: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -49,14 +54,14 @@ class AppointmentCard extends ConsumerWidget {
                       ),
                     ),
                     Container(
-                      width: 100,
+                      width: 94,
                       alignment: Alignment.bottomRight,
+                      padding: EdgeInsets.only(top: 5),
                       child: appointment.status == "booked"
                           ? Container(
                               padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                               decoration: BoxDecoration(
-                                color:
-                                    ref.watch(displayProvider).colorScheme.onInverseSurface.withOpacity(0.3),
+                                color: ref.watch(displayProvider).colorScheme.onPrimary,
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: LogaText(
@@ -101,9 +106,6 @@ class AppointmentCard extends ConsumerWidget {
                   fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
                   fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
                 ),
-                SizedBox(
-                  height: 5,
-                ),
                 Row(
                   children: [
                     Icon(
@@ -136,7 +138,7 @@ class AppointmentCard extends ConsumerWidget {
                       width: 20,
                     ),
                     Container(
-                      width: 140,
+                      width: 130,
                       alignment: Alignment.bottomRight,
                       child: LogaText(
                         content: "\$${appointment.total_amount}",

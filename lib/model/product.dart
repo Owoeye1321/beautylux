@@ -8,7 +8,7 @@ class ProductModel {
   final String? iamge_url_4;
   final String? country;
   final String? state;
-  final String? product_category;
+  final String product_category;
   final String? currency;
   final String? service_id;
   final String name;
@@ -31,7 +31,7 @@ class ProductModel {
     required this.description,
     required this.location,
     required this.name,
-    this.product_category,
+    required this.product_category,
     required this.product_ref,
     this.service_id,
     this.state,
@@ -42,15 +42,15 @@ class ProductModel {
     List<ProductModel> allProducts = [];
     for (Map<String, dynamic> eachProduct in data['data']) {
       ProductModel product = ProductModel(
-        id: eachProduct['_id'],
-        iamge_url_1: eachProduct['iamge_url_1'].toString(),
-        amount: eachProduct['amount'],
-        description: eachProduct['description'],
-        location: eachProduct['location'],
-        name: eachProduct['name'],
-        product_ref: eachProduct['product_ref'],
-      );
-      allProducts.add(product);
+          id: eachProduct['_id'].toString(),
+          iamge_url_1: eachProduct['image_url_1'].toString(),
+          amount: eachProduct['amount'],
+          description: eachProduct['description'].toString(),
+          location: eachProduct['location'].toString(),
+          name: eachProduct['name'].toString(),
+          product_ref: eachProduct['product_ref'].toString(),
+          product_category: eachProduct['product_category'].toString());
+      print(product.iamge_url_1);
     }
     return allProducts;
   }

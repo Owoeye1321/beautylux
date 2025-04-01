@@ -69,9 +69,7 @@ class _HomeState extends ConsumerState<Home> {
   @override
   Widget build(BuildContext context) {
     _bookNow() {
-      print('hwllo');
       _switchContent(0, 1);
-      print(currentIndex);
     }
 
     String username = ref.watch(profileProvider).first_name;

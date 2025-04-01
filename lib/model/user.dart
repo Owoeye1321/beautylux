@@ -120,6 +120,7 @@ class UserModel {
         company_id: company_id,
         opening_time: opening_time,
         closing_time: closing_time,
+        currency: eachStaff['currency'].toString() == "null" ? "\$" : eachStaff['currency'].toString(),
       );
 
       allUsers.add(user);

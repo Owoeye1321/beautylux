@@ -39,13 +39,19 @@ class _CategoryRowScroll extends ConsumerState<CategoryRowScroll> {
   }
 
   fetchProviderCategoryService() async {
-    if (widget.user != null) {
+    if (widget.user != null && mounted) {
       ref.read(serviceProvider.notifier).resetServices();
       String companyId = widget.user!.company_id as String;
       String category_id = ref.read(categoryProvider).activeCategory!.id!;
       ServiceProviderModel response =
           await ref.read(serviceProvider.notifier).fetchServices(category_id, companyId);
     }
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
   }
 
   @override

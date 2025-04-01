@@ -19,14 +19,13 @@ class ServiceCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return GestureDetector(
-      onTap: () {},
+    return Container(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
         child: Container(
           height: 130,
           decoration: BoxDecoration(
-            color: ref.watch(displayProvider).colorScheme.onTertiaryContainer.withOpacity(0.2),
+            color: ref.watch(displayProvider).colorScheme.onTertiaryContainer.withAlpha((0.2 * 255).toInt()),
             borderRadius: BorderRadius.circular(15),
           ),
           child: Row(

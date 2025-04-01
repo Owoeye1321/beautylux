@@ -4,6 +4,7 @@ import 'package:logaluxe_users/model/service.dart';
 import 'package:logaluxe_users/model/user.dart';
 import 'package:logaluxe_users/provider/display.dart';
 import 'package:logaluxe_users/provider/category.dart';
+import 'package:logaluxe_users/provider/product.dart';
 import 'package:logaluxe_users/provider/service.dart';
 import 'package:logaluxe_users/widget/category.dart';
 import 'package:logaluxe_users/widget/service-provider/about_content.dart';
@@ -29,10 +30,11 @@ class _ProviderProfileState extends ConsumerState<ProviderProfile> {
 
   List<ServiceModel> allServices = [];
   int currentIndex = 0;
-  void _getCurrentIndex(int activeIndex) {
+  void _getCurrentIndex(int activeIndex) async {
     setState(() {
       currentIndex = activeIndex;
     });
+    if (activeIndex == 2) await ref.read(productProvider.notifier).fetchProduct(widget.user.company_id);
   }
 
   @override
@@ -138,21 +140,19 @@ class _ProviderProfileState extends ConsumerState<ProviderProfile> {
                             fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
                           ),
                         ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          "(6 packs available)",
-                          maxLines: 1, // Limits text to 2 lines
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            wordSpacing: 2,
-                            decoration: TextDecoration.none,
-                            color: ref.watch(displayProvider).colorScheme.onSurface,
-                            fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
-                            fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
-                          ),
-                        ),
+
+                        // Text(
+                        //   "(6 packs available)",
+                        //   maxLines: 1, // Limits text to 2 lines
+                        //   overflow: TextOverflow.ellipsis,
+                        //   style: TextStyle(
+                        //     wordSpacing: 2,
+                        //     decoration: TextDecoration.none,
+                        //     color: ref.watch(displayProvider).colorScheme.onSurface,
+                        //     fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
+                        //     fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
+                        //   ),
+                        // ),
                       ],
                     )
                   ],
@@ -160,59 +160,59 @@ class _ProviderProfileState extends ConsumerState<ProviderProfile> {
                 SizedBox(
                   height: 5,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.star,
-                          color: Colors.orange,
-                          size: 25,
-                        ),
-                        SizedBox(
-                          width: 8,
-                        ),
-                        Text(
-                          "4.7(2.7k)",
-                          maxLines: 1, // Limits text to 2 lines
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            wordSpacing: 2,
-                            color: ref.watch(displayProvider).colorScheme.outline,
-                            fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 65),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Icon(
-                            Icons.remove_red_eye,
-                            color: ref.watch(displayProvider).colorScheme.outline,
-                            size: 25,
-                          ),
-                          SizedBox(
-                            width: 8,
-                          ),
-                          Text(
-                            "10K views",
-                            maxLines: 1, // Limits text to 2 lines
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              wordSpacing: 2,
-                              color: ref.watch(displayProvider).colorScheme.outline,
-                              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                )
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     Row(
+                //       children: [
+                //         Icon(
+                //           Icons.star,
+                //           color: Colors.orange,
+                //           size: 25,
+                //         ),
+                //         SizedBox(
+                //           width: 8,
+                //         ),
+                //         Text(
+                //           "4.7(2.7k)",
+                //           maxLines: 1, // Limits text to 2 lines
+                //           overflow: TextOverflow.ellipsis,
+                //           style: TextStyle(
+                //             wordSpacing: 2,
+                //             color: ref.watch(displayProvider).colorScheme.outline,
+                //             fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+                //           ),
+                //         ),
+                //       ],
+                //     ),
+                //     Padding(
+                //       padding: const EdgeInsets.only(right: 65),
+                //       child: Row(
+                //         mainAxisAlignment: MainAxisAlignment.start,
+                //         children: [
+                //           Icon(
+                //             Icons.remove_red_eye,
+                //             color: ref.watch(displayProvider).colorScheme.outline,
+                //             size: 25,
+                //           ),
+                //           SizedBox(
+                //             width: 8,
+                //           ),
+                //           Text(
+                //             "10K views",
+                //             maxLines: 1, // Limits text to 2 lines
+                //             overflow: TextOverflow.ellipsis,
+                //             style: TextStyle(
+                //               wordSpacing: 2,
+                //               color: ref.watch(displayProvider).colorScheme.outline,
+                //               fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+                //             ),
+                //           ),
+                //         ],
+                //       ),
+                //     )
+                //   ],
+                // )
               ],
             ),
             SizedBox(
@@ -223,7 +223,7 @@ class _ProviderProfileState extends ConsumerState<ProviderProfile> {
               height: 10,
             ),
             Divider(
-              color: ref.watch(displayProvider).colorScheme.outline.withOpacity(0.5),
+              color: ref.watch(displayProvider).colorScheme.outline.withAlpha((0.5 * 255).toInt()),
             ),
             ServiceProviderTabs(
               getCurrentIndex: _getCurrentIndex,
@@ -257,7 +257,12 @@ class _ProviderProfileState extends ConsumerState<ProviderProfile> {
                 : currentIndex == 1
                     ? SizedBox(height: 320, child: AboutProvider(user: widget.user))
                     : currentIndex == 2
-                        ? Container(height: 300, child: ProductPurchaseList())
+                        ? Container(
+                            height: 300,
+                            child: ProductPurchaseList(
+                              currency: widget.user.currency!,
+                            ),
+                          )
                         : Container(),
           ],
         ),

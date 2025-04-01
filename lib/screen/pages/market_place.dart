@@ -40,17 +40,18 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
 
   fetchUsers() async {
     var users = await ref.read(userProvider.notifier).getServiceProviders();
-    setState(() {
-      allUsers = users.serviceProviders;
-    });
+    if (mounted)
+      setState(() {
+        allUsers = users.serviceProviders;
+      });
   }
 
   _fetchSearchDetails(String searchQuery) async {
     try {
       var providerNotifier = ref.read(recentSearchProvider.notifier);
       List<UserModel> providerSearchResults = await providerNotifier.searchProvider(searchQuery);
-      if (providerSearchResults.isNotEmpty && searchQuery != '' && searchQuery.length > 3)
-        providerNotifier.addRecentSearches(RecentSearch(content: searchQuery, key: ObjectKey(searchQuery)));
+      //if (providerSearchResults.isNotEmpty && searchQuery != '' && searchQuery.length > 3)
+      // providerNotifier.addRecentSearches(RecentSearch(content: searchQuery, key: ObjectKey(searchQuery)));
       widget.viewHistory(0, 1);
     } catch (e) {
       print(e.toString());
