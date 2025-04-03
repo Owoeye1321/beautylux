@@ -50,7 +50,7 @@ class ProductModel {
           name: eachProduct['name'].toString(),
           product_ref: eachProduct['product_ref'].toString(),
           product_category: eachProduct['product_category'].toString());
-      print(product.iamge_url_1);
+      allProducts.add(product);
     }
     return allProducts;
   }

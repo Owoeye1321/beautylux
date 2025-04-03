@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "763655628817",
+    "project_id": "logaluxe-8c36e",
+    "storage_bucket": "logaluxe-8c36e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:763655628817:android:9a3b08a14fd897d64aa9b0",
+        "android_client_info": {
+          "package_name": "com.example.logaluxe_users"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "763655628817-4h4bktr8rbktj09olnj7im3ncjrg0av5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDS2L1WC1HHMc3PPf64ZN0D-TYGILhYIOE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "763655628817-4h4bktr8rbktj09olnj7im3ncjrg0av5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
