@@ -215,7 +215,7 @@ class _ProfileMenu extends ConsumerState<ProfileMenu> {
                           content: "${totalCart}",
                           color: ref.watch(displayProvider).isLightMode
                               ? ref.watch(displayProvider).colorScheme.surface
-                              : ref.watch(displayProvider).colorScheme.outline,
+                              : ref.watch(displayProvider).colorScheme.onSurface,
                           fontSize: Theme.of(context).textTheme.displaySmall?.fontSize as double,
                           fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
                         ),

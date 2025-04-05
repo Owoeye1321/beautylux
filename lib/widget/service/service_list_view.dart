@@ -71,7 +71,6 @@ class ServiceListView extends ConsumerWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SizedBox(
-                                width: 130,
                                 child: Text(
                                   "Hair . Facial . 2+",
                                   maxLines: 1, // Limits text to 2 lines
@@ -89,28 +88,24 @@ class ServiceListView extends ConsumerWidget {
                                   Icon(
                                     Icons.star,
                                     color: Colors.orange,
-                                    size: 20,
+                                    size: 15,
                                   ),
                                   SizedBox(
                                     width: 5,
                                   ),
-                                  Text(
-                                    "4.7(2.7)",
-                                    maxLines: 1, // Limits text to 2 lines
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                      wordSpacing: 2,
-                                      color: Theme.of(context).colorScheme.onSurface,
-                                      fontSize: Theme.of(context).textTheme.displaySmall?.fontSize!,
-                                      fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
-                                    ),
+                                  LogaText(
+                                    content: "4.7(2.7)",
+                                    color: Theme.of(context).colorScheme.onSurface,
+                                    fontSize: Theme.of(context).textTheme.displaySmall?.fontSize! as double,
+                                    fontweight:
+                                        Theme.of(context).textTheme.bodyMedium?.fontWeight! as FontWeight,
                                   ),
                                 ],
                               ),
                             ],
                           ),
                           SizedBox(
-                            width: 170,
+                            width: 155,
                             child: LogaText(
                               content: allUsers[index].business_name,
                               setMaxLine: true,
@@ -137,7 +132,7 @@ class ServiceListView extends ConsumerWidget {
                               ),
                               Container(
                                 padding: EdgeInsets.only(top: 4),
-                                width: 120,
+                                width: 115,
                                 child: Text(
                                   allUsers[index].business_address,
                                   maxLines: 2, // Limits text to 2 lines
@@ -177,7 +172,7 @@ class ServiceListView extends ConsumerWidget {
                             children: [
                               Container(
                                 height: 30,
-                                width: 70,
+                                //width: 70,
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
                                   color: ref.watch(displayProvider).isLightMode
@@ -200,12 +195,12 @@ class ServiceListView extends ConsumerWidget {
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                width: 80,
-                              ),
+                              // SizedBox(
+                              //   width: 80,
+                              // ),
                               Container(
                                 height: 30,
-                                width: 30,
+                                //width: 32,
                                 decoration: BoxDecoration(
                                   color: ref.watch(displayProvider).isLightMode
                                       ? ref.watch(displayProvider).colorScheme.surface
@@ -213,14 +208,15 @@ class ServiceListView extends ConsumerWidget {
                                   borderRadius: BorderRadius.circular(30),
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsets.only(right: 1, top: 3),
+                                  padding: EdgeInsets.symmetric(vertical: 2, horizontal: 3),
                                   child: Icon(
                                     Icons.favorite_border,
-                                    size: 25,
+                                    size: 23,
                                     color: Theme.of(context).colorScheme.onPrimary,
                                   ),
                                 ),
                               ),
+                              // ),
                             ],
                           )
                         ],

@@ -128,181 +128,188 @@ class ViewProvider extends ConsumerWidget {
           ),
           Positioned.fill(
             top: 400,
-            bottom: Platform.isIOS ? 250 : 140,
+            bottom: Platform.isIOS ? 200 : 140,
             right: 20,
             left: 20,
-            child: Container(
-              decoration: BoxDecoration(
-                color: ref.watch(displayProvider).colorScheme.surface.withAlpha((0.7 * 255).toInt()),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  left: 30,
-                  top: 10,
+            child: Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: ref.watch(displayProvider).colorScheme.surface.withAlpha((0.7 * 255).toInt()),
+                  borderRadius: BorderRadius.circular(20),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Hair . Facial . Nail 2+",
-                          maxLines: 1, // Limits text to 2 lines
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    left: 30,
+                    top: 10,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Hair . Facial . Nail 2+",
+                            maxLines: 1, // Limits text to 2 lines
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              wordSpacing: 2,
+                              decoration: TextDecoration.none,
+                              color: ref.watch(displayProvider).colorScheme.onPrimary,
+                              fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
+                              fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
+                            ),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              color: ref.watch(displayProvider).colorScheme.onInverseSurface,
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(30),
+                                topLeft: Radius.circular(30),
+                              ),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                              child: Text(
+                                "OPEN",
+                                style: TextStyle(
+                                    decoration: TextDecoration.none,
+                                    color: ref.watch(displayProvider).isLightMode
+                                        ? ref.watch(displayProvider).colorScheme.surface
+                                        : ref.watch(displayProvider).colorScheme.onSurface,
+                                    fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+                                    fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      SizedBox(
+                        height: 30,
+                        child: Text(
+                          user.business_name,
+                          maxLines: 2, // Limits text to 2 lines
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                            wordSpacing: 2,
                             decoration: TextDecoration.none,
-                            color: ref.watch(displayProvider).colorScheme.onPrimary,
-                            fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
-                            fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
+                            color: ref.watch(displayProvider).colorScheme.onSurface,
+                            fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
+                            fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight,
                           ),
                         ),
-                        Container(
-                          decoration: BoxDecoration(
-                            color: ref.watch(displayProvider).colorScheme.onInverseSurface,
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(30),
-                              topLeft: Radius.circular(30),
-                            ),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                            child: Text(
-                              "OPEN",
-                              style: TextStyle(
-                                  decoration: TextDecoration.none,
-                                  color: ref.watch(displayProvider).isLightMode
-                                      ? ref.watch(displayProvider).colorScheme.surface
-                                      : ref.watch(displayProvider).colorScheme.onSurface,
-                                  fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
-                                  fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10),
-                    SizedBox(
-                      height: 30,
-                      child: Text(
-                        user.business_name,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        user.business_address,
                         maxLines: 2, // Limits text to 2 lines
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           decoration: TextDecoration.none,
-                          color: ref.watch(displayProvider).colorScheme.onSurface,
-                          fontSize: Theme.of(context).textTheme.titleMedium?.fontSize!,
-                          fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight,
+                          color: ref.watch(displayProvider).colorScheme.outline,
+                          fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
+                          fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      user.business_address,
-                      maxLines: 2, // Limits text to 2 lines
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        decoration: TextDecoration.none,
-                        color: ref.watch(displayProvider).colorScheme.outline,
-                        fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
-                        fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
+                      SizedBox(
+                        height: 15,
                       ),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.star,
-                          color: Colors.orange,
-                          size: 20,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          "4.7(2.7)",
-                          maxLines: 1, // Limits text to 2 lines
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            wordSpacing: 2,
-                            decoration: TextDecoration.none,
-                            color: ref.watch(displayProvider).colorScheme.onSurface,
-                            fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
-                            fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.star,
+                            color: Colors.orange,
+                            size: 20,
                           ),
-                        ),
-                        SizedBox(
-                          width: 40,
-                        ),
-                        Icon(
-                          Icons.local_offer,
-                          color: ref.watch(displayProvider).colorScheme.onPrimary,
-                          size: 15,
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          "-58%",
-                          maxLines: 1, // Limits text to 2 lines
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            wordSpacing: 2,
-                            decoration: TextDecoration.none,
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            "4.7(2.7)",
+                            maxLines: 1, // Limits text to 2 lines
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              wordSpacing: 2,
+                              decoration: TextDecoration.none,
+                              color: ref.watch(displayProvider).colorScheme.onSurface,
+                              fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
+                              fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 40,
+                          ),
+                          Icon(
+                            Icons.local_offer,
                             color: ref.watch(displayProvider).colorScheme.onPrimary,
-                            fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
-                            fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
+                            size: 15,
                           ),
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          "(6 packs available)",
-                          maxLines: 1, // Limits text to 2 lines
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            wordSpacing: 2,
-                            decoration: TextDecoration.none,
-                            color: ref.watch(displayProvider).colorScheme.onSurface,
-                            fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
-                            fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
+                          SizedBox(
+                            width: 5,
                           ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 15),
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          minimumSize: WidgetStateProperty.all(Size(0, 0)),
-                          maximumSize: WidgetStateProperty.all(
-                            Size(300, 45),
+                          Text(
+                            "-58%",
+                            maxLines: 1, // Limits text to 2 lines
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              wordSpacing: 2,
+                              decoration: TextDecoration.none,
+                              color: ref.watch(displayProvider).colorScheme.onPrimary,
+                              fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
+                              fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
+                            ),
                           ),
-                        ),
-                        onPressed: () {
-                          _showProviderProfile(user);
-                        },
-                        child: Text(
-                          "Book Now",
-                          style: TextStyle(
-                            color: ref.watch(displayProvider).colorScheme.onSurface,
-                            fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
-                            fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
+                          SizedBox(
+                            width: 5,
                           ),
-                        ),
+                          Text(
+                            "(6 packs available)",
+                            maxLines: 1, // Limits text to 2 lines
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              wordSpacing: 2,
+                              decoration: TextDecoration.none,
+                              color: ref.watch(displayProvider).colorScheme.onSurface,
+                              fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
+                              fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
+                            ),
+                          ),
+                        ],
                       ),
-                    )
-                  ],
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 15),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ElevatedButton(
+                              style: ButtonStyle(
+                                minimumSize: WidgetStateProperty.all(Size(0, 0)),
+                                maximumSize: WidgetStateProperty.all(
+                                  Size(300, 45),
+                                ),
+                              ),
+                              onPressed: () {
+                                _showProviderProfile(user);
+                              },
+                              child: Text(
+                                "Book Now",
+                                style: TextStyle(
+                                  color: ref.watch(displayProvider).colorScheme.onSurface,
+                                  fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+                                  fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),

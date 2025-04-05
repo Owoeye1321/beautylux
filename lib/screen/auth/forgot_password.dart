@@ -114,22 +114,30 @@ class _ForgotPasswordState extends ConsumerState<ForgotPassword> {
             const SizedBox(
               height: 70,
             ),
-            LogaInputField(
-              onChange: (value) {},
-              hintText: "Email",
-              buttonBorder: 100,
-              verticalPadding: 15,
-              horizontalPadding: 35,
-              alterVisibility: false,
-              hideTextInput: false,
-              prefixIconData: Icons.email,
-              setIconSize: false,
-              prefixIcon: true,
-              prefixImage: false,
-              setIconColor: false,
-              setIconPadding: false,
-              controller: emailTextController,
-              errorText: emailError,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 370,
+                  child: LogaInputField(
+                    onChange: (value) {},
+                    hintText: "Email",
+                    buttonBorder: 100,
+                    verticalPadding: 15,
+                    horizontalPadding: 35,
+                    alterVisibility: false,
+                    hideTextInput: false,
+                    prefixIconData: Icons.email,
+                    setIconSize: false,
+                    prefixIcon: true,
+                    prefixImage: false,
+                    setIconColor: false,
+                    setIconPadding: false,
+                    controller: emailTextController,
+                    errorText: emailError,
+                  ),
+                ),
+              ],
             ),
             const SizedBox(
               height: 10,
@@ -172,7 +180,7 @@ class _ForgotPasswordState extends ConsumerState<ForgotPassword> {
                   style: ButtonStyle(
                     minimumSize: WidgetStateProperty.all(Size(0, 0)),
                     maximumSize: WidgetStateProperty.all(
-                      Size(370, 50),
+                      Size(360, 50),
                     ),
                     padding: WidgetStateProperty.all(
                       EdgeInsets.symmetric(vertical: 3),

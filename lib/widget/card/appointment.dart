@@ -46,7 +46,6 @@ class AppointmentCard extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
-                        width: 140,
                         child: LogaText(
                           content: appointment.service_id?.name! as String,
                           color: ref.watch(displayProvider).colorScheme.onSurface,
@@ -55,7 +54,6 @@ class AppointmentCard extends ConsumerWidget {
                         ),
                       ),
                       Container(
-                        width: 94,
                         alignment: Alignment.bottomRight,
                         padding: EdgeInsets.only(top: 5),
                         child: appointment.status == "booked"
@@ -126,6 +124,7 @@ class AppointmentCard extends ConsumerWidget {
                     ],
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
                         child: LogaText(
@@ -135,11 +134,7 @@ class AppointmentCard extends ConsumerWidget {
                           fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
                         ),
                       ),
-                      SizedBox(
-                        width: 20,
-                      ),
                       Container(
-                        width: 130,
                         alignment: Alignment.bottomRight,
                         child: LogaText(
                           content: "\$${appointment.total_amount}",

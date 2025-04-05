@@ -65,7 +65,6 @@ class _ProductCard extends ConsumerState<ProductCard> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
-                        width: 125,
                         child: LogaText(
                           content: widget.product.name,
                           color: ref.watch(displayProvider).colorScheme.onSurface,
@@ -74,7 +73,6 @@ class _ProductCard extends ConsumerState<ProductCard> {
                         ),
                       ),
                       Container(
-                        width: 90,
                         alignment: Alignment.bottomRight,
                         child: widget.product.product_category == "men"
                             ? Container(
@@ -135,7 +133,7 @@ class _ProductCard extends ConsumerState<ProductCard> {
                     children: [
                       SizedBox(
                         height: 40,
-                        width: 200,
+                        width: 170,
                         child: LogaText(
                           content: widget.product.description,
                           maxLines: 2,

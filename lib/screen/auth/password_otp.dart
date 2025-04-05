@@ -146,7 +146,7 @@ class _PasswordOTPState extends ConsumerState<PasswordOTP> {
                   style: ButtonStyle(
                     minimumSize: WidgetStateProperty.all(Size(0, 0)),
                     maximumSize: WidgetStateProperty.all(
-                      Size(370, 50),
+                      Size(360, 50),
                     ),
                     padding: WidgetStateProperty.all(
                       EdgeInsets.symmetric(vertical: 3),
