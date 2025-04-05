@@ -73,6 +73,7 @@ class VerifyEmailResponse {
   final UserModel? data;
   VerifyEmailResponse({required this.code, required this.message, this.data, required this.loading});
   factory VerifyEmailResponse.fromJson(Map<String, dynamic> object) {
+    print(object);
     return VerifyEmailResponse(
       code: object['code'],
       message: object['message'],
@@ -80,7 +81,7 @@ class VerifyEmailResponse {
       data: UserModel(
           token: object['data']['token'],
           first_name: object['data']['first_name'],
-          id: object['data']['_id'],
+          id: object['data']['id'],
           bio: '',
           business_address: '',
           company_id: '',

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logaluxe_users/provider/display.dart';
 
-class OTP extends StatefulWidget {
+class OTP extends ConsumerStatefulWidget {
   Function onsubmit;
   OTP({
     super.key,
@@ -9,10 +11,10 @@ class OTP extends StatefulWidget {
   });
 
   @override
-  State<OTP> createState() => _OTPState();
+  ConsumerState<OTP> createState() => _OTPState();
 }
 
-class _OTPState extends State<OTP> {
+class _OTPState extends ConsumerState<OTP> {
   @override
   Widget build(BuildContext context) {
     return OtpTextField(
@@ -22,11 +24,15 @@ class _OTPState extends State<OTP> {
       focusedBorderColor: Theme.of(context).colorScheme.onError,
       borderRadius: const BorderRadius.all(Radius.circular(10)),
       margin: EdgeInsets.only(right: 15),
-      cursorColor: Theme.of(context).colorScheme.onSurface,
+      cursorColor: ref.watch(displayProvider).isLightMode
+          ? ref.watch(displayProvider).colorScheme.surface
+          : ref.watch(displayProvider).colorScheme.onSurface,
       enabledBorderColor: Theme.of(context).colorScheme.onInverseSurface,
       borderWidth: 1,
       textStyle: TextStyle(
-        color: Theme.of(context).colorScheme.onSurface,
+        color: ref.watch(displayProvider).isLightMode
+            ? ref.watch(displayProvider).colorScheme.surface
+            : ref.watch(displayProvider).colorScheme.onSurface,
         fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize!,
       ),
       numberOfFields: 4,

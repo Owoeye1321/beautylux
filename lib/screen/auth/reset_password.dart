@@ -129,71 +129,82 @@ class _ResetPasswordState extends ConsumerState<ResetPassword> {
             const SizedBox(
               height: 70,
             ),
-            LogaInputField(
-              onChange: (value){},
-              hintText: "Password",
-              verticalPadding: 15,
-              horizontalPadding: 35,
-              setIconSize: false,
-              alterVisibility: true,
-              hideTextInput: true,
-              buttonBorder: 100,
-              setIconColor: false,
-              prefixIconData: Icons.lock,
-              setIconPadding: false,
-              prefixIcon: true,
-              prefixImage: false,
-              controller: passwordTextController,
-              errorText: passwordError,
+            Container(
+              padding: EdgeInsets.only(right: 20, left: 15),
+              child: LogaInputField(
+                onChange: (value) {},
+                hintText: "Password",
+                verticalPadding: 15,
+                horizontalPadding: 35,
+                setIconSize: false,
+                alterVisibility: true,
+                hideTextInput: true,
+                buttonBorder: 100,
+                setIconColor: false,
+                prefixIconData: Icons.lock,
+                setIconPadding: false,
+                prefixIcon: true,
+                prefixImage: false,
+                controller: passwordTextController,
+                errorText: passwordError,
+              ),
             ),
             const SizedBox(
-              height: 15,
+              height: 18,
             ),
-            LogaInputField(
-              onChange: (value){},
-              hintText: "Confirm Password",
-              verticalPadding: 15,
-              horizontalPadding: 35,
-              alterVisibility: true,
-              setIconColor: false,
-              buttonBorder: 100,
-              hideTextInput: true,
-              setIconSize: false,
-              prefixIconData: Icons.lock,
-              setIconPadding: false,
-              prefixIcon: true,
-              prefixImage: false,
-              controller: confirmPasswordTextController,
-              errorText: confirmPasswordError,
+            Container(
+              padding: EdgeInsets.only(right: 20, left: 15),
+              child: LogaInputField(
+                onChange: (value) {},
+                hintText: "Confirm Password",
+                verticalPadding: 15,
+                horizontalPadding: 35,
+                alterVisibility: true,
+                setIconColor: false,
+                buttonBorder: 100,
+                hideTextInput: true,
+                setIconSize: false,
+                prefixIconData: Icons.lock,
+                setIconPadding: false,
+                prefixIcon: true,
+                prefixImage: false,
+                controller: confirmPasswordTextController,
+                errorText: confirmPasswordError,
+              ),
             ),
             const SizedBox(
               height: 365,
             ),
-            ElevatedButton(
-              onPressed: loadingState == true
-                  ? null
-                  : () {
-                      _resetPaassword();
-                    },
-              style: ButtonStyle(
-                minimumSize: WidgetStateProperty.all(Size(0, 0)),
-                maximumSize: WidgetStateProperty.all(
-                  Size(370, 50),
-                ),
-                padding: WidgetStateProperty.all(
-                  EdgeInsets.symmetric(vertical: 3),
-                ),
-              ),
-              child: loadingState == true
-                  ? CircularProgressIndicator.adaptive(
-                      backgroundColor: Theme.of(context).colorScheme.onSurface,
-                    )
-                  : Text(
-                      "Confirm New Password",
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: Theme.of(context).colorScheme.onSurface,
-                          ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: loadingState == true
+                      ? null
+                      : () {
+                          _resetPaassword();
+                        },
+                  style: ButtonStyle(
+                    minimumSize: WidgetStateProperty.all(Size(0, 0)),
+                    maximumSize: WidgetStateProperty.all(
+                      Size(370, 50),
                     ),
+                    padding: WidgetStateProperty.all(
+                      EdgeInsets.symmetric(vertical: 3),
+                    ),
+                  ),
+                  child: loadingState == true
+                      ? CircularProgressIndicator.adaptive(
+                          backgroundColor: Theme.of(context).colorScheme.onSurface,
+                        )
+                      : Text(
+                          "Confirm New Password",
+                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                color: Theme.of(context).colorScheme.onSurface,
+                              ),
+                        ),
+                ),
+              ],
             ),
           ],
         ),

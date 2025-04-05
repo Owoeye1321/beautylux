@@ -117,7 +117,9 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
           child: Center(
             child: LogaText(
               content: "Proceed with bookings ?",
-              color: ref.watch(displayProvider).colorScheme.onSurface,
+              color: ref.watch(displayProvider).isLightMode
+                  ? ref.watch(displayProvider).colorScheme.surface
+                  : ref.watch(displayProvider).colorScheme.onSurface,
               fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
               fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
             ),
@@ -146,7 +148,9 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
           TextButton(
             child: LogaText(
               content: "Yes",
-              color: ref.watch(displayProvider).colorScheme.onSurface,
+              color: ref.watch(displayProvider).isLightMode
+                  ? ref.watch(displayProvider).colorScheme.surface
+                  : ref.watch(displayProvider).colorScheme.onSurface,
               fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
               fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
             ),

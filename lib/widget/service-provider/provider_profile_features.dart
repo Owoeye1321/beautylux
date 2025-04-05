@@ -213,16 +213,17 @@ class _ProfileMenu extends ConsumerState<ProfileMenu> {
                         ),
                         badgeContent: LogaText(
                           content: "${totalCart}",
-                          color: ref.watch(displayProvider).colorScheme.onSurface,
+                          color: ref.watch(displayProvider).isLightMode
+                              ? ref.watch(displayProvider).colorScheme.surface
+                              : ref.watch(displayProvider).colorScheme.outline,
                           fontSize: Theme.of(context).textTheme.displaySmall?.fontSize as double,
                           fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
                         ),
                         child: Icon(
                           Icons.shopping_cart,
-                          color:
-                              selectedService.service != null && selectedService.service?.service_ref != null
-                                  ? ref.watch(displayProvider).colorScheme.onSurface
-                                  : ref.watch(displayProvider).colorScheme.outline,
+                          color: ref.watch(displayProvider).isLightMode
+                              ? ref.watch(displayProvider).colorScheme.surface
+                              : ref.watch(displayProvider).colorScheme.outline,
                         ),
                       ),
                     )),

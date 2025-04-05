@@ -134,42 +134,47 @@ class _PasswordOTPState extends ConsumerState<PasswordOTP> {
             const SizedBox(
               height: 360,
             ),
-            ElevatedButton(
-              onPressed: loadingState == true || enteredOtp == ''
-                  ? null
-                  : () {
-                      _resubmit();
-                    },
-              style: ButtonStyle(
-                minimumSize: WidgetStateProperty.all(Size(0, 0)),
-                maximumSize: WidgetStateProperty.all(
-                  Size(370, 50),
-                ),
-                padding: WidgetStateProperty.all(
-                  EdgeInsets.symmetric(vertical: 3),
-                ),
-                backgroundColor: WidgetStateProperty.resolveWith<Color>(
-                  (states) {
-                    if (states.contains(WidgetState.disabled)) {
-                      return Theme.of(context)
-                          .colorScheme
-                          .onPrimary
-                          .withAlpha((0.5 * 255).toInt()); // Custom disabled color
-                    }
-                    return Theme.of(context).colorScheme.onPrimary; // Custom disabled color
-                  },
-                ),
-              ),
-              child: loadingState == true
-                  ? CircularProgressIndicator.adaptive(
-                      backgroundColor: Theme.of(context).colorScheme.onSurface,
-                    )
-                  : Text(
-                      "Proceed",
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: Theme.of(context).colorScheme.onSurface,
-                          ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: loadingState == true || enteredOtp == ''
+                      ? null
+                      : () {
+                          _resubmit();
+                        },
+                  style: ButtonStyle(
+                    minimumSize: WidgetStateProperty.all(Size(0, 0)),
+                    maximumSize: WidgetStateProperty.all(
+                      Size(370, 50),
                     ),
+                    padding: WidgetStateProperty.all(
+                      EdgeInsets.symmetric(vertical: 3),
+                    ),
+                    backgroundColor: WidgetStateProperty.resolveWith<Color>(
+                      (states) {
+                        if (states.contains(WidgetState.disabled)) {
+                          return Theme.of(context)
+                              .colorScheme
+                              .onPrimary
+                              .withAlpha((0.5 * 255).toInt()); // Custom disabled color
+                        }
+                        return Theme.of(context).colorScheme.onPrimary; // Custom disabled color
+                      },
+                    ),
+                  ),
+                  child: loadingState == true
+                      ? CircularProgressIndicator.adaptive(
+                          backgroundColor: Theme.of(context).colorScheme.onSurface,
+                        )
+                      : Text(
+                          "Proceed",
+                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                color: Theme.of(context).colorScheme.onSurface,
+                              ),
+                        ),
+                ),
+              ],
             ),
           ],
         ),
