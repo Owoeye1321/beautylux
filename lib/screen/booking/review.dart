@@ -362,7 +362,7 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
                     ],
                   ),
                   SizedBox(
-                    width: 70,
+                    width: 50,
                   ),
                   ElevatedButton(
                     onPressed: ref.watch(bookingProvider).loadingState == true ||
@@ -383,7 +383,7 @@ class _ReviewBookingState extends ConsumerState<ReviewBooking> {
                           return ref.watch(displayProvider).colorScheme.onPrimary; // Custom disabled color
                         },
                       ),
-                      fixedSize: WidgetStateProperty.all((Size(150, 55))),
+                      fixedSize: WidgetStateProperty.all((Size(140, 55))),
                       padding: WidgetStateProperty.all(
                         EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                       ),

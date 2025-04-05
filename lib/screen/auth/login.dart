@@ -1,14 +1,17 @@
 import 'dart:math';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/model/api/auth.dart';
+import 'package:logaluxe_users/model/user.dart';
 import 'package:logaluxe_users/provider/auth/login.dart';
 import 'package:logaluxe_users/provider/auth/profile.dart';
 import 'package:logaluxe_users/provider/display.dart';
 import 'package:logaluxe_users/screen/auth/forgot_password.dart';
 import 'package:logaluxe_users/screen/auth/register.dart';
 import 'package:logaluxe_users/screen/home.dart';
+import 'package:logaluxe_users/third-party/gmail_sso.dart';
 import 'package:logaluxe_users/widget/button/icon_button.dart';
 import 'package:logaluxe_users/widget/input-field/loga_input.dart';
 import 'package:logaluxe_users/widget/splash/text.dart';
@@ -27,6 +30,7 @@ class _LoginState extends ConsumerState<Login> {
   String passwordError = '';
   String emailError = '';
   String errorMessage = '';
+  bool gmailLoadingState = false;
   _login() async {
     try {
       String email = emailTextController.text.trim();
@@ -95,9 +99,89 @@ class _LoginState extends ConsumerState<Login> {
     }
   }
 
+  _loginWithGoogle() async {
+    try {
+      setState(() {
+        gmailLoadingState = true;
+      });
+      UserModel? user = await UserRepository.loginWithGoodgle();
+      if (user != null && mounted) {
+        var loginRequest =
+            await ref.read(loginProvider.notifier).gmail_sso(user.email!, user.first_name, user.image_url);
+        ref.read(profileProvider.notifier).authenticate(loginRequest.data);
+        toastification.show(
+          context: context, // optional if you use ToastificationWrapper
+          title: Text("Login successful"),
+          type: ToastificationType.success,
+          style: ToastificationStyle.flat,
+          autoCloseDuration: const Duration(seconds: 2),
+          animationDuration: const Duration(milliseconds: 100),
+          animationBuilder: (context, animation, alignment, child) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
+          primaryColor: Colors.green,
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black,
+        );
+        setState(() {
+          gmailLoadingState = false;
+        });
+        Navigator.pushAndRemoveUntil(
+            context, MaterialPageRoute(builder: (ctx) => Home()), (Route<dynamic> route) => false);
+      }
+    } on FirebaseAuthException catch (e) {
+      toastification.show(
+        context: context, // optional if you use ToastificationWrapper
+        title: Text(e.toString()),
+        type: ToastificationType.error,
+        style: ToastificationStyle.flat,
+        autoCloseDuration: const Duration(seconds: 2),
+        animationDuration: const Duration(milliseconds: 100),
+        animationBuilder: (context, animation, alignment, child) {
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+        },
+        primaryColor: Colors.red,
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+      );
+      setState(() {
+        gmailLoadingState = false;
+      });
+    } catch (e) {
+      print(e.toString());
+      toastification.show(
+        context: context, // optional if you use ToastificationWrapper
+        title: Text('Unable to login with Google'),
+        type: ToastificationType.error,
+        style: ToastificationStyle.flat,
+        autoCloseDuration: const Duration(seconds: 2),
+        animationDuration: const Duration(milliseconds: 100),
+        animationBuilder: (context, animation, alignment, child) {
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+        },
+        primaryColor: Colors.red,
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+      );
+      setState(() {
+        gmailLoadingState = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         margin: const EdgeInsets.only(top: 80, left: 15, right: 15),
         decoration: BoxDecoration(
@@ -200,44 +284,50 @@ class _LoginState extends ConsumerState<Login> {
             const SizedBox(
               height: 60,
             ),
-            ElevatedButton(
-              onPressed: ref.watch(loginProvider).loading == true
-                  ? null
-                  : () {
-                      _login();
-                    },
-              style: ButtonStyle(
-                minimumSize: WidgetStateProperty.all(Size(0, 0)),
-                maximumSize: WidgetStateProperty.all(
-                  Size(370, 50),
-                ),
-                padding: WidgetStateProperty.all(
-                  EdgeInsets.symmetric(vertical: 3),
-                ),
-                backgroundColor: WidgetStateProperty.resolveWith<Color>(
-                  (states) {
-                    if (states.contains(WidgetState.disabled)) {
-                      return ref.watch(displayProvider).colorScheme.onPrimary; // Custom disabled color
-                    }
-                    return ref.watch(displayProvider).colorScheme.onPrimary; // Custom disabled color
-                  },
-                ),
-              ),
-              child: ref.watch(loginProvider).loading == true
-                  ? CircularProgressIndicator.adaptive(
-                      backgroundColor: ref.watch(displayProvider).colorScheme.onSurface,
-                    )
-                  : Text(
-                      "Login",
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: ref.watch(displayProvider).colorScheme.onSurface,
-                          ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: ref.watch(loginProvider).loading == true
+                      ? null
+                      : () {
+                          _login();
+                        },
+                  style: ButtonStyle(
+                    minimumSize: WidgetStateProperty.all(Size(0, 0)),
+                    maximumSize: WidgetStateProperty.all(
+                      Size(370, 50),
                     ),
+                    padding: WidgetStateProperty.all(
+                      EdgeInsets.symmetric(vertical: 3),
+                    ),
+                    backgroundColor: WidgetStateProperty.resolveWith<Color>(
+                      (states) {
+                        if (states.contains(WidgetState.disabled)) {
+                          return ref.watch(displayProvider).colorScheme.onPrimary; // Custom disabled color
+                        }
+                        return ref.watch(displayProvider).colorScheme.onPrimary; // Custom disabled color
+                      },
+                    ),
+                  ),
+                  child: ref.watch(loginProvider).loading == true
+                      ? CircularProgressIndicator.adaptive(
+                          backgroundColor: ref.watch(displayProvider).colorScheme.onSurface,
+                        )
+                      : Text(
+                          "Login",
+                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                color: ref.watch(displayProvider).colorScheme.onSurface,
+                              ),
+                        ),
+                ),
+              ],
             ),
             const SizedBox(
               height: 15,
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Expanded(
                   child: Divider(
@@ -266,12 +356,25 @@ class _LoginState extends ConsumerState<Login> {
             const SizedBox(
               height: 15,
             ),
-            const LogaIconButton(
-              trailingType: "image",
-              text: 'Continue with Google',
-              image: AssetImage('images/google.png'),
-              icon: Icons.apple,
-            ),
+            gmailLoadingState == false
+                ? LogaIconButton(
+                    trailingType: "image",
+                    text: 'Continue with Google',
+                    image: AssetImage('images/google.png'),
+                    icon: Icons.apple,
+                    onPressed: () async {
+                      _loginWithGoogle();
+                    },
+                  )
+                : Container(
+                    height: 50,
+                    width: double.infinity,
+                    child: Center(
+                      child: CircularProgressIndicator.adaptive(
+                        backgroundColor: ref.watch(displayProvider).colorScheme.onSurface,
+                      ),
+                    ),
+                  ),
             const SizedBox(
               height: 18,
             ),

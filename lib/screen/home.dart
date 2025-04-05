@@ -109,29 +109,34 @@ class _HomeState extends ConsumerState<Home> {
                 ),
               ),
               actions: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Welcome",
-                      style: TextStyle(
-                        color: ref.watch(displayProvider).colorScheme.outline,
-                        fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
-                      ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 75),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Welcome",
+                          style: TextStyle(
+                            color: ref.watch(displayProvider).colorScheme.outline,
+                            fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 4,
+                        ),
+                        SizedBox(
+                          width: 190,
+                          child: LogaText(
+                              content: "Hey, ${username} 👋 ",
+                              color: ref.watch(displayProvider).colorScheme.onSurface,
+                              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize! as double,
+                              fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight! as FontWeight),
+                        )
+                      ],
                     ),
-                    const SizedBox(
-                      height: 4,
-                    ),
-                    SizedBox(
-                      width: 150,
-                      child: LogaText(
-                          content: "Hey, ${username} 👋 ",
-                          color: ref.watch(displayProvider).colorScheme.onSurface,
-                          fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize! as double,
-                          fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight! as FontWeight),
-                    )
-                  ],
+                  ),
                 ),
                 const SizedBox(
                   width: 100,
@@ -148,7 +153,9 @@ class _HomeState extends ConsumerState<Home> {
                       child: Icon(
                         Icons.notifications_none_sharp,
                         size: 30,
-                        color: ref.watch(displayProvider).colorScheme.onSurface,
+                        color: ref.watch(displayProvider).isLightMode
+                            ? ref.watch(displayProvider).colorScheme.surface
+                            : ref.watch(displayProvider).colorScheme.onSurface,
                       ),
                     ),
                   ),

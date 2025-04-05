@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logaluxe_users/provider/display.dart';
 
 class CustomBottomNavigationBar extends ConsumerStatefulWidget {
   int activeIndex;
@@ -42,7 +43,7 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
                     height: 50,
                     width: 114,
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
+                      color: Theme.of(context).colorScheme.outline.withAlpha((0.2 * 255).toInt()),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Row(
@@ -56,7 +57,9 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
                             padding: const EdgeInsets.all(13),
                             child: Image(
                               image: AssetImage('images/home_icon.png'),
-                              color: Theme.of(context).colorScheme.onSurface,
+                              color: ref.watch(displayProvider).isLightMode
+                                  ? ref.watch(displayProvider).colorScheme.surface
+                                  : ref.watch(displayProvider).colorScheme.onSurface,
                             ),
                           ),
                         ),
@@ -65,7 +68,9 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
                           child: Text(
                             "Home",
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.onSurface,
+                              color: ref.watch(displayProvider).isLightMode
+                                  ? ref.watch(displayProvider).colorScheme.surface
+                                  : ref.watch(displayProvider).colorScheme.onSurface,
                               fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
                               fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
                             ),
@@ -76,7 +81,9 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
                   )
                 : Image(
                     image: AssetImage('images/home_icon.png'),
-                    color: Theme.of(context).colorScheme.onSurface,
+                    color: ref.watch(displayProvider).isLightMode
+                        ? ref.watch(displayProvider).colorScheme.surface
+                        : ref.watch(displayProvider).colorScheme.onSurface,
                   ),
           ),
           GestureDetector(
@@ -100,7 +107,9 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
                             padding: const EdgeInsets.all(13),
                             child: Image(
                               image: AssetImage('images/search.png'),
-                              color: Theme.of(context).colorScheme.onSurface,
+                              color: ref.watch(displayProvider).isLightMode
+                                  ? ref.watch(displayProvider).colorScheme.surface
+                                  : ref.watch(displayProvider).colorScheme.onSurface,
                             ),
                           ),
                         ),
@@ -109,7 +118,9 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
                           child: Text(
                             "Explore",
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.onSurface,
+                              color: ref.watch(displayProvider).isLightMode
+                                  ? ref.watch(displayProvider).colorScheme.surface
+                                  : ref.watch(displayProvider).colorScheme.onSurface,
                               fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
                               fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
                             ),
@@ -120,7 +131,9 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
                   )
                 : Image(
                     image: AssetImage('images/search.png'),
-                    color: Theme.of(context).colorScheme.onSurface,
+                    color: ref.watch(displayProvider).isLightMode
+                        ? ref.watch(displayProvider).colorScheme.surface
+                        : ref.watch(displayProvider).colorScheme.onSurface,
                   ),
           ),
           GestureDetector(
@@ -144,7 +157,9 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
                             padding: const EdgeInsets.all(13),
                             child: Image(
                               image: AssetImage('images/menu.png'),
-                              color: Theme.of(context).colorScheme.onSurface,
+                              color: ref.watch(displayProvider).isLightMode
+                                  ? ref.watch(displayProvider).colorScheme.surface
+                                  : ref.watch(displayProvider).colorScheme.onSurface,
                             ),
                           ),
                         ),
@@ -153,7 +168,9 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
                           child: Text(
                             "History",
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.onSurface,
+                              color: ref.watch(displayProvider).isLightMode
+                                  ? ref.watch(displayProvider).colorScheme.surface
+                                  : ref.watch(displayProvider).colorScheme.onSurface,
                               fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
                               fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
                             ),
@@ -164,7 +181,9 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
                   )
                 : Image(
                     image: AssetImage('images/menu.png'),
-                    color: Theme.of(context).colorScheme.onSurface,
+                    color: ref.watch(displayProvider).isLightMode
+                        ? ref.watch(displayProvider).colorScheme.surface
+                        : ref.watch(displayProvider).colorScheme.onSurface,
                   ),
           ),
           GestureDetector(
@@ -196,7 +215,9 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
                           child: Text(
                             "Settings",
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.onSurface,
+                              color: ref.watch(displayProvider).isLightMode
+                                  ? ref.watch(displayProvider).colorScheme.surface
+                                  : ref.watch(displayProvider).colorScheme.onSurface,
                               fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
                               fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
                             ),
@@ -207,7 +228,9 @@ class _CustomBottomNavigationBarState extends ConsumerState<CustomBottomNavigati
                   )
                 : Image(
                     image: AssetImage('images/more.png'),
-                    color: Theme.of(context).colorScheme.onSurface,
+                    color: ref.watch(displayProvider).isLightMode
+                        ? ref.watch(displayProvider).colorScheme.surface
+                        : ref.watch(displayProvider).colorScheme.onSurface,
                   ),
           ),
         ],

@@ -92,7 +92,9 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
             setIconSize: true,
             iconSize: 40,
             setIconColor: true,
-            iconColor: ref.watch(displayProvider).colorScheme.onTertiary,
+            iconColor: ref.watch(displayProvider).isLightMode
+                ? ref.watch(displayProvider).colorScheme.surface
+                : ref.watch(displayProvider).colorScheme.onSurface,
             setIconPadding: true,
             iconPadding: 10,
             buttonBorder: 20,
@@ -102,7 +104,9 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
             errorText: '',
             imageIcon: Image(
               image: AssetImage('images/search.png'),
-              color: ref.watch(displayProvider).colorScheme.onSurface,
+              color: ref.watch(displayProvider).isLightMode
+                  ? ref.watch(displayProvider).colorScheme.surface
+                  : ref.watch(displayProvider).colorScheme.onSurface,
             ),
           ),
         ),
@@ -126,7 +130,9 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        ref.watch(displayProvider).colorScheme.surface,
+                        ref.watch(displayProvider).isLightMode
+                            ? ref.watch(displayProvider).colorScheme.onSurface
+                            : ref.watch(displayProvider).colorScheme.surface,
                         Colors.transparent,
                       ],
                       begin: Alignment.centerLeft,
@@ -142,7 +148,9 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
                 child: Text(
                   "Morning Special!",
                   style: TextStyle(
-                    color: ref.watch(displayProvider).colorScheme.onSurface,
+                    color: ref.watch(displayProvider).isLightMode
+                        ? ref.watch(displayProvider).colorScheme.surface
+                        : ref.watch(displayProvider).colorScheme.onSurface,
                     fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize!,
                   ),
                 ),
@@ -153,7 +161,9 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
                   child: Text(
                     "Get 20% off",
                     style: TextStyle(
-                      color: ref.watch(displayProvider).colorScheme.onSurface,
+                      color: ref.watch(displayProvider).isLightMode
+                          ? ref.watch(displayProvider).colorScheme.surface
+                          : ref.watch(displayProvider).colorScheme.onSurface,
                       fontSize: Theme.of(context).textTheme.headlineLarge?.fontSize!,
                     ),
                   )),
@@ -163,7 +173,9 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
                 child: Text(
                   "on All Haircuts Between 9-10 AM.",
                   style: TextStyle(
-                    color: ref.watch(displayProvider).colorScheme.onSurface,
+                    color: ref.watch(displayProvider).isLightMode
+                        ? ref.watch(displayProvider).colorScheme.surface
+                        : ref.watch(displayProvider).colorScheme.onSurface,
                     fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
                     // fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
                   ),
@@ -183,13 +195,17 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
                     height: double.infinity,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color: ref.watch(displayProvider).colorScheme.onSurface,
+                      color: ref.watch(displayProvider).isLightMode
+                          ? ref.watch(displayProvider).colorScheme.surface
+                          : ref.watch(displayProvider).colorScheme.onSurface,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
                       "Book Now",
                       style: TextStyle(
-                        color: ref.watch(displayProvider).colorScheme.surface,
+                        color: ref.watch(displayProvider).isLightMode
+                            ? ref.watch(displayProvider).colorScheme.onSurface
+                            : ref.watch(displayProvider).colorScheme.surface,
                         fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
                         fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
                       ),

@@ -19,6 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
     if (currentSplash == 2) {
       Navigator.pushAndRemoveUntil(
           context, MaterialPageRoute(builder: (ctx) => Home()), (Route<dynamic> route) => false);
+      return;
     }
     setState(
       () {
@@ -83,25 +84,28 @@ class _SplashScreenState extends State<SplashScreen> {
                                 .copyWith(color: Theme.of(context).colorScheme.onSurface),
                           ),
                         )
-                      : Column(
-                          children: const [
-                            LogaIconButton(
-                              trailingType: "icon",
-                              text: "Continue with Apple",
-                              image: AssetImage(''),
-                              icon: Icons.apple,
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            LogaIconButton(
-                              trailingType: "image",
-                              text: 'Continue with Google',
-                              image: AssetImage('images/google.png'),
-                              icon: Icons.apple,
-                            ),
-                          ],
-                        ),
+                      // : Column(
+                      //     children: [
+                      //       LogaIconButton(
+                      //         trailingType: "icon",
+                      //         text: "Continue with Apple",
+                      //         image: AssetImage(''),
+                      //         icon: Icons.apple,
+                      //         onPressed: () {},
+                      //       ),
+                      //       SizedBox(
+                      //         height: 20,
+                      //       ),
+                      //       LogaIconButton(
+                      //         trailingType: "image",
+                      //         text: 'Continue with Google',
+                      //         image: AssetImage('images/google.png'),
+                      //         icon: Icons.apple,
+                      //         onPressed: () {},
+                      //       ),
+                      //     ],
+                      //   ),
+                      : Container(),
                   const SizedBox(
                     height: 18,
                   ),

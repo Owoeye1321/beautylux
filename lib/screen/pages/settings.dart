@@ -6,6 +6,7 @@ import 'package:logaluxe_users/provider/auth/login.dart';
 import 'package:logaluxe_users/provider/auth/profile.dart';
 import 'package:logaluxe_users/provider/display.dart';
 import 'package:logaluxe_users/screen/auth/login.dart';
+import 'package:logaluxe_users/third-party/gmail_sso.dart';
 import 'package:logaluxe_users/widget/loga_text.dart';
 import 'package:toastification/toastification.dart';
 
@@ -26,6 +27,7 @@ class _SettingsState extends ConsumerState<Settings> {
   }
 
   logOut() async {
+    UserRepository().signOut();
     ref.read(profileProvider.notifier).logOut();
     await toastification.show(
       context: context, // optional if you use ToastificationWrapper

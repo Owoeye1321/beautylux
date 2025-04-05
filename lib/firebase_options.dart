@@ -29,20 +29,20 @@ class DefaultFirebaseOptions {
   }
 
   static FirebaseOptions android = FirebaseOptions(
-    apiKey: dotenv.env['ANDROID_API_KEY']!,
-    appId: dotenv.env['ANDROID_APP_ID']!,
-    messagingSenderId: dotenv.env['MESSAGING_SENDER_ID']!,
-    projectId: dotenv.env['PROJECT_ID']!,
-    storageBucket: dotenv.env['STORAGE_BUCKET']!,
+    apiKey: 'AIzaSyDS2L1WC1HHMc3PPf64ZN0D-TYGILhYIOE',
+    appId: '1:763655628817:android:9a3b08a14fd897d64aa9b0',
+    messagingSenderId: '763655628817',
+    projectId: 'logaluxe-8c36e',
+    storageBucket: 'logaluxe-8c36e.firebasestorage.app',
   );
 
   static FirebaseOptions ios = FirebaseOptions(
-    apiKey: dotenv.env['IOS_API_KEY']!,
-    appId: dotenv.env['IOS_APP_ID']!,
-    messagingSenderId: dotenv.env['MESSAGING_SENDER_ID']!,
-    projectId: dotenv.env['PROJECT_ID']!,
-    storageBucket: dotenv.env['STORAGE_BUCKET']!,
-    iosClientId: dotenv.env['IOS_CLIENT_ID']!,
-    iosBundleId: dotenv.env['IOS_BUNDLE_ID']!,
+    apiKey: 'AIzaSyBAPPp-4OXAuEMHw6q7mmguYHk0FdeMVVc',
+    appId: '1:763655628817:ios:568287125d8091074aa9b0',
+    messagingSenderId: '763655628817',
+    projectId: 'logaluxe-8c36e',
+    storageBucket: 'logaluxe-8c36e.firebasestorage.app',
+    iosClientId: '763655628817-ra1ldjba8m7agp1bpvb39pci2bhrqsl3.apps.googleusercontent.com',
+    iosBundleId: 'com.example.logaluxeUsers',
   );
 }

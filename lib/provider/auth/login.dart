@@ -46,6 +46,28 @@ class LoginInNotifier extends StateNotifier<LoginResponse> {
     }
   }
 
+  Future<LoginResponse> gmail_sso(String email, String first_name, String? image_url) async {
+    try {
+      final response = await http.post(
+        Uri.parse("${dotenv.env['API_URL']!}/auth/gmail-sso"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode({"email": email, "first_name": first_name, "image_url": image_url}),
+      );
+      if (response.statusCode == 200) {
+        state = LoginResponse.fromJson(jsonDecode(response.body));
+        return state;
+      } else {
+        Map<String, dynamic> errorResponse = jsonDecode(response.body);
+        String errorMessage = errorResponse['message'] ?? errorResponse['message'];
+        throw new Exception(errorMessage);
+      }
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
   enableLoading() {
     state = LoginResponse(code: state.code, message: state.message, loading: true, data: state.data);
   }

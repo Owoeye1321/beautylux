@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/provider/display.dart';
@@ -126,18 +128,18 @@ class ViewProvider extends ConsumerWidget {
           ),
           Positioned.fill(
             top: 400,
-            bottom: 190,
+            bottom: Platform.isIOS ? 250 : 140,
             right: 20,
             left: 20,
             child: Container(
               decoration: BoxDecoration(
-                color: ref.watch(displayProvider).colorScheme.surface.withOpacity(0.7),
+                color: ref.watch(displayProvider).colorScheme.surface.withAlpha((0.7 * 255).toInt()),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Padding(
                 padding: const EdgeInsets.only(
                   left: 30,
-                  top: 30,
+                  top: 10,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -171,7 +173,9 @@ class ViewProvider extends ConsumerWidget {
                               "OPEN",
                               style: TextStyle(
                                   decoration: TextDecoration.none,
-                                  color: ref.watch(displayProvider).colorScheme.onSurface,
+                                  color: ref.watch(displayProvider).isLightMode
+                                      ? ref.watch(displayProvider).colorScheme.surface
+                                      : ref.watch(displayProvider).colorScheme.onSurface,
                                   fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
                                   fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!),
                             ),

@@ -86,7 +86,9 @@ class _ProfileMenu extends ConsumerState<ProfileMenu> {
                 child: Icon(
                   Icons.language_outlined,
                   size: 30,
-                  color: ref.watch(displayProvider).colorScheme.outline,
+                  color: ref.watch(displayProvider).isLightMode
+                      ? ref.watch(displayProvider).colorScheme.surface
+                      : ref.watch(displayProvider).colorScheme.outline,
                 ),
               ),
               Padding(
@@ -112,7 +114,9 @@ class _ProfileMenu extends ConsumerState<ProfileMenu> {
                 ),
                 child: Image(
                   image: AssetImage('images/messages.png'),
-                  color: ref.watch(displayProvider).colorScheme.outline,
+                  color: ref.watch(displayProvider).isLightMode
+                      ? ref.watch(displayProvider).colorScheme.surface
+                      : ref.watch(displayProvider).colorScheme.outline,
                 ),
               ),
               Padding(
@@ -138,7 +142,9 @@ class _ProfileMenu extends ConsumerState<ProfileMenu> {
                 ),
                 child: Image(
                   image: AssetImage('images/call.png'),
-                  color: ref.watch(displayProvider).colorScheme.outline,
+                  color: ref.watch(displayProvider).isLightMode
+                      ? ref.watch(displayProvider).colorScheme.surface
+                      : ref.watch(displayProvider).colorScheme.outline,
                 ),
               ),
               Padding(
@@ -165,7 +171,9 @@ class _ProfileMenu extends ConsumerState<ProfileMenu> {
                 child: Icon(
                   Icons.map_outlined,
                   size: 30,
-                  color: ref.watch(displayProvider).colorScheme.outline,
+                  color: ref.watch(displayProvider).isLightMode
+                      ? ref.watch(displayProvider).colorScheme.surface
+                      : ref.watch(displayProvider).colorScheme.outline,
                 ),
               ),
               Padding(

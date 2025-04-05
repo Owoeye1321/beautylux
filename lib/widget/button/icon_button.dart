@@ -5,9 +5,15 @@ class LogaIconButton extends StatelessWidget {
   final String text;
   final IconData icon;
   final AssetImage image;
+  Function onPressed;
 
-  const LogaIconButton(
-      {super.key, required this.trailingType, required this.text, required this.image, required this.icon});
+  LogaIconButton(
+      {super.key,
+      required this.trailingType,
+      required this.text,
+      required this.image,
+      required this.icon,
+      required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +39,9 @@ class LogaIconButton extends StatelessWidget {
       );
     } else {
       button = ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          onPressed();
+        },
         style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
               fixedSize: WidgetStateProperty.all<Size?>(const Size(360, 50)),
               backgroundColor: WidgetStateProperty.all<Color?>(Theme.of(context).colorScheme.onSurface),
@@ -60,6 +68,11 @@ class LogaIconButton extends StatelessWidget {
         ]),
       );
     }
-    return button;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        button,
+      ],
+    );
   }
 }

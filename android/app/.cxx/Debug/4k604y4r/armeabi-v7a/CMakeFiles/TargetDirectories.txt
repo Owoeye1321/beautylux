@@ -1,0 +1,2 @@
+/Users/devpilot/StudioProjects/logaluxe_users/android/app/.cxx/Debug/4k604y4r/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/devpilot/StudioProjects/logaluxe_users/android/app/.cxx/Debug/4k604y4r/armeabi-v7a/CMakeFiles/rebuild_cache.dir

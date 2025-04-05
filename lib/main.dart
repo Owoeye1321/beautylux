@@ -1,21 +1,23 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:logaluxe_users/firebase_options.dart';
 import 'package:logaluxe_users/provider/display.dart';
-import 'package:logaluxe_users/screen/home.dart';
 import 'package:logaluxe_users/screen/auth/splash.dart';
+import 'package:logaluxe_users/screen/home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensure Flutter is initialized
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   try {
     await dotenv.load(fileName: ".env"); // Load environment variables
   } catch (e) {
     print('Error loading .env file: $e'); // Print error if any
   }
-  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -69,7 +71,7 @@ class MyApp extends ConsumerWidget {
           ),
         ),
       ),
-      home: Home(),
+      home: SplashScreen(),
     );
   }
 }

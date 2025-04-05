@@ -34,122 +34,124 @@ class AppointmentCard extends ConsumerWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 5, left: 10, right: 5, bottom: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      width: 140,
-                      child: LogaText(
-                        content: appointment.service_id?.name! as String,
-                        color: ref.watch(displayProvider).colorScheme.onSurface,
-                        fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
-                        fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 5, left: 10, right: 10, bottom: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        width: 140,
+                        child: LogaText(
+                          content: appointment.service_id?.name! as String,
+                          color: ref.watch(displayProvider).colorScheme.onSurface,
+                          fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
+                          fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
+                        ),
                       ),
-                    ),
-                    Container(
-                      width: 94,
-                      alignment: Alignment.bottomRight,
-                      padding: EdgeInsets.only(top: 5),
-                      child: appointment.status == "booked"
-                          ? Container(
-                              padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                              decoration: BoxDecoration(
-                                color: ref.watch(displayProvider).colorScheme.onPrimary,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: LogaText(
-                                content: appointment.status,
-                                color: ref.watch(displayProvider).colorScheme.onSurface,
-                                fontSize: Theme.of(context).textTheme.bodySmall?.fontSize as double,
-                                fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
-                              ),
-                            )
-                          : appointment.status == "completed"
-                              ? Container(
-                                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                                  decoration: BoxDecoration(
-                                      color: Colors.green, borderRadius: BorderRadius.circular(10)),
-                                  child: LogaText(
-                                    content: appointment.status,
-                                    color: ref.watch(displayProvider).colorScheme.onSurface,
-                                    fontSize: Theme.of(context).textTheme.bodySmall?.fontSize as double,
-                                    fontweight:
-                                        Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
-                                  ),
-                                )
-                              : Container(
-                                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                                  decoration: BoxDecoration(
-                                      color: ref.watch(displayProvider).colorScheme.onError,
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: LogaText(
-                                    content: appointment.status,
-                                    color: ref.watch(displayProvider).colorScheme.onSurface,
-                                    fontSize: Theme.of(context).textTheme.bodySmall?.fontSize as double,
-                                    fontweight:
-                                        Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
-                                  ),
+                      Container(
+                        width: 94,
+                        alignment: Alignment.bottomRight,
+                        padding: EdgeInsets.only(top: 5),
+                        child: appointment.status == "booked"
+                            ? Container(
+                                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                                decoration: BoxDecoration(
+                                  color: ref.watch(displayProvider).colorScheme.onPrimary,
+                                  borderRadius: BorderRadius.circular(10),
                                 ),
-                    )
-                  ],
-                ),
-                LogaText(
-                  content: appointment.service_id.description,
-                  color: ref.watch(displayProvider).colorScheme.outline,
-                  fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
-                  fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
-                ),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.schedule,
-                      color: ref.watch(displayProvider).colorScheme.outline,
-                      size: 13,
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    LogaText(
-                      content: appointment.formatStartTime,
-                      color: ref.watch(displayProvider).colorScheme.outline,
-                      fontSize: Theme.of(context).textTheme.bodySmall?.fontSize as double,
-                      fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
-                    )
-                  ],
-                ),
-                Row(
-                  children: [
-                    Container(
-                      child: LogaText(
-                        content: "Total cost",
-                        color: ref.watch(displayProvider).colorScheme.onSurface,
-                        fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
-                        fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
+                                child: LogaText(
+                                  content: appointment.status,
+                                  color: ref.watch(displayProvider).colorScheme.onSurface,
+                                  fontSize: Theme.of(context).textTheme.bodySmall?.fontSize as double,
+                                  fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
+                                ),
+                              )
+                            : appointment.status == "completed"
+                                ? Container(
+                                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                                    decoration: BoxDecoration(
+                                        color: Colors.green, borderRadius: BorderRadius.circular(10)),
+                                    child: LogaText(
+                                      content: appointment.status,
+                                      color: ref.watch(displayProvider).colorScheme.onSurface,
+                                      fontSize: Theme.of(context).textTheme.bodySmall?.fontSize as double,
+                                      fontweight:
+                                          Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
+                                    ),
+                                  )
+                                : Container(
+                                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                                    decoration: BoxDecoration(
+                                        color: ref.watch(displayProvider).colorScheme.onError,
+                                        borderRadius: BorderRadius.circular(10)),
+                                    child: LogaText(
+                                      content: appointment.status,
+                                      color: ref.watch(displayProvider).colorScheme.onSurface,
+                                      fontSize: Theme.of(context).textTheme.bodySmall?.fontSize as double,
+                                      fontweight:
+                                          Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
+                                    ),
+                                  ),
+                      )
+                    ],
+                  ),
+                  LogaText(
+                    content: appointment.service_id.description,
+                    color: ref.watch(displayProvider).colorScheme.outline,
+                    fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
+                    fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
+                  ),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.schedule,
+                        color: ref.watch(displayProvider).colorScheme.outline,
+                        size: 13,
                       ),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Container(
-                      width: 130,
-                      alignment: Alignment.bottomRight,
-                      child: LogaText(
-                        content: "\$${appointment.total_amount}",
-                        color: ref.watch(displayProvider).colorScheme.onSurface,
-                        fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
-                        fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
+                      SizedBox(
+                        width: 5,
                       ),
-                    )
-                  ],
-                )
-              ],
+                      LogaText(
+                        content: appointment.formatStartTime,
+                        color: ref.watch(displayProvider).colorScheme.outline,
+                        fontSize: Theme.of(context).textTheme.bodySmall?.fontSize as double,
+                        fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        child: LogaText(
+                          content: "Total cost",
+                          color: ref.watch(displayProvider).colorScheme.onSurface,
+                          fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
+                          fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Container(
+                        width: 130,
+                        alignment: Alignment.bottomRight,
+                        child: LogaText(
+                          content: "\$${appointment.total_amount}",
+                          color: ref.watch(displayProvider).colorScheme.onSurface,
+                          fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
+                          fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ],

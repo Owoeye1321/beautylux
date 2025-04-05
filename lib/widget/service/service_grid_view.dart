@@ -67,7 +67,9 @@ class ServiceGridView extends ConsumerWidget {
                           right: 10,
                           child: Container(
                             decoration: BoxDecoration(
-                              color: ref.watch(displayProvider).colorScheme.onSurface,
+                              color: ref.watch(displayProvider).isLightMode
+                                  ? ref.watch(displayProvider).colorScheme.surface
+                                  : ref.watch(displayProvider).colorScheme.onSurface,
                               borderRadius: BorderRadius.circular(30),
                             ),
                             child: Icon(
@@ -83,7 +85,9 @@ class ServiceGridView extends ConsumerWidget {
                           right: 110,
                           child: Container(
                             decoration: BoxDecoration(
-                              color: ref.watch(displayProvider).colorScheme.onSurface,
+                              color: ref.watch(displayProvider).isLightMode
+                                  ? ref.watch(displayProvider).colorScheme.surface
+                                  : ref.watch(displayProvider).colorScheme.onSurface,
                               borderRadius: BorderRadius.only(
                                 bottomRight: Radius.circular(30),
                                 topRight: Radius.circular(30),

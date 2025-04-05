@@ -70,13 +70,17 @@ class _LogaInputFieldState extends ConsumerState<LogaInputField> {
             widget.onChange(value);
           },
           style: TextStyle(
-            color: ref.watch(displayProvider).colorScheme.onSurface,
+            color: ref.watch(displayProvider).isLightMode
+                ? ref.watch(displayProvider).colorScheme.surface
+                : ref.watch(displayProvider).colorScheme.onSurface,
             fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
             fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight,
           ),
           showCursor: true,
           maxLines: 1,
-          cursorColor: ref.watch(displayProvider).colorScheme.onSurface,
+          cursorColor: ref.watch(displayProvider).isLightMode
+              ? ref.watch(displayProvider).colorScheme.surface
+              : ref.watch(displayProvider).colorScheme.onSurface,
           obscureText: widget.hideTextInput ? disableState : false,
           textAlign: TextAlign.left,
           decoration: InputDecoration(
@@ -89,7 +93,9 @@ class _LogaInputFieldState extends ConsumerState<LogaInputField> {
                       widget.prefixIconData,
                       color: widget.setIconColor
                           ? widget.iconColor
-                          : ref.watch(displayProvider).colorScheme.onSurface,
+                          : ref.watch(displayProvider).isLightMode
+                              ? ref.watch(displayProvider).colorScheme.surface
+                              : ref.watch(displayProvider).colorScheme.onSurface,
                       size: widget.setIconSize ? widget.iconSize : 20,
                     )
                   : widget.imageIcon,
@@ -100,7 +106,9 @@ class _LogaInputFieldState extends ConsumerState<LogaInputField> {
             ),
             hintText: widget.hintText,
             hintStyle: TextStyle(
-              color: ref.watch(displayProvider).colorScheme.onSurface,
+              color: ref.watch(displayProvider).isLightMode
+                  ? ref.watch(displayProvider).colorScheme.surface
+                  : ref.watch(displayProvider).colorScheme.onSurface,
               fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
             ),
             focusedBorder: OutlineInputBorder(
