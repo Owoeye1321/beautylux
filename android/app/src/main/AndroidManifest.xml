@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.logaluxe_users">
+    package="com.logaluxe.com.loga_luxe_client">
    <application
         android:label="logaluxe_users"
         android:name="${applicationName}"
