@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/model/user.dart';
 import 'package:logaluxe_users/provider/auth/profile.dart';
@@ -11,6 +12,7 @@ import 'package:logaluxe_users/screen/booking/review.dart';
 import 'package:logaluxe_users/widget/loga_text.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:toastification/toastification.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfileMenu extends ConsumerStatefulWidget {
   final UserModel user;
@@ -62,6 +64,108 @@ class _ProfileMenu extends ConsumerState<ProfileMenu> {
     }
   }
 
+  Future<void> launchEmail() async {
+    final String email = Uri.encodeComponent(widget.user.email);
+    final String subject = Uri.encodeComponent("Service Request");
+    final Uri mail = Uri.parse("mailto:$email?subject=$subject");
+
+    try {
+      final bool launched = await launchUrl(mail);
+      if (launched) {
+        // email app opened
+      } else {
+        // email app is not opened
+        toastification.show(
+          context: context, // optional if you use ToastificationWrapper
+          title: Text('Could not launch email app'),
+          type: ToastificationType.error,
+          style: ToastificationStyle.flat,
+          autoCloseDuration: const Duration(seconds: 2),
+          animationDuration: const Duration(milliseconds: 100),
+          animationBuilder: (context, animation, alignment, child) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
+          primaryColor: Colors.red,
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black,
+        );
+      }
+    } on PlatformException catch (e) {
+      toastification.show(
+        context: context, // optional if you use ToastificationWrapper
+        title: Text('Unable to launch email app'),
+        type: ToastificationType.error,
+        style: ToastificationStyle.flat,
+        autoCloseDuration: const Duration(seconds: 2),
+        animationDuration: const Duration(milliseconds: 100),
+        animationBuilder: (context, animation, alignment, child) {
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+        },
+        primaryColor: Colors.red,
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+      );
+    }
+  }
+
+  Future<void> launchCall() async {
+    final Uri urlParsed = Uri.parse('tel: 2349087676578');
+
+    if (await canLaunchUrl(urlParsed)) {
+      await launchUrl(urlParsed);
+    } else {
+      toastification.show(
+        context: context, // optional if you use ToastificationWrapper
+        title: Text('Unable to make call'),
+        type: ToastificationType.error,
+        style: ToastificationStyle.flat,
+        autoCloseDuration: const Duration(seconds: 2),
+        animationDuration: const Duration(milliseconds: 100),
+        animationBuilder: (context, animation, alignment, child) {
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+        },
+        primaryColor: Colors.red,
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+      );
+    }
+  }
+
+  Future<void> launchUrlSiteBrowser() async {
+    final Uri urlParsed = Uri.parse("beauty-hub.onrender.com");
+
+    if (await canLaunchUrl(urlParsed)) {
+      await launchUrl(urlParsed, mode: LaunchMode.externalApplication);
+    } else {
+      toastification.show(
+        context: context, // optional if you use ToastificationWrapper
+        title: Text('Could not launch url'),
+        type: ToastificationType.error,
+        style: ToastificationStyle.flat,
+        autoCloseDuration: const Duration(seconds: 2),
+        animationDuration: const Duration(milliseconds: 100),
+        animationBuilder: (context, animation, alignment, child) {
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+        },
+        primaryColor: Colors.red,
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var selectedService = ref.watch(bookingProvider);
@@ -73,90 +177,108 @@ class _ProfileMenu extends ConsumerState<ProfileMenu> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Column(
-            children: [
-              Container(
-                height: 45,
-                width: 45,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  color:
-                      ref.watch(displayProvider).colorScheme.onInverseSurface.withAlpha((0.8 * 255).toInt()),
+          GestureDetector(
+            onTap: () => launchUrlSiteBrowser(),
+            child: Column(
+              children: [
+                Container(
+                  height: 45,
+                  width: 45,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: ref
+                        .watch(displayProvider)
+                        .colorScheme
+                        .onInverseSurface
+                        .withAlpha((0.8 * 255).toInt()),
+                  ),
+                  child: Icon(
+                    Icons.language_outlined,
+                    size: 30,
+                    color: ref.watch(displayProvider).isLightMode
+                        ? ref.watch(displayProvider).colorScheme.surface
+                        : ref.watch(displayProvider).colorScheme.outline,
+                  ),
                 ),
-                child: Icon(
-                  Icons.language_outlined,
-                  size: 30,
-                  color: ref.watch(displayProvider).isLightMode
-                      ? ref.watch(displayProvider).colorScheme.surface
-                      : ref.watch(displayProvider).colorScheme.outline,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: LogaText(
-                  content: "Website",
-                  color: ref.watch(displayProvider).colorScheme.outline,
-                  fontSize: Theme.of(context).textTheme.bodySmall?.fontSize! as double,
-                  fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight! as FontWeight,
-                ),
-              )
-            ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: LogaText(
+                    content: "Website",
+                    color: ref.watch(displayProvider).colorScheme.outline,
+                    fontSize: Theme.of(context).textTheme.bodySmall?.fontSize! as double,
+                    fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight! as FontWeight,
+                  ),
+                )
+              ],
+            ),
           ),
-          Column(
-            children: [
-              Container(
-                height: 45,
-                width: 45,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  color:
-                      ref.watch(displayProvider).colorScheme.onInverseSurface.withAlpha((0.8 * 255).toInt()),
+          GestureDetector(
+            onTap: () => launchEmail(),
+            child: Column(
+              children: [
+                Container(
+                  height: 45,
+                  width: 45,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: ref
+                        .watch(displayProvider)
+                        .colorScheme
+                        .onInverseSurface
+                        .withAlpha((0.8 * 255).toInt()),
+                  ),
+                  child: Image(
+                    image: AssetImage('images/messages.png'),
+                    color: ref.watch(displayProvider).isLightMode
+                        ? ref.watch(displayProvider).colorScheme.surface
+                        : ref.watch(displayProvider).colorScheme.outline,
+                  ),
                 ),
-                child: Image(
-                  image: AssetImage('images/messages.png'),
-                  color: ref.watch(displayProvider).isLightMode
-                      ? ref.watch(displayProvider).colorScheme.surface
-                      : ref.watch(displayProvider).colorScheme.outline,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: LogaText(
-                  content: "Message",
-                  color: ref.watch(displayProvider).colorScheme.outline,
-                  fontSize: Theme.of(context).textTheme.bodySmall?.fontSize! as double,
-                  fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight! as FontWeight,
-                ),
-              )
-            ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: LogaText(
+                    content: "Message",
+                    color: ref.watch(displayProvider).colorScheme.outline,
+                    fontSize: Theme.of(context).textTheme.bodySmall?.fontSize! as double,
+                    fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight! as FontWeight,
+                  ),
+                )
+              ],
+            ),
           ),
-          Column(
-            children: [
-              Container(
-                height: 45,
-                width: 45,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  color:
-                      ref.watch(displayProvider).colorScheme.onInverseSurface.withAlpha((0.8 * 255).toInt()),
+          GestureDetector(
+            onTap: () => launchCall(),
+            child: Column(
+              children: [
+                Container(
+                  height: 45,
+                  width: 45,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: ref
+                        .watch(displayProvider)
+                        .colorScheme
+                        .onInverseSurface
+                        .withAlpha((0.8 * 255).toInt()),
+                  ),
+                  child: Image(
+                    image: AssetImage('images/call.png'),
+                    color: ref.watch(displayProvider).isLightMode
+                        ? ref.watch(displayProvider).colorScheme.surface
+                        : ref.watch(displayProvider).colorScheme.outline,
+                  ),
                 ),
-                child: Image(
-                  image: AssetImage('images/call.png'),
-                  color: ref.watch(displayProvider).isLightMode
-                      ? ref.watch(displayProvider).colorScheme.surface
-                      : ref.watch(displayProvider).colorScheme.outline,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: LogaText(
-                  content: "Call",
-                  color: ref.watch(displayProvider).colorScheme.outline,
-                  fontSize: Theme.of(context).textTheme.bodySmall?.fontSize! as double,
-                  fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight! as FontWeight,
-                ),
-              )
-            ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: LogaText(
+                    content: "Call",
+                    color: ref.watch(displayProvider).colorScheme.outline,
+                    fontSize: Theme.of(context).textTheme.bodySmall?.fontSize! as double,
+                    fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight! as FontWeight,
+                  ),
+                )
+              ],
+            ),
           ),
           Column(
             children: [

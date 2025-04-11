@@ -54,6 +54,7 @@ class ServiceModel {
         service_ref: eachService['service_ref'],
         company_id: UserModel(
           token: '',
+          email: '',
           id: eachService['company_id']['_id'],
           first_name: eachService['company_id']['first_name'],
           bio: '',

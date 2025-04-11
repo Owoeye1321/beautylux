@@ -80,6 +80,7 @@ class Appointment {
           company_id: UserModel(
             token: '',
             id: '',
+            email: '',
             first_name: '',
             bio: '',
             business_address: '',

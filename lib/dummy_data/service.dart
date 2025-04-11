@@ -19,6 +19,7 @@ List<ServiceModel> allServices = [
       currency: "\$",
       company_id: UserModel(
           id: '',
+          email: "jane.smith@salon.com",
           first_name: 'first_name',
           bio: 'bio',
           business_name: 'business_name',
@@ -48,6 +49,7 @@ List<ServiceModel> allServices = [
           first_name: 'first_name',
           bio: 'bio',
           business_name: 'business_name',
+          email: "jane.smith@salon.com",
           business_address: 'business_address',
           company_id: 'company_id',
           token: 'token'),
@@ -74,6 +76,7 @@ List<ServiceModel> allServices = [
           first_name: 'first_name',
           bio: 'bio',
           business_name: 'business_name',
+          email: "jane.smith@salon.com",
           business_address: 'business_address',
           company_id: 'company_id',
           token: 'token'),
@@ -102,6 +105,7 @@ List<ServiceModel> allServices = [
           business_name: 'business_name',
           business_address: 'business_address',
           company_id: 'company_id',
+          email: "jane.smith@salon.com",
           token: 'token'),
       service_ref: "4SER-7IEE",
       createdAt: "2025-01-28T20:44:45.594Z",
@@ -124,6 +128,7 @@ List<ServiceModel> allServices = [
       company_id: UserModel(
           id: '',
           first_name: 'first_name',
+          email: "jane.smith@salon.com",
           bio: 'bio',
           business_name: 'business_name',
           business_address: 'business_address',
@@ -150,6 +155,7 @@ List<ServiceModel> allServices = [
       company_id: UserModel(
           id: '',
           first_name: 'first_name',
+          email: "jane.smith@salon.com",
           bio: 'bio',
           business_name: 'business_name',
           business_address: 'business_address',

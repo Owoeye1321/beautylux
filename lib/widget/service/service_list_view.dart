@@ -156,7 +156,7 @@ class ServiceListView extends ConsumerWidget {
                                 width: 5,
                               ),
                               Text(
-                                "open ${allUsers[index].opening_time}am - close ${allUsers[index].closing_time}pm",
+                                "open ${allUsers[index].opening_time}am - ${allUsers[index].closing_time}pm",
                                 maxLines: 2, // Limits text to 2 lines
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(

@@ -37,7 +37,7 @@ class _SearchState extends ConsumerState<Search> {
   _fetchSearchDetails(String searchQuery) async {
     try {
       var providerNotifier = ref.read(recentSearchProvider.notifier);
-      List<UserModel> providerSearchResults = await providerNotifier.searchProvider(searchQuery);
+      List<UserModel> providerSearchResults = await providerNotifier.searchProvider(searchQuery, null);
       // if (providerSearchResults.isNotEmpty && searchQuery != '' && searchQuery.length > 3)
       //   providerNotifier.addRecentSearches(RecentSearch(content: searchQuery, key: ObjectKey(searchQuery)));
     } catch (e) {
@@ -62,6 +62,7 @@ class _SearchState extends ConsumerState<Search> {
     BuildContext context,
   ) {
     var searchHistory = ref.watch(recentSearchProvider);
+    var defaultUsers = ref.watch(userProvider).serviceProviders;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
       child: Column(
@@ -198,7 +199,7 @@ class _SearchState extends ConsumerState<Search> {
                     ),
                   ),
                 )
-              : searchHistory.providers.isEmpty
+              : searchHistory.providers.isEmpty && defaultUsers.isEmpty
                   ? Container(
                       height: 250,
                       child: Center(
@@ -225,7 +226,7 @@ class _SearchState extends ConsumerState<Search> {
                       ),
                     )
                   : ServiceListView(
-                      allUsers: ref.watch(recentSearchProvider).providers,
+                      allUsers: searchHistory.providers.isEmpty ? defaultUsers : searchHistory.providers,
                     )
         ],
       ),

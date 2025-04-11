@@ -22,6 +22,7 @@ class MarketPlace extends ConsumerStatefulWidget {
 
 class _MarketPlaceState extends ConsumerState<MarketPlace> {
   List<UserModel> allUsers = [];
+  String order = 'default';
   bool loadingState = true;
   @override
   void initState() {
@@ -49,13 +50,17 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
   _fetchSearchDetails(String searchQuery) async {
     try {
       var providerNotifier = ref.read(recentSearchProvider.notifier);
-      List<UserModel> providerSearchResults = await providerNotifier.searchProvider(searchQuery);
+      List<UserModel> providerSearchResults = await providerNotifier.searchProvider(searchQuery, null);
       //if (providerSearchResults.isNotEmpty && searchQuery != '' && searchQuery.length > 3)
       // providerNotifier.addRecentSearches(RecentSearch(content: searchQuery, key: ObjectKey(searchQuery)));
       widget.viewHistory(0, 1);
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  _filterUsers() {
+    ref.read(userProvider.notifier).filterUsers();
   }
 
   @override
@@ -66,7 +71,6 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
 
   @override
   Widget build(BuildContext context) {
-    allUsers = ref.watch(userProvider).serviceProviders;
     if (!allUsers.isEmpty) {
       setState(() {
         loadingState = false;
@@ -189,6 +193,7 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
                 child: GestureDetector(
                   onTap: () {
                     widget.bookNow;
+                    widget.viewHistory(0, 1);
                   },
                   child: Container(
                     width: double.infinity,
@@ -235,6 +240,9 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
           scrollDirection: Axis.horizontal,
           child: CategoryRowScroll(),
         ),
+        SizedBox(
+          height: 10,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -246,7 +254,7 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
               ),
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () => widget.viewHistory(0, 1),
               child: Text(
                 "View all",
                 style: TextStyle(
@@ -271,24 +279,28 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                _filterUsers();
+              },
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(
-                    "Recommended",
+                    ref.watch(userProvider).order == 'default'
+                        ? "Recommended"
+                        : ref.watch(userProvider).order == "asc"
+                            ? "Ascending"
+                            : "Descending",
                     style: TextStyle(
                       color: ref.watch(displayProvider).colorScheme.surface,
                       fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
                       fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 5.0),
-                    child: Icon(
-                      Icons.keyboard_arrow_down_outlined,
-                      color: ref.watch(displayProvider).colorScheme.surface,
-                      size: 15,
-                    ),
+                  Icon(
+                    Icons.keyboard_arrow_down_outlined,
+                    color: ref.watch(displayProvider).colorScheme.surface,
+                    size: 15,
                   ),
                 ],
               ),
@@ -304,12 +316,20 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
                   borderRadius: BorderRadius.circular(5),
                 ),
               ),
-              onPressed: () {},
-              child: Icon(
-                Icons.filter_list,
-                color: ref.watch(displayProvider).colorScheme.surface,
-                size: 15,
-              ),
+              onPressed: () {
+                _filterUsers();
+              },
+              child: order == 'default'
+                  ? Icon(
+                      Icons.filter_list,
+                      color: ref.watch(displayProvider).colorScheme.surface,
+                      size: 15,
+                    )
+                  : Icon(
+                      Icons.sort_by_alpha,
+                      color: ref.watch(displayProvider).colorScheme.surface,
+                      size: 15,
+                    ),
             ),
             SizedBox(
               width: 150,
@@ -325,7 +345,7 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
           ],
         ),
         SizedBox(height: 10),
-        loadingState == true
+        ref.watch(userProvider).loadingState == true || ref.watch(recentSearchProvider).loadingState == true
             ? Container(
                 padding: EdgeInsets.only(top: 30),
                 child: Center(
@@ -336,10 +356,10 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
               )
             : activeView == "grid"
                 ? ServiceGridView(
-                    allUsers: allUsers,
+                    allUsers: ref.watch(userProvider).serviceProviders,
                   )
                 : ServiceListView(
-                    allUsers: allUsers,
+                    allUsers: ref.watch(userProvider).serviceProviders,
                   ),
       ],
     );

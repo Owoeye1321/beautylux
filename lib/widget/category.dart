@@ -3,8 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/model/category.dart';
 import 'package:logaluxe_users/model/user.dart';
 import 'package:logaluxe_users/provider/category.dart';
+import 'package:logaluxe_users/provider/recent.dart';
 import 'package:logaluxe_users/provider/service.dart';
 import 'package:logaluxe_users/provider/display.dart';
+import 'package:logaluxe_users/provider/user.dart';
 import 'package:logaluxe_users/widget/loga_text.dart';
 
 class CategoryRowScroll extends ConsumerStatefulWidget {
@@ -28,23 +30,28 @@ class _CategoryRowScroll extends ConsumerState<CategoryRowScroll> {
     var categoryNotier = await ref.read(categoryProvider.notifier);
     var fetchCategories = await categoryNotier.fetchCategory();
     if (!fetchCategories.data.isEmpty) {
-      categoryNotier.setActiveCategory(fetchCategories.data[0]);
-      fetchProviderCategoryService();
+      if (widget.user != null) {
+        categoryNotier.setActiveCategory(fetchCategories.data[0]);
+        fetchProviderCategoryService();
+      }
     }
   }
 
   _setActiveCategory(CategoryModel category) {
     ref.read(categoryProvider.notifier).setActiveCategory(category);
-    fetchProviderCategoryService();
+    fetchProviderCategoryService(category_id: category.id);
   }
 
-  fetchProviderCategoryService() async {
+  fetchProviderCategoryService({String? category_id}) async {
     if (widget.user != null && mounted) {
       ref.read(serviceProvider.notifier).resetServices();
       String companyId = widget.user!.company_id as String;
       String category_id = ref.read(categoryProvider).activeCategory!.id!;
       ServiceProviderModel response =
           await ref.read(serviceProvider.notifier).fetchServices(category_id, companyId);
+    } else if (category_id != null) {
+      var allUsers = await ref.read(recentSearchProvider.notifier).searchProvider('', category_id);
+      await ref.read(userProvider.notifier).setServiceProviders(allUsers);
     }
   }
 

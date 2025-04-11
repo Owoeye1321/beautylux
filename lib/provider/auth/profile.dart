@@ -8,6 +8,7 @@ class ProfileNotifier extends StateNotifier<UserModel> {
       : super(UserModel(
             first_name: '',
             bio: '',
+            email: '',
             business_name: '',
             business_address: '',
             token: '',
@@ -19,7 +20,7 @@ class ProfileNotifier extends StateNotifier<UserModel> {
 
   logOut() {
     state = UserModel(
-        first_name: '', bio: '', business_name: '', business_address: '', token: '', company_id: '', id: '');
+        first_name: '', bio: '', email: '', business_name: '', business_address: '', token: '', company_id: '', id: '');
   }
 }
 

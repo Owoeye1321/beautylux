@@ -37,15 +37,18 @@ class RecentSearchNotifier extends StateNotifier<RecentSearchModel> {
   }
 
   List<RecentSearch> clearSearchHistory() {
-    state = RecentSearchModel(search: [], providers: state.providers, loadingState: state.loadingState);
+    state = RecentSearchModel(search: [], providers: [], loadingState: state.loadingState);
     return state.search;
   }
 
-  Future<List<UserModel>> searchProvider(String searchQuery) async {
+  Future<List<UserModel>> searchProvider(String searchQuery, String? category_id) async {
     state = RecentSearchModel(search: state.search, providers: state.providers, loadingState: true);
     try {
-      var response = await http
-          .get(Uri.parse('${dotenv.env['API_URL']}/customer/search-providers?searchQuery=${searchQuery}'));
+      var response = searchQuery != ''
+          ? await http
+              .get(Uri.parse('${dotenv.env['API_URL']}/customer/search-providers?searchQuery=${searchQuery}'))
+          : await http.get(
+              Uri.parse('${dotenv.env['API_URL']}/customer/search-providers?&category_id=${category_id}'));
       if (response.statusCode == 200) {
         state = RecentSearchModel(
             search: state.search,

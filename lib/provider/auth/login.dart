@@ -15,6 +15,7 @@ class LoginInNotifier extends StateNotifier<LoginResponse> {
               message: '',
               data: UserModel(
                   first_name: "",
+                  email: '',
                   id: '',
                   bio: '',
                   business_name: '',

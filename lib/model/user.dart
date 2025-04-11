@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 class UserModel {
   final String first_name;
   final String? last_name;
-  final String? email;
+  final String email;
   final String? phone;
   final String? occupation;
   final bool? is_active;
@@ -47,7 +47,7 @@ class UserModel {
   UserModel(
       {required this.first_name,
       this.last_name,
-      this.email,
+     required  this.email,
       this.phone,
       this.occupation,
       this.is_active,
@@ -114,6 +114,7 @@ class UserModel {
         first_name: first_name,
         bio: bio,
         token: '',
+        email: '',
         business_name: business_name,
         business_address: business_address,
         createdAt: DateFormat.jm().format(date),

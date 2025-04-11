@@ -80,6 +80,7 @@ class _HomeState extends ConsumerState<Home> {
     }
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: currentIndex == 0
           ? AppBar(
               toolbarHeight: 90,
