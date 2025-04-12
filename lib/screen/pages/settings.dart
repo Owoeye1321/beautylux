@@ -66,68 +66,117 @@ class _SettingsState extends ConsumerState<Settings> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              LogaText(
-                content: "Display Mode",
-                color: ref.watch(displayProvider).colorScheme.onSurface,
-                fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
-                fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
-              ),
-              AdvancedSwitch(
-                controller: _controller,
-                activeColor: ref.watch(displayProvider).colorScheme.onSurface,
-                inactiveColor: ref.watch(displayProvider).colorScheme.onSurface,
-                borderRadius: BorderRadius.all(const Radius.circular(15)),
-                width: 60,
-                height: 30,
-                enabled: true,
-                disabledOpacity: 0.5,
-                initialValue: isLightMode!,
-                onChanged: (value) {
-                  _changeDisplay(value);
-                },
-              ),
-            ],
+          LogaText(
+            content: "Preference",
+            color: ref.watch(displayProvider).colorScheme.onSurface,
+            fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize as double,
+            fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
           ),
           SizedBox(
             height: 20,
           ),
-          ref.watch(profileProvider).token == ''
-              ? GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => Login()));
-                  },
-                  child: LogaText(
-                    content: "Log in",
-                    color: ref.watch(displayProvider).colorScheme.onSurface,
-                    fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
-                    fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
-                  ),
-                )
-              : GestureDetector(
-                  onTap: () {
-                    logOut();
-                  },
-                  child: Row(
+          Container(
+            height: 50,
+            decoration: BoxDecoration(
+                color: ref.watch(displayProvider).colorScheme.onSurface.withAlpha((0.2 * 255).toInt()),
+                borderRadius: BorderRadius.circular(20)),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
                     children: [
                       Icon(
-                        Icons.logout,
+                        Icons.dark_mode,
                         color: ref.watch(displayProvider).colorScheme.onSurface,
                       ),
                       SizedBox(
                         width: 10,
                       ),
                       LogaText(
-                        content: "Log out",
+                        content: "Display Mode",
                         color: ref.watch(displayProvider).colorScheme.onSurface,
                         fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
                         fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
                       ),
                     ],
                   ),
-                )
+                  AdvancedSwitch(
+                    controller: _controller,
+                    activeColor: Colors.white,
+                    inactiveColor: Colors.black,
+                    borderRadius: BorderRadius.all(const Radius.circular(15)),
+                    width: 60,
+                    height: 30,
+                    enabled: true,
+                    disabledOpacity: 0.5,
+                    initialValue: isLightMode!,
+                    onChanged: (value) {
+                      _changeDisplay(value);
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            height: 50,
+            width: double.infinity,
+            alignment: Alignment.centerLeft,
+            decoration: BoxDecoration(
+                color: ref.watch(displayProvider).colorScheme.onSurface.withAlpha((0.2 * 255).toInt()),
+                borderRadius: BorderRadius.circular(20)),
+            child: ref.watch(profileProvider).token == ''
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => Login()));
+                      },
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.logout,
+                            color: ref.watch(displayProvider).colorScheme.onSurface,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          LogaText(
+                            content: "Log in",
+                            color: ref.watch(displayProvider).colorScheme.onSurface,
+                            fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
+                            fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                : Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.logout,
+                          color: ref.watch(displayProvider).colorScheme.onSurface,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        LogaText(
+                          content: "Log out",
+                          color: ref.watch(displayProvider).colorScheme.onSurface,
+                          fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
+                          fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
+                        ),
+                      ],
+                    ),
+                  ),
+          ),
         ],
       ),
     );

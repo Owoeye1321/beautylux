@@ -216,24 +216,28 @@ class _HomeState extends ConsumerState<Home> {
                   : AppBar(
                       backgroundColor: ref.watch(displayProvider).colorScheme.tertiaryContainer,
                       actions: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Settings ",
-                                style: TextStyle(
-                                  fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize!,
-                                  fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
-                                ),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Settings ",
+                                    style: TextStyle(
+                                      fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize!,
+                                      fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                         const SizedBox(
-                          width: 150,
+                          width: 155,
                         ),
                       ],
                     ),

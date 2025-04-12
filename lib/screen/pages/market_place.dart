@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/model/recent.dart';
 import 'package:logaluxe_users/model/user.dart';
+import 'package:logaluxe_users/provider/auth/profile.dart';
+import 'package:logaluxe_users/provider/like.dart';
 import 'package:logaluxe_users/provider/recent.dart';
 import 'package:logaluxe_users/provider/user.dart';
 import 'package:logaluxe_users/screen/pages/search.dart';
@@ -41,6 +43,8 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
 
   fetchUsers() async {
     var users = await ref.read(userProvider.notifier).getServiceProviders();
+    if (mounted && ref.watch(profileProvider).token != '')
+      await ref.read(likeProvider.notifier).fetchLikes(ref.watch(profileProvider).token);
     if (mounted)
       setState(() {
         allUsers = users.serviceProviders;

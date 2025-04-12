@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/model/user.dart';
+import 'package:logaluxe_users/provider/auth/profile.dart';
 import 'package:logaluxe_users/provider/display.dart';
+import 'package:logaluxe_users/provider/like.dart';
 import 'package:logaluxe_users/provider/user.dart';
 import 'package:logaluxe_users/screen/service-provider/view_provider.dart';
 import 'package:logaluxe_users/widget/loga_text.dart';
@@ -21,6 +23,8 @@ class ServiceListView extends ConsumerWidget {
         ),
       );
     }
+
+    var allLikes = ref.watch(likeProvider);
 
     return Container(
       child: GridView.builder(
@@ -122,7 +126,7 @@ class ServiceListView extends ConsumerWidget {
                                 padding: EdgeInsets.only(top: 6),
                                 child: Icon(
                                   Icons.location_on_outlined,
-                                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                                  color: Theme.of(context).colorScheme.outline,
                                   //color: Colors.white,
                                   size: 20,
                                 ),
@@ -149,7 +153,7 @@ class ServiceListView extends ConsumerWidget {
                             children: [
                               Icon(
                                 Icons.schedule,
-                                color: Theme.of(context).colorScheme.onSurfaceVariant,
+                                color: Theme.of(context).colorScheme.outline,
                                 size: 18,
                               ),
                               SizedBox(
@@ -161,12 +165,12 @@ class ServiceListView extends ConsumerWidget {
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   color: Theme.of(context).colorScheme.onSurface,
-                                  fontSize: Theme.of(context).textTheme.displaySmall?.fontSize!,
+                                  fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
                                 ),
                               ),
                             ],
                           ),
-                          SizedBox(height: 5),
+                          SizedBox(height: 15),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -209,11 +213,30 @@ class ServiceListView extends ConsumerWidget {
                                 ),
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(vertical: 2, horizontal: 3),
-                                  child: Icon(
-                                    Icons.favorite_border,
-                                    size: 23,
-                                    color: Theme.of(context).colorScheme.onPrimary,
-                                  ),
+                                  child: allLikes.any((like) => like.company_id == allUsers[index].id)
+                                      ? InkWell(
+                                          onTap: () {
+                                            ref.read(likeProvider.notifier).saveLike(
+                                                ref.watch(profileProvider).token, allUsers[index].id);
+                                          },
+                                          child: Icon(
+                                            Icons.favorite,
+                                            size: 25,
+                                            color: ref.watch(displayProvider).colorScheme.onPrimary,
+                                          ),
+                                        )
+                                      : InkWell(
+                                          onTap: () {
+                                            if (ref.watch(profileProvider).token != '')
+                                              ref.read(likeProvider.notifier).saveLike(
+                                                  ref.watch(profileProvider).token, allUsers[index].id);
+                                          },
+                                          child: Icon(
+                                            Icons.favorite_border,
+                                            size: 25,
+                                            color: ref.watch(displayProvider).colorScheme.onPrimary,
+                                          ),
+                                        ),
                                 ),
                               ),
                               // ),
