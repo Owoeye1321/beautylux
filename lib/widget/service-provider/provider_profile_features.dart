@@ -141,7 +141,7 @@ class _ProfileMenu extends ConsumerState<ProfileMenu> {
   }
 
   Future<void> launchUrlSiteBrowser() async {
-    final Uri urlParsed = Uri.parse("https://www.beauty-hub.onrender.com");
+    final Uri urlParsed = Uri.parse("https://beauty-hub.onrender.com/");
 
     if (await canLaunchUrl(urlParsed)) {
       await launchUrl(urlParsed);
