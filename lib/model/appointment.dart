@@ -5,7 +5,7 @@ import 'package:logaluxe_users/model/user.dart';
 
 class Appointment {
   final String payment_status;
-  final List<AppointmentProduct>? products;
+  final List<AppointmentProduct> products;
   final String? time;
   final String? first_name;
   final String? last_name;
@@ -26,7 +26,7 @@ class Appointment {
   final DateTime updatedAt;
   Appointment(
       {required this.payment_status,
-      this.products,
+      required this.products,
       this.time,
       required this.status,
       this.first_name,
@@ -63,11 +63,20 @@ class Appointment {
     return thisYear;
   }
 
+  get formatStartHour {
+    return DateFormat('h:mm a').format(start_date); // Today, 11:00 AM
+  }
+
+  get formatEndHour {
+    return DateFormat('h:mm a').format(end_date); // Today, 11:00 AM
+  }
+
   static List<Appointment> fromJsonList(Map<String, dynamic> data) {
     //print(data['data'][0]);
     List<Appointment> allAppointments = [];
     for (Map<String, dynamic> eachAppointment in data['data']) {
       Appointment appointment = Appointment(
+        products: [],
         payment_status: eachAppointment['payment_status'].toString(),
         status: eachAppointment['status'].toString(),
         total_amount: int.parse(eachAppointment['total_amount'].toString()),

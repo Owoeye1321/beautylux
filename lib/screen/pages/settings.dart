@@ -104,8 +104,8 @@ class _SettingsState extends ConsumerState<Settings> {
                   ),
                   AdvancedSwitch(
                     controller: _controller,
-                    activeColor: Colors.white,
-                    inactiveColor: Colors.black,
+                    activeColor: ref.watch(displayProvider).colorScheme.onSurface,
+                    inactiveColor: ref.watch(displayProvider).colorScheme.onSurface,
                     borderRadius: BorderRadius.all(const Radius.circular(15)),
                     width: 60,
                     height: 30,
