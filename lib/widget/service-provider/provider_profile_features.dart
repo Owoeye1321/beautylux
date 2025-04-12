@@ -141,10 +141,10 @@ class _ProfileMenu extends ConsumerState<ProfileMenu> {
   }
 
   Future<void> launchUrlSiteBrowser() async {
-    final Uri urlParsed = Uri.parse("beauty-hub.onrender.com");
+    final Uri urlParsed = Uri.parse("https://www.beauty-hub.onrender.com");
 
     if (await canLaunchUrl(urlParsed)) {
-      await launchUrl(urlParsed, mode: LaunchMode.externalApplication);
+      await launchUrl(urlParsed);
     } else {
       toastification.show(
         context: context, // optional if you use ToastificationWrapper

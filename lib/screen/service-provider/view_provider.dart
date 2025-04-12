@@ -128,7 +128,7 @@ class ViewProvider extends ConsumerWidget {
           ),
           Positioned.fill(
             top: 400,
-            bottom: Platform.isIOS ? 230 : 140,
+            bottom: Platform.isIOS ? 240 : 140,
             right: 20,
             left: 20,
             child: Container(
