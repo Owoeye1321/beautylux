@@ -123,20 +123,54 @@ class _SettingsState extends ConsumerState<Settings> {
           SizedBox(
             height: 10,
           ),
-          Container(
-            height: 50,
-            width: double.infinity,
-            alignment: Alignment.centerLeft,
-            decoration: BoxDecoration(
-                color: ref.watch(displayProvider).colorScheme.onSurface.withAlpha((0.2 * 255).toInt()),
-                borderRadius: BorderRadius.circular(20)),
-            child: ref.watch(profileProvider).token == ''
-                ? Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => Login()));
-                      },
+          ref.watch(profileProvider).token == ''
+              ? InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => Login()));
+                  },
+                  child: Container(
+                      height: 50,
+                      width: double.infinity,
+                      alignment: Alignment.centerLeft,
+                      decoration: BoxDecoration(
+                          color:
+                              ref.watch(displayProvider).colorScheme.onSurface.withAlpha((0.2 * 255).toInt()),
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.logout,
+                              color: ref.watch(displayProvider).colorScheme.onSurface,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            LogaText(
+                              content: "Log in",
+                              color: ref.watch(displayProvider).colorScheme.onSurface,
+                              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
+                              fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
+                            ),
+                          ],
+                        ),
+                      )),
+                )
+              : InkWell(
+                  onTap: () {
+                    logOut();
+                  },
+                  child: Container(
+                    height: 50,
+                    width: double.infinity,
+                    alignment: Alignment.centerLeft,
+                    decoration: BoxDecoration(
+                        color:
+                            ref.watch(displayProvider).colorScheme.onSurface.withAlpha((0.2 * 255).toInt()),
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: Row(
                         children: [
                           Icon(
@@ -147,7 +181,7 @@ class _SettingsState extends ConsumerState<Settings> {
                             width: 10,
                           ),
                           LogaText(
-                            content: "Log in",
+                            content: "Log out",
                             color: ref.watch(displayProvider).colorScheme.onSurface,
                             fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
                             fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
@@ -155,28 +189,8 @@ class _SettingsState extends ConsumerState<Settings> {
                         ],
                       ),
                     ),
-                  )
-                : Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.logout,
-                          color: ref.watch(displayProvider).colorScheme.onSurface,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        LogaText(
-                          content: "Log out",
-                          color: ref.watch(displayProvider).colorScheme.onSurface,
-                          fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
-                          fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
-                        ),
-                      ],
-                    ),
                   ),
-          ),
+                ),
         ],
       ),
     );
