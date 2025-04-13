@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -242,7 +244,7 @@ class _RegisterState extends ConsumerState<Register> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: 370,
+                  width: Platform.isIOS ? 370 : 360,
                   child: LogaInputField(
                     onChange: (value) {},
                     hintText: "First Name",
@@ -270,7 +272,7 @@ class _RegisterState extends ConsumerState<Register> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: 370,
+                  width: Platform.isIOS ? 370 : 360,
                   child: LogaInputField(
                     onChange: (value) {},
                     hintText: "Email",
@@ -298,7 +300,7 @@ class _RegisterState extends ConsumerState<Register> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: 370,
+                  width: Platform.isIOS ? 370 : 360,
                   child: LogaInputField(
                     onChange: (value) {},
                     hintText: "********",

@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -223,7 +224,7 @@ class _LoginState extends ConsumerState<Login> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: 370,
+                  width: Platform.isIOS ? 370 : 360,
                   child: LogaInputField(
                     onChange: (value) {},
                     hintText: "Email",
@@ -251,7 +252,7 @@ class _LoginState extends ConsumerState<Login> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: 370,
+                  width: 360,
                   child: LogaInputField(
                     onChange: (value) {},
                     hintText: "********",
