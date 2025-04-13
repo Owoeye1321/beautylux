@@ -1,0 +1,1 @@
+/Users/devpilot/StudioProjects/logaluxe_users/build/app/intermediates/cxx/RelWithDebInfo/4m2h201s/obj/arm64-v8a

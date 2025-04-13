@@ -45,6 +45,7 @@ class _MarketPlaceState extends ConsumerState<MarketPlace> {
     var users = await ref.read(userProvider.notifier).getServiceProviders();
     if (mounted && ref.watch(profileProvider).token != '')
       await ref.read(likeProvider.notifier).fetchLikes(ref.watch(profileProvider).token);
+
     if (mounted)
       setState(() {
         allUsers = users.serviceProviders;

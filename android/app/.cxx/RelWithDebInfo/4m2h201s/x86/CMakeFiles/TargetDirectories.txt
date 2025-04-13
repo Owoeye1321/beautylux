@@ -1,0 +1,2 @@
+/Users/devpilot/StudioProjects/logaluxe_users/android/app/.cxx/RelWithDebInfo/4m2h201s/x86/CMakeFiles/edit_cache.dir
+/Users/devpilot/StudioProjects/logaluxe_users/android/app/.cxx/RelWithDebInfo/4m2h201s/x86/CMakeFiles/rebuild_cache.dir
