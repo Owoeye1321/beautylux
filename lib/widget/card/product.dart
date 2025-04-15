@@ -27,19 +27,21 @@ class _ProductCard extends ConsumerState<ProductCard> {
   Widget build(
     BuildContext context,
   ) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     return Container(
       height: 115,
+      width: screenWidth * 1,
       decoration: BoxDecoration(
         color: ref.watch(displayProvider).colorScheme.onTertiaryContainer.withAlpha((0.2 * 255).toInt()),
         borderRadius: BorderRadius.circular(15),
       ),
       margin: EdgeInsets.only(bottom: 10),
-      width: double.infinity,
       child: Row(
         children: [
           Container(
             height: 110,
-            width: 120,
+            width: screenWidth * 0.3,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               image: DecorationImage(
@@ -55,7 +57,7 @@ class _ProductCard extends ConsumerState<ProductCard> {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.only(top: 5, left: 10, right: 10, bottom: 0),
+              padding: EdgeInsets.only(top: 5, left: 10, right: screenWidth * 0.05, bottom: 0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -133,7 +135,7 @@ class _ProductCard extends ConsumerState<ProductCard> {
                     children: [
                       SizedBox(
                         height: 40,
-                        width: 170,
+                        width: screenWidth * 0.38,
                         child: LogaText(
                           content: widget.product.description,
                           maxLines: 2,
@@ -145,7 +147,7 @@ class _ProductCard extends ConsumerState<ProductCard> {
                       ),
                       widget.addedProduct == true
                           ? Container(
-                              width: 30,
+                              width: screenWidth * 0.09,
                               height: 30,
                               padding: EdgeInsets.symmetric(horizontal: 2),
                               decoration: BoxDecoration(
@@ -168,7 +170,7 @@ class _ProductCard extends ConsumerState<ProductCard> {
                               ),
                             )
                           : Container(
-                              width: 30,
+                              width: screenWidth * 0.09,
                               height: 30,
                               padding: EdgeInsets.symmetric(horizontal: 2),
                               decoration: BoxDecoration(

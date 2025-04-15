@@ -17,13 +17,14 @@ class LogaIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     late Widget button;
     if (trailingType == "icon") {
       button = ElevatedButton.icon(
         style: Theme.of(context)
             .elevatedButtonTheme
             .style!
-            .copyWith(fixedSize: WidgetStateProperty.all<Size?>(const Size(360, 50))),
+            .copyWith(fixedSize: WidgetStateProperty.all<Size?>(Size(screenWidth * 0.88, 50))),
         onPressed: () {},
         icon: Icon(
           icon,
@@ -43,36 +44,43 @@ class LogaIconButton extends StatelessWidget {
           onPressed();
         },
         style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
-              fixedSize: WidgetStateProperty.all<Size?>(const Size(360, 50)),
+              minimumSize: WidgetStateProperty.all(Size(0, 0)),
+              maximumSize: WidgetStateProperty.all(
+                Size(screenWidth * 0.4, 50),
+              ),
               backgroundColor: WidgetStateProperty.all<Color?>(Theme.of(context).colorScheme.onSurface),
             ),
-        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Container(
-            height: 20,
-            width: 20,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: image,
-                fit: BoxFit.cover,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              height: 20,
+              width: 20,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: image,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-          const SizedBox(width: 10),
-          Text(
-            text,
-            style: Theme.of(context)
-                .textTheme
-                .bodyMedium!
-                .copyWith(color: Theme.of(context).colorScheme.surface),
-          ),
-        ]),
+            const SizedBox(width: 10),
+            Text(
+              text,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(color: Theme.of(context).colorScheme.surface),
+            ),
+          ],
+        ),
       );
     }
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        button,
-      ],
+    return Container(
+      width: double.infinity,
+      child: SizedBox(
+        width: screenWidth * 0.88,
+        child: button,
+      ),
     );
   }
 }

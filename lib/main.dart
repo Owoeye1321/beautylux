@@ -8,7 +8,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:logaluxe_users/firebase_options.dart';
 import 'package:logaluxe_users/provider/display.dart';
 import 'package:logaluxe_users/screen/auth/splash.dart';
-import 'package:logaluxe_users/screen/home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Ensure Flutter is initialized
@@ -40,6 +39,8 @@ class MyApp extends ConsumerWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     var colorScheme = ref.watch(displayProvider);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -65,9 +66,9 @@ class MyApp extends ConsumerWidget {
           style: ElevatedButton.styleFrom(
             foregroundColor: Colors.white,
             backgroundColor: colorScheme.colorScheme.onPrimary,
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            //padding: const EdgeInsets.symmetric(horizontal: 20),
             minimumSize: Size(0, 0),
-            fixedSize: const Size(380, 60),
+            fixedSize: Size(screenWidth * 0.88, 50),
           ),
         ),
       ),

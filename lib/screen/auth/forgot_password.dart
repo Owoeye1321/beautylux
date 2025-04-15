@@ -79,99 +79,96 @@ class _ForgotPasswordState extends ConsumerState<ForgotPassword> {
   @override
   Widget build(BuildContext context) {
     bool loadingState = ref.watch(passwordResetProvider).loading;
+    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
-        margin: const EdgeInsets.only(top: 80, left: 15, right: 15),
+        width: screenWidth * 1,
+        margin: const EdgeInsets.only(
+          top: 80,
+        ),
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surface,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Forget Password,",
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onSurface,
-                fontSize: Theme.of(context).textTheme.titleLarge?.fontSize!,
-                fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight!,
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            SplashText(
-              title: "Please type in your email, we’ll send",
-              color: Theme.of(context).colorScheme.onTertiary,
-              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
-              fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
-            ),
-            SplashText(
-              title: "you a code to change your password.",
-              color: Theme.of(context).colorScheme.onTertiary,
-              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
-              fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
-            ),
-            const SizedBox(
-              height: 70,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: 370,
-                  child: LogaInputField(
-                    onChange: (value) {},
-                    hintText: "Email",
-                    buttonBorder: 100,
-                    verticalPadding: 15,
-                    horizontalPadding: 35,
-                    alterVisibility: false,
-                    hideTextInput: false,
-                    prefixIconData: Icons.email,
-                    setIconSize: false,
-                    prefixIcon: true,
-                    prefixImage: false,
-                    setIconColor: false,
-                    setIconPadding: false,
-                    controller: emailTextController,
-                    errorText: emailError,
-                  ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Forget Password,",
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSurface,
+                  fontSize: Theme.of(context).textTheme.titleLarge?.fontSize!,
+                  fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight!,
                 ),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return ForgotPassword();
-                        },
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              SplashText(
+                title: "Please type in your email, we’ll send",
+                color: Theme.of(context).colorScheme.onTertiary,
+                fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+                fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
+              ),
+              SplashText(
+                title: "you a code to change your password.",
+                color: Theme.of(context).colorScheme.onTertiary,
+                fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+                fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
+              ),
+              const SizedBox(
+                height: 70,
+              ),
+              LogaInputField(
+                onChange: (value) {},
+                hintText: "Email",
+                buttonBorder: 100,
+                verticalPadding: 15,
+                horizontalPadding: 35,
+                alterVisibility: false,
+                hideTextInput: false,
+                prefixIconData: Icons.email,
+                setIconSize: false,
+                prefixIcon: true,
+                prefixImage: false,
+                setIconColor: false,
+                setIconPadding: false,
+                controller: emailTextController,
+                errorText: emailError,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return ForgotPassword();
+                          },
+                        ),
+                      );
+                    },
+                    child: Text(
+                      "Use phone number?",
+                      style: TextStyle(
+                        fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+                        color: Theme.of(context).colorScheme.onTertiary,
                       ),
-                    );
-                  },
-                  child: Text(
-                    "Use phone number?",
-                    style: TextStyle(
-                      fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
-                      color: Theme.of(context).colorScheme.onTertiary,
                     ),
-                  ),
-                )
-              ],
-            ),
-            const SizedBox(
-              height: 365,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 350,
+              ),
+              Center(
+                child: ElevatedButton(
                   onPressed: loadingState == true
                       ? null
                       : () {
@@ -208,9 +205,9 @@ class _ForgotPasswordState extends ConsumerState<ForgotPassword> {
                               ),
                         ),
                 ),
-              ],
-            ),
-          ],
+              ),
+            ],
+          ),
         ),
       ),
     );

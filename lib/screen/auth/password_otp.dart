@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logaluxe_users/provider/auth/reset_password.dart';
@@ -59,13 +61,13 @@ class _PasswordOTPState extends ConsumerState<PasswordOTP> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     var loadingState = ref.watch(passwordResetProvider).loading;
     String timer = "00:00";
     return Scaffold(
       body: Container(
         margin: const EdgeInsets.only(
           top: 80,
-          left: 15,
         ),
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surface,
@@ -73,28 +75,37 @@ class _PasswordOTPState extends ConsumerState<PasswordOTP> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "Email Verification,",
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onSurface,
-                fontSize: Theme.of(context).textTheme.titleLarge?.fontSize!,
-                fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight!,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Text(
+                "Email Verification,",
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSurface,
+                  fontSize: Theme.of(context).textTheme.titleLarge?.fontSize!,
+                  fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight!,
+                ),
               ),
             ),
             const SizedBox(
               height: 20,
             ),
-            SplashText(
-              title: "Please type OTP code that was sent to",
-              color: Theme.of(context).colorScheme.onTertiary,
-              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
-              fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: SplashText(
+                title: "Please type OTP code that was sent to",
+                color: Theme.of(context).colorScheme.onTertiary,
+                fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+                fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
+              ),
             ),
-            SplashText(
-              title: " your mail.",
-              color: Theme.of(context).colorScheme.onTertiary,
-              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
-              fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: SplashText(
+                title: " your mail.",
+                color: Theme.of(context).colorScheme.onTertiary,
+                fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+                fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
+              ),
             ),
             const SizedBox(
               height: 80,
@@ -131,50 +142,46 @@ class _PasswordOTPState extends ConsumerState<PasswordOTP> {
                 ),
               ],
             ),
-            const SizedBox(
-              height: 360,
+            SizedBox(
+              height: Platform.isIOS ? 360 : 280,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: loadingState == true || enteredOtp == ''
-                      ? null
-                      : () {
-                          _resubmit();
-                        },
-                  style: ButtonStyle(
-                    minimumSize: WidgetStateProperty.all(Size(0, 0)),
-                    maximumSize: WidgetStateProperty.all(
-                      Size(360, 50),
-                    ),
-                    padding: WidgetStateProperty.all(
-                      EdgeInsets.symmetric(vertical: 3),
-                    ),
-                    backgroundColor: WidgetStateProperty.resolveWith<Color>(
-                      (states) {
-                        if (states.contains(WidgetState.disabled)) {
-                          return Theme.of(context)
-                              .colorScheme
-                              .onPrimary
-                              .withAlpha((0.5 * 255).toInt()); // Custom disabled color
-                        }
-                        return Theme.of(context).colorScheme.onPrimary; // Custom disabled color
+            Container(
+              width: screenWidth * 1,
+              alignment: Alignment.center,
+              child: ElevatedButton(
+                onPressed: loadingState == true || enteredOtp == ''
+                    ? null
+                    : () {
+                        _resubmit();
                       },
-                    ),
+                style: ButtonStyle(
+                  minimumSize: WidgetStateProperty.all(Size(0, 0)),
+                  maximumSize: WidgetStateProperty.all(
+                    Size(screenWidth * 0.9, 50),
                   ),
-                  child: loadingState == true
-                      ? CircularProgressIndicator.adaptive(
-                          backgroundColor: Theme.of(context).colorScheme.onSurface,
-                        )
-                      : Text(
-                          "Proceed",
-                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                color: Theme.of(context).colorScheme.onSurface,
-                              ),
-                        ),
+                  backgroundColor: WidgetStateProperty.resolveWith<Color>(
+                    (states) {
+                      if (states.contains(WidgetState.disabled)) {
+                        return Theme.of(context)
+                            .colorScheme
+                            .onPrimary
+                            .withAlpha((0.5 * 255).toInt()); // Custom disabled color
+                      }
+                      return Theme.of(context).colorScheme.onPrimary; // Custom disabled color
+                    },
+                  ),
                 ),
-              ],
+                child: loadingState == true
+                    ? CircularProgressIndicator.adaptive(
+                        backgroundColor: Theme.of(context).colorScheme.onSurface,
+                      )
+                    : Text(
+                        "Proceed",
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                              color: Theme.of(context).colorScheme.onSurface,
+                            ),
+                      ),
+              ),
             ),
           ],
         ),

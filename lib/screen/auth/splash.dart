@@ -30,7 +30,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SizedBox(
         width: double.infinity,
         height: double.infinity,
@@ -59,29 +62,36 @@ class _SplashScreenState extends State<SplashScreen> {
             Positioned(
               child: Column(
                 children: [
-                  currentSplash <= 2 ? const SizedBox(height: 490) : const SizedBox(height: 450),
+                  currentSplash <= 2 ? SizedBox(height: screenHeight * 0.6) : const SizedBox(height: 450),
                   Container(
-                    height: currentSplash <= 2 ? 155 : 130,
+                    height: currentSplash <= 2 ? screenHeight * 0.2 : 130,
+                    width: screenWidth * 1,
+                    alignment: Alignment.center,
                     child: SplashContent(currentSplash: currentSplash),
                   ),
                   currentSplash <= 2
-                      ? ElevatedButton(
-                          onPressed: _updateContent,
-                          style: ButtonStyle(
-                            minimumSize: WidgetStateProperty.all(
-                              Size(0, 0),
+                      ? Container(
+                          width: screenWidth * 1,
+                          alignment: Alignment.center,
+                          child: ElevatedButton(
+                            onPressed: _updateContent,
+                            style: ButtonStyle(
+                              minimumSize: WidgetStateProperty.all(
+                                Size(0, 0),
+                              ),
+                              fixedSize:
+                                  WidgetStateProperty.all((Size(screenWidth * 0.9, screenHeight * 0.06))),
+                              padding: WidgetStateProperty.all(
+                                EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                              ),
                             ),
-                            fixedSize: WidgetStateProperty.all((Size(350, 55))),
-                            padding: WidgetStateProperty.all(
-                              EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                            child: Text(
+                              "Next",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(color: Theme.of(context).colorScheme.onSurface),
                             ),
-                          ),
-                          child: Text(
-                            "Next",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(color: Theme.of(context).colorScheme.onSurface),
                           ),
                         )
                       // : Column(
@@ -106,8 +116,8 @@ class _SplashScreenState extends State<SplashScreen> {
                       //     ],
                       //   ),
                       : Container(),
-                  const SizedBox(
-                    height: 18,
+                  SizedBox(
+                    height: screenHeight * 0.02,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

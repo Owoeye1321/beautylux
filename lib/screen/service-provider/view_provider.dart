@@ -9,11 +9,14 @@ import 'package:logaluxe_users/screen/auth/login.dart';
 import 'package:logaluxe_users/widget/service-provider/provider_profile.dart';
 
 class ViewProvider extends ConsumerWidget {
+  final bool liked;
   final UserModel user;
-  const ViewProvider({super.key, required this.user});
+  const ViewProvider({super.key, required this.user, required this.liked});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     void _showProviderProfile(UserModel user) {
       // if (ref.watch(profileProvider).token == '') {
       //   Navigator.push(context, MaterialPageRoute(builder: (ctx) => Login()));
@@ -99,8 +102,9 @@ class ViewProvider extends ConsumerWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(13),
                       child: Icon(
-                        Icons.favorite_border,
-                        color: ref.watch(displayProvider).colorScheme.onPrimary.withOpacity(0.9),
+                        liked ? Icons.favorite : Icons.favorite_border,
+                        color:
+                            ref.watch(displayProvider).colorScheme.onPrimary.withAlpha((0.9 * 255).toInt()),
                         size: 30,
                       ),
                     ),
@@ -129,18 +133,15 @@ class ViewProvider extends ConsumerWidget {
           Positioned.fill(
             top: 400,
             bottom: Platform.isIOS ? 210 : 140,
-            right: 20,
-            left: 20,
+            right: screenWidth * 0.05,
+            left: screenWidth * 0.05,
             child: Container(
               decoration: BoxDecoration(
                 color: ref.watch(displayProvider).colorScheme.surface.withAlpha((0.7 * 255).toInt()),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Padding(
-                padding: const EdgeInsets.only(
-                  left: 30,
-                  top: 10,
-                ),
+                padding: const EdgeInsets.only(top: 10, left: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -238,7 +239,7 @@ class ViewProvider extends ConsumerWidget {
                           ),
                         ),
                         SizedBox(
-                          width: 40,
+                          width: 30,
                         ),
                         Icon(
                           Icons.local_offer,
@@ -281,30 +282,28 @@ class ViewProvider extends ConsumerWidget {
                       height: 30,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ElevatedButton(
-                            style: ButtonStyle(
-                              minimumSize: WidgetStateProperty.all(Size(0, 0)),
-                              maximumSize: WidgetStateProperty.all(
-                                Size(300, 45),
-                              ),
-                            ),
-                            onPressed: () {
-                              _showProviderProfile(user);
-                            },
-                            child: Text(
-                              "Book Now",
-                              style: TextStyle(
-                                color: ref.watch(displayProvider).colorScheme.onSurface,
-                                fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
-                                fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
-                              ),
+                      padding: const EdgeInsets.only(right: 20),
+                      child: Container(
+                        width: screenWidth * 0.88,
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            minimumSize: WidgetStateProperty.all(Size(0, 0)),
+                            maximumSize: WidgetStateProperty.all(
+                              Size(screenWidth * 0.4, 45),
                             ),
                           ),
-                        ],
+                          onPressed: () {
+                            _showProviderProfile(user);
+                          },
+                          child: Text(
+                            "Book Now",
+                            style: TextStyle(
+                              color: ref.watch(displayProvider).colorScheme.onSurface,
+                              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+                              fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
+                            ),
+                          ),
+                        ),
                       ),
                     )
                   ],

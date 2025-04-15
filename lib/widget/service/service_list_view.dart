@@ -14,19 +14,22 @@ class ServiceListView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    void _viewUser(UserModel user) {
+    void _viewUser(UserModel user, bool liked) {
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (context) {
-            return ViewProvider(user: user);
+            return ViewProvider(user: user, liked: liked);
           },
         ),
       );
     }
 
     var allLikes = ref.watch(likeProvider);
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
 
     return Container(
+      width: screenWidth * 1,
       child: GridView.builder(
         shrinkWrap: true, // ✅ Prevents GridView from taking infinite height
         physics: NeverScrollableScrollPhysics(),
@@ -40,7 +43,7 @@ class ServiceListView extends ConsumerWidget {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              _viewUser(allUsers[index]);
+              _viewUser(allUsers[index], allLikes.any((like) => like.company_id == allUsers[index].id));
             },
             child: Container(
               decoration: BoxDecoration(
@@ -62,7 +65,7 @@ class ServiceListView extends ConsumerWidget {
                       ),
                     ),
                     height: double.infinity,
-                    width: 150,
+                    width: screenWidth * 0.35,
                     child: Stack(children: []),
                   ),
                   Expanded(
@@ -159,88 +162,91 @@ class ServiceListView extends ConsumerWidget {
                               SizedBox(
                                 width: 5,
                               ),
-                              Text(
-                                "open ${allUsers[index].opening_time}am - ${allUsers[index].closing_time}pm",
-                                maxLines: 2, // Limits text to 2 lines
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  color: Theme.of(context).colorScheme.onSurface,
-                                  fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
+                              SizedBox(
+                                width: 150,
+                                child: Text(
+                                  "open ${allUsers[index].opening_time}am - ${allUsers[index].closing_time}pm",
+                                  maxLines: 1, // Limits text to 2 lines
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    color: Theme.of(context).colorScheme.onSurface,
+                                    fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
+                                  ),
                                 ),
                               ),
                             ],
                           ),
                           SizedBox(height: 15),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                height: 30,
-                                //width: 70,
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                  color: ref.watch(displayProvider).isLightMode
-                                      ? ref.watch(displayProvider).colorScheme.surface
-                                      : ref.watch(displayProvider).colorScheme.onSurface,
-                                  borderRadius: BorderRadius.only(
-                                    bottomRight: Radius.circular(30),
-                                    topRight: Radius.circular(30),
+                          Expanded(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  height: 30,
+                                  //width: 70,
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    color: ref.watch(displayProvider).isLightMode
+                                        ? ref.watch(displayProvider).colorScheme.surface
+                                        : ref.watch(displayProvider).colorScheme.onSurface,
+                                    borderRadius: BorderRadius.only(
+                                      bottomRight: Radius.circular(30),
+                                      topRight: Radius.circular(30),
+                                    ),
                                   ),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
-                                  child: Text(
-                                    "1.1km",
-                                    style: TextStyle(
-                                      color: Theme.of(context).colorScheme.onPrimary,
-                                      fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
-                                      fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+                                    child: Text(
+                                      "1.1km",
+                                      style: TextStyle(
+                                        color: Theme.of(context).colorScheme.onPrimary,
+                                        fontSize: Theme.of(context).textTheme.bodySmall?.fontSize!,
+                                        fontWeight: Theme.of(context).textTheme.bodyMedium?.fontWeight!,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              // SizedBox(
-                              //   width: 80,
-                              // ),
-                              Container(
-                                height: 30,
-                                //width: 32,
-                                decoration: BoxDecoration(
-                                  color: ref.watch(displayProvider).isLightMode
-                                      ? ref.watch(displayProvider).colorScheme.surface
-                                      : ref.watch(displayProvider).colorScheme.onSurface,
-                                  borderRadius: BorderRadius.circular(30),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 2, horizontal: 3),
-                                  child: allLikes.any((like) => like.company_id == allUsers[index].id)
-                                      ? InkWell(
-                                          onTap: () {
-                                            ref.read(likeProvider.notifier).saveLike(
-                                                ref.watch(profileProvider).token, allUsers[index].id);
-                                          },
-                                          child: Icon(
-                                            Icons.favorite,
-                                            size: 25,
-                                            color: ref.watch(displayProvider).colorScheme.onPrimary,
-                                          ),
-                                        )
-                                      : InkWell(
-                                          onTap: () {
-                                            if (ref.watch(profileProvider).token != '')
+                                // SizedBox(
+                                //   width: 80,
+                                // ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: ref.watch(displayProvider).isLightMode
+                                        ? ref.watch(displayProvider).colorScheme.surface
+                                        : ref.watch(displayProvider).colorScheme.onSurface,
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 2, horizontal: 3),
+                                    child: allLikes.any((like) => like.company_id == allUsers[index].id)
+                                        ? InkWell(
+                                            onTap: () {
                                               ref.read(likeProvider.notifier).saveLike(
                                                   ref.watch(profileProvider).token, allUsers[index].id);
-                                          },
-                                          child: Icon(
-                                            Icons.favorite_border,
-                                            size: 25,
-                                            color: ref.watch(displayProvider).colorScheme.onPrimary,
+                                            },
+                                            child: Icon(
+                                              Icons.favorite,
+                                              size: 25,
+                                              color: ref.watch(displayProvider).colorScheme.onPrimary,
+                                            ),
+                                          )
+                                        : InkWell(
+                                            onTap: () {
+                                              if (ref.watch(profileProvider).token != '')
+                                                ref.read(likeProvider.notifier).saveLike(
+                                                    ref.watch(profileProvider).token, allUsers[index].id);
+                                            },
+                                            child: Icon(
+                                              Icons.favorite_border,
+                                              size: 25,
+                                              color: ref.watch(displayProvider).colorScheme.onPrimary,
+                                            ),
                                           ),
-                                        ),
+                                  ),
                                 ),
-                              ),
-                              // ),
-                            ],
+                                // ),
+                              ],
+                            ),
                           )
                         ],
                       ),

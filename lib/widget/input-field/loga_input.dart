@@ -59,11 +59,14 @@ class _LogaInputFieldState extends ConsumerState<LogaInputField> {
   @override
   Widget build(BuildContext context) {
     final hasError = widget.errorText != null && widget.errorText!.isNotEmpty;
+    final screenWidth = MediaQuery.of(context).size.width;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        TextField(
+    return Container(
+      width: double.infinity,
+      alignment: Alignment.center,
+      child: SizedBox(
+        width: screenWidth * 0.88,
+        child: TextField(
           controller: widget.controller,
           keyboardType: TextInputType.text,
           onChanged: (value) {
@@ -140,7 +143,7 @@ class _LogaInputFieldState extends ConsumerState<LogaInputField> {
                 : null,
           ),
         ),
-      ],
+      ),
     );
   }
 }

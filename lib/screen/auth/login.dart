@@ -181,130 +181,117 @@ class _LoginState extends ConsumerState<Login> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
-        margin: const EdgeInsets.only(top: 80, left: 15, right: 15),
+        width: screenWidth * 1,
+        padding: EdgeInsets.only(top: screenHeight * 0.08),
         decoration: BoxDecoration(
           color: ref.watch(displayProvider).colorScheme.surface,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Welcome Back!",
-              style: TextStyle(
-                color: ref.watch(displayProvider).colorScheme.onSurface,
-                fontSize: Theme.of(context).textTheme.titleLarge?.fontSize!,
-                fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight!,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Welcome Back!",
+                style: TextStyle(
+                  color: ref.watch(displayProvider).colorScheme.onSurface,
+                  fontSize: Theme.of(context).textTheme.titleLarge?.fontSize!,
+                  fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight!,
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            SplashText(
-              title: "Find and book Beauty, salon, Barber",
-              color: ref.watch(displayProvider).colorScheme.onTertiary,
-              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
-              fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
-            ),
-            const SizedBox(
-              height: 3,
-            ),
-            SplashText(
-              title: "and Spa services anywhere, anytime.",
-              color: ref.watch(displayProvider).colorScheme.onTertiary,
-              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
-              fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
-            ),
-            const SizedBox(
-              height: 100,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: Platform.isIOS ? 370 : 360,
-                  child: LogaInputField(
-                    onChange: (value) {},
-                    hintText: "Email",
-                    verticalPadding: 15,
-                    horizontalPadding: 35,
-                    setIconColor: false,
-                    alterVisibility: false,
-                    hideTextInput: false,
-                    prefixIconData: Icons.email,
-                    setIconSize: false,
-                    buttonBorder: 100,
-                    setIconPadding: false,
-                    prefixIcon: true,
-                    prefixImage: false,
-                    controller: emailTextController,
-                    errorText: emailError,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: 360,
-                  child: LogaInputField(
-                    onChange: (value) {},
-                    hintText: "********",
-                    verticalPadding: 15,
-                    horizontalPadding: 35,
-                    setIconColor: false,
-                    alterVisibility: true,
-                    hideTextInput: true,
-                    prefixIconData: Icons.lock,
-                    setIconSize: false,
-                    buttonBorder: 100,
-                    setIconPadding: false,
-                    prefixImage: false,
-                    prefixIcon: true,
-                    controller: passwordTextController,
-                    errorText: passwordError,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return ForgotPassword();
-                        },
-                      ),
-                    );
-                  },
-                  child: Text(
-                    "Forget password?",
-                    style: TextStyle(
-                        fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
-                        color: ref.watch(displayProvider).colorScheme.onError),
-                  ),
-                )
-              ],
-            ),
-            const SizedBox(
-              height: 60,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
+              const SizedBox(
+                height: 20,
+              ),
+              SplashText(
+                title: "Find and book Beauty, salon, Barber",
+                color: ref.watch(displayProvider).colorScheme.onTertiary,
+                fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+                fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
+              ),
+              const SizedBox(
+                height: 3,
+              ),
+              SplashText(
+                title: "and Spa services anywhere, anytime.",
+                color: ref.watch(displayProvider).colorScheme.onTertiary,
+                fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+                fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
+              ),
+              const SizedBox(
+                height: 100,
+              ),
+              LogaInputField(
+                onChange: (value) {},
+                hintText: "Email",
+                verticalPadding: 15,
+                horizontalPadding: 35,
+                setIconColor: false,
+                alterVisibility: false,
+                hideTextInput: false,
+                prefixIconData: Icons.email,
+                setIconSize: false,
+                buttonBorder: 100,
+                setIconPadding: false,
+                prefixIcon: true,
+                prefixImage: false,
+                controller: emailTextController,
+                errorText: emailError,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              LogaInputField(
+                onChange: (value) {},
+                hintText: "********",
+                verticalPadding: 15,
+                horizontalPadding: 35,
+                setIconColor: false,
+                alterVisibility: true,
+                hideTextInput: true,
+                prefixIconData: Icons.lock,
+                setIconSize: false,
+                buttonBorder: 100,
+                setIconPadding: false,
+                prefixImage: false,
+                prefixIcon: true,
+                controller: passwordTextController,
+                errorText: passwordError,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return ForgotPassword();
+                          },
+                        ),
+                      );
+                    },
+                    child: Text(
+                      "Forget password?",
+                      style: TextStyle(
+                          fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+                          color: ref.watch(displayProvider).colorScheme.onError),
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 60,
+              ),
+              Center(
+                child: ElevatedButton(
                   onPressed: ref.watch(loginProvider).loading == true
                       ? null
                       : () {
@@ -313,7 +300,7 @@ class _LoginState extends ConsumerState<Login> {
                   style: ButtonStyle(
                     minimumSize: WidgetStateProperty.all(Size(0, 0)),
                     maximumSize: WidgetStateProperty.all(
-                      Size(360, 50),
+                      Size(screenWidth * 0.88, 50),
                     ),
                     padding: WidgetStateProperty.all(
                       EdgeInsets.symmetric(vertical: 3),
@@ -338,90 +325,90 @@ class _LoginState extends ConsumerState<Login> {
                               ),
                         ),
                 ),
-              ],
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Divider(
-                    color: ref.watch(displayProvider).colorScheme.onInverseSurface, // Line color
-                    thickness: 1, // Line thickness
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8), // Space around text
-                  child: Text(
-                    "or",
-                    style: TextStyle(
-                      color: ref.watch(displayProvider).colorScheme.onSurface,
-                      fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Divider(
+                      color: ref.watch(displayProvider).colorScheme.onInverseSurface, // Line color
+                      thickness: 1, // Line thickness
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Divider(
-                    color: ref.watch(displayProvider).colorScheme.onInverseSurface,
-                    thickness: 1,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8), // Space around text
+                    child: Text(
+                      "or",
+                      style: TextStyle(
+                        color: ref.watch(displayProvider).colorScheme.onSurface,
+                        fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+                      ),
+                    ),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            gmailLoadingState == false
-                ? LogaIconButton(
-                    trailingType: "image",
-                    text: 'Continue with Google',
-                    image: AssetImage('images/google.png'),
-                    icon: Icons.apple,
-                    onPressed: () async {
-                      _loginWithGoogle();
+                  Expanded(
+                    child: Divider(
+                      color: ref.watch(displayProvider).colorScheme.onInverseSurface,
+                      thickness: 1,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              gmailLoadingState == false
+                  ? LogaIconButton(
+                      trailingType: "image",
+                      text: 'Continue with Google',
+                      image: AssetImage('images/google.png'),
+                      icon: Icons.apple,
+                      onPressed: () async {
+                        _loginWithGoogle();
+                      },
+                    )
+                  : Container(
+                      height: 50,
+                      width: double.infinity,
+                      child: Center(
+                        child: CircularProgressIndicator.adaptive(
+                          backgroundColor: ref.watch(displayProvider).colorScheme.onSurface,
+                        ),
+                      ),
+                    ),
+              const SizedBox(
+                height: 18,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Already have an account?",
+                    style: TextStyle(color: ref.watch(displayProvider).colorScheme.onSurface),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return Register();
+                          },
+                        ),
+                      );
                     },
-                  )
-                : Container(
-                    height: 50,
-                    width: double.infinity,
-                    child: Center(
-                      child: CircularProgressIndicator.adaptive(
-                        backgroundColor: ref.watch(displayProvider).colorScheme.onSurface,
-                      ),
+                    child: Text(
+                      "Sign Up",
+                      style: TextStyle(
+                          color: ref.watch(displayProvider).colorScheme.onError,
+                          fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!),
                     ),
-                  ),
-            const SizedBox(
-              height: 18,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Already have an account?",
-                  style: TextStyle(color: ref.watch(displayProvider).colorScheme.onSurface),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return Register();
-                        },
-                      ),
-                    );
-                  },
-                  child: Text(
-                    "Sign Up",
-                    style: TextStyle(
-                        color: ref.watch(displayProvider).colorScheme.onError,
-                        fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!),
-                  ),
-                )
-              ],
-            )
-          ],
+                  )
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

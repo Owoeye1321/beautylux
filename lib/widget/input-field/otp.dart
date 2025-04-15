@@ -17,36 +17,44 @@ class OTP extends ConsumerStatefulWidget {
 class _OTPState extends ConsumerState<OTP> {
   @override
   Widget build(BuildContext context) {
-    return OtpTextField(
-      fieldWidth: 75,
-      filled: true,
-      fillColor: Theme.of(context).colorScheme.onInverseSurface,
-      focusedBorderColor: Theme.of(context).colorScheme.onError,
-      borderRadius: const BorderRadius.all(Radius.circular(10)),
-      margin: EdgeInsets.only(right: 15),
-      cursorColor: ref.watch(displayProvider).isLightMode
-          ? ref.watch(displayProvider).colorScheme.surface
-          : ref.watch(displayProvider).colorScheme.onSurface,
-      enabledBorderColor: Theme.of(context).colorScheme.onInverseSurface,
-      borderWidth: 1,
-      textStyle: TextStyle(
-        color: ref.watch(displayProvider).isLightMode
-            ? ref.watch(displayProvider).colorScheme.surface
-            : ref.watch(displayProvider).colorScheme.onSurface,
-        fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize!,
+    final screenWidth = MediaQuery.of(context).size.width;
+    return Container(
+      width: double.infinity,
+      alignment: Alignment.center,
+      child: SizedBox(
+        width: screenWidth * 1,
+        child: OtpTextField(
+          fieldWidth: screenWidth * 0.18,
+          filled: true,
+          fillColor: Theme.of(context).colorScheme.onInverseSurface,
+          focusedBorderColor: Theme.of(context).colorScheme.onError,
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
+          margin: EdgeInsets.only(right: 15),
+          cursorColor: ref.watch(displayProvider).isLightMode
+              ? ref.watch(displayProvider).colorScheme.surface
+              : ref.watch(displayProvider).colorScheme.onSurface,
+          enabledBorderColor: Theme.of(context).colorScheme.onInverseSurface,
+          borderWidth: 1,
+          textStyle: TextStyle(
+            color: ref.watch(displayProvider).isLightMode
+                ? ref.watch(displayProvider).colorScheme.surface
+                : ref.watch(displayProvider).colorScheme.onSurface,
+            fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize!,
+          ),
+          numberOfFields: 4,
+          // borderColor: Theme.of(context).colorScheme.onSurfaceVariant,
+          //set to true to show as box or false to show as dash
+          showFieldAsBox: true,
+          //runs when a code is typed in
+          onCodeChanged: (String code) {
+            //handle validation or checks here
+          },
+          //runs when every textfield is filledhhhhg4444444
+          onSubmit: (String verificationCode) {
+            widget.onsubmit(verificationCode);
+          }, // end onSubmit
+        ),
       ),
-      numberOfFields: 4,
-      // borderColor: Theme.of(context).colorScheme.onSurfaceVariant,
-      //set to true to show as box or false to show as dash
-      showFieldAsBox: true,
-      //runs when a code is typed in
-      onCodeChanged: (String code) {
-        //handle validation or checks here
-      },
-      //runs when every textfield is filledhhhhg4444444
-      onSubmit: (String verificationCode) {
-        widget.onsubmit(verificationCode);
-      }, // end onSubmit
     );
   }
 }

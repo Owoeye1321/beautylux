@@ -90,12 +90,14 @@ class _ResetPasswordState extends ConsumerState<ResetPassword> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     bool loadingState = ref.watch(passwordResetProvider).loading;
     return Scaffold(
       body: Container(
-        margin: const EdgeInsets.only(
-          top: 80,
-          left: 15,
+        width: screenWidth * 1,
+        margin: EdgeInsets.only(
+          top: screenHeight * 0.06,
         ),
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surface,
@@ -103,118 +105,108 @@ class _ResetPasswordState extends ConsumerState<ResetPassword> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "New Password,",
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onSurface,
-                fontSize: Theme.of(context).textTheme.titleLarge?.fontSize!,
-                fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight!,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Text(
+                "New Password,",
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSurface,
+                  fontSize: Theme.of(context).textTheme.titleLarge?.fontSize!,
+                  fontWeight: Theme.of(context).textTheme.bodyLarge?.fontWeight!,
+                ),
               ),
             ),
             const SizedBox(
               height: 10,
             ),
-            SplashText(
-              title: "Now, you can create your password",
-              color: Theme.of(context).colorScheme.onTertiary,
-              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
-              fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: SplashText(
+                title: "Now, you can create your password",
+                color: Theme.of(context).colorScheme.onTertiary,
+                fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+                fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
+              ),
             ),
-            SplashText(
-              title: "and confim it below.",
-              color: Theme.of(context).colorScheme.onTertiary,
-              fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
-              fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: SplashText(
+                title: "and confim it below.",
+                color: Theme.of(context).colorScheme.onTertiary,
+                fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize!,
+                fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight!,
+              ),
             ),
             const SizedBox(
               height: 70,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: 370,
-                  child: LogaInputField(
-                    onChange: (value) {},
-                    hintText: "Password",
-                    verticalPadding: 15,
-                    horizontalPadding: 35,
-                    setIconSize: false,
-                    alterVisibility: true,
-                    hideTextInput: true,
-                    buttonBorder: 100,
-                    setIconColor: false,
-                    prefixIconData: Icons.lock,
-                    setIconPadding: false,
-                    prefixIcon: true,
-                    prefixImage: false,
-                    controller: passwordTextController,
-                    errorText: passwordError,
-                  ),
-                ),
-              ],
+            LogaInputField(
+              onChange: (value) {},
+              hintText: "Password",
+              verticalPadding: 15,
+              horizontalPadding: 35,
+              setIconSize: false,
+              alterVisibility: true,
+              hideTextInput: true,
+              buttonBorder: 100,
+              setIconColor: false,
+              prefixIconData: Icons.lock,
+              setIconPadding: false,
+              prefixIcon: true,
+              prefixImage: false,
+              controller: passwordTextController,
+              errorText: passwordError,
             ),
             const SizedBox(
               height: 18,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: 370,
-                  child: LogaInputField(
-                    onChange: (value) {},
-                    hintText: "Confirm Password",
-                    verticalPadding: 15,
-                    horizontalPadding: 35,
-                    alterVisibility: true,
-                    setIconColor: false,
-                    buttonBorder: 100,
-                    hideTextInput: true,
-                    setIconSize: false,
-                    prefixIconData: Icons.lock,
-                    setIconPadding: false,
-                    prefixIcon: true,
-                    prefixImage: false,
-                    controller: confirmPasswordTextController,
-                    errorText: confirmPasswordError,
+            LogaInputField(
+              onChange: (value) {},
+              hintText: "Confirm Password",
+              verticalPadding: 15,
+              horizontalPadding: 35,
+              alterVisibility: true,
+              setIconColor: false,
+              buttonBorder: 100,
+              hideTextInput: true,
+              setIconSize: false,
+              prefixIconData: Icons.lock,
+              setIconPadding: false,
+              prefixIcon: true,
+              prefixImage: false,
+              controller: confirmPasswordTextController,
+              errorText: confirmPasswordError,
+            ),
+            SizedBox(
+              height: screenHeight * 0.4,
+            ),
+            Center(
+              child: ElevatedButton(
+                onPressed: loadingState == true
+                    ? null
+                    : () {
+                        _resetPaassword();
+                      },
+                style: ButtonStyle(
+                  minimumSize: WidgetStateProperty.all(Size(0, 0)),
+                  maximumSize: WidgetStateProperty.all(
+                    Size(screenWidth * 0.88, 50),
+                  ),
+                  padding: WidgetStateProperty.all(
+                    EdgeInsets.symmetric(vertical: 3),
                   ),
                 ),
-              ],
-            ),
-            const SizedBox(
-              height: 365,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: loadingState == true
-                      ? null
-                      : () {
-                          _resetPaassword();
-                        },
-                  style: ButtonStyle(
-                    minimumSize: WidgetStateProperty.all(Size(0, 0)),
-                    maximumSize: WidgetStateProperty.all(
-                      Size(360, 50),
-                    ),
-                    padding: WidgetStateProperty.all(
-                      EdgeInsets.symmetric(vertical: 3),
-                    ),
-                  ),
-                  child: loadingState == true
-                      ? CircularProgressIndicator.adaptive(
-                          backgroundColor: Theme.of(context).colorScheme.onSurface,
-                        )
-                      : Text(
-                          "Confirm New Password",
-                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                color: Theme.of(context).colorScheme.onSurface,
-                              ),
-                        ),
-                ),
-              ],
+                child: loadingState == true
+                    ? CircularProgressIndicator.adaptive(
+                        backgroundColor: Theme.of(context).colorScheme.onSurface,
+                      )
+                    : Text(
+                        "Confirm New Password",
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                              color: Theme.of(context).colorScheme.onSurface,
+                            ),
+                      ),
+              ),
             ),
           ],
         ),
