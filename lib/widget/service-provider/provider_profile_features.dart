@@ -11,6 +11,7 @@ import 'package:logaluxe_users/screen/auth/login.dart';
 import 'package:logaluxe_users/screen/booking/review.dart';
 import 'package:logaluxe_users/widget/loga_text.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:maps_launcher/maps_launcher.dart';
 import 'package:toastification/toastification.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -166,6 +167,10 @@ class _ProfileMenu extends ConsumerState<ProfileMenu> {
     }
   }
 
+  Future<void> launchMap(String address) async {
+    MapsLauncher.launchQuery(address);
+  }
+
   @override
   Widget build(BuildContext context) {
     var selectedService = ref.watch(bookingProvider);
@@ -280,34 +285,40 @@ class _ProfileMenu extends ConsumerState<ProfileMenu> {
               ],
             ),
           ),
-          Column(
-            children: [
-              Container(
-                height: 45,
-                width: 45,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  color:
-                      ref.watch(displayProvider).colorScheme.onInverseSurface.withAlpha((0.8 * 255).toInt()),
+          InkWell(
+            onTap: () => launchMap(widget.user.business_address),
+            child: Column(
+              children: [
+                Container(
+                  height: 45,
+                  width: 45,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: ref
+                        .watch(displayProvider)
+                        .colorScheme
+                        .onInverseSurface
+                        .withAlpha((0.8 * 255).toInt()),
+                  ),
+                  child: Icon(
+                    Icons.map_outlined,
+                    size: 30,
+                    color: ref.watch(displayProvider).isLightMode
+                        ? ref.watch(displayProvider).colorScheme.surface
+                        : ref.watch(displayProvider).colorScheme.outline,
+                  ),
                 ),
-                child: Icon(
-                  Icons.map_outlined,
-                  size: 30,
-                  color: ref.watch(displayProvider).isLightMode
-                      ? ref.watch(displayProvider).colorScheme.surface
-                      : ref.watch(displayProvider).colorScheme.outline,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: LogaText(
-                  content: "Direction",
-                  color: ref.watch(displayProvider).colorScheme.outline,
-                  fontSize: Theme.of(context).textTheme.bodySmall?.fontSize! as double,
-                  fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight! as FontWeight,
-                ),
-              )
-            ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: LogaText(
+                    content: "Direction",
+                    color: ref.watch(displayProvider).colorScheme.outline,
+                    fontSize: Theme.of(context).textTheme.bodySmall?.fontSize! as double,
+                    fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight! as FontWeight,
+                  ),
+                )
+              ],
+            ),
           ),
           Column(
             children: [
