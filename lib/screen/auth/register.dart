@@ -341,7 +341,7 @@ class _RegisterState extends ConsumerState<Register> {
                     style: ButtonStyle(
                       minimumSize: WidgetStateProperty.all(Size(0, 0)),
                       maximumSize: WidgetStateProperty.all(
-                        Size(360, 50),
+                        Size(screenWidth * 0.88, 50),
                       ),
                       padding: WidgetStateProperty.all(
                         EdgeInsets.symmetric(vertical: 3),
@@ -401,14 +401,19 @@ class _RegisterState extends ConsumerState<Register> {
                 height: 15,
               ),
               gmailLoadingState == false
-                  ? LogaIconButton(
-                      trailingType: "image",
-                      text: 'Continue with Google',
-                      image: AssetImage('images/google.png'),
-                      icon: Icons.apple,
-                      onPressed: () async {
-                        _loginWithGoogle();
-                      },
+                  ? Center(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.023),
+                        child: LogaIconButton(
+                          trailingType: "image",
+                          text: 'Continue with Google',
+                          image: AssetImage('images/google.png'),
+                          icon: Icons.apple,
+                          onPressed: () async {
+                            _loginWithGoogle();
+                          },
+                        ),
+                      ),
                     )
                   : Container(
                       height: 50,

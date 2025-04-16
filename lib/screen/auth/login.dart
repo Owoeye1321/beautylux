@@ -360,14 +360,19 @@ class _LoginState extends ConsumerState<Login> {
                 height: 15,
               ),
               gmailLoadingState == false
-                  ? LogaIconButton(
-                      trailingType: "image",
-                      text: 'Continue with Google',
-                      image: AssetImage('images/google.png'),
-                      icon: Icons.apple,
-                      onPressed: () async {
-                        _loginWithGoogle();
-                      },
+                  ? Center(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.023),
+                        child: LogaIconButton(
+                          trailingType: "image",
+                          text: 'Continue with Google',
+                          image: AssetImage('images/google.png'),
+                          icon: Icons.apple,
+                          onPressed: () async {
+                            _loginWithGoogle();
+                          },
+                        ),
+                      ),
                     )
                   : Container(
                       height: 50,

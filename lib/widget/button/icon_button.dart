@@ -45,8 +45,8 @@ class LogaIconButton extends StatelessWidget {
         },
         style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
               minimumSize: WidgetStateProperty.all(Size(0, 0)),
-              maximumSize: WidgetStateProperty.all(
-                Size(screenWidth * 0.4, 50),
+              fixedSize: WidgetStateProperty.all(
+                Size(screenWidth * 0.88, 50),
               ),
               backgroundColor: WidgetStateProperty.all<Color?>(Theme.of(context).colorScheme.onSurface),
             ),
