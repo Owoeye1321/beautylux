@@ -19,9 +19,14 @@ class ServiceCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     return Container(
+      width: screenWidth * 1,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+        padding: EdgeInsets.symmetric(
+          vertical: 10,
+        ),
         child: Container(
           height: 130,
           decoration: BoxDecoration(
@@ -43,11 +48,11 @@ class ServiceCard extends ConsumerWidget {
                   ),
                 ),
                 height: 180,
-                width: 155,
+                width: screenWidth * 0.3,
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 15, right: 10, top: 15, bottom: 15),
+                  padding: EdgeInsets.only(left: 15, right: screenWidth * 0.02, top: 15, bottom: 15),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -55,7 +60,7 @@ class ServiceCard extends ConsumerWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
-                            width: 90,
+                            width: screenWidth * 0.3,
                             child: LogaText(
                               content: service.name,
                               color: ref.watch(displayProvider).colorScheme.onSurface,

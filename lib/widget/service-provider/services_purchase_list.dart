@@ -57,6 +57,8 @@ class _ServicePurchaseListState extends ConsumerState<ServicePurchaseList> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     List<ServiceModel> services = ref.watch(serviceProvider).data;
     var selectedService = ref.watch(bookingProvider);
     Widget body = Container(
@@ -81,20 +83,22 @@ class _ServicePurchaseListState extends ConsumerState<ServicePurchaseList> {
     if (services.isNotEmpty)
       body = SingleChildScrollView(
         scrollDirection: Axis.vertical,
-        child: Column(
-          children: [
-            ...services.map((eachService) {
-              return ServiceCard(
-                service: eachService,
-                removeService: _removeService,
-                addService: _addService,
-                bookedService: selectedService.service != null &&
-                        selectedService.service?.service_ref == eachService.service_ref
-                    ? true
-                    : false,
-              );
-            }).toList(),
-          ],
+        child: Expanded(
+          child: Column(
+            children: [
+              ...services.map((eachService) {
+                return ServiceCard(
+                  service: eachService,
+                  removeService: _removeService,
+                  addService: _addService,
+                  bookedService: selectedService.service != null &&
+                          selectedService.service?.service_ref == eachService.service_ref
+                      ? true
+                      : false,
+                );
+              }).toList(),
+            ],
+          ),
         ),
       );
     return ref.watch(serviceProvider).loadingState == true
