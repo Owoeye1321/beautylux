@@ -179,6 +179,7 @@ class _ProfileState extends ConsumerState<Profile> {
     String? prevName = ref.watch(profileProvider).first_name;
     String? email = ref.watch(profileProvider).email;
     final screenWidget = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -242,187 +243,98 @@ class _ProfileState extends ConsumerState<Profile> {
           )
         ],
       ),
-      body: Container(
-        width: screenWidget * 1,
-        decoration: BoxDecoration(
-          color: ref.watch(displayProvider).colorScheme.tertiaryContainer,
-        ),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: screenWidget * 0.05),
-          child: Column(
-            children: [
-              SizedBox(
-                height: 30,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 300,
-                    width: screenWidget * 0.7,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(screenWidget * 0.5),
-                      color: Colors.white,
-                      image: DecorationImage(
-                        image: image_url != ''
-                            ? NetworkImage(image_url)
-                            : prevImage != '' && prevImage != 'null' && prevImage != null
-                                ? NetworkImage(prevImage!)
-                                : AssetImage('images/dp.jpeg') as ImageProvider,
-                        fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        physics: ClampingScrollPhysics(),
+        scrollDirection: Axis.vertical,
+        child: Container(
+          width: screenWidget * 1,
+          height: screenHeight * 1,
+          margin: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom > 0 ? 100 : 0),
+          decoration: BoxDecoration(
+            color: ref.watch(displayProvider).colorScheme.tertiaryContainer,
+          ),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: screenWidget * 0.05),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: 300,
+                      width: screenWidget * 0.7,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(screenWidget * 0.5),
+                        color: Colors.white,
+                        image: DecorationImage(
+                          image: image_url != ''
+                              ? NetworkImage(image_url)
+                              : prevImage != '' && prevImage != 'null' && prevImage != null
+                                  ? NetworkImage(prevImage!)
+                                  : AssetImage('images/dp.jpeg') as ImageProvider,
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              TextButton(
-                style: ButtonStyle(
-                  shape: WidgetStateProperty.all(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      side: BorderSide(
-                        width: 4,
-                        color: ref.watch(displayProvider).colorScheme.onInverseSurface,
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                TextButton(
+                  style: ButtonStyle(
+                    shape: WidgetStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        side: BorderSide(
+                          width: 4,
+                          color: ref.watch(displayProvider).colorScheme.onInverseSurface,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                onPressed: loadImageState
-                    ? null
-                    : () {
-                        _takePicture();
-                      },
-                child: Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: loadImageState
-                      ? CircularProgressIndicator.adaptive(
-                          backgroundColor: ref.watch(displayProvider).colorScheme.onSurface,
-                        )
-                      : LogaText(
-                          content: "Change Picture",
-                          color: ref.watch(displayProvider).colorScheme.onSurface,
-                          fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
-                          fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
-                        ),
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Divider(
-                thickness: 3,
-                color: ref.watch(displayProvider).colorScheme.onInverseSurface,
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              editState
-                  ? Container(
-                      width: screenWidget * 1,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          LogaText(
-                            content: "Name",
-                            color: ref.watch(displayProvider).isLightMode
-                                ? ref.watch(displayProvider).colorScheme.onSurface
-                                : ref
-                                    .watch(displayProvider)
-                                    .colorScheme
-                                    .onSurface
-                                    .withAlpha((0.4 * 255).toInt()),
+                  onPressed: loadImageState
+                      ? null
+                      : () {
+                          _takePicture();
+                        },
+                  child: Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: loadImageState
+                        ? CircularProgressIndicator.adaptive(
+                            backgroundColor: ref.watch(displayProvider).colorScheme.onSurface,
+                          )
+                        : LogaText(
+                            content: "Change Picture",
+                            color: ref.watch(displayProvider).colorScheme.onSurface,
                             fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
                             fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
                           ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          LogaInputField(
-                            onChange: (value) {},
-                            hintText: prevName,
-                            verticalPadding: 15,
-                            horizontalPadding: 35,
-                            setIconColor: false,
-                            alterVisibility: false,
-                            hideTextInput: false,
-                            prefixIconData: Icons.person,
-                            setIconSize: false,
-                            buttonBorder: 100,
-                            setIconPadding: false,
-                            prefixIcon: true,
-                            prefixImage: false,
-                            controller: nameController,
-                            errorText: nameError,
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          LogaText(
-                            content: "Email",
-                            color: ref.watch(displayProvider).isLightMode
-                                ? ref.watch(displayProvider).colorScheme.onSurface
-                                : ref
-                                    .watch(displayProvider)
-                                    .colorScheme
-                                    .onSurface
-                                    .withAlpha((0.4 * 255).toInt()),
-                            fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
-                            fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          LogaInputField(
-                            onChange: (value) {},
-                            hintText: email,
-                            verticalPadding: 15,
-                            horizontalPadding: 35,
-                            setIconColor: false,
-                            alterVisibility: false,
-                            hideTextInput: false,
-                            prefixIconData: Icons.email,
-                            setIconSize: false,
-                            buttonBorder: 100,
-                            setIconPadding: false,
-                            prefixIcon: true,
-                            prefixImage: false,
-                            controller: emailTextController,
-                            errorText: emailError,
-                          ),
-                        ],
-                      ),
-                    )
-                  : Container(
-                      decoration: BoxDecoration(
-                          color: ref.watch(displayProvider).isLightMode
-                              ? ref
-                                  .watch(displayProvider)
-                                  .colorScheme
-                                  .onInverseSurface
-                                  .withAlpha((0.7 * 255).toInt())
-                              : ref
-                                  .watch(displayProvider)
-                                  .colorScheme
-                                  .onInverseSurface
-                                  .withAlpha((0.4 * 255).toInt()),
-                          borderRadius: BorderRadius.circular(15)),
-                      width: screenWidget * 1,
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: screenWidget * 0.04, vertical: 30),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Divider(
+                  thickness: 3,
+                  color: ref.watch(displayProvider).colorScheme.onInverseSurface,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                editState
+                    ? Container(
+                        width: screenWidget * 1,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             LogaText(
-                              content: "Full Name",
+                              content: "Name",
                               color: ref.watch(displayProvider).isLightMode
-                                  ? ref
-                                      .watch(displayProvider)
-                                      .colorScheme
-                                      .surface
-                                      .withAlpha((0.7 * 255).toInt())
+                                  ? ref.watch(displayProvider).colorScheme.onSurface
                                   : ref
                                       .watch(displayProvider)
                                       .colorScheme
@@ -434,25 +346,30 @@ class _ProfileState extends ConsumerState<Profile> {
                             SizedBox(
                               height: 10,
                             ),
-                            LogaText(
-                              content: prevName != '' ? prevName : "Client",
-                              color: ref.watch(displayProvider).isLightMode
-                                  ? ref.watch(displayProvider).colorScheme.surface
-                                  : ref.watch(displayProvider).colorScheme.onSurface,
-                              fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize as double,
-                              fontweight: Theme.of(context).textTheme.bodyLarge?.fontWeight as FontWeight,
+                            LogaInputField(
+                              onChange: (value) {},
+                              hintText: prevName,
+                              verticalPadding: 15,
+                              horizontalPadding: 35,
+                              setIconColor: false,
+                              alterVisibility: false,
+                              hideTextInput: false,
+                              prefixIconData: Icons.person,
+                              setIconSize: false,
+                              buttonBorder: 100,
+                              setIconPadding: false,
+                              prefixIcon: true,
+                              prefixImage: false,
+                              controller: nameController,
+                              errorText: nameError,
                             ),
                             SizedBox(
-                              height: 40,
+                              height: 20,
                             ),
                             LogaText(
                               content: "Email",
                               color: ref.watch(displayProvider).isLightMode
-                                  ? ref
-                                      .watch(displayProvider)
-                                      .colorScheme
-                                      .surface
-                                      .withAlpha((0.7 * 255).toInt())
+                                  ? ref.watch(displayProvider).colorScheme.onSurface
                                   : ref
                                       .watch(displayProvider)
                                       .colorScheme
@@ -464,19 +381,109 @@ class _ProfileState extends ConsumerState<Profile> {
                             SizedBox(
                               height: 10,
                             ),
-                            LogaText(
-                              content: email != '' ? email : "Email",
-                              color: ref.watch(displayProvider).isLightMode
-                                  ? ref.watch(displayProvider).colorScheme.surface
-                                  : ref.watch(displayProvider).colorScheme.onSurface,
-                              fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize as double,
-                              fontweight: Theme.of(context).textTheme.bodyLarge?.fontWeight as FontWeight,
+                            LogaInputField(
+                              onChange: (value) {},
+                              hintText: email,
+                              verticalPadding: 15,
+                              horizontalPadding: 35,
+                              setIconColor: false,
+                              alterVisibility: false,
+                              hideTextInput: false,
+                              prefixIconData: Icons.email,
+                              setIconSize: false,
+                              buttonBorder: 100,
+                              setIconPadding: false,
+                              prefixIcon: true,
+                              prefixImage: false,
+                              controller: emailTextController,
+                              errorText: emailError,
                             ),
                           ],
                         ),
-                      ),
-                    )
-            ],
+                      )
+                    : Container(
+                        decoration: BoxDecoration(
+                            color: ref.watch(displayProvider).isLightMode
+                                ? ref
+                                    .watch(displayProvider)
+                                    .colorScheme
+                                    .onInverseSurface
+                                    .withAlpha((0.7 * 255).toInt())
+                                : ref
+                                    .watch(displayProvider)
+                                    .colorScheme
+                                    .onInverseSurface
+                                    .withAlpha((0.4 * 255).toInt()),
+                            borderRadius: BorderRadius.circular(15)),
+                        width: screenWidget * 1,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: screenWidget * 0.04, vertical: 30),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              LogaText(
+                                content: "Full Name",
+                                color: ref.watch(displayProvider).isLightMode
+                                    ? ref
+                                        .watch(displayProvider)
+                                        .colorScheme
+                                        .surface
+                                        .withAlpha((0.7 * 255).toInt())
+                                    : ref
+                                        .watch(displayProvider)
+                                        .colorScheme
+                                        .onSurface
+                                        .withAlpha((0.4 * 255).toInt()),
+                                fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
+                                fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              LogaText(
+                                content: prevName != '' ? prevName : "Client",
+                                color: ref.watch(displayProvider).isLightMode
+                                    ? ref.watch(displayProvider).colorScheme.surface
+                                    : ref.watch(displayProvider).colorScheme.onSurface,
+                                fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize as double,
+                                fontweight: Theme.of(context).textTheme.bodyLarge?.fontWeight as FontWeight,
+                              ),
+                              SizedBox(
+                                height: 40,
+                              ),
+                              LogaText(
+                                content: "Email",
+                                color: ref.watch(displayProvider).isLightMode
+                                    ? ref
+                                        .watch(displayProvider)
+                                        .colorScheme
+                                        .surface
+                                        .withAlpha((0.7 * 255).toInt())
+                                    : ref
+                                        .watch(displayProvider)
+                                        .colorScheme
+                                        .onSurface
+                                        .withAlpha((0.4 * 255).toInt()),
+                                fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
+                                fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              LogaText(
+                                content: email != '' ? email : "Email",
+                                color: ref.watch(displayProvider).isLightMode
+                                    ? ref.watch(displayProvider).colorScheme.surface
+                                    : ref.watch(displayProvider).colorScheme.onSurface,
+                                fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize as double,
+                                fontweight: Theme.of(context).textTheme.bodyLarge?.fontWeight as FontWeight,
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+              ],
+            ),
           ),
         ),
       ),
