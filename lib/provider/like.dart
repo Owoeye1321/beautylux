@@ -26,12 +26,12 @@ class LikeNotifier extends StateNotifier<List<LikeModel>> {
     }
   }
 
-  Future<void> saveLike(String token, String provider_id) async {
+  Future<void> saveLike(String token, String provider_id, String user_id) async {
     try {
-      if (state.any((like) => like.company_id == provider_id))
+      if (state.length > 0 && state.any((like) => like.company_id == provider_id))
         state = state.where((like) => like.company_id != provider_id).toList();
       else
-        state = [...state, LikeModel(company_id: provider_id, user_id: state[0].user_id)];
+        state = [...state, LikeModel(company_id: provider_id, user_id: user_id)];
       var response = await http.post(Uri.parse("${dotenv.env['API_URL']!}/customer/like-provider"),
           headers: {
             HttpHeaders.authorizationHeader: "Bearer $token",
@@ -46,6 +46,7 @@ class LikeNotifier extends StateNotifier<List<LikeModel>> {
         throw new Exception(errorMessage);
       }
     } catch (error) {
+      print(error);
       throw new Exception(error.toString());
     }
   }

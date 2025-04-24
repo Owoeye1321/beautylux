@@ -105,9 +105,10 @@ class ServiceGridView extends ConsumerWidget {
                                 child: allLikes.any((like) => like.company_id == allUsers[index].id)
                                     ? InkWell(
                                         onTap: () {
-                                          ref
-                                              .read(likeProvider.notifier)
-                                              .saveLike(ref.watch(profileProvider).token, allUsers[index].id);
+                                          ref.read(likeProvider.notifier).saveLike(
+                                              ref.watch(profileProvider).token,
+                                              allUsers[index].id,
+                                              ref.watch(profileProvider).id);
                                         },
                                         child: Icon(
                                           Icons.favorite,
@@ -119,7 +120,9 @@ class ServiceGridView extends ConsumerWidget {
                                         onTap: () {
                                           if (ref.watch(profileProvider).token != '')
                                             ref.read(likeProvider.notifier).saveLike(
-                                                ref.watch(profileProvider).token, allUsers[index].id);
+                                                ref.watch(profileProvider).token,
+                                                allUsers[index].id,
+                                                ref.watch(profileProvider).id);
                                         },
                                         child: Icon(
                                           Icons.favorite_border,

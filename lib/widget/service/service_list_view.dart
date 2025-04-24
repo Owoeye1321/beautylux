@@ -222,7 +222,9 @@ class ServiceListView extends ConsumerWidget {
                                         ? InkWell(
                                             onTap: () {
                                               ref.read(likeProvider.notifier).saveLike(
-                                                  ref.watch(profileProvider).token, allUsers[index].id);
+                                                  ref.watch(profileProvider).token,
+                                                  allUsers[index].id,
+                                                  ref.watch(profileProvider).id);
                                             },
                                             child: Icon(
                                               Icons.favorite,
@@ -234,7 +236,9 @@ class ServiceListView extends ConsumerWidget {
                                             onTap: () {
                                               if (ref.watch(profileProvider).token != '')
                                                 ref.read(likeProvider.notifier).saveLike(
-                                                    ref.watch(profileProvider).token, allUsers[index].id);
+                                                    ref.watch(profileProvider).token,
+                                                    allUsers[index].id,
+                                                    ref.watch(profileProvider).id);
                                             },
                                             child: Icon(
                                               Icons.favorite_border,
