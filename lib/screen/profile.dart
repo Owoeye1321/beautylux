@@ -37,9 +37,12 @@ class _ProfileState extends ConsumerState<Profile> {
       final imagePicker = ImagePicker();
       final pickedImage = await imagePicker.pickImage(source: ImageSource.gallery, maxWidth: 600);
 
-      if (pickedImage == null)
+      if (pickedImage == null) {
+        setState(() {
+          loadImageState = !loadImageState;
+        });
         return;
-      else {
+      } else {
         Map<String, dynamic> response = await ref
             .read(profileProvider.notifier)
             .uploadPicture(pickedImage, ref.read(profileProvider).token);
