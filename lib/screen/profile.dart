@@ -328,11 +328,7 @@ class _ProfileState extends ConsumerState<Profile> {
                           LogaText(
                             content: "Name",
                             color: ref.watch(displayProvider).isLightMode
-                                ? ref
-                                    .watch(displayProvider)
-                                    .colorScheme
-                                    .surface
-                                    .withAlpha((0.7 * 255).toInt())
+                                ? ref.watch(displayProvider).colorScheme.onSurface
                                 : ref
                                     .watch(displayProvider)
                                     .colorScheme
@@ -367,11 +363,7 @@ class _ProfileState extends ConsumerState<Profile> {
                           LogaText(
                             content: "Email",
                             color: ref.watch(displayProvider).isLightMode
-                                ? ref
-                                    .watch(displayProvider)
-                                    .colorScheme
-                                    .surface
-                                    .withAlpha((0.7 * 255).toInt())
+                                ? ref.watch(displayProvider).colorScheme.onSurface
                                 : ref
                                     .watch(displayProvider)
                                     .colorScheme
