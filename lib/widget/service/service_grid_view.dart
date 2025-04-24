@@ -58,7 +58,7 @@ class ServiceGridView extends ConsumerWidget {
                       color: ref.watch(displayProvider).colorScheme.onSurface,
                       borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
-                        image: allUsers[index].image_url != null
+                        image: allUsers[index].image_url != ''
                             ? NetworkImage(allUsers[index].image_url!)
                             : AssetImage('images/home.png') as ImageProvider,
                         fit: BoxFit.cover,

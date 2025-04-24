@@ -68,6 +68,7 @@ class _HomeState extends ConsumerState<Home> {
 
   @override
   Widget build(BuildContext context) {
+    String profilePicture = ref.watch(profileProvider).image_url!;
     _bookNow() {
       _switchContent(0, 1);
     }
@@ -99,8 +100,10 @@ class _HomeState extends ConsumerState<Home> {
                       ),
                       decoration: BoxDecoration(
                         border: Border.all(),
-                        image: const DecorationImage(
-                          image: AssetImage('images/dp.jpeg'),
+                        image: DecorationImage(
+                          image: profilePicture != '' && profilePicture != 'null' && profilePicture != null
+                              ? NetworkImage(profilePicture!)
+                              : AssetImage('images/dp.jpeg') as ImageProvider,
                           fit: BoxFit.cover,
                         ),
                         borderRadius: BorderRadius.circular(50),

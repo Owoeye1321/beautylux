@@ -28,7 +28,9 @@ class LoginResponse {
         token: object['data']['token'],
         first_name: object['data']['first_name'],
         bio: '',
-        email: '',
+        email: object['data']['email'],
+        image_url:
+            object['data']['image_url'].toString() != 'null' ? object['data']['image_url'].toString() : "",
         id: object['data']['id'],
         business_address: '',
         business_name: '',

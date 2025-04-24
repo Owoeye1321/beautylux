@@ -47,7 +47,7 @@ class UserModel {
   UserModel(
       {required this.first_name,
       this.last_name,
-     required  this.email,
+      required this.email,
       this.phone,
       this.occupation,
       this.is_active,
@@ -115,6 +115,7 @@ class UserModel {
         bio: bio,
         token: '',
         email: '',
+        image_url: eachStaff['image_url'].toString() == "null" ? "" : eachStaff['image_url'].toString(),
         business_name: business_name,
         business_address: business_address,
         createdAt: DateFormat.jm().format(date),
@@ -127,5 +128,24 @@ class UserModel {
       allUsers.add(user);
     }
     return allUsers;
+  }
+
+  static UserModel fromJson(Map<String, dynamic> data, String token) {
+    var first_name =
+        data['data']['first_name'].toString() == "null" ? "user" : data['data']['first_name'].toString();
+    return UserModel(
+      id: data['data']['_id'],
+      first_name: first_name,
+      bio: '',
+      token: token,
+      email: data['data']['email'].toString(),
+      image_url: data['data']['image_url'].toString() == "null" ? "" : data['data']['image_url'].toString(),
+      business_name: '',
+      business_address: '',
+      createdAt: '',
+      company_id: '',
+      opening_time: '',
+      closing_time: '',
+    );
   }
 }

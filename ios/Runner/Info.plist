@@ -8,6 +8,10 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
 	<string>Logaluxe Users</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Pick your favourite display picture</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Take your favourite display picture</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

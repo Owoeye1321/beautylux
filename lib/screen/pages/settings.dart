@@ -6,6 +6,7 @@ import 'package:logaluxe_users/provider/auth/login.dart';
 import 'package:logaluxe_users/provider/auth/profile.dart';
 import 'package:logaluxe_users/provider/display.dart';
 import 'package:logaluxe_users/screen/auth/login.dart';
+import 'package:logaluxe_users/screen/profile.dart';
 import 'package:logaluxe_users/third-party/gmail_sso.dart';
 import 'package:logaluxe_users/widget/loga_text.dart';
 import 'package:toastification/toastification.dart';
@@ -105,7 +106,7 @@ class _SettingsState extends ConsumerState<Settings> {
                   AdvancedSwitch(
                     controller: _controller,
                     activeColor: ref.watch(displayProvider).colorScheme.onSurface,
-                    inactiveColor: ref.watch(displayProvider).colorScheme.onSurface,
+                    inactiveColor: ref.watch(displayProvider).colorScheme.surface,
                     borderRadius: BorderRadius.all(const Radius.circular(15)),
                     width: 60,
                     height: 30,
@@ -121,7 +122,7 @@ class _SettingsState extends ConsumerState<Settings> {
             ),
           ),
           SizedBox(
-            height: 10,
+            height: 15,
           ),
           ref.watch(profileProvider).token == ''
               ? InkWell(
@@ -151,7 +152,7 @@ class _SettingsState extends ConsumerState<Settings> {
                               content: "Log in",
                               color: ref.watch(displayProvider).colorScheme.onSurface,
                               fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
-                              fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
+                              fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
                             ),
                           ],
                         ),
@@ -184,13 +185,60 @@ class _SettingsState extends ConsumerState<Settings> {
                             content: "Log out",
                             color: ref.watch(displayProvider).colorScheme.onSurface,
                             fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
-                            fontweight: Theme.of(context).textTheme.bodySmall?.fontWeight as FontWeight,
+                            fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
                           ),
                         ],
                       ),
                     ),
                   ),
                 ),
+          SizedBox(
+            height: 30,
+          ),
+          LogaText(
+            content: "Account",
+            color: ref.watch(displayProvider).colorScheme.onSurface,
+            fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize as double,
+            fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          GestureDetector(
+            onTap: () {
+              ref.watch(profileProvider).token != ''
+                  ? Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => Profile()))
+                  : Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => Login()));
+            },
+            child: Container(
+              height: 50,
+              width: double.infinity,
+              alignment: Alignment.centerLeft,
+              decoration: BoxDecoration(
+                  color: ref.watch(displayProvider).colorScheme.onSurface.withAlpha((0.2 * 255).toInt()),
+                  borderRadius: BorderRadius.circular(20)),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.person,
+                      color: ref.watch(displayProvider).colorScheme.onSurface,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    LogaText(
+                      content: "Profile",
+                      color: ref.watch(displayProvider).colorScheme.onSurface,
+                      fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize as double,
+                      fontweight: Theme.of(context).textTheme.bodyMedium?.fontWeight as FontWeight,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

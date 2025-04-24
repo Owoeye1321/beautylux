@@ -83,7 +83,8 @@ class _ServicePurchaseListState extends ConsumerState<ServicePurchaseList> {
     if (services.isNotEmpty)
       body = SingleChildScrollView(
         scrollDirection: Axis.vertical,
-        child: Expanded(
+        child: Container(
+          width: screenWidth * 1,
           child: Column(
             children: [
               ...services.map((eachService) {

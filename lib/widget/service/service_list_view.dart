@@ -41,7 +41,7 @@ class ServiceListView extends ConsumerWidget {
         ),
         itemCount: allUsers.length,
         itemBuilder: (context, index) {
-          return GestureDetector(
+          return InkWell(
             onTap: () {
               _viewUser(allUsers[index], allLikes.any((like) => like.company_id == allUsers[index].id));
             },
@@ -58,7 +58,7 @@ class ServiceListView extends ConsumerWidget {
                       color: Theme.of(context).colorScheme.onSurface,
                       borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
-                        image: allUsers[index].image_url != null
+                        image: allUsers[index].image_url != ''
                             ? NetworkImage(allUsers[index].image_url!)
                             : AssetImage('images/home.png') as ImageProvider,
                         fit: BoxFit.cover,
